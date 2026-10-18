@@ -192,31 +192,33 @@ button, input, select {
 }
 
 .header-inner {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
+  gap: 1.25rem;
   height: 100%;
   position: relative;
   width: 100%;
 }
 
 .brand-logo-link.header-center-logo {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  grid-column: 2;
+  position: static;
+  transform: none;
   z-index: 20;
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
   pointer-events: auto;
+  margin: 0 auto;
+  padding: 0 0.75rem;
   transition: transform var(--transition-fast), opacity var(--transition-fast);
 }
 
 .brand-logo-link.header-center-logo:hover {
-  transform: translate(-50%, -50%) scale(1.03);
-  opacity: 0.88;
+  transform: scale(1.04);
+  opacity: 0.9;
 }
 
 /* Stacked 2-Line Brutalist Brand Mark (Photo 2 reference) */
@@ -235,7 +237,7 @@ button, input, select {
 .header-brand-mark .brand-text-market {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(1.15rem, 1.8vw, 1.42rem);
+  font-size: clamp(1.15rem, 1.8vw, 1.38rem);
   color: #ffffff;
   letter-spacing: 0.08em;
   display: block;
@@ -245,17 +247,23 @@ button, input, select {
 }
 
 .header-left-nav {
+  grid-column: 1;
   display: none;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 0;
 }
 
 .header-right-nav {
   display: none;
+  align-items: center;
 }
 
 @media (min-width: 992px) {
   .header-left-nav {
     display: flex;
     align-items: center;
+    justify-content: flex-start;
   }
   .header-right-nav {
     display: flex;
@@ -314,17 +322,19 @@ button, input, select {
 .nav-list {
   display: flex;
   list-style: none;
-  gap: 2rem;
+  gap: 1.25rem;
+  align-items: center;
 }
 
 .nav-link {
   font-family: var(--font-body);
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   color: var(--text-secondary);
   position: relative;
   padding: 6px 0;
+  white-space: nowrap;
 }
 
 .nav-link::after {
@@ -347,9 +357,12 @@ button, input, select {
 }
 
 .header-actions {
+  grid-column: 3;
   display: flex;
   align-items: center;
-  gap: 1rem;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  min-width: 0;
 }
 
 .cart-btn {
