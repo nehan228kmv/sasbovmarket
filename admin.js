@@ -1214,6 +1214,9 @@
   if (categorySelect) {
     categorySelect.addEventListener('change', () => {
       updateSizePickerForCategory(categorySelect.value);
+      if (typeof updateAiCategoryButtons === 'function') {
+        updateAiCategoryButtons(categorySelect.value);
+      }
     });
   }
 
@@ -1282,6 +1285,8 @@
     renderSizeChips();
 
     updateStockTypeFormUI('preorder');
+    if (typeof updateAiCategoryButtons === 'function') updateAiCategoryButtons('footwear');
+    if (typeof syncAiInlineKeyUI === 'function') syncAiInlineKeyUI();
     if (typeof resetAISidecarResults === 'function') resetAISidecarResults();
     if (typeof updateAISidecarPreview === 'function') updateAISidecarPreview();
     cardModal.showModal();
@@ -1348,6 +1353,8 @@
     currentEditorImages = getItemImages(item);
     renderEditorGallery();
 
+    if (typeof updateAiCategoryButtons === 'function') updateAiCategoryButtons(cat);
+    if (typeof syncAiInlineKeyUI === 'function') syncAiInlineKeyUI();
     if (typeof resetAISidecarResults === 'function') resetAISidecarResults();
     if (typeof updateAISidecarPreview === 'function') updateAISidecarPreview();
 
@@ -2060,7 +2067,25 @@
   const aiWebSearchInput = document.getElementById('ai-web-search-input');
   const aiWebSearchBtn = document.getElementById('ai-web-search-btn');
 
-  // Gemini API Key Modal Elements
+  // Inline AI Key & Engine Elements (Directly in this window)
+  const toggleInlineKeyDrawerBtn = document.getElementById('toggle-inline-key-drawer-btn');
+  const inlineKeyDrawer = document.getElementById('ai-inline-key-drawer');
+  const inlineApiKeyInput = document.getElementById('inline-ai-api-key-input');
+  const btnToggleKeyEye = document.getElementById('btn-toggle-inline-key-eye');
+  const btnSaveInlineKey = document.getElementById('btn-save-inline-ai-key');
+  const btnTestInlineKey = document.getElementById('btn-test-inline-ai-key');
+  const btnClearInlineKey = document.getElementById('btn-clear-inline-ai-key');
+  const aiKeyStatusDot = document.getElementById('ai-key-dot');
+  const aiKeyStatusText = document.getElementById('ai-key-status-text');
+  const aiKeyProviderBadge = document.getElementById('ai-key-provider-badge');
+  const aiActiveEngineTag = document.getElementById('ai-active-engine-tag');
+
+  // Fast Category Switcher Buttons for AI Vision
+  const aiCatBtnClothing = document.getElementById('ai-cat-btn-clothing');
+  const aiCatBtnFootwear = document.getElementById('ai-cat-btn-footwear');
+  const aiCatBtnAccessories = document.getElementById('ai-cat-btn-accessories');
+
+  // Legacy modal fallback elements (if present)
   const geminiKeyModal = document.getElementById('gemini-key-modal');
   const geminiKeyBackdrop = document.getElementById('gemini-key-backdrop');
   const geminiKeyCloseBtn = document.getElementById('gemini-key-close-btn');
@@ -2068,7 +2093,6 @@
   const geminiKeyForm = document.getElementById('gemini-key-form');
   const geminiKeyInput = document.getElementById('gemini-key-input');
   const geminiKeyClearBtn = document.getElementById('gemini-key-clear-btn');
-  const openAiKeyBtn = document.getElementById('open-ai-api-key-btn');
 
   // Curated High-End Streetwear Web Photo Lookbook Archives
   const STREETWEAR_LOOKBOOK_ARCHIVE = {
@@ -2302,8 +2326,107 @@
     const formCat = categorySelect ? categorySelect.value : '';
     const combined = `${hintLower} ${fileLower} ${brandLower} ${nameLower} ${srcLower}`;
 
-    // C.P. COMPANY (Down Jackets, Puffers, Goggle Hoods)
-    if (combined.includes('cp') || combined.includes('c.p.') || combined.includes('company') || combined.includes('пухан') || combined.includes('пуховик') || combined.includes('сипи') || combined.includes('goggle') || combined.includes('lens') || combined.includes('dd shell')) {
+    // Aspect ratio analysis: vertical images are outerwear/clothing jackets, not shoes
+    let isVerticalPhoto = false;
+    if (aiTargetImgPreview && aiTargetImgPreview.naturalHeight && aiTargetImgPreview.naturalWidth) {
+      if (aiTargetImgPreview.naturalHeight > aiTargetImgPreview.naturalWidth * 1.08) {
+        isVerticalPhoto = true;
+      }
+    }
+
+    const isClothingTarget = formCat === 'clothing' || isVerticalPhoto || 
+      combined.includes('пух') || combined.includes('куртк') || combined.includes('jacket') || 
+      combined.includes('coat') || combined.includes('пухан') || combined.includes('сипи') || 
+      combined.includes('cp') || combined.includes('c.p.') || combined.includes('stone') || 
+      combined.includes('arc') || combined.includes('trapstar') || combined.includes('moncler');
+
+    // CLOTHING / OUTERWEAR BRANCH
+    if (isClothingTarget) {
+      // STONE ISLAND
+      if (combined.includes('stone') || combined.includes('island') || combined.includes('стоун') || combined.includes('crinkle') || combined.includes('ghost') || combined.includes('shadow') || combined.includes('патч')) {
+        return {
+          brand: 'STONE ISLAND',
+          model: 'Crinkle Reps NY Down Puffer Jacket',
+          category: 'clothing',
+          suggestedSizes: ['S', 'M', 'L', 'XL', 'XXL'],
+          estimatedPriceRub: 68000,
+          description: 'Культовый пуховик Stone Island из сверхпрочного нейлона Crinkle Reps с полимерным внутренним покрытием. Окрашено по технологии Garment Dyeing с водоотталкивающей пропиткой. Съемный патч Compass на левом рукаве. 100% оригинал из Европы.'
+        };
+      }
+
+      // ARC'TERYX
+      if (combined.includes('arc') || combined.includes('teryx') || combined.includes('арктерикс') || combined.includes('alpha') || combined.includes('beta') || combined.includes('atom')) {
+        return {
+          brand: "ARC'TERYX",
+          model: 'Beta LT GORE-TEX Waterproof Shell Jacket Black',
+          category: 'clothing',
+          suggestedSizes: ['S', 'M', 'L', 'XL'],
+          estimatedPriceRub: 48500,
+          description: 'Универсальная мембранная куртка Arc\'teryx Beta LT из трехслойного материала GORE-TEX с технологией подкладки Tricot. Водонепроницаемые молнии WaterTight, совместимый со шлемом капюшон StormHood и анатомический крой e3D. Идеальна для города и аутдора.'
+        };
+      }
+
+      // TRAPSTAR
+      if (combined.includes('trapstar') || combined.includes('трапстар') || combined.includes('irongate') || combined.includes('hyperdrive')) {
+        return {
+          brand: 'TRAPSTAR',
+          model: 'Irongate Detachable Hooded Puffer Black',
+          category: 'clothing',
+          suggestedSizes: ['S', 'M', 'L', 'XL'],
+          estimatedPriceRub: 36000,
+          description: 'Культовый пуховик от лондонского стритвир-бренда Trapstar. Массивный дутый силуэт с фирменной вышивкой Irongate T на спине и капюшоне. Съемный капюшон, брендированная фурнитура и ветрозащитная мембрана.'
+        };
+      }
+
+      // MONCLER
+      if (combined.includes('moncler') || combined.includes('монклер') || combined.includes('maya')) {
+        return {
+          brand: 'MONCLER',
+          model: 'Maya Shiny Nylon Laqué Down Jacket',
+          category: 'clothing',
+          suggestedSizes: ['2 (M)', '3 (L)', '4 (XL)'],
+          estimatedPriceRub: 125000,
+          description: 'Легендарный пуховик Moncler Maya из глянцевого лакового нейлона nylon laqué с наполнителем из отборного пуха. Карман с фетровым логотипом на рукаве, съемный капюшон и регулируемый низ. Классика альпийского люкса.'
+        };
+      }
+
+      // THUG CLUB
+      if (combined.includes('thug') || combined.includes('club') || combined.includes('tribal') || combined.includes('таг клаб') || combined.includes('худи') || combined.includes('hoodie')) {
+        return {
+          brand: 'THUG CLUB',
+          model: 'Tribal Metal Hardware Heavyweight Hoodie',
+          category: 'clothing',
+          suggestedSizes: ['S', 'M', 'L', 'XL'],
+          estimatedPriceRub: 22600,
+          description: 'Тяжелый худи от сеульского культа Thug Club плотностью 580 gsm с фирменной металлической эмблемой на груди. Авторская обработка с эффектом винтажной стирки, двойной капюшон и объемный оверсайз крой. Лимитированный дроп.'
+        };
+      }
+
+      // ROARINGWILD
+      if (combined.includes('roaringwild') || combined.includes('cyber') || combined.includes('techwear') || combined.includes('cargo') || combined.includes('карго')) {
+        return {
+          brand: 'ROARINGWILD',
+          model: 'Tactical Cyber Multi-Pocket Cargo Pants',
+          category: 'clothing',
+          suggestedSizes: ['S', 'M', 'L', 'XL'],
+          estimatedPriceRub: 14200,
+          description: 'Флагманские брюки-карго от шэньчжэньского бренда Roaringwild. Анатомический крой, износостойкая ткань с гидрофобной пропиткой DWR, фурнитура YKK и утягивающие стропы на щиколотках. Идеальная посадка в стиле азиатского киберпанка.'
+        };
+      }
+
+      // KAPITAL
+      if (combined.includes('kapital') || combined.includes('boro') || combined.includes('skeleton') || combined.includes('bone')) {
+        return {
+          brand: 'KAPITAL',
+          model: 'Bone Skeleton Vintage Washed Denim Jacket',
+          category: 'clothing',
+          suggestedSizes: ['2 (M)', '3 (L)', '4 (XL)'],
+          estimatedPriceRub: 44000,
+          description: 'Шедевр японского ремесленного денима из Кодзимы с кожаными аппликациями в виде анатомического скелета на рукавах и спине. Японский селвидж плотностью 14 oz, обработка камнями и аутентичный винтажный фейд.'
+        };
+      }
+
+      // DEFAULT CLOTHING: C.P. COMPANY PUFFER
       return {
         brand: 'C.P. COMPANY',
         model: 'D.D. Shell Down Goggle Jacket (Пуховик)',
@@ -2311,138 +2434,6 @@
         suggestedSizes: ['48 IT (M)', '50 IT (L)', '52 IT (XL)', '54 IT (XXL)'],
         estimatedPriceRub: 54000,
         description: 'Флагманский пуховик C.P. Company с культовыми линзами Goggle на регулируемом капюшоне. Легкий матовый рипстоп D.D. Shell с пуховым наполнителем Direct Down Injection (90/10 пух/перо). Влагозащитная пропитка, двухсторонняя молния и ветрозащитный клапан. 100% оригинал с верификацией Certilogo.'
-      };
-    }
-
-    // STONE ISLAND
-    if (combined.includes('stone') || combined.includes('island') || combined.includes('стоун') || combined.includes('crinkle') || combined.includes('ghost') || combined.includes('shadow') || combined.includes('патч')) {
-      return {
-        brand: 'STONE ISLAND',
-        model: 'Crinkle Reps NY Down Puffer Jacket',
-        category: 'clothing',
-        suggestedSizes: ['S', 'M', 'L', 'XL', 'XXL'],
-        estimatedPriceRub: 68000,
-        description: 'Культовый пуховик Stone Island из сверхпрочного нейлона Crinkle Reps с полимерным внутренним покрытием. Окрашено по технологии Garment Dyeing с водоотталкивающей пропиткой. Съемный патч Compass на левом рукаве. 100% оригинал из Европы.'
-      };
-    }
-
-    // ARC'TERYX
-    if (combined.includes('arc') || combined.includes('teryx') || combined.includes('арктерикс') || combined.includes('alpha') || combined.includes('beta') || combined.includes('atom')) {
-      return {
-        brand: "ARC'TERYX",
-        model: 'Beta LT GORE-TEX Waterproof Shell Jacket Black',
-        category: 'clothing',
-        suggestedSizes: ['S', 'M', 'L', 'XL'],
-        estimatedPriceRub: 48500,
-        description: 'Универсальная мембранная куртка Arc\'teryx Beta LT из трехслойного материала GORE-TEX с технологией подкладки Tricot. Водонепроницаемые молнии WaterTight, совместимый со шлемом капюшон StormHood и анатомический крой e3D. Идеальна для города и аутдора.'
-      };
-    }
-
-    // TRAPSTAR
-    if (combined.includes('trapstar') || combined.includes('трапстар') || combined.includes('irongate') || combined.includes('hyperdrive')) {
-      return {
-        brand: 'TRAPSTAR',
-        model: 'Irongate Detachable Hooded Puffer Black',
-        category: 'clothing',
-        suggestedSizes: ['S', 'M', 'L', 'XL'],
-        estimatedPriceRub: 36000,
-        description: 'Культовый пуховик от лондонского стритвир-бренда Trapstar. Массивный дутый силуэт с фирменной вышивкой Irongate T на спине и капюшоне. Съемный капюшон, брендированная фурнитура и ветрозащитная мембрана.'
-      };
-    }
-
-    // MONCLER
-    if (combined.includes('moncler') || combined.includes('монклер') || combined.includes('maya')) {
-      return {
-        brand: 'MONCLER',
-        model: 'Maya Shiny Nylon Laqué Down Jacket',
-        category: 'clothing',
-        suggestedSizes: ['2 (M)', '3 (L)', '4 (XL)'],
-        estimatedPriceRub: 125000,
-        description: 'Легендарный пуховик Moncler Maya из глянцевого лакового нейлона nylon laqué с наполнителем из отборного пуха. Карман с фетровым логотипом на рукаве, съемный капюшон и регулируемый низ. Классика альпийского люкса.'
-      };
-    }
-
-    // MAISON MIHARA YASUHIRO
-    if (combined.includes('mihara') || combined.includes('peterson') || combined.includes('yasuhiro') || combined.includes('baker') || combined.includes('wayne') || combined.includes('mmy')) {
-      return {
-        brand: 'MAISON MIHARA YASUHIRO',
-        model: 'Peterson OG Sole Canvas Low-Top',
-        category: 'footwear',
-        suggestedSizes: ['39 EU', '40 EU', '41 EU', '42 EU', '43 EU', '44 EU'],
-        estimatedPriceRub: 24800,
-        description: 'Культовый силуэт от токийского дизайнера Михары Ясухиро с авторской расплавленной подошвой OG Sole, отлитой вручную из глины. Плотный хлопковый канвас, массивная шнуровка и фирменная патч-бирка на язычке. Полный комплект с коробкой и пыльником. 100% оригинал.'
-      };
-    }
-
-    // RICK OWENS
-    if (combined.includes('rick') || combined.includes('owens') || combined.includes('geobasket') || combined.includes('ramones') || combined.includes('drkshdw')) {
-      return {
-        brand: 'RICK OWENS DRKSHDW',
-        model: 'Ramones High-Top Black Canvas Sneakers',
-        category: 'footwear',
-        suggestedSizes: ['40 EU', '41 EU', '42 EU', '43 EU', '44 EU'],
-        estimatedPriceRub: 58500,
-        description: 'Знаковый хай-топ силуэт темного парижского авангарда. Плотный хлопок с восковым покрытием, массивная зубчатая подошва shark-tooth из вулканизированной резины и металлическая молния сбоку. Двухэтапный легитчек пройден.'
-      };
-    }
-
-    // ROARINGWILD
-    if (combined.includes('roaringwild') || combined.includes('cyber') || combined.includes('techwear') || combined.includes('cargo') || combined.includes('карго')) {
-      return {
-        brand: 'ROARINGWILD',
-        model: 'Tactical Cyber Multi-Pocket Cargo Pants',
-        category: 'clothing',
-        suggestedSizes: ['S', 'M', 'L', 'XL'],
-        estimatedPriceRub: 14200,
-        description: 'Флагманские брюки-карго от шэньчжэньского бренда Roaringwild. Анатомический крой, износостойкая ткань с гидрофобной пропиткой DWR, фурнитура YKK и утягивающие стропы на щиколотках. Идеальная посадка в стиле азиатского киберпанка.'
-      };
-    }
-
-    // THUG CLUB
-    if (combined.includes('thug') || combined.includes('club') || combined.includes('tribal') || combined.includes('таг клаб') || combined.includes('худи') || combined.includes('hoodie')) {
-      return {
-        brand: 'THUG CLUB',
-        model: 'Tribal Metal Hardware Heavyweight Hoodie',
-        category: 'clothing',
-        suggestedSizes: ['S', 'M', 'L', 'XL'],
-        estimatedPriceRub: 22600,
-        description: 'Тяжелый худи от сеульского культа Thug Club плотностью 580 gsm с фирменной металлической эмблемой на груди. Авторская обработка с эффектом винтажной стирки, двойной капюшон и объемный оверсайз крой. Лимитированный дроп.'
-      };
-    }
-
-    // SALOMON x MM6
-    if (combined.includes('salomon') || combined.includes('mm6') || combined.includes('cross') || combined.includes('xt-6')) {
-      return {
-        brand: 'SALOMON x MM6',
-        model: 'Cross Low Maison Margiela Tech Sneakers',
-        category: 'footwear',
-        suggestedSizes: ['40 EU', '41 EU', '42 EU', '43 EU', '44 EU'],
-        estimatedPriceRub: 33400,
-        description: 'Коллаборация парижского дома Maison Margiela и Salomon. Беговой трейловый силуэт с облегающей гетрой из рипстопа, агрессивным протектором Contagrip и системой быстрой шнуровки Quicklace. 100% оригинал из Токио.'
-      };
-    }
-
-    // KAPITAL
-    if (combined.includes('kapital') || combined.includes('boro') || combined.includes('skeleton') || combined.includes('bone')) {
-      return {
-        brand: 'KAPITAL',
-        model: 'Bone Skeleton Vintage Washed Denim Jacket',
-        category: 'clothing',
-        suggestedSizes: ['2 (M)', '3 (L)', '4 (XL)'],
-        estimatedPriceRub: 44000,
-        description: 'Шедевр японского ремесленного денима из Кодзимы с кожаными аппликациями в виде анатомического скелета на рукавах и спине. Японский селвидж плотностью 14 oz, обработка камнями и аутентичный винтажный фейд.'
-      };
-    }
-
-    // BALENCIAGA
-    if (combined.includes('balenciaga') || combined.includes('defender') || combined.includes('triple') || combined.includes('track') || combined.includes('3xl')) {
-      return {
-        brand: 'BALENCIAGA',
-        model: 'Defender Chunky Tire-Sole Sneakers',
-        category: 'footwear',
-        suggestedSizes: ['40 EU', '41 EU', '42 EU', '43 EU', '44 EU'],
-        estimatedPriceRub: 72000,
-        description: 'Экстремально массивный гипер-силуэт с протекторной подошвой в форме автомобильной шины. Текстурный меш, винтажное состаривание поверхности и рельефный брендинг на носке. Аутентификация пройдена.'
       };
     }
 
@@ -2458,19 +2449,44 @@
       };
     }
 
-    // GENERAL CLOTHING (if form category is clothing, or user hints jacket/puffer)
-    if (formCat === 'clothing' || combined.includes('куртк') || combined.includes('пух') || combined.includes('jacket') || combined.includes('coat')) {
+    // FOOTWEAR / SNEAKERS BRANCH
+    // RICK OWENS
+    if (combined.includes('rick') || combined.includes('owens') || combined.includes('geobasket') || combined.includes('ramones') || combined.includes('drkshdw')) {
       return {
-        brand: 'C.P. COMPANY',
-        model: 'D.D. Shell Down Goggle Jacket (Пуховик)',
-        category: 'clothing',
-        suggestedSizes: ['48 IT (M)', '50 IT (L)', '52 IT (XL)', '54 IT (XXL)'],
-        estimatedPriceRub: 54000,
-        description: 'Флагманский пуховик C.P. Company с культовыми линзами Goggle на регулируемом капюшоне. Легкий матовый рипстоп D.D. Shell с пуховым наполнителем Direct Down Injection (90/10 пух/перо). Влагозащитная пропитка, двухсторонняя молния и ветрозащитный клапан. 100% оригинал.'
+        brand: 'RICK OWENS DRKSHDW',
+        model: 'Ramones High-Top Black Canvas Sneakers',
+        category: 'footwear',
+        suggestedSizes: ['40 EU', '41 EU', '42 EU', '43 EU', '44 EU'],
+        estimatedPriceRub: 58500,
+        description: 'Знаковый хай-топ силуэт темного парижского авангарда. Плотный хлопок с восковым покрытием, массивная зубчатая подошва shark-tooth из вулканизированной резины и металлическая молния сбоку. Двухэтапный легитчек пройден.'
       };
     }
 
-    // DEFAULT: MAISON MIHARA YASUHIRO
+    // SALOMON x MM6
+    if (combined.includes('salomon') || combined.includes('mm6') || combined.includes('cross') || combined.includes('xt-6')) {
+      return {
+        brand: 'SALOMON x MM6',
+        model: 'Cross Low Maison Margiela Tech Sneakers',
+        category: 'footwear',
+        suggestedSizes: ['40 EU', '41 EU', '42 EU', '43 EU', '44 EU'],
+        estimatedPriceRub: 33400,
+        description: 'Коллаборация парижского дома Maison Margiela и Salomon. Беговой трейловый силуэт с облегающей гетрой из рипстопа, агрессивным протектором Contagrip и системой быстрой шнуровки Quicklace. 100% оригинал из Токио.'
+      };
+    }
+
+    // BALENCIAGA
+    if (combined.includes('balenciaga') || combined.includes('defender') || combined.includes('triple') || combined.includes('track') || combined.includes('3xl')) {
+      return {
+        brand: 'BALENCIAGA',
+        model: 'Defender Chunky Tire-Sole Sneakers',
+        category: 'footwear',
+        suggestedSizes: ['40 EU', '41 EU', '42 EU', '43 EU', '44 EU'],
+        estimatedPriceRub: 72000,
+        description: 'Экстремально массивный гипер-силуэт с протекторной подошвой в форме автомобильной шины. Текстурный меш, винтажное состаривание поверхности и рельефный брендинг на носке. Аутентификация пройдена.'
+      };
+    }
+
+    // DEFAULT FOOTWEAR: MAISON MIHARA YASUHIRO
     return {
       brand: 'MAISON MIHARA YASUHIRO',
       model: 'Peterson OG Sole Canvas Low-Top',
@@ -2479,6 +2495,71 @@
       estimatedPriceRub: 24800,
       description: 'Культовый силуэт от токийского дизайнера Михары Ясухиро с авторской расплавленной подошвой OG Sole, отлитой вручную из глины. Плотный хлопковый канвас, массивная шнуровка и фирменная патч-бирка на язычке. Полный комплект с коробкой и пыльником. 100% оригинал.'
     };
+  }
+
+  // OpenRouter Vision API Call (works from Russia directly without VPN)
+  async function callOpenRouterVision(apiKey, imageData, userHint) {
+    const prompt = `Ты — ведущий эксперт-аутентификатор и закупщик азиатского и мирового стритвира в сервисе SASBOV MARKET (Токио, Шанхай, СПб).
+Внимательно определи точный бренд и модель вещи на фото.
+Верни СТРОГО валидный JSON без markdown форматирования:
+{
+  "brand": "Бренд (латиницей, например C.P. COMPANY, STONE ISLAND, ARC'TERYX, MAISON MIHARA YASUHIRO, RICK OWENS, TRAPSTAR, THUG CLUB)",
+  "model": "Точная модель на английском (например D.D. Shell Down Goggle Jacket или Peterson OG Sole Canvas Low-Top)",
+  "category": "footwear" | "clothing" | "accessories",
+  "suggestedSizes": ["ходовые размеры для карточки, например 48 IT (M), 50 IT (L), 52 IT (XL) для пуховиков или 41 EU, 42 EU для обуви"],
+  "estimatedPriceRub": 45000,
+  "description": "Премиальное описание дропа на русском языке (2-3 емких предложения в стиле бруталистского люкса с акцентом на материалы, силуэт и 100% оригинальность)"
+}`;
+
+    const textPrompt = userHint && userHint.trim() 
+      ? `${prompt}\nКонтекст/подсказка от байера: ${userHint.trim()}` 
+      : prompt;
+
+    const content = [{ type: 'text', text: textPrompt }];
+    if (imageData) {
+      content.push({ type: 'image_url', image_url: { url: imageData } });
+    }
+
+    const modelsToTry = [
+      'google/gemini-2.0-flash-exp:free',
+      'google/gemini-flash-1.5',
+      'meta-llama/llama-3.2-11b-vision-instruct:free',
+      'openai/gpt-4o-mini'
+    ];
+
+    let lastErr = null;
+    for (const m of modelsToTry) {
+      try {
+        const resp = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${apiKey}`,
+            'Content-Type': 'application/json',
+            'HTTP-Referer': 'https://sasbovmarket.com',
+            'X-Title': 'SASBOV MARKET Admin'
+          },
+          body: JSON.stringify({
+            model: m,
+            messages: [{ role: 'user', content }]
+          })
+        });
+
+        if (resp.ok) {
+          const res = await resp.json();
+          const raw = res?.choices?.[0]?.message?.content || '';
+          const cleanJson = raw.replace(/```json/gi, '').replace(/```/g, '').trim();
+          return JSON.parse(cleanJson);
+        } else {
+          const errData = await resp.json().catch(() => ({}));
+          lastErr = new Error(errData?.error?.message || `HTTP ${resp.status}`);
+          if (resp.status === 401 || resp.status === 403) throw lastErr;
+        }
+      } catch (e) {
+        lastErr = e;
+        if (e.message && e.message.includes('401')) throw e;
+      }
+    }
+    throw lastErr || new Error('Не удалось получить ответ от OpenRouter Vision API');
   }
 
   // Gemini Vision API Call with multi-model fallback (supports 2.5, 2.0, 1.5, 3.8)
@@ -2538,19 +2619,132 @@
           return JSON.parse(cleanJson);
         } else {
           const errBody = await resp.json().catch(() => ({}));
-          lastErr = new Error(errBody?.error?.message || `HTTP ${resp.status}`);
+          const msg = errBody?.error?.message || `HTTP ${resp.status}`;
+          if (msg.includes('location is not supported') || msg.includes('FAILED_PRECONDITION')) {
+            throw new Error('Google заблокировал запрос (User location not supported). Включите VPN или используйте ключ OpenRouter (sk-or-...), который работает в РФ без VPN!');
+          }
+          lastErr = new Error(msg);
           if (resp.status === 400 || resp.status === 403) {
             throw lastErr;
           }
         }
       } catch (e) {
         lastErr = e;
-        if (e.message && (e.message.includes('API_KEY_INVALID') || e.message.includes('permission'))) {
+        if (e.message && (e.message.includes('API_KEY_INVALID') || e.message.includes('permission') || e.message.includes('location is not supported'))) {
           throw e;
         }
       }
     }
     throw lastErr || new Error('Не удалось получить ответ от Gemini API');
+  }
+
+  // Test connection to AI Provider
+  async function testApiKeyConnection(key) {
+    if (!key || !key.trim()) {
+      alert('Пожалуйста, сначала введите API ключ в поле!');
+      return false;
+    }
+    const cleanKey = key.trim();
+    showToast('[...] Проверка связи с нейросетью...');
+
+    if (cleanKey.startsWith('sk-or-')) {
+      try {
+        const resp = await fetch('https://openrouter.ai/api/v1/auth/key', {
+          headers: { 'Authorization': `Bearer ${cleanKey}` }
+        });
+        if (resp.ok) {
+          const data = await resp.json();
+          const label = data?.data?.label || 'OpenRouter Key';
+          alert(`✅ СВЯЗЬ С OPENROUTER УСТАНОВЛЕНА!\nКлюч активен (${label}).\nНейросеть готова к распознаванию любых фото без VPN!`);
+          return true;
+        } else {
+          const err = await resp.json().catch(() => ({}));
+          alert(`❌ Ошибка OpenRouter: ${err?.error?.message || resp.status}`);
+          return false;
+        }
+      } catch (e) {
+        alert(`❌ Ошибка сети: ${e.message}`);
+        return false;
+      }
+    } else {
+      try {
+        const resp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${encodeURIComponent(cleanKey)}`);
+        if (resp.ok) {
+          alert('✅ СВЯЗЬ С GOOGLE GEMINI УСТАНОВЛЕНА!\nКлюч валиден. Gemini Vision 2.5/2.0 Flash готова к работе.');
+          return true;
+        } else {
+          const err = await resp.json().catch(() => ({}));
+          const msg = err?.error?.message || `HTTP ${resp.status}`;
+          if (msg.includes('location is not supported')) {
+            alert('⚠️ ОШИБКА ДОСТУПА GOOGLE (РФ):\nGoogle возвращает "User location is not supported".\nДля работы с ключом Google нужен VPN,\nЛИБО используйте бесплатный ключ OpenRouter (sk-or-...), который работает в РФ напрямую без VPN!');
+          } else {
+            alert(`❌ Ошибка Gemini API: ${msg}`);
+          }
+          return false;
+        }
+      } catch (e) {
+        alert(`❌ Ошибка сети: ${e.message}`);
+        return false;
+      }
+    }
+  }
+
+  // Sync Inline Key UI (dot, text, badges)
+  function syncAiInlineKeyUI() {
+    const stored = localStorage.getItem(GEMINI_STORAGE_KEY) || '';
+    if (inlineApiKeyInput) inlineApiKeyInput.value = stored;
+
+    if (stored && stored.length > 8) {
+      if (aiKeyStatusDot) aiKeyStatusDot.classList.add('active');
+      if (stored.startsWith('sk-or-')) {
+        if (aiKeyStatusText) aiKeyStatusText.textContent = '🟢 Активен: OpenRouter Vision (работает в РФ без VPN)';
+        if (aiKeyProviderBadge) {
+          aiKeyProviderBadge.textContent = 'OPENROUTER';
+          aiKeyProviderBadge.style.color = '#00f0ff';
+        }
+        if (aiActiveEngineTag) aiActiveEngineTag.textContent = 'OPENROUTER AI';
+      } else if (stored.startsWith('AIza')) {
+        if (aiKeyStatusText) aiKeyStatusText.textContent = '🟢 Активен: Google Gemini Vision';
+        if (aiKeyProviderBadge) {
+          aiKeyProviderBadge.textContent = 'GEMINI';
+          aiKeyProviderBadge.style.color = '#00ff88';
+        }
+        if (aiActiveEngineTag) aiActiveEngineTag.textContent = 'GEMINI 2.5';
+      } else {
+        if (aiKeyStatusText) aiKeyStatusText.textContent = '🟢 Пользовательский AI Vision ключ активен';
+        if (aiKeyProviderBadge) {
+          aiKeyProviderBadge.textContent = 'CUSTOM AI';
+          aiKeyProviderBadge.style.color = '#00f0ff';
+        }
+        if (aiActiveEngineTag) aiActiveEngineTag.textContent = 'CUSTOM AI';
+      }
+      if (toggleInlineKeyDrawerBtn) {
+        toggleInlineKeyDrawerBtn.style.color = '#00ff88';
+        toggleInlineKeyDrawerBtn.style.borderColor = 'rgba(0, 255, 136, 0.4)';
+      }
+    } else {
+      if (aiKeyStatusDot) aiKeyStatusDot.classList.remove('active');
+      if (aiKeyStatusText) aiKeyStatusText.textContent = 'Оффлайн-режим (введите ключ для 100% нейро-зрения)';
+      if (aiKeyProviderBadge) {
+        aiKeyProviderBadge.textContent = 'HEURISTIC';
+        aiKeyProviderBadge.style.color = '#a1a1aa';
+      }
+      if (aiActiveEngineTag) aiActiveEngineTag.textContent = 'HEURISTIC';
+      if (toggleInlineKeyDrawerBtn) {
+        toggleInlineKeyDrawerBtn.style.color = '#a1a1aa';
+        toggleInlineKeyDrawerBtn.style.borderColor = '';
+      }
+    }
+  }
+
+  // Fast Category Switcher Buttons state
+  function updateAiCategoryButtons(selectedCat) {
+    [aiCatBtnClothing, aiCatBtnFootwear, aiCatBtnAccessories].forEach(btn => {
+      if (btn) btn.classList.remove('active');
+    });
+    if (selectedCat === 'clothing' && aiCatBtnClothing) aiCatBtnClothing.classList.add('active');
+    else if (selectedCat === 'accessories' && aiCatBtnAccessories) aiCatBtnAccessories.classList.add('active');
+    else if (aiCatBtnFootwear) aiCatBtnFootwear.classList.add('active');
   }
 
   // Run AI Recognition & Photo Search
@@ -2578,16 +2772,27 @@
     if (aiRecognizeBtn) aiRecognizeBtn.disabled = true;
 
     try {
-      const storedApiKey = localStorage.getItem(GEMINI_STORAGE_KEY) || '';
+      const storedApiKey = localStorage.getItem(GEMINI_STORAGE_KEY) || (inlineApiKeyInput ? inlineApiKeyInput.value.trim() : '');
       let detected = null;
 
-      if (storedApiKey && storedApiKey.trim().length > 10 && photoToScan) {
-        if (aiStatusText) aiStatusText.textContent = 'Подключение к Google Gemini Vision...';
-        try {
-          detected = await callGeminiVision(storedApiKey.trim(), photoToScan, userHint);
-        } catch (apiErr) {
-          console.warn('Gemini API call failed, falling back to intelligent streetwear engine:', apiErr);
-          detected = recognizeStreetwearHeuristics(photoToScan, brandInput?.value, nameInput?.value, userHint, lastUploadedFileName);
+      if (storedApiKey && storedApiKey.trim().length > 8 && photoToScan) {
+        const cleanKey = storedApiKey.trim();
+        if (cleanKey.startsWith('sk-or-')) {
+          if (aiStatusText) aiStatusText.textContent = 'Нейро-сканирование через OpenRouter Vision (без VPN)...';
+          try {
+            detected = await callOpenRouterVision(cleanKey, photoToScan, userHint);
+          } catch (openRouterErr) {
+            console.warn('OpenRouter call failed, falling back to intelligent streetwear engine:', openRouterErr);
+            detected = recognizeStreetwearHeuristics(photoToScan, brandInput?.value, nameInput?.value, userHint, lastUploadedFileName);
+          }
+        } else {
+          if (aiStatusText) aiStatusText.textContent = 'Подключение к Google Gemini Vision...';
+          try {
+            detected = await callGeminiVision(cleanKey, photoToScan, userHint);
+          } catch (apiErr) {
+            console.warn('Gemini API call failed, falling back to intelligent streetwear engine:', apiErr);
+            detected = recognizeStreetwearHeuristics(photoToScan, brandInput?.value, nameInput?.value, userHint, lastUploadedFileName);
+          }
         }
       } else {
         // Instant built-in intelligent recognition
@@ -2604,6 +2809,9 @@
       if (aiResPrice) aiResPrice.textContent = formatRub(detected.estimatedPriceRub || 24000);
       if (aiResDesc) aiResDesc.textContent = detected.description || '—';
       if (aiHudCard) aiHudCard.style.display = 'flex';
+
+      // Automatically sync category button
+      updateAiCategoryButtons(detected.category);
 
       // Find lookbook and product photos on the web
       if (aiStatusText) aiStatusText.textContent = 'Поиск фотографий и лукбуков в интернете...';
@@ -2727,56 +2935,91 @@
     });
   }
 
-  // Gemini API Key Modal Management
-  function openGeminiKeyModal() {
-    if (!geminiKeyModal) return;
-    const current = localStorage.getItem(GEMINI_STORAGE_KEY) || '';
-    if (geminiKeyInput) geminiKeyInput.value = current;
-    if (typeof geminiKeyModal.showModal === 'function') {
-      geminiKeyModal.showModal();
-    } else {
-      geminiKeyModal.setAttribute('open', '');
-    }
-  }
-
-  function closeGeminiKeyModal() {
-    if (!geminiKeyModal) return;
-    if (typeof geminiKeyModal.close === 'function') {
-      geminiKeyModal.close();
-    } else {
-      geminiKeyModal.removeAttribute('open');
-    }
-  }
-
-  if (openAiKeyBtn) openAiKeyBtn.addEventListener('click', openGeminiKeyModal);
-  if (geminiKeyCloseBtn) geminiKeyCloseBtn.addEventListener('click', closeGeminiKeyModal);
-  if (geminiKeyCancelBtn) geminiKeyCancelBtn.addEventListener('click', closeGeminiKeyModal);
-  if (geminiKeyBackdrop) geminiKeyBackdrop.addEventListener('click', closeGeminiKeyModal);
-
-  if (geminiKeyForm) {
-    geminiKeyForm.addEventListener('submit', (e) => {
+  // Inline Key Drawer Toggle
+  if (toggleInlineKeyDrawerBtn && inlineKeyDrawer) {
+    toggleInlineKeyDrawerBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      const keyVal = geminiKeyInput ? geminiKeyInput.value.trim() : '';
-      if (keyVal) {
-        localStorage.setItem(GEMINI_STORAGE_KEY, keyVal);
-        showToast('[OK] // Gemini API ключ успешно сохранен в браузере!');
+      const isHidden = inlineKeyDrawer.style.display === 'none';
+      inlineKeyDrawer.style.display = isHidden ? 'flex' : 'none';
+    });
+  }
+
+  // Password / Plain text eye toggle
+  if (btnToggleKeyEye && inlineApiKeyInput) {
+    btnToggleKeyEye.addEventListener('click', (e) => {
+      e.preventDefault();
+      const cur = inlineApiKeyInput.getAttribute('type');
+      inlineApiKeyInput.setAttribute('type', cur === 'password' ? 'text' : 'password');
+    });
+  }
+
+  // Save Inline Key
+  if (btnSaveInlineKey && inlineApiKeyInput) {
+    btnSaveInlineKey.addEventListener('click', (e) => {
+      e.preventDefault();
+      const val = inlineApiKeyInput.value.trim();
+      if (val) {
+        localStorage.setItem(GEMINI_STORAGE_KEY, val);
+        syncAiInlineKeyUI();
+        showToast('[OK] // API ключ успешно сохранен в браузере!');
       } else {
         localStorage.removeItem(GEMINI_STORAGE_KEY);
-        showToast('[OK] // Включен встроенный нейросетевой режим без внешнего ключа');
+        syncAiInlineKeyUI();
+        showToast('[OK] // Включен оффлайн-режим распознавания');
       }
-      closeGeminiKeyModal();
     });
   }
 
-  if (geminiKeyClearBtn) {
-    geminiKeyClearBtn.addEventListener('click', (e) => {
+  // Test Inline Key Connection
+  if (btnTestInlineKey && inlineApiKeyInput) {
+    btnTestInlineKey.addEventListener('click', (e) => {
       e.preventDefault();
-      localStorage.removeItem(GEMINI_STORAGE_KEY);
-      if (geminiKeyInput) geminiKeyInput.value = '';
-      closeGeminiKeyModal();
-      showToast('[OK] // Gemini API ключ сброшен');
+      testApiKeyConnection(inlineApiKeyInput.value);
     });
   }
+
+  // Clear Inline Key
+  if (btnClearInlineKey && inlineApiKeyInput) {
+    btnClearInlineKey.addEventListener('click', (e) => {
+      e.preventDefault();
+      inlineApiKeyInput.value = '';
+      localStorage.removeItem(GEMINI_STORAGE_KEY);
+      syncAiInlineKeyUI();
+      showToast('[OK] // API ключ сброшен');
+    });
+  }
+
+  // Fast Category Switcher Buttons
+  if (aiCatBtnClothing) {
+    aiCatBtnClothing.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (categorySelect) categorySelect.value = 'clothing';
+      updateSizePickerForCategory('clothing');
+      updateAiCategoryButtons('clothing');
+      showToast('[OK] // Выбрана категория: Одежда / Пуховики');
+    });
+  }
+  if (aiCatBtnFootwear) {
+    aiCatBtnFootwear.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (categorySelect) categorySelect.value = 'footwear';
+      updateSizePickerForCategory('footwear');
+      updateAiCategoryButtons('footwear');
+      showToast('[OK] // Выбрана категория: Обувь / Кроссовки');
+    });
+  }
+  if (aiCatBtnAccessories) {
+    aiCatBtnAccessories.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (categorySelect) categorySelect.value = 'accessories';
+      updateSizePickerForCategory('accessories');
+      updateAiCategoryButtons('accessories');
+      showToast('[OK] // Выбрана категория: Аксессуары');
+    });
+  }
+
+  // Initial Sync of AI Key UI
+  syncAiInlineKeyUI();
 
   // Update AI preview when photo URL input is typed
   if (photoUrlInput) {
