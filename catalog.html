@@ -56,21 +56,25 @@
   <!-- Site Header -->
   <header class="site-header" id="site-header">
     <div class="container header-inner">
-      <a href="index.html" class="brand-logo-link" aria-label="SASBOV MARKET — На главную">
-        <img src="assets/sasbov-market-logo.png" alt="SASBOV MARKET" class="site-header-logo">
-      </a>
-
-      <nav class="main-nav" aria-label="Основное меню">
+      <nav class="main-nav header-left-nav" aria-label="Левое меню">
         <ul class="nav-list">
           <li><a href="index.html" class="nav-link">ГЛАВНАЯ</a></li>
-          <li><a href="catalog.html" class="nav-link active">ПОЛНЫЙ КАТАЛОГ</a></li>
-          <li><a href="feed.html" class="nav-link">TIKTOK ЛЕНТА</a></li>
-          <li><a href="index.html#calculator" class="nav-link">КАЛЬКУЛЯТОР</a></li>
-          <li><a href="index.html#guarantee" class="nav-link">ПОДЛИННОСТЬ</a></li>
+          <li><a href="catalog.html" class="nav-link active">КАТАЛОГ</a></li>
+          <li><a href="feed.html" class="nav-link">TIKTOK REELS</a></li>
         </ul>
       </nav>
 
+      <a href="index.html" class="brand-logo-link header-center-logo" aria-label="SASBOV MARKET — На главную">
+        <img src="assets/sasbov-market-logo.png" alt="SASBOV MARKET" class="site-header-logo">
+      </a>
+
       <div class="header-actions">
+        <nav class="main-nav header-right-nav" aria-label="Правое меню">
+          <ul class="nav-list" style="margin-right: 0.5rem;">
+            <li><a href="index.html#calculator" class="nav-link">КАЛЬКУЛЯТОР</a></li>
+            <li><a href="index.html#guarantee" class="nav-link">ПОДЛИННОСТЬ</a></li>
+          </ul>
+        </nav>
         <button type="button" class="action-btn cart-btn" id="preorder-tray-btn" aria-label="Корзина предзаказов">
           <span class="cart-label">ПРЕДЗАКАЗ</span>
           <span class="cart-badge" id="tray-count">0</span>

@@ -1401,6 +1401,22 @@ ${listText}
     // Start Clocks
     updateTelemetryClocks();
     setInterval(updateTelemetryClocks, 1000);
+
+    // Cross-tab real-time synchronization with Admin Panel
+    window.addEventListener('storage', (e) => {
+      if (e.key === STORAGE_KEY || e.key === 'sasbov_market_sync_ts') {
+        PRODUCTS = getStoredProducts();
+        renderProducts();
+      }
+    });
+    window.addEventListener('sasbov:products_updated', (e) => {
+      if (Array.isArray(e.detail)) {
+        PRODUCTS = e.detail;
+      } else {
+        PRODUCTS = getStoredProducts();
+      }
+      renderProducts();
+    });
   }
 
   // Kickoff on DOM ready

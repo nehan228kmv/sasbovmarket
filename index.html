@@ -134,22 +134,25 @@
   <!-- Main Navigation Header -->
   <header class="site-header" id="site-header">
     <div class="container header-inner">
-      <a href="index.html" class="brand-logo-link" aria-label="SASBOV MARKET — На главную">
-        <img src="assets/sasbov-market-logo.png" alt="SASBOV MARKET" class="site-header-logo">
-      </a>
-
-      <nav class="main-nav" aria-label="Основное меню">
+      <nav class="main-nav header-left-nav" aria-label="Левое меню">
         <ul class="nav-list">
-          <li><a href="index.html" class="nav-link active">ГЛАВНАЯ</a></li>
           <li><a href="catalog.html" class="nav-link">КАТАЛОГ</a></li>
           <li><a href="feed.html" class="nav-link">TIKTOK REELS</a></li>
           <li><a href="#calculator" class="nav-link">КАЛЬКУЛЯТОР</a></li>
           <li><a href="#process" class="nav-link">ДОСТАВКА</a></li>
-          <li><a href="#guarantee" class="nav-link">ПОДЛИННОСТЬ</a></li>
         </ul>
       </nav>
 
+      <a href="index.html" class="brand-logo-link header-center-logo" aria-label="SASBOV MARKET — На главную">
+        <img src="assets/sasbov-market-logo.png" alt="SASBOV MARKET" class="site-header-logo">
+      </a>
+
       <div class="header-actions">
+        <nav class="main-nav header-right-nav" aria-label="Правое меню">
+          <ul class="nav-list" style="margin-right: 0.5rem;">
+            <li><a href="#guarantee" class="nav-link">ПОДЛИННОСТЬ</a></li>
+          </ul>
+        </nav>
         <button type="button" class="action-btn cart-btn" id="preorder-tray-btn" aria-label="Корзина предзаказов">
           <span class="cart-label">ПРЕДЗАКАЗ</span>
           <span class="cart-badge" id="tray-count">0</span>
@@ -162,82 +165,52 @@
   </header>
 
   <main>
-    <!-- Hero Section (Raw Japanese Minimalist Brutalism) -->
+    <!-- Hero Section (Centered Minimalist Brutalism) -->
     <section class="hero-section" id="hero" aria-label="Главный баннер">
       <div class="container">
-        <div class="hero-layout-wrapper">
+        <div class="hero-container hero-container-centered">
           
-          <div class="hero-container">
-            <div class="hero-meta">
-              <span class="badge-hud">TOKYO & SHANGHAI // ARCHIVE SOURCING</span>
-              <span class="hero-edition">DROP 2026</span>
-            </div>
-
-            <h1 class="hero-title brutalist-title">
-              SASBOV MARKET
-            </h1>
-
-            <p class="hero-subtitle-minimal">
-              Закрытый предзаказ оригинальной одежды и обуви из Китая, Японии и мировых архивов.<br>
-              Прямой выкуп с Poizon, Goofish, Mercari JP, eBay JP, Grailed и бутиков Токио со 100% легитчеком.
-            </p>
-
-            <div class="hero-cta-group">
-              <a href="catalog.html" class="btn btn-primary" id="hero-view-drops-btn">
-                ОТКРЫТЬ КАТАЛОГ
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </a>
-              <a href="feed.html" class="btn btn-outline" id="hero-tiktok-btn">
-                [REELS] // TIKTOK ЛЕНТА
-              </a>
-            </div>
-
-            <!-- Hero Stats Strip -->
-            <div class="hero-stats">
-              <div class="stat-card">
-                <span class="stat-num">100%</span>
-                <span class="stat-desc">Оригинал (Legit Check)</span>
-              </div>
-              <div class="stat-card">
-                <span class="stat-num">7-10</span>
-                <span class="stat-desc">Дней авиа-доставки</span>
-              </div>
-              <div class="stat-card">
-                <span class="stat-num">0%</span>
-                <span class="stat-desc">Риска (Полная страховка)</span>
-              </div>
-              <div class="stat-card">
-                <span class="stat-num">24/7</span>
-                <span class="stat-desc">Поддержка в Telegram</span>
-              </div>
-            </div>
+          <div class="hero-meta">
+            <span class="badge-hud">TOKYO & SHANGHAI // ARCHIVE SOURCING</span>
+            <span class="hero-edition">DROP 2026</span>
           </div>
 
-          <!-- Brutalist SASBOV Brand Monolith Showcase (No 3D photo) -->
-          <div class="hero-brand-stage" id="hero-brand-stage">
-            <div class="sasbov-monolith-card">
-              <div class="monolith-inner-pattern"></div>
-              
-              <div class="monolith-top-hud">
-                <span class="monolith-tag">SASBOV ARCHIVE // IDENT</span>
-                <span class="monolith-edition">EDITION 2026</span>
-              </div>
+          <h1 class="hero-title brutalist-title hero-title-centered">
+            SASBOV MARKET
+          </h1>
 
-              <div class="monolith-center-brand">
-                <img src="assets/sasbov-wordmark.jpg" alt="SASBOV" class="monolith-big-wordmark">
-                <span class="monolith-sub-katakana">サスボフ マーケット // TOKYO & SHANGHAI</span>
-              </div>
+          <p class="hero-subtitle-minimal hero-subtitle-centered">
+            Закрытый предзаказ оригинальной одежды и обуви из Китая, Японии и мировых архивов.<br>
+            Прямой выкуп с Poizon, Goofish, Mercari JP, eBay JP, Grailed и бутиков Токио со 100% легитчеком.
+          </p>
 
-              <div class="monolith-bottom-hud">
-                <div class="hud-item">
-                  <span class="hud-label">SOURCING PIPELINE</span>
-                  <span class="hud-val">POIZON • GOOFISH • MERCARI • EBAY JP • GRAILED</span>
-                </div>
-                <div class="hud-item hud-item-right">
-                  <span class="hud-label">STATUS</span>
-                  <span class="hud-val status-live">● VERIFIED AUTHENTIC</span>
-                </div>
-              </div>
+          <div class="hero-cta-group hero-cta-centered">
+            <a href="catalog.html" class="btn btn-primary" id="hero-view-drops-btn">
+              ОТКРЫТЬ КАТАЛОГ
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="feed.html" class="btn btn-outline" id="hero-tiktok-btn">
+              [REELS] // TIKTOK ЛЕНТА
+            </a>
+          </div>
+
+          <!-- Hero Stats Strip -->
+          <div class="hero-stats hero-stats-centered">
+            <div class="stat-card">
+              <span class="stat-num">100%</span>
+              <span class="stat-desc">Оригинал (Legit Check)</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-num">7-10</span>
+              <span class="stat-desc">Дней авиа-доставки</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-num">0%</span>
+              <span class="stat-desc">Риска (Полная страховка)</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-num">24/7</span>
+              <span class="stat-desc">Поддержка в Telegram</span>
             </div>
           </div>
 

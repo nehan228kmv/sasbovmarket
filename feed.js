@@ -594,4 +594,22 @@ ${isInstock ? 'Подтвердите наличие на точке и забр
   renderFeed();
   observeSlides();
 
+  // Cross-tab real-time synchronization with Admin Panel
+  window.addEventListener('storage', (e) => {
+    if (e.key === STORAGE_KEY || e.key === 'sasbov_market_sync_ts') {
+      PRODUCTS = getProducts();
+      renderFeed();
+      observeSlides();
+    }
+  });
+  window.addEventListener('sasbov:products_updated', (e) => {
+    if (Array.isArray(e.detail)) {
+      PRODUCTS = e.detail;
+    } else {
+      PRODUCTS = getProducts();
+    }
+    renderFeed();
+    observeSlides();
+  });
+
 })();

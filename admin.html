@@ -163,6 +163,10 @@
             <span class="admin-stat-num" id="stat-total-val">0 ₽</span>
             <span class="admin-stat-label">ОБЩАЯ СУММА ДРОПОВ</span>
           </div>
+          <div class="admin-stat-card" id="stat-card-trash" style="cursor: pointer;" title="Открыть корзину">
+            <span class="admin-stat-num" id="stat-trash-cards" style="color: #ef4444;">0</span>
+            <span class="admin-stat-label">🗑 КОРЗИНА / АРХИВ</span>
+          </div>
         </section>
 
         <!-- Manage Toolbar (Search, Filter, Export, Reset) -->
@@ -181,6 +185,9 @@
           </div>
 
           <div class="admin-aux-actions">
+            <button type="button" class="btn btn-outline btn-sm" id="open-trash-btn" style="border-color: rgba(239, 68, 68, 0.45); color: #ff6b81;" title="Открыть корзину и архив удаленных карточек">
+              🗑 КОРЗИНА (<span id="count-trash">0</span>)
+            </button>
             <button type="button" class="btn btn-outline btn-sm" id="export-json-btn" title="Скачать резервную копию базы">
               [EXPORT] СКАЧАТЬ JSON
             </button>
@@ -297,7 +304,8 @@
         </div>
 
         <!-- Stock Type & Availability (In Stock SPB vs Pre-order) -->
-        <div class="form-group">
+        <!-- Stock Type & Availability (In Stock SPB vs Pre-order) -->
+        <div class="form-group" id="group-stock-type">
           <label for="card-stock-type-select" class="form-label">ТИП ПОЗИЦИИ (НАЛИЧИЕ / ПРЕДЗАКАЗ) *</label>
           <select id="card-stock-type-select" class="form-select" required>
             <option value="instock">✦ В НАЛИЧИИ В СПБ // BALKONSKY STORE (Примерка / СДЭК 1-2 дня)</option>
@@ -305,9 +313,20 @@
           </select>
         </div>
 
+        <!-- In-stock showroom info banner (shown only for in-stock) -->
+        <div class="form-group form-col-full" id="group-instock-partner-info" style="display: none;">
+          <div style="display: flex; align-items: center; gap: 10px; background: rgba(0, 240, 255, 0.08); border: 1px solid rgba(0, 240, 255, 0.35); border-radius: 6px; padding: 10px 14px; font-family: var(--font-mono); font-size: 0.78rem; color: #ffffff;">
+            <span style="font-size: 1.2rem;">📍</span>
+            <div>
+              <span style="color: #00f0ff; font-weight: 700;">ЛОКАЦИЯ В СПБ: </span>
+              <span>Balkonsky Store (ул. Тверская 3/1, Подъезд 2) — примерка и самовывоз день-в-день, доставка СДЭК 1-2 дня</span>
+            </div>
+          </div>
+        </div>
+
         <!-- Region & Category -->
-        <div class="form-group">
-          <label for="card-region-select" class="form-label">РЕГИОН ВЫКУПА / ПЛОЩАДКА *</label>
+        <div class="form-group" id="group-card-region">
+          <label for="card-region-select" class="form-label" id="label-card-region">РЕГИОН ВЫКУПА / ПЛОЩАДКА *</label>
           <select id="card-region-select" class="form-select" required>
             <option value="spb">САНКТ-ПЕТЕРБУРГ [SPB] // BALKONSKY STORE</option>
             <option value="japan">ЯПОНИЯ [JP] // TOKYO ARCHIVE, MERCARI & EBAY JP</option>
@@ -316,7 +335,7 @@
           </select>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" id="group-card-category">
           <label for="card-category-select" class="form-label">КАТЕГОРИЯ *</label>
           <select id="card-category-select" class="form-select" required>
             <option value="footwear">Обувь / Кроссовки</option>
@@ -326,22 +345,56 @@
         </div>
 
         <!-- Price in RUB -->
-        <div class="form-group">
-          <label for="card-price-input" class="form-label">ЦЕНА В РУБЛЯХ (ПОД КЛЮЧ С ДОСТАВКОЙ) *</label>
+        <div class="form-group" id="group-card-price">
+          <label for="card-price-input" class="form-label" id="label-card-price">ЦЕНА В РУБЛЯХ (ПОД КЛЮЧ С ДОСТАВКОЙ) *</label>
           <div class="input-with-addon">
             <input type="number" id="card-price-input" class="form-input" placeholder="24800" min="100" step="100" required>
             <span class="addon-text">₽ RUB</span>
           </div>
         </div>
 
-        <!-- Available Sizes -->
-        <div class="form-group">
-          <label for="card-sizes-input" class="form-label">ДОСТУПНЫЕ РАЗМЕРЫ (ЧЕРЕЗ ЗАПЯТУЮ) *</label>
+        <!-- Available Sizes (Interactive Picker: Footwear EU/US/CM, Clothing S-XL, etc.) -->
+        <div class="form-group form-col-full" id="group-card-sizes">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; flex-wrap: wrap; gap: 4px;">
+            <label for="card-sizes-input" class="form-label" style="margin-bottom: 0;">ДОСТУПНЫЕ РАЗМЕРЫ В КАРТОЧКЕ *</label>
+            <span style="font-family: var(--font-mono); font-size: 0.68rem; color: #00f0ff;">
+              // Кликайте по плашкам ниже для быстрого выбора или вводите свои размеры
+            </span>
+          </div>
+
           <input type="text" id="card-sizes-input" class="form-input" placeholder="39 EU, 40 EU, 41 EU, 42 EU, 43 EU" required>
+
+          <!-- Interactive Size Preset Widget -->
+          <div class="size-picker-widget" id="size-picker-widget">
+            <div class="size-presets-tabs">
+              <button type="button" class="size-system-tab active" data-system="shoes-eu">👟 ОБУВЬ [EU]</button>
+              <button type="button" class="size-system-tab" data-system="shoes-us">👟 ОБУВЬ [US]</button>
+              <button type="button" class="size-system-tab" data-system="shoes-cm">📏 ОБУВЬ [CM / СТЕЛЬКА]</button>
+              <button type="button" class="size-system-tab" data-system="clothes">👕 ОДЕЖДА [XS-XXL]</button>
+              <button type="button" class="size-system-tab" data-system="pants">👖 БРЮКИ / ДЖИНСЫ</button>
+              <button type="button" class="size-system-tab" data-system="accessories">🎒 АКСЕССУАРЫ</button>
+            </div>
+
+            <div class="size-chips-grid" id="size-chips-container">
+              <!-- Dynamically rendered chips by admin.js -->
+            </div>
+
+            <div class="size-picker-helpers">
+              <span id="selected-sizes-summary">Выбрано: 0 размеров</span>
+              <div class="size-helper-actions">
+                <button type="button" class="btn-size-util" id="btn-select-popular-sizes" title="Выбрать самые популярные ходовые размеры для этой категории">
+                  + ХОДОВЫЕ РАЗМЕРЫ
+                </button>
+                <button type="button" class="btn-size-util btn-danger-util" id="btn-clear-sizes" title="Очистить все размеры">
+                  ✕ ОЧИСТИТЬ
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- Item Condition -->
-        <div class="form-group">
+        <div class="form-group" id="group-card-condition">
           <label for="card-condition-select" class="form-label">СОСТОЯНИЕ ВЕЩИ (CONDITION) *</label>
           <select id="card-condition-select" class="form-select">
             <option value="NEW // DEADSTOCK" selected>NEW // DEADSTOCK (Новое с бирками)</option>
@@ -353,7 +406,7 @@
         </div>
 
         <!-- Status -->
-        <div class="form-group form-col-full">
+        <div class="form-group form-col-full" id="group-card-status">
           <label for="card-status-select" class="form-label">СТАТУС КАРТОЧКИ</label>
           <select id="card-status-select" class="form-select">
             <option value="В НАЛИЧИИ В СПБ">В НАЛИЧИИ В СПБ (BALKONSKY)</option>
@@ -364,8 +417,8 @@
           </select>
         </div>
 
-        <!-- Timer & Presets (Full Width for comfortable picking) -->
-        <div class="form-group form-col-full">
+        <!-- Timer & Presets (Shown ONLY for Pre-order drops) -->
+        <div class="form-group form-col-full" id="group-card-timer">
           <label for="card-timer-datetime" class="form-label">
             ТАЙМЕР ЗАКРЫТИЯ ДРОПА (КЛИКНИТЕ ДЛЯ ВЫБОРА ДАТЫ И ВРЕМЕНИ)
           </label>
@@ -385,7 +438,7 @@
         </div>
 
         <!-- Mini-Description -->
-        <div class="form-group form-col-full">
+        <div class="form-group form-col-full" id="group-card-desc">
           <label for="card-desc-input" class="form-label">МИНИ-ОПИСАНИЕ И ОСОБЕННОСТИ ДРОПА</label>
           <textarea id="card-desc-input" class="form-input" rows="2" placeholder="Например: Редкий релиз из Токио, плотный хлопковый канвас, фирменная расплавленная подошва OG Sole, полный комплект."></textarea>
         </div>
@@ -433,6 +486,85 @@
         <button type="button" class="btn btn-primary btn-lg" id="batch-publish-btn">
           [PUBLISH] ОПУБЛИКОВАТЬ ВСЕ КАРТОЧКИ В БАЗУ
         </button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- =========================================================================
+       Modal 3: Delete Confirmation Modal (Reliable, never blocked by browser)
+       ========================================================================= -->
+  <dialog class="admin-modal" id="delete-confirm-modal">
+    <div class="modal-backdrop" id="delete-backdrop"></div>
+    <div class="admin-modal-card" style="max-width: 520px; border-color: rgba(239, 68, 68, 0.45); box-shadow: 0 25px 70px rgba(0, 0, 0, 0.95), 0 0 40px rgba(239, 68, 68, 0.15);">
+      <div class="admin-modal-head" style="border-bottom-color: rgba(239, 68, 68, 0.25);">
+        <div>
+          <span class="modal-tag" style="color: #ef4444;">// CONFIRM DELETION</span>
+          <h2 class="modal-title" style="color: #ffffff; font-size: 1.25rem;">УДАЛИТЬ КАРТОЧКУ ТОВАРА?</h2>
+        </div>
+        <button type="button" class="admin-modal-close" id="delete-modal-close-btn">&times;</button>
+      </div>
+
+      <div style="display: flex; gap: 1rem; align-items: center; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 1rem; margin-bottom: 1.25rem;">
+        <div id="delete-card-preview-thumb" style="width: 72px; height: 72px; background: #000; border-radius: 4px; overflow: hidden; flex-shrink: 0; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.15);">
+          <!-- Thumbnail injected by JS -->
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 4px; min-width: 0;">
+          <span id="delete-card-brand" style="font-family: var(--font-mono); font-size: 0.72rem; color: #00f0ff; font-weight: 700;"></span>
+          <strong id="delete-card-name" style="font-size: 0.95rem; color: #ffffff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"></strong>
+          <span id="delete-card-price" style="font-family: var(--font-mono); font-size: 0.85rem; color: #ef4444; font-weight: 700;"></span>
+        </div>
+      </div>
+
+      <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 1.5rem;">
+      <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 1.5rem;">
+        Карточка будет перемещена в Корзину / Архив. В любой момент вы сможете восстановить её обратно в каталог в 1 клик, либо очистить корзину навсегда.
+      </p>
+
+      <div style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+        <button type="button" class="btn btn-outline" id="delete-cancel-btn">ОТМЕНА</button>
+        <button type="button" class="btn btn-danger" id="delete-confirm-btn" style="background: #ef4444; border-color: #ef4444; color: #ffffff; font-weight: 700;">
+          ПЕРЕМЕСТИТЬ В КОРЗИНУ
+        </button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- =========================================================================
+       Modal 4: Trash & Archive (Recycle Bin with 1-Click Restore)
+       ========================================================================= -->
+  <dialog class="admin-modal" id="trash-modal">
+    <div class="modal-backdrop" id="trash-backdrop"></div>
+    <div class="admin-modal-card modal-card-wide" style="max-width: 920px; border-color: rgba(239, 68, 68, 0.45); box-shadow: 0 25px 70px rgba(0, 0, 0, 0.95), 0 0 50px rgba(239, 68, 68, 0.12);">
+      <div class="admin-modal-head" style="border-bottom-color: rgba(239, 68, 68, 0.3);">
+        <div>
+          <span class="modal-tag" style="color: #ef4444;">// TRASH & RECYCLE BIN</span>
+          <h2 class="modal-title" style="display: flex; align-items: center; gap: 8px;">
+            <span>🗑 КОРЗИНА И АРХИВ УДАЛЁННЫХ КАРТОЧЕК</span>
+          </h2>
+          <p class="modal-desc" style="color: var(--text-muted); font-size: 0.85rem; margin-top: 4px;">
+            Удалённые карточки сохраняются здесь. Вы можете в 1 клик восстановить любую позицию обратно в активную базу и каталог, либо стереть навсегда.
+          </p>
+        </div>
+        <button type="button" class="admin-modal-close" id="trash-modal-close-btn">&times;</button>
+      </div>
+
+      <div class="trash-toolbar-bar" style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 1rem;">
+        <div style="font-family: var(--font-mono); font-size: 0.82rem; color: #a1a1aa;">
+          ВСЕГО В КОРЗИНЕ: <strong id="trash-modal-count" style="color: #ffffff;">0</strong> ОБЪЕКТОВ
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <button type="button" class="btn btn-outline btn-sm btn-danger" id="trash-purge-all-btn" style="border-color: rgba(239, 68, 68, 0.4); color: #ff6b81;" title="Безвозвратно удалить все карточки из корзины">
+            ✕ ОЧИСТИТЬ ВСЮ КОРЗИНУ
+          </button>
+        </div>
+      </div>
+
+      <div class="trash-items-container" id="trash-items-list" style="max-height: 58vh; overflow-y: auto; padding-right: 4px; display: flex; flex-direction: column; gap: 10px;">
+        <!-- Dynamically rendered by admin.js -->
+      </div>
+
+      <div style="margin-top: 1.25rem; display: flex; justify-content: flex-end;">
+        <button type="button" class="btn btn-outline" id="trash-modal-done-btn">ЗАКРЫТЬ КОРЗИНУ</button>
       </div>
     </div>
   </dialog>

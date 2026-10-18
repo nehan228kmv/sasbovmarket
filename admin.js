@@ -400,13 +400,43 @@
   function saveProducts(list) {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+      localStorage.setItem('sasbov_market_sync_ts', Date.now().toString());
     } catch (e) {
       console.error('LocalStorage save error in admin:', e);
       alert('Ошибка при сохранении в память браузера (LocalStorage переполнен).');
     }
+    try {
+      window.dispatchEvent(new CustomEvent('sasbov:products_updated', { detail: list }));
+    } catch (e) {}
+  }
+
+  const TRASH_STORAGE_KEY = 'sasbov_market_trash_v1';
+
+  function loadTrash() {
+    try {
+      const raw = localStorage.getItem(TRASH_STORAGE_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed)) return parsed;
+      }
+    } catch (e) {
+      console.warn('LocalStorage load trash error in admin:', e);
+    }
+    return [];
+  }
+
+  function saveTrash(list) {
+    try {
+      localStorage.setItem(TRASH_STORAGE_KEY, JSON.stringify(list));
+      localStorage.setItem('sasbov_market_trash_sync_ts', Date.now().toString());
+    } catch (e) {
+      console.error('LocalStorage save trash error in admin:', e);
+    }
+    updateStats();
   }
 
   let PRODUCTS = loadProducts();
+  let TRASH = loadTrash();
   let currentFilter = 'all';
   let searchQuery = '';
 
@@ -422,12 +452,25 @@
   const statPreorder = document.getElementById('stat-preorder-cards');
   const statJp = document.getElementById('stat-jp-cards');
   const statCn = document.getElementById('stat-cn-cards');
+  const statTrash = document.getElementById('stat-trash-cards');
   const statVal = document.getElementById('stat-total-val');
   const countAll = document.getElementById('count-all');
   const countInstock = document.getElementById('count-instock');
   const countPreorder = document.getElementById('count-preorder');
   const countJp = document.getElementById('count-jp');
   const countCn = document.getElementById('count-cn');
+  const countTrash = document.getElementById('count-trash');
+  const statCardTrash = document.getElementById('stat-card-trash');
+  const openTrashBtn = document.getElementById('open-trash-btn');
+
+  // Trash Modal Elements
+  const trashModal = document.getElementById('trash-modal');
+  const trashBackdrop = document.getElementById('trash-backdrop');
+  const trashCloseBtn = document.getElementById('trash-modal-close-btn');
+  const trashDoneBtn = document.getElementById('trash-modal-done-btn');
+  const trashCountEl = document.getElementById('trash-modal-count');
+  const trashListEl = document.getElementById('trash-items-list');
+  const trashPurgeAllBtn = document.getElementById('trash-purge-all-btn');
 
   // Single Card Modal Form
   const cardModal = document.getElementById('card-editor-modal');
@@ -481,6 +524,18 @@
   const batchPublishBtn = document.getElementById('batch-publish-btn');
   let batchItems = [];
 
+  // Delete Confirmation Modal Elements
+  const deleteModal = document.getElementById('delete-confirm-modal');
+  const deleteBackdrop = document.getElementById('delete-backdrop');
+  const deleteCloseBtn = document.getElementById('delete-modal-close-btn');
+  const deleteCancelBtn = document.getElementById('delete-cancel-btn');
+  const deleteConfirmBtn = document.getElementById('delete-confirm-btn');
+  const deleteThumbEl = document.getElementById('delete-card-preview-thumb');
+  const deleteBrandEl = document.getElementById('delete-card-brand');
+  const deleteNameEl = document.getElementById('delete-card-name');
+  const deletePriceEl = document.getElementById('delete-card-price');
+  let targetDeleteId = null;
+
   function formatRub(num) {
     return Math.round(num).toLocaleString('ru-RU') + ' ₽';
   }
@@ -504,6 +559,9 @@
     if (countPreorder) countPreorder.textContent = preorderCount;
     if (countJp) countJp.textContent = jpCount;
     if (countCn) countCn.textContent = cnCount;
+    if (countTrash) countTrash.textContent = TRASH.length;
+    if (statTrash) statTrash.textContent = TRASH.length;
+    if (trashCountEl) trashCountEl.textContent = TRASH.length;
   }
 
   // Helper to extract item images
@@ -878,6 +936,239 @@
     });
   }
 
+  // Dynamic Form Switching: In-Stock vs Pre-order UI
+  function updateStockTypeFormUI(stockType) {
+    const isInstock = stockType === 'instock';
+    const timerGroup = document.getElementById('group-card-timer');
+    const regionGroup = document.getElementById('group-card-region');
+    const priceLabel = document.getElementById('label-card-price');
+    const partnerInfoGroup = document.getElementById('group-instock-partner-info');
+
+    if (isInstock) {
+      if (timerGroup) timerGroup.style.display = 'none';
+      if (regionGroup) regionGroup.style.display = 'none';
+      if (regionSelect) regionSelect.value = 'spb';
+      if (partnerInfoGroup) partnerInfoGroup.style.display = 'block';
+      if (priceLabel) priceLabel.textContent = 'ЦЕНА В РУБЛЯХ (В НАЛИЧИИ В СПБ) *';
+
+      if (statusSelect) {
+        const curVal = statusSelect.value;
+        statusSelect.innerHTML = `
+          <option value="В НАЛИЧИИ В СПБ" ${curVal === 'В НАЛИЧИИ В СПБ' ? 'selected' : ''}>В НАЛИЧИИ В СПБ (BALKONSKY)</option>
+          <option value="LIMITED DROP" ${curVal === 'LIMITED DROP' ? 'selected' : ''}>LIMITED DROP (ОСТАЛОСЬ МАЛО)</option>
+          <option value="SOLD OUT" ${curVal === 'SOLD OUT' ? 'selected' : ''}>SOLD OUT (ПРОДАНО)</option>
+        `;
+        if (!['В НАЛИЧИИ В СПБ', 'LIMITED DROP', 'SOLD OUT'].includes(curVal)) {
+          statusSelect.value = 'В НАЛИЧИИ В СПБ';
+        }
+      }
+    } else {
+      if (timerGroup) timerGroup.style.display = 'block';
+      if (regionGroup) regionGroup.style.display = 'block';
+      if (regionSelect && regionSelect.value === 'spb') {
+        regionSelect.value = 'china';
+      }
+      if (partnerInfoGroup) partnerInfoGroup.style.display = 'none';
+      if (priceLabel) priceLabel.textContent = 'ЦЕНА В РУБЛЯХ (ПОД КЛЮЧ С ДОСТАВКОЙ) *';
+
+      if (statusSelect) {
+        const curVal = statusSelect.value;
+        statusSelect.innerHTML = `
+          <option value="ПРЕДЗАКАЗ ОТКРЫТ" ${curVal === 'ПРЕДЗАКАЗ ОТКРЫТ' ? 'selected' : ''}>ПРЕДЗАКАЗ ОТКРЫТ</option>
+          <option value="СКОРО ЗАКРЫТИЕ" ${curVal === 'СКОРО ЗАКРЫТИЕ' ? 'selected' : ''}>СКОРО ЗАКРЫТИЕ</option>
+          <option value="LIMITED DROP" ${curVal === 'LIMITED DROP' ? 'selected' : ''}>LIMITED DROP</option>
+          <option value="SOLD OUT" ${curVal === 'SOLD OUT' ? 'selected' : ''}>SOLD OUT (ЗАКРЫТО)</option>
+        `;
+        if (!['ПРЕДЗАКАЗ ОТКРЫТ', 'СКОРО ЗАКРЫТИЕ', 'LIMITED DROP', 'SOLD OUT'].includes(curVal)) {
+          statusSelect.value = 'ПРЕДЗАКАЗ ОТКРЫТ';
+        }
+      }
+    }
+  }
+
+  if (stockTypeSelect) {
+    stockTypeSelect.addEventListener('change', () => {
+      updateStockTypeFormUI(stockTypeSelect.value);
+    });
+  }
+
+  // =========================================================================
+  // Interactive Size Picker Widget (Footwear EU/US/CM, Clothing S-XL, etc.)
+  // =========================================================================
+  const SIZE_SYSTEMS = {
+    'shoes-eu': {
+      label: '👟 ОБУВЬ [EU]',
+      popular: ['40 EU', '41 EU', '42 EU', '43 EU', '44 EU'],
+      all: [
+        '36 EU', '36.5 EU', '37 EU', '37.5 EU', '38 EU', '38.5 EU',
+        '39 EU', '39.5 EU', '40 EU', '40.5 EU', '41 EU', '41.5 EU',
+        '42 EU', '42.5 EU', '43 EU', '43.5 EU', '44 EU', '44.5 EU',
+        '45 EU', '45.5 EU', '46 EU', '47 EU'
+      ]
+    },
+    'shoes-us': {
+      label: '👟 ОБУВЬ [US]',
+      popular: ['8.5 US', '9 US', '9.5 US', '10 US', '10.5 US'],
+      all: [
+        '5.5 US', '6 US', '6.5 US', '7 US', '7.5 US', '8 US', '8.5 US',
+        '9 US', '9.5 US', '10 US', '10.5 US', '11 US', '11.5 US', '12 US', '13 US'
+      ]
+    },
+    'shoes-cm': {
+      label: '📏 ОБУВЬ [CM]',
+      popular: ['26 CM', '26.5 CM', '27 CM', '27.5 CM', '28 CM'],
+      all: [
+        '23.5 CM', '24 CM', '24.5 CM', '25 CM', '25.5 CM', '26 CM', '26.5 CM',
+        '27 CM', '27.5 CM', '28 CM', '28.5 CM', '29 CM', '29.5 CM', '30 CM'
+      ]
+    },
+    'clothes': {
+      label: '👕 ОДЕЖДА',
+      popular: ['S', 'M', 'L', 'XL'],
+      all: ['XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL', 'OVERSIZE']
+    },
+    'pants': {
+      label: '👖 БРЮКИ / ДЖИНСЫ',
+      popular: ['30', '31', '32', '33', '34'],
+      all: ['28', '29', '30', '31', '32', '33', '34', '36', '46 IT', '48 IT', '50 IT', '52 IT']
+    },
+    'accessories': {
+      label: '🎒 АКСЕССУАРЫ',
+      popular: ['ONE SIZE'],
+      all: ['ONE SIZE', 'OS', 'УНИВЕРСАЛЬНЫЙ']
+    }
+  };
+
+  let activeSizeSystem = 'shoes-eu';
+  const sizeChipsContainer = document.getElementById('size-chips-container');
+  const sizeSystemTabs = document.querySelectorAll('.size-system-tab');
+  const selectedSizesSummary = document.getElementById('selected-sizes-summary');
+  const btnSelectPopularSizes = document.getElementById('btn-select-popular-sizes');
+  const btnClearSizes = document.getElementById('btn-clear-sizes');
+
+  function getSelectedSizesArray() {
+    if (!sizesInput) return [];
+    return sizesInput.value
+      .split(',')
+      .map(s => s.trim())
+      .filter(Boolean);
+  }
+
+  function setSelectedSizesArray(arr) {
+    if (!sizesInput) return;
+    sizesInput.value = arr.join(', ');
+    renderSizeChips();
+  }
+
+  function renderSizeChips() {
+    if (!sizeChipsContainer) return;
+    const currentList = getSelectedSizesArray();
+    const currentLower = currentList.map(s => s.toLowerCase());
+    const system = SIZE_SYSTEMS[activeSizeSystem] || SIZE_SYSTEMS['shoes-eu'];
+
+    sizeChipsContainer.innerHTML = system.all.map(sz => {
+      const isSelected = currentLower.includes(sz.toLowerCase());
+      return `
+        <button type="button" class="size-chip ${isSelected ? 'selected' : ''}" data-size-val="${sz}">
+          ${sz}
+        </button>
+      `;
+    }).join('');
+
+    if (selectedSizesSummary) {
+      if (currentList.length === 0) {
+        selectedSizesSummary.textContent = 'Выбрано: 0 размеров';
+      } else {
+        selectedSizesSummary.innerHTML = `Выбрано: <strong style="color: #00f0ff;">${currentList.length}</strong> (${currentList.join(', ')})`;
+      }
+    }
+
+    sizeChipsContainer.querySelectorAll('.size-chip').forEach(chip => {
+      chip.addEventListener('click', (e) => {
+        e.preventDefault();
+        const sz = chip.dataset.sizeVal;
+        toggleSize(sz);
+      });
+    });
+  }
+
+  function toggleSize(sz) {
+    let list = getSelectedSizesArray();
+    const szLower = sz.toLowerCase();
+    const existingIdx = list.findIndex(s => s.toLowerCase() === szLower);
+
+    if (existingIdx !== -1) {
+      list.splice(existingIdx, 1);
+    } else {
+      list.push(sz);
+    }
+
+    setSelectedSizesArray(list);
+  }
+
+  function switchSizeSystem(systemKey) {
+    if (!SIZE_SYSTEMS[systemKey]) return;
+    activeSizeSystem = systemKey;
+    sizeSystemTabs.forEach(tab => {
+      tab.classList.toggle('active', tab.dataset.system === systemKey);
+    });
+    renderSizeChips();
+  }
+
+  // Auto-switch size tab when category select changes
+  if (categorySelect) {
+    categorySelect.addEventListener('change', () => {
+      const cat = categorySelect.value;
+      if (cat === 'footwear') {
+        switchSizeSystem('shoes-eu');
+      } else if (cat === 'clothing') {
+        switchSizeSystem('clothes');
+      } else if (cat === 'accessories') {
+        switchSizeSystem('accessories');
+      }
+    });
+  }
+
+  // Size tabs click
+  sizeSystemTabs.forEach(tab => {
+    tab.addEventListener('click', (e) => {
+      e.preventDefault();
+      switchSizeSystem(tab.dataset.system);
+    });
+  });
+
+  // Quick action: Select popular sizes
+  if (btnSelectPopularSizes) {
+    btnSelectPopularSizes.addEventListener('click', (e) => {
+      e.preventDefault();
+      const system = SIZE_SYSTEMS[activeSizeSystem] || SIZE_SYSTEMS['shoes-eu'];
+      let list = getSelectedSizesArray();
+      system.popular.forEach(sz => {
+        if (!list.some(item => item.toLowerCase() === sz.toLowerCase())) {
+          list.push(sz);
+        }
+      });
+      setSelectedSizesArray(list);
+      showToast(`[OK] // Добавлены ходовые размеры: ${system.popular.join(', ')}`);
+    });
+  }
+
+  // Quick action: Clear sizes
+  if (btnClearSizes) {
+    btnClearSizes.addEventListener('click', (e) => {
+      e.preventDefault();
+      setSelectedSizesArray([]);
+      showToast('[OK] // Размеры очищены');
+    });
+  }
+
+  // Live input sync if user types manually into input
+  if (sizesInput) {
+    sizesInput.addEventListener('input', () => {
+      renderSizeChips();
+    });
+  }
+
   // Open Add Card Modal
   function openAddModal() {
     editIdInput.value = '';
@@ -894,26 +1185,54 @@
     const rem = formatRemainingTime(defaultTarget);
     if (timerInput) timerInput.value = rem;
     if (timerPreview) timerPreview.textContent = `[ОСТАЛОСЬ: ${rem}]`;
-    statusSelect.value = 'ПРЕДЗАКАЗ ОТКРЫТ';
+    if (statusSelect) statusSelect.value = 'ПРЕДЗАКАЗ ОТКРЫТ';
+
+    // Default sizes for shoes
+    if (sizesInput) sizesInput.value = '40 EU, 41 EU, 42 EU, 43 EU, 44 EU';
+    switchSizeSystem('shoes-eu');
+    renderSizeChips();
+
+    updateStockTypeFormUI('preorder');
     cardModal.showModal();
   }
 
   // Open Edit Card Modal
   function openEditModal(id) {
-    const item = PRODUCTS.find(p => p.id === id);
+    const item = PRODUCTS.find(p => String(p.id) === String(id));
     if (!item) return;
 
     editIdInput.value = item.id;
     cardModalTitle.textContent = `РЕДАКТИРОВАНИЕ: ${item.brand}`;
     brandInput.value = item.brand || '';
     nameInput.value = item.name || '';
-    if (stockTypeSelect) stockTypeSelect.value = item.stockType || 'preorder';
+    const stockVal = item.stockType || 'preorder';
+    if (stockTypeSelect) stockTypeSelect.value = stockVal;
     if (conditionSelect) conditionSelect.value = item.condition || 'NEW // DEADSTOCK';
     if (descInput) descInput.value = item.description || '';
-    regionSelect.value = item.region || (item.stockType === 'instock' ? 'spb' : 'japan');
+    regionSelect.value = item.region || (stockVal === 'instock' ? 'spb' : 'japan');
     categorySelect.value = item.category || 'footwear';
     priceInput.value = item.basePriceRub || 20000;
     sizesInput.value = Array.isArray(item.sizes) ? item.sizes.join(', ') : (item.sizes || '');
+
+    // Auto-detect matching size system tab
+    const cat = item.category || 'footwear';
+    const sStr = sizesInput.value.toUpperCase();
+    if (cat === 'footwear') {
+      if (sStr.includes('US')) switchSizeSystem('shoes-us');
+      else if (sStr.includes('CM')) switchSizeSystem('shoes-cm');
+      else switchSizeSystem('shoes-eu');
+    } else if (cat === 'clothing') {
+      if (sStr.includes('IT') || /\b(28|29|30|31|32|33|34|36)\b/.test(sStr)) {
+        switchSizeSystem('pants');
+      } else {
+        switchSizeSystem('clothes');
+      }
+    } else if (cat === 'accessories') {
+      switchSizeSystem('accessories');
+    } else {
+      switchSizeSystem('shoes-eu');
+    }
+    renderSizeChips();
 
     if (item.closingDate) {
       const d = new Date(item.closingDate);
@@ -928,7 +1247,10 @@
       if (timerPreview) timerPreview.textContent = `[ОСТАЛОСЬ: ${timerInput.value}]`;
     }
 
-    statusSelect.value = item.dropStatus || (item.stockType === 'instock' ? 'В НАЛИЧИИ В СПБ' : 'ПРЕДЗАКАЗ ОТКРЫТ');
+    updateStockTypeFormUI(stockVal);
+    if (statusSelect) {
+      statusSelect.value = item.dropStatus || (stockVal === 'instock' ? 'В НАЛИЧИИ В СПБ' : 'ПРЕДЗАКАЗ ОТКРЫТ');
+    }
 
     currentEditorImages = getItemImages(item);
     renderEditorGallery();
@@ -940,19 +1262,244 @@
     if (cardModal.open) cardModal.close();
   }
 
-  // Delete Card Object
-  function deleteCard(id) {
-    const item = PRODUCTS.find(p => p.id === id);
+  // Delete Card Object (Cyberpunk Custom Modal)
+  function openDeleteConfirmModal(id) {
+    const item = PRODUCTS.find(p => String(p.id) === String(id));
     if (!item) return;
 
-    const confirmMsg = `УДАЛИТЬ КАРТОЧКУ ОБЪЕКТА?\n\nБренд: ${item.brand}\nМодель: ${item.name}\nЦена: ${formatRub(item.basePriceRub)}\n\nКарточка будет мгновенно удалена с Главной, из Каталога и из TikTok-ленты.`;
+    targetDeleteId = item.id;
+    if (deleteBrandEl) deleteBrandEl.textContent = item.brand || 'БРЕНД';
+    if (deleteNameEl) deleteNameEl.textContent = item.name || 'Товар';
+    if (deletePriceEl) deletePriceEl.textContent = formatRub(item.basePriceRub || 0);
 
-    if (confirm(confirmMsg)) {
-      PRODUCTS = PRODUCTS.filter(p => p.id !== id);
-      saveProducts(PRODUCTS);
-      renderCards();
-      showToast(`[OK] // Карточка «${item.brand}» удалена`);
+    const imgs = getItemImages(item);
+    if (deleteThumbEl) {
+      if (imgs.length > 0) {
+        deleteThumbEl.innerHTML = `<img src="${imgs[0]}" alt="${item.name}" style="width: 100%; height: 100%; object-fit: cover;">`;
+      } else {
+        deleteThumbEl.innerHTML = `<span style="font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-muted);">НЕТ ФОТО</span>`;
+      }
     }
+
+    if (deleteModal) deleteModal.showModal();
+  }
+
+  function closeDeleteModal() {
+    if (deleteModal && deleteModal.open) deleteModal.close();
+    targetDeleteId = null;
+  }
+
+  function deleteCard(id) {
+    openDeleteConfirmModal(id);
+  }
+
+  if (deleteConfirmBtn) {
+    deleteConfirmBtn.addEventListener('click', () => {
+      if (!targetDeleteId) return;
+      const item = PRODUCTS.find(p => String(p.id) === String(targetDeleteId));
+      if (!item) {
+        closeDeleteModal();
+        return;
+      }
+      const brand = item.brand || 'Объект';
+
+      // Move into Trash Archive with deletion timestamp
+      const trashItem = {
+        ...item,
+        deletedAt: new Date().toISOString()
+      };
+      TRASH.unshift(trashItem);
+      saveTrash(TRASH);
+
+      // Remove from active products
+      PRODUCTS = PRODUCTS.filter(p => String(p.id) !== String(targetDeleteId));
+      saveProducts(PRODUCTS);
+
+      renderCards();
+      closeDeleteModal();
+      if (trashModal && trashModal.open) renderTrashModal();
+      showToast(`[OK] // «${brand}» перемещена в корзину (можно восстановить)`);
+    });
+  }
+
+  if (deleteCloseBtn) deleteCloseBtn.addEventListener('click', closeDeleteModal);
+  if (deleteCancelBtn) deleteCancelBtn.addEventListener('click', closeDeleteModal);
+  if (deleteBackdrop) deleteBackdrop.addEventListener('click', closeDeleteModal);
+
+  // =========================================================================
+  // Trash & Archive Modal Controller
+  // =========================================================================
+  function formatDeletedDate(isoStr) {
+    if (!isoStr) return 'Недавно';
+    try {
+      const d = new Date(isoStr);
+      return d.toLocaleDateString('ru-RU', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+    } catch (e) {
+      return 'Недавно';
+    }
+  }
+
+  function renderTrashModal() {
+    if (trashCountEl) trashCountEl.textContent = TRASH.length;
+    if (countTrash) countTrash.textContent = TRASH.length;
+    if (statTrash) statTrash.textContent = TRASH.length;
+
+    if (!trashListEl) return;
+
+    if (TRASH.length === 0) {
+      trashListEl.innerHTML = `
+        <div class="trash-empty-state">
+          <div style="font-size: 2.5rem; margin-bottom: 0.5rem; opacity: 0.5;">🗑</div>
+          <div style="font-family: var(--font-mono); font-size: 0.95rem; color: #ffffff; margin-bottom: 0.35rem;">// КОРЗИНА ПУСТА</div>
+          <div style="font-size: 0.82rem; color: var(--text-muted); max-width: 440px; margin: 0 auto; line-height: 1.4;">
+            Здесь будут храниться карточки, удалённые из базы. В любой момент вы сможете восстановить их обратно в каталог в 1 клик.
+          </div>
+        </div>
+      `;
+      return;
+    }
+
+    trashListEl.innerHTML = TRASH.map(item => {
+      const imgs = getItemImages(item);
+      const isInstock = item.stockType === 'instock';
+      const isJp = item.region === 'japan';
+      const isGlobal = item.region === 'global';
+      const isSpb = item.region === 'spb' || isInstock;
+      const badgeCls = isSpb ? 'spb' : (isJp ? 'jp' : (isGlobal ? 'global' : 'cn'));
+      const regionText = isSpb ? 'СПБ [SPB]' : (isJp ? 'ЯПОНИЯ [JP]' : (isGlobal ? 'GLOBAL [GLB]' : 'КИТАЙ [CN]'));
+      const stockBadge = isInstock
+        ? `<span class="admin-card-stock-tag instock" style="font-size: 8px;">✦ В НАЛИЧИИ: СПБ</span>`
+        : `<span class="admin-card-stock-tag preorder" style="font-size: 8px;">ПРЕДЗАКАЗ</span>`;
+
+      const thumb = imgs.length > 0
+        ? `<img src="${imgs[0]}" alt="${item.brand} ${item.name}">`
+        : `<span style="font-family: var(--font-mono); font-size: 0.6rem; color: #71717a;">НЕТ ФОТО</span>`;
+
+      const sizesStr = Array.isArray(item.sizes) ? item.sizes.join(', ') : (item.sizes || '');
+
+      return `
+        <div class="trash-item-row" data-trash-id="${item.id}">
+          <div class="trash-item-thumb">
+            ${thumb}
+          </div>
+          <div class="trash-item-info">
+            <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+              <span class="trash-brand">${item.brand || 'БРЕНД'}</span>
+              <span class="product-condition-pill" style="font-size: 8px; padding: 1px 4px;">● ${item.condition || 'NEW // DEADSTOCK'}</span>
+              ${stockBadge}
+              <span class="admin-region-badge ${badgeCls}" style="font-size: 8px; padding: 1px 5px;">${regionText}</span>
+            </div>
+            <div class="trash-item-name">${item.name || 'Название позиции'}</div>
+            <div class="trash-item-meta">
+              SKU: ${item.sku || 'N/A'} • <strong style="color: #ffffff;">${formatRub(item.basePriceRub || 0)}</strong> • Размеры: ${sizesStr || '—'}
+            </div>
+            <div class="trash-item-date">
+              ⏱ Удалено: ${formatDeletedDate(item.deletedAt)}
+            </div>
+          </div>
+          <div class="trash-item-actions">
+            <button type="button" class="btn-restore-card" data-restore-id="${item.id}" title="Восстановить позицию обратно в базу и каталог">
+              ↺ ВОССТАНОВИТЬ
+            </button>
+            <button type="button" class="btn-purge-card" data-purge-id="${item.id}" title="Удалить карточку навсегда">
+              ✕ СТЕРЕТЬ
+            </button>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function openTrashModal() {
+    renderTrashModal();
+    if (trashModal) trashModal.showModal();
+  }
+
+  function closeTrashModal() {
+    if (trashModal && trashModal.open) trashModal.close();
+  }
+
+  function restoreTrashItem(id) {
+    const itemIdx = TRASH.findIndex(t => String(t.id) === String(id));
+    if (itemIdx === -1) return;
+
+    const [item] = TRASH.splice(itemIdx, 1);
+    delete item.deletedAt;
+
+    PRODUCTS.unshift(item);
+    saveTrash(TRASH);
+    saveProducts(PRODUCTS);
+
+    renderCards();
+    renderTrashModal();
+    showToast(`[OK] // Карточка «${item.brand}» восстановлена в базу и каталог!`);
+  }
+
+  function purgeTrashItem(id) {
+    const item = TRASH.find(t => String(t.id) === String(id));
+    const brand = item ? item.brand : 'Карточка';
+
+    TRASH = TRASH.filter(t => String(t.id) !== String(id));
+    saveTrash(TRASH);
+
+    renderTrashModal();
+    showToast(`[OK] // «${brand}» окончательно стёрта из корзины`);
+  }
+
+  function purgeAllTrash() {
+    if (TRASH.length === 0) return;
+    const count = TRASH.length;
+    TRASH = [];
+    saveTrash(TRASH);
+    renderTrashModal();
+    showToast(`[OK] // Корзина очищена (${count} объектов удалено навсегда)`);
+  }
+
+  // Trash UI Event Listeners
+  if (openTrashBtn) openTrashBtn.addEventListener('click', openTrashModal);
+  if (statCardTrash) statCardTrash.addEventListener('click', openTrashModal);
+  if (trashCloseBtn) trashCloseBtn.addEventListener('click', closeTrashModal);
+  if (trashDoneBtn) trashDoneBtn.addEventListener('click', closeTrashModal);
+  if (trashBackdrop) trashBackdrop.addEventListener('click', closeTrashModal);
+  if (trashPurgeAllBtn) trashPurgeAllBtn.addEventListener('click', purgeAllTrash);
+
+  if (trashListEl) {
+    trashListEl.addEventListener('click', (e) => {
+      const restoreBtn = e.target.closest('.btn-restore-card');
+      if (restoreBtn) {
+        e.preventDefault();
+        const id = restoreBtn.dataset.restoreId;
+        restoreTrashItem(id);
+        return;
+      }
+
+      const purgeBtn = e.target.closest('.btn-purge-card');
+      if (purgeBtn) {
+        e.preventDefault();
+        const id = purgeBtn.dataset.purgeId;
+        purgeTrashItem(id);
+        return;
+      }
+    });
+  }
+
+  // Event delegation for DEL button on grid
+  if (grid) {
+    grid.addEventListener('click', (e) => {
+      const delBtn = e.target.closest('.admin-btn-del');
+      if (delBtn) {
+        e.preventDefault();
+        e.stopPropagation();
+        const id = delBtn.dataset.delId || delBtn.getAttribute('data-del-id');
+        openDeleteConfirmModal(id);
+      }
+    });
   }
 
   // Duplicate Card Object
