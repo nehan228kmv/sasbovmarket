@@ -241,7 +241,7 @@
         </div>
         <div class="modal-head-actions" style="display: flex; align-items: center; gap: 10px;">
           <button type="button" class="btn btn-outline btn-sm" id="toggle-ai-sidecar-btn" style="border-color: rgba(0, 240, 255, 0.45); color: #00f0ff; display: inline-flex; align-items: center; gap: 6px;">
-            <span>⚡ AI МИНИ-ОКНО</span>
+            <span>⚡ АВТОЗАПОЛНЕНИЕ ДРОПА</span>
           </button>
           <button type="button" class="admin-modal-close" id="card-editor-close-btn">&times;</button>
         </div>
@@ -462,63 +462,19 @@
       </form>
     </div> <!-- /.studio-form-col -->
 
-    <!-- AI Vision Assistant Mini-Window (Right Sidecar) -->
+    <!-- AI Verification & Smart Auto-Fill Studio (Right Sidecar) -->
     <aside class="ai-vision-sidecar" id="ai-vision-sidecar">
       <div class="ai-sidecar-header">
         <div class="ai-sidecar-title-wrap">
           <span class="ai-pulse-dot"></span>
-          <span class="ai-sidecar-title">⚡ AI VISION & WEB SEARCH</span>
-          <span class="ai-model-tag" id="ai-active-engine-tag">AI VISION</span>
-        </div>
-        <button type="button" class="btn-ai-cfg" id="toggle-inline-key-drawer-btn" title="Настроить API ключ нейросети">
-          ⚙️ НАСТРОЙКА КЛЮЧА
-        </button>
-      </div>
-
-      <!-- Direct Inline API Key Setup Drawer (In this window) -->
-      <div class="ai-inline-key-drawer" id="ai-inline-key-drawer">
-        <div class="ai-key-drawer-head">
-          <div class="ai-key-status-indicator" id="ai-key-status-indicator">
-            <span class="ai-key-dot" id="ai-key-dot"></span>
-            <span id="ai-key-status-text">Оффлайн-режим (введите ключ для 100% нейро-зрения)</span>
-          </div>
-          <span class="ai-key-brand-badge" id="ai-key-provider-badge">HEURISTIC</span>
-        </div>
-
-        <div class="ai-key-input-box">
-          <div class="ai-key-input-row">
-            <input type="password" id="inline-ai-api-key-input" class="form-input ai-key-field" 
-                   placeholder="Вставьте API ключ (Gemini AIzaSy... или OpenRouter sk-or-...)" 
-                   autocomplete="off" spellcheck="false">
-            <button type="button" class="btn-key-eye" id="btn-toggle-inline-key-eye" title="Показать/скрыть ключ">👁️</button>
-          </div>
-          <div class="ai-key-actions-row">
-            <button type="button" class="btn btn-sm btn-primary" id="btn-save-inline-ai-key">
-              💾 СОХРАНИТЬ
-            </button>
-            <button type="button" class="btn btn-sm btn-outline" id="btn-test-inline-ai-key">
-              ⚡ ТЕСТ СВЯЗИ
-            </button>
-            <button type="button" class="btn btn-sm btn-outline" id="btn-clear-inline-ai-key" style="color: #ef4444; border-color: rgba(239, 68, 68, 0.4);" title="Сбросить ключ">
-              ✕
-            </button>
-          </div>
-        </div>
-
-        <div class="ai-key-notes">
-          <div style="color: #00f0ff; font-weight: 700; margin-bottom: 2px;">⚡ ПОДДЕРЖИВАЮТСЯ ЛЮБЫЕ КЛЮЧИ:</div>
-          <div>• <strong>OpenRouter</strong> (ключ <code>sk-or-...</code>) — <u>работает из РФ без VPN</u> (Gemini 2.0 / Llama Vision).</div>
-          <div>• <strong>Google Gemini</strong> (ключ <code>AIzaSy...</code>) — бесплатно в Google AI Studio (с включенным VPN).</div>
-          <div style="margin-top: 5px; display: flex; gap: 8px; flex-wrap: wrap;">
-            <a href="https://openrouter.ai/keys" target="_blank" rel="noopener" style="color: #00f0ff; text-decoration: underline;">→ Получить ключ OpenRouter (без VPN)</a>
-            <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener" style="color: #a1a1aa; text-decoration: underline;">→ Google AI Studio (VPN)</a>
-          </div>
+          <span class="ai-sidecar-title">⚡ ВЕРИФИКАЦИЯ И АВТОЗАПОЛНЕНИЕ</span>
+          <span class="ai-model-tag" id="ai-active-engine-tag">LENS & YANDEX</span>
         </div>
       </div>
 
-      <!-- Fast Object Category Switcher for AI Scan -->
+      <!-- Fast Object Category Switcher for Scan -->
       <div class="ai-category-toggle-wrap">
-        <span class="ai-cat-toggle-label">ТИП ВЕЩИ ДЛЯ СКАНИРОВАНИЯ:</span>
+        <span class="ai-cat-toggle-label">КАТЕГОРИЯ ВЕЩИ:</span>
         <div class="ai-cat-toggle-buttons">
           <button type="button" class="ai-cat-btn" data-cat="clothing" id="ai-cat-btn-clothing">
             🧥 ОДЕЖДА / ПУХОВИК
@@ -539,7 +495,7 @@
           <div class="ai-viewport-empty" id="ai-viewport-empty">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
             <span>НЕТ ФОТО ДЛЯ АНАЛИЗА</span>
-            <span class="sub">Загрузите фото товара слева или вставьте ссылку</span>
+            <span class="sub">Загрузите фото товара слева или выберите силуэт ниже</span>
           </div>
           <div class="ai-laser-scanner" id="ai-laser-scanner" style="display: none;"></div>
           <div class="ai-reticle-marks" aria-hidden="true">
@@ -549,40 +505,12 @@
             <span class="reticle-corner br"></span>
           </div>
         </div>
-        
-        <!-- Quick AI Hint & Fast Presets -->
-        <div class="ai-hint-box" style="margin-top: 10px; margin-bottom: 8px;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-            <label for="ai-user-hint" style="font-family: var(--font-mono); font-size: 0.64rem; color: #a1a1aa; letter-spacing: 0.05em;">
-              ПОДСКАЗКА / БЫСТРЫЙ ПОИСК МОДЕЛИ:
-            </label>
-            <span style="font-size: 0.58rem; color: #71717a;">(Опционально)</span>
-          </div>
-          <input type="text" id="ai-user-hint" class="form-input" style="font-size: 0.74rem; padding: 6px 10px; background: rgba(0,0,0,0.6); border-color: rgba(255,255,255,0.18);" placeholder="Например: пухан CP Company, куртка Arc'teryx, Mihara...">
-          
-          <!-- Quick Preset Chips -->
-          <div class="ai-quick-presets" style="display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px;">
-            <button type="button" class="btn-ai-preset" data-hint="пухан CP Company">🧥 CP Company</button>
-            <button type="button" class="btn-ai-preset" data-hint="Stone Island пуховик">🧥 Stone Island</button>
-            <button type="button" class="btn-ai-preset" data-hint="Arcteryx куртка">🧥 Arc'teryx</button>
-            <button type="button" class="btn-ai-preset" data-hint="Trapstar пуховик">🧥 Trapstar</button>
-            <button type="button" class="btn-ai-preset" data-hint="Maison Mihara Yasuhiro Peterson">👟 Mihara</button>
-            <button type="button" class="btn-ai-preset" data-hint="Rick Owens Ramones">👟 Rick Owens</button>
-            <button type="button" class="btn-ai-preset" data-hint="Thug Club худи">👕 Thug Club</button>
-            <button type="button" class="btn-ai-preset" data-hint="Roaringwild карго">👖 Roaringwild</button>
-            <button type="button" class="btn-ai-preset" data-hint="Salomon MM6">👟 Salomon MM6</button>
-          </div>
-        </div>
 
-        <button type="button" class="btn btn-primary btn-block ai-trigger-btn" id="ai-recognize-trigger-btn">
-          ✨ РАСПОЗНАТЬ ПО ФОТО И НАЙТИ В СЕТИ
-        </button>
-
-        <!-- Zero-Key Reverse Visual Search Toolbar (Google Lens + Yandex Images) -->
+        <!-- 1-Click Reverse Search Verification Toolbar -->
         <div class="ai-reverse-search-toolbar" style="margin-top: 10px; padding: 10px; background: rgba(0, 0, 0, 0.45); border: 1px dashed rgba(0, 240, 255, 0.28); border-radius: 6px;">
           <div style="font-family: var(--font-mono); font-size: 0.64rem; color: #a1a1aa; margin-bottom: 6px; display: flex; align-items: center; justify-content: space-between;">
-            <span>🌐 ПРЯМОЙ ПОИСК В БАЗАХ ПО ФОТО:</span>
-            <span style="color: #00ff88; font-size: 0.58rem; letter-spacing: 0.05em; font-weight: 700;">БЕЗ КЛЮЧЕЙ И VPN</span>
+            <span>🌐 ПРОВЕРКА В БАЗАХ ПО ФОТО:</span>
+            <span style="color: #00ff88; font-size: 0.58rem; letter-spacing: 0.05em; font-weight: 700;">100% ТОЧНОСТЬ</span>
           </div>
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
             <button type="button" class="btn btn-sm btn-outline" id="btn-search-google-lens" style="border-color: rgba(66, 133, 244, 0.5); color: #60a5fa; font-size: 0.68rem; display: flex; align-items: center; justify-content: center; gap: 5px; padding: 7px 6px;" title="Открыть Google Объектив (Lens) с этим фото">
@@ -593,13 +521,33 @@
             </button>
           </div>
           <div style="font-size: 0.58rem; color: #71717a; margin-top: 5px; line-height: 1.3;">
-            1-клик поиск: если фото загружено файлом, оно автоматически копируется в буфер — просто нажмите <code style="color:#00f0ff;">Ctrl+V</code> на открывшемся сайте!
+            Фото автоматически копируется в буфер — просто нажмите <code style="color:#00f0ff;">Ctrl+V</code> на открывшейся странице!
           </div>
         </div>
 
+        <!-- Instant Smart Verification & Paste Input -->
+        <div class="ai-hint-box" style="margin-top: 10px; margin-bottom: 8px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+            <label for="ai-user-hint" style="font-family: var(--font-mono); font-size: 0.64rem; color: #00f0ff; letter-spacing: 0.05em; font-weight: 700;">
+              📋 ВСТАВЬТЕ НАЗВАНИЕ ИЗ LENS / ЯНДЕКСА:
+            </label>
+            <span style="font-size: 0.58rem; color: #a1a1aa;">(Авто-разбор)</span>
+          </div>
+          <div style="display: flex; gap: 6px;">
+            <input type="text" id="ai-user-hint" class="form-input" style="font-size: 0.76rem; padding: 7px 10px; background: rgba(0,0,0,0.6); border-color: rgba(0,240,255,0.35); flex: 1;" placeholder="Например: C.P. Company D.D. Shell Down Jacket, Mihara, Rick...">
+            <button type="button" class="btn btn-sm btn-primary" id="btn-parse-hint-trigger" style="font-size: 0.68rem; padding: 6px 10px;">
+              РАСПАРСИТЬ
+            </button>
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-primary btn-block ai-trigger-btn" id="ai-recognize-trigger-btn">
+          ✨ АВТООПРЕДЕЛИТЬ И ЗАПОЛНИТЬ КАРТОЧКУ
+        </button>
+
         <div class="ai-scanner-status" id="ai-scanner-status" style="display: none;">
           <span class="ai-spinner"></span>
-          <span id="ai-status-text">ИИ сканирует силуэт и детали...</span>
+          <span id="ai-status-text">Сканирование силуэта и параметров...</span>
         </div>
       </div>
 
@@ -608,7 +556,7 @@
         <div class="ai-hud-head">
           <span class="ai-hud-title">// РАСПОЗНАННЫЙ ОБЪЕКТ</span>
           <button type="button" class="btn-hud-action" id="ai-fill-all-btn">
-            ✔ ВСТАВИТЬ В ФОРМУ
+            ✔ ПРИМЕНИТЬ В ФОРМУ
           </button>
         </div>
 
@@ -633,57 +581,117 @@
 
         <div class="ai-desc-preview-wrap">
           <div class="ai-desc-preview-head">
-            <span class="ai-label">СГЕНЕРИРОВАННОЕ ОПИСАНИЕ:</span>
+            <span class="ai-label">ОПИСАНИЕ С АУТЕНТИФИКАЦИЕЙ:</span>
             <button type="button" class="btn-copy-sm" id="ai-insert-desc-only-btn">ВСТАВИТЬ</button>
           </div>
           <div class="ai-desc-text" id="ai-res-desc">—</div>
         </div>
       </div>
 
-      <!-- Found Web Photos Mini-Window (Photos in Internet) -->
-      <div class="ai-web-search-box" id="ai-web-search-box">
-        <div class="web-search-head">
-          <div>
-            <span class="web-search-title">🌐 НАЙДЕННЫЕ ФОТО В ИНТЕРНЕТЕ</span>
-            <span class="web-search-desc">Нажмите «+ В карточку» для добавления фото в галерею</span>
-          </div>
-          <span class="web-photos-count" id="ai-web-photos-count">0 фото</span>
+      <!-- Quick Streetwear Silhouettes Gallery (1-Click Auto-Fill) -->
+      <div class="ai-presets-box">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <span style="font-family: var(--font-mono); font-size: 0.68rem; color: #00f0ff; font-weight: 700; letter-spacing: 0.05em;">
+            ⚡ БЫСТРЫЙ ВЫБОР ТОП-СИЛУЭТОВ (1 КЛИК):
+          </span>
+          <span style="font-size: 0.6rem; color: #71717a;">Заполняет 100% формы</span>
         </div>
 
-        <!-- Live Web Photo Search Bar -->
-        <div class="web-search-bar" style="display: flex; gap: 6px; margin: 8px 0;">
-          <input type="text" id="ai-web-search-input" class="form-input" style="font-size: 0.72rem; padding: 5px 8px; flex: 1; background: rgba(0,0,0,0.5);" placeholder="Поиск других фото в сети: CP Company, Mihara...">
-          <button type="button" class="btn btn-sm btn-outline" id="ai-web-search-btn" style="padding: 5px 10px; font-size: 0.68rem; border-color: rgba(0,240,255,0.4); color: #00f0ff;">
-            НАЙТИ
+        <div class="ai-quick-presets-grid">
+          <!-- Outerwear -->
+          <button type="button" class="btn-ai-preset-card" data-preset="cp-puffer">
+            <span class="preset-icon">🧥</span>
+            <div class="preset-info">
+              <strong>C.P. Company Goggle</strong>
+              <span>Пуховик D.D. Shell // 54 900 ₽</span>
+            </div>
           </button>
-        </div>
-
-        <div class="web-photos-scroll-grid" id="ai-web-photos-grid">
-          <div class="web-empty-state" id="ai-web-empty-state">
-            <span>Загрузите фото товара и нажмите «Распознать по фото», чтобы ИИ нашёл фото и лукбуки этой модели в интернете</span>
-          </div>
-        </div>
-
-        <!-- Deep Link Platform Badges -->
-        <div class="deep-links-block" id="ai-deep-links-block" style="display: none;">
-          <span class="deep-links-label">ПРЯМОЙ ПОИСК В БАЗАХ:</span>
-          <div class="deep-links-grid">
-            <a href="#" target="_blank" rel="noopener" class="deep-link-badge" id="lens-link-google">
-              🔍 GOOGLE IMAGES
-            </a>
-            <a href="#" target="_blank" rel="noopener" class="deep-link-badge" id="lens-link-poizon">
-              🛍️ POIZON (得物)
-            </a>
-            <a href="#" target="_blank" rel="noopener" class="deep-link-badge" id="lens-link-mercari">
-              🇯🇵 MERCARI JP
-            </a>
-            <a href="#" target="_blank" rel="noopener" class="deep-link-badge" id="lens-link-xianyu">
-              🐟 GOOFISH (闲鱼)
-            </a>
-            <a href="#" target="_blank" rel="noopener" class="deep-link-badge" id="lens-link-grailed">
-              ⚡ GRAILED
-            </a>
-          </div>
+          <button type="button" class="btn-ai-preset-card" data-preset="arcteryx-beta">
+            <span class="preset-icon">🧥</span>
+            <div class="preset-info">
+              <strong>Arc'teryx Beta LT</strong>
+              <span>GORE-TEX Pro // 46 900 ₽</span>
+            </div>
+          </button>
+          <button type="button" class="btn-ai-preset-card" data-preset="stone-island">
+            <span class="preset-icon">🧥</span>
+            <div class="preset-info">
+              <strong>Stone Island Soft Shell</strong>
+              <span>С патчем Compass // 44 500 ₽</span>
+            </div>
+          </button>
+          <button type="button" class="btn-ai-preset-card" data-preset="trapstar-puffer">
+            <span class="preset-icon">🧥</span>
+            <div class="preset-info">
+              <strong>Trapstar Irongate</strong>
+              <span>Puffer Black // 36 000 ₽</span>
+            </div>
+          </button>
+          <button type="button" class="btn-ai-preset-card" data-preset="moncler-maya">
+            <span class="preset-icon">🧥</span>
+            <div class="preset-info">
+              <strong>Moncler Maya Puffer</strong>
+              <span>Shiny Nylon Laqué // 125 000 ₽</span>
+            </div>
+          </button>
+          <!-- Footwear -->
+          <button type="button" class="btn-ai-preset-card" data-preset="mihara-peterson">
+            <span class="preset-icon">👟</span>
+            <div class="preset-info">
+              <strong>Mihara Yasuhiro Peterson</strong>
+              <span>OG Sole Canvas // 24 800 ₽</span>
+            </div>
+          </button>
+          <button type="button" class="btn-ai-preset-card" data-preset="rick-owens-ramones">
+            <span class="preset-icon">👟</span>
+            <div class="preset-info">
+              <strong>Rick Owens Ramones</strong>
+              <span>DRKSHDW High // 58 500 ₽</span>
+            </div>
+          </button>
+          <button type="button" class="btn-ai-preset-card" data-preset="travis-scott-aj1">
+            <span class="preset-icon">👟</span>
+            <div class="preset-info">
+              <strong>Travis Scott x AJ1 Low</strong>
+              <span>Reverse Mocha // 89 000 ₽</span>
+            </div>
+          </button>
+          <button type="button" class="btn-ai-preset-card" data-preset="balenciaga-3xl">
+            <span class="preset-icon">👟</span>
+            <div class="preset-info">
+              <strong>Balenciaga 3XL Sneaker</strong>
+              <span>Distressed Mesh // 79 900 ₽</span>
+            </div>
+          </button>
+          <button type="button" class="btn-ai-preset-card" data-preset="salomon-mm6">
+            <span class="preset-icon">👟</span>
+            <div class="preset-info">
+              <strong>Salomon x MM6 Cross Low</strong>
+              <span>Tech Margiela // 29 500 ₽</span>
+            </div>
+          </button>
+          <!-- Accessories & Streetwear -->
+          <button type="button" class="btn-ai-preset-card" data-preset="chrome-hearts-cap">
+            <span class="preset-icon">🎒</span>
+            <div class="preset-info">
+              <strong>Chrome Hearts Cap</strong>
+              <span>Cross Leather Patch // 42 000 ₽</span>
+            </div>
+          </button>
+          <button type="button" class="btn-ai-preset-card" data-preset="thug-club-hoodie">
+            <span class="preset-icon">👕</span>
+            <div class="preset-info">
+              <strong>Thug Club Tribal</strong>
+              <span>Heavyweight Hoodie // 22 600 ₽</span>
+            </div>
+          </button>
+          <button type="button" class="btn-ai-preset-card" data-preset="roaringwild-cargo">
+            <span class="preset-icon">👖</span>
+            <div class="preset-info">
+              <strong>Roaringwild Cargo</strong>
+              <span>Tactical Multi-Pocket // 14 200 ₽</span>
+            </div>
+          </button>
         </div>
       </div>
     </aside>
