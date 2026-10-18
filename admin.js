@@ -894,9 +894,6 @@
           renderEditorGallery();
           showToast(`[OK] // Добавлено ${loaded} фото в карточку`);
           if (typeof updateAISidecarPreview === 'function') updateAISidecarPreview();
-          if (typeof triggerAutoScanOnUpload === 'function') {
-            triggerAutoScanOnUpload(currentEditorImages[0], validFiles[0] ? validFiles[0].name : '');
-          }
         }
       };
       reader.readAsDataURL(file);
@@ -945,9 +942,6 @@
         renderEditorGallery();
         showToast(`[OK] // Добавлено ${urls.length} фото по ссылке`);
         if (typeof updateAISidecarPreview === 'function') updateAISidecarPreview();
-        if (typeof triggerAutoScanOnUpload === 'function') {
-          triggerAutoScanOnUpload(urls[0], '');
-        }
       } else {
         alert('Пожалуйста, введите корректный URL изображения (начинающийся с http:// или https://)');
       }
@@ -3336,38 +3330,6 @@
     showToast(`[OK] // Распознано: ${foundBrand} — ${modelName}! Нажмите «ВСТАВИТЬ» у нужного поля`);
   }
 
-  // Auto scan photo directly without sending user to external sites
-  async function triggerAutoScanOnUpload(photoSrc, fileName) {
-    if (!photoSrc) return;
-
-    if (aiLaserScanner) aiLaserScanner.style.display = 'block';
-    if (aiScannerStatus) aiScannerStatus.style.display = 'flex';
-    if (aiStatusText) aiStatusText.textContent = '⚡ Автоматическое распознавание через Lens & Yandex Vision...';
-
-    try {
-      await new Promise(r => setTimeout(r, 400));
-      const detected = recognizeStreetwearHeuristics(photoSrc, brandInput?.value, nameInput?.value, aiUserHintInput?.value, fileName || lastUploadedFileName);
-      lastAIDetectedData = detected;
-
-      // Populate HUD card only
-      if (aiResBrand) aiResBrand.textContent = detected.brand || '—';
-      if (aiResModel) aiResModel.textContent = detected.model || '—';
-      if (aiResCat) aiResCat.textContent = detected.category === 'footwear' ? 'Обувь / Кроссовки' : (detected.category === 'clothing' ? 'Одежда (Куртки / Пуховики)' : 'Аксессуары');
-      if (aiResPrice) aiResPrice.textContent = formatRub(detected.estimatedPriceRub || 24000);
-      if (aiResSizes) aiResSizes.textContent = detected.suggestedSizes ? detected.suggestedSizes.join(', ') : '—';
-      if (aiResDesc) aiResDesc.textContent = detected.description || '—';
-      if (aiHudCard) aiHudCard.style.display = 'flex';
-
-      updateAiCategoryButtons(detected.category);
-      showToast(`[OK] // Фото распознано! Нажмите «ВСТАВИТЬ» у названия или «ПРИМЕНИТЬ ВСЁ»`);
-    } catch (e) {
-      console.warn('Auto scan warning:', e);
-    } finally {
-      if (aiLaserScanner) aiLaserScanner.style.display = 'none';
-      if (aiScannerStatus) aiScannerStatus.style.display = 'none';
-    }
-  }
-
   // Drag & drop directly onto the scanner viewport
   const aiViewportBox = document.getElementById('ai-viewport-box');
   if (aiViewportBox) {
@@ -3407,7 +3369,7 @@
       if (imageFiles.length > 0) {
         e.preventDefault();
         addEditorPhotoFiles(imageFiles);
-        showToast('[OK] // Фото из буфера обмена вставлено и автоматически сканируется!');
+        showToast('[OK] // Фото из буфера обмена добавлено в карточку!');
       }
     });
   }

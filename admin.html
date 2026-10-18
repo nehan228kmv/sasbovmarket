@@ -520,8 +520,8 @@
               <span>🔴</span> <strong>ЯНДЕКС ФОТО</strong>
             </button>
           </div>
-          <div style="font-size: 0.58rem; color: #71717a; margin-top: 5px; line-height: 1.3;">
-            Фото сканируется прямо здесь без перехода на сайты! Кнопки выше нужны только для ручной сверки.
+          <div style="font-size: 0.58rem; color: #a1a1aa; margin-top: 5px; line-height: 1.35;">
+            Нажмите кнопку, чтобы найти точную модель в Google Lens или Яндекс. Скопируйте название модели, вставьте в поле ниже и нажмите «РАСПАРСИТЬ».
           </div>
         </div>
 
@@ -539,15 +539,6 @@
               РАСПАРСИТЬ
             </button>
           </div>
-        </div>
-
-        <button type="button" class="btn btn-primary btn-block ai-trigger-btn" id="ai-recognize-trigger-btn">
-          ✨ РАСПОЗНАТЬ ВЕЩЬ ЧЕРЕЗ LENS & YANDEX VISION
-        </button>
-
-        <div class="ai-scanner-status" id="ai-scanner-status" style="display: none;">
-          <span class="ai-spinner"></span>
-          <span id="ai-status-text">Сканирование силуэта и параметров...</span>
         </div>
       </div>
 
@@ -620,113 +611,6 @@
             <button type="button" class="btn-copy-sm" id="ai-insert-desc-only-btn" title="Вставить только описание">ВСТАВИТЬ</button>
           </div>
           <div class="ai-desc-text" id="ai-res-desc">—</div>
-        </div>
-      </div>
-
-      <!-- Quick Streetwear Silhouettes Gallery (HUD Preview) -->
-      <div class="ai-presets-box">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-          <span style="font-family: var(--font-mono); font-size: 0.68rem; color: #00f0ff; font-weight: 700; letter-spacing: 0.05em;">
-            ⚡ БЫСТРЫЙ ВЫБОР ТОП-СИЛУЭТОВ (В ПАНЕЛЬ СПРАВА):
-          </span>
-          <span style="font-size: 0.6rem; color: #71717a;">Загружает в HUD справа</span>
-        </div>
-
-        <div class="ai-quick-presets-grid">
-          <!-- Outerwear -->
-          <button type="button" class="btn-ai-preset-card" data-preset="cp-puffer">
-            <span class="preset-icon">🧥</span>
-            <div class="preset-info">
-              <strong>C.P. Company Goggle</strong>
-              <span>Пуховик D.D. Shell // 54 900 ₽</span>
-            </div>
-          </button>
-          <button type="button" class="btn-ai-preset-card" data-preset="arcteryx-beta">
-            <span class="preset-icon">🧥</span>
-            <div class="preset-info">
-              <strong>Arc'teryx Beta LT</strong>
-              <span>GORE-TEX Pro // 46 900 ₽</span>
-            </div>
-          </button>
-          <button type="button" class="btn-ai-preset-card" data-preset="stone-island">
-            <span class="preset-icon">🧥</span>
-            <div class="preset-info">
-              <strong>Stone Island Soft Shell</strong>
-              <span>С патчем Compass // 44 500 ₽</span>
-            </div>
-          </button>
-          <button type="button" class="btn-ai-preset-card" data-preset="trapstar-puffer">
-            <span class="preset-icon">🧥</span>
-            <div class="preset-info">
-              <strong>Trapstar Irongate</strong>
-              <span>Puffer Black // 36 000 ₽</span>
-            </div>
-          </button>
-          <button type="button" class="btn-ai-preset-card" data-preset="moncler-maya">
-            <span class="preset-icon">🧥</span>
-            <div class="preset-info">
-              <strong>Moncler Maya Puffer</strong>
-              <span>Shiny Nylon Laqué // 125 000 ₽</span>
-            </div>
-          </button>
-          <!-- Footwear -->
-          <button type="button" class="btn-ai-preset-card" data-preset="mihara-peterson">
-            <span class="preset-icon">👟</span>
-            <div class="preset-info">
-              <strong>Mihara Yasuhiro Peterson</strong>
-              <span>OG Sole Canvas // 24 800 ₽</span>
-            </div>
-          </button>
-          <button type="button" class="btn-ai-preset-card" data-preset="rick-owens-ramones">
-            <span class="preset-icon">👟</span>
-            <div class="preset-info">
-              <strong>Rick Owens Ramones</strong>
-              <span>DRKSHDW High // 58 500 ₽</span>
-            </div>
-          </button>
-          <button type="button" class="btn-ai-preset-card" data-preset="travis-scott-aj1">
-            <span class="preset-icon">👟</span>
-            <div class="preset-info">
-              <strong>Travis Scott x AJ1 Low</strong>
-              <span>Reverse Mocha // 89 000 ₽</span>
-            </div>
-          </button>
-          <button type="button" class="btn-ai-preset-card" data-preset="balenciaga-3xl">
-            <span class="preset-icon">👟</span>
-            <div class="preset-info">
-              <strong>Balenciaga 3XL Sneaker</strong>
-              <span>Distressed Mesh // 79 900 ₽</span>
-            </div>
-          </button>
-          <button type="button" class="btn-ai-preset-card" data-preset="salomon-mm6">
-            <span class="preset-icon">👟</span>
-            <div class="preset-info">
-              <strong>Salomon x MM6 Cross Low</strong>
-              <span>Tech Margiela // 29 500 ₽</span>
-            </div>
-          </button>
-          <!-- Accessories & Streetwear -->
-          <button type="button" class="btn-ai-preset-card" data-preset="chrome-hearts-cap">
-            <span class="preset-icon">🎒</span>
-            <div class="preset-info">
-              <strong>Chrome Hearts Cap</strong>
-              <span>Cross Leather Patch // 42 000 ₽</span>
-            </div>
-          </button>
-          <button type="button" class="btn-ai-preset-card" data-preset="thug-club-hoodie">
-            <span class="preset-icon">👕</span>
-            <div class="preset-info">
-              <strong>Thug Club Tribal</strong>
-              <span>Heavyweight Hoodie // 22 600 ₽</span>
-            </div>
-          </button>
-          <button type="button" class="btn-ai-preset-card" data-preset="roaringwild-cargo">
-            <span class="preset-icon">👖</span>
-            <div class="preset-info">
-              <strong>Roaringwild Cargo</strong>
-              <span>Tactical Multi-Pocket // 14 200 ₽</span>
-            </div>
-          </button>
         </div>
       </div>
     </aside>
