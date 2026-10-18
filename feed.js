@@ -500,11 +500,12 @@
 — Артикул: ${item.sku}
 — Размер: ${activeSize}
 — Площадка / Локация: ${item.regionLabel}
-— Стоимость: ${formatRub(item.basePriceRub)}
+${isInstock ? '— Адрес шоурума: Санкт-Петербург, ул. Тверская 3/1, Подъезд 2 (Balkonsky Store)\n' : ''}— Стоимость: ${formatRub(item.basePriceRub)}
 
-${isInstock ? 'Подскажите, когда можно подъехать на примерку в Balkonsky Store / отправить СДЭКом?' : 'Подтвердите наличие на зарубежной площадке и пришлите реквизиты для выкупа!'}`;
+${isInstock ? 'Подтвердите наличие на точке и забронируйте вещь за мной!' : 'Подтвердите наличие на зарубежной площадке и пришлите реквизиты для выкупа!'}`;
 
-        const url = `https://t.me/sasbovstore?text=${encodeURIComponent(text)}`;
+        const tgBase = isInstock ? 'https://t.me/sasbov' : 'https://t.me/sasbovstore';
+        const url = `${tgBase}?text=${encodeURIComponent(text)}`;
         window.open(url, '_blank', 'noopener,noreferrer');
       });
     });

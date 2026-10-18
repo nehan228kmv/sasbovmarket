@@ -340,8 +340,32 @@
           <input type="text" id="card-sizes-input" class="form-input" placeholder="39 EU, 40 EU, 41 EU, 42 EU, 43 EU" required>
         </div>
 
-        <!-- Timer (Click-to-Pick Date & Time) & Status -->
+        <!-- Item Condition -->
         <div class="form-group">
+          <label for="card-condition-select" class="form-label">СОСТОЯНИЕ ВЕЩИ (CONDITION) *</label>
+          <select id="card-condition-select" class="form-select">
+            <option value="NEW // DEADSTOCK" selected>NEW // DEADSTOCK (Новое с бирками)</option>
+            <option value="9.5/10 EXCELLENT">9.5/10 EXCELLENT (Идеальное без нюансов)</option>
+            <option value="9/10 VINTAGE">9/10 VINTAGE (Винтаж / архивное)</option>
+            <option value="8.5/10 GOOD">8.5/10 GOOD (Хорошее, легкое б/у)</option>
+            <option value="CUSTOM // UPSCALED">CUSTOM // UPSCALED (Кастом)</option>
+          </select>
+        </div>
+
+        <!-- Status -->
+        <div class="form-group form-col-full">
+          <label for="card-status-select" class="form-label">СТАТУС КАРТОЧКИ</label>
+          <select id="card-status-select" class="form-select">
+            <option value="В НАЛИЧИИ В СПБ">В НАЛИЧИИ В СПБ (BALKONSKY)</option>
+            <option value="ПРЕДЗАКАЗ ОТКРЫТ" selected>ПРЕДЗАКАЗ ОТКРЫТ</option>
+            <option value="СКОРО ЗАКРЫТИЕ">СКОРО ЗАКРЫТИЕ</option>
+            <option value="LIMITED DROP">LIMITED DROP</option>
+            <option value="SOLD OUT">SOLD OUT (ЗАКРЫТО)</option>
+          </select>
+        </div>
+
+        <!-- Timer & Presets (Full Width for comfortable picking) -->
+        <div class="form-group form-col-full">
           <label for="card-timer-datetime" class="form-label">
             ТАЙМЕР ЗАКРЫТИЯ ДРОПА (КЛИКНИТЕ ДЛЯ ВЫБОРА ДАТЫ И ВРЕМЕНИ)
           </label>
@@ -358,29 +382,6 @@
             <button type="button" class="timer-preset-btn" data-hours="120">+5 ДНЕЙ</button>
             <button type="button" class="timer-preset-btn" data-hours="168">+7 ДНЕЙ</button>
           </div>
-        </div>
-
-        <div class="form-group">
-          <label for="card-status-select" class="form-label">СТАТУС КАРТОЧКИ</label>
-          <select id="card-status-select" class="form-select">
-            <option value="В НАЛИЧИИ В СПБ">В НАЛИЧИИ В СПБ (BALKONSKY)</option>
-            <option value="ПРЕДЗАКАЗ ОТКРЫТ" selected>ПРЕДЗАКАЗ ОТКРЫТ</option>
-            <option value="СКОРО ЗАКРЫТИЕ">СКОРО ЗАКРЫТИЕ</option>
-            <option value="LIMITED DROP">LIMITED DROP</option>
-            <option value="SOLD OUT">SOLD OUT (ЗАКРЫТО)</option>
-          </select>
-        </div>
-
-        <!-- Item Condition -->
-        <div class="form-group">
-          <label for="card-condition-select" class="form-label">СОСТОЯНИЕ ВЕЩИ (CONDITION) *</label>
-          <select id="card-condition-select" class="form-select">
-            <option value="NEW // DEADSTOCK" selected>NEW // DEADSTOCK (Новое с бирками)</option>
-            <option value="9.5/10 EXCELLENT">9.5/10 EXCELLENT (Идеальное без нюансов)</option>
-            <option value="9/10 VINTAGE">9/10 VINTAGE (Винтаж / архивное)</option>
-            <option value="8.5/10 GOOD">8.5/10 GOOD (Хорошее, легкое б/у)</option>
-            <option value="CUSTOM // UPSCALED">CUSTOM // UPSCALED (Кастом)</option>
-          </select>
         </div>
 
         <!-- Mini-Description -->

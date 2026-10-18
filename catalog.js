@@ -660,7 +660,17 @@
     state.selectedSize = product.sizes[0] || 'Стандарт';
 
     const isInstock = product.stockType === 'instock';
+    const speedWrap = document.getElementById('modal-speed-wrap');
+    const pricingTitle = document.getElementById('modal-pricing-title');
+    const pricingNote = document.getElementById('modal-pricing-note');
+    const balkonskyBox = document.getElementById('modal-balkonsky-box');
+
     if (isInstock) {
+      if (speedWrap) speedWrap.style.display = 'none';
+      if (pricingTitle) pricingTitle.textContent = 'Цена в наличии (Санкт-Петербург):';
+      if (pricingNote) pricingNote.textContent = 'Примерка и покупка в шоуруме Balkonsky Store или доставка курьером / СДЭК.';
+      if (balkonskyBox) balkonskyBox.style.display = 'flex';
+
       el.modalRegionTag.className = 'origin-badge badge-instock';
       el.modalRegionTag.textContent = '✦ В НАЛИЧИИ: СПБ // BALKONSKY STORE';
       el.modalItemSku.textContent = `АРТИКУЛ: ${product.sku} // НАЛИЧИЕ В СПБ: ПРИМЕРКА И САМОВЫВОЗ СЕГОДНЯ`;
@@ -669,6 +679,11 @@
         el.modalSubmitTgBtn.innerHTML = `<span>КУПИТЬ / ЗАБРОНИРОВАТЬ В BALKONSKY STORE (СПБ)</span>`;
       }
     } else {
+      if (speedWrap) speedWrap.style.display = 'block';
+      if (pricingTitle) pricingTitle.textContent = 'Стоимость предзаказа под ключ:';
+      if (pricingNote) pricingNote.textContent = 'Включает выкуп, легитчек на складе в Азии и доставку в РФ.';
+      if (balkonskyBox) balkonskyBox.style.display = 'none';
+
       el.modalRegionTag.className = `origin-badge ${product.badgeClass}`;
       el.modalRegionTag.textContent = product.regionLabel;
       el.modalItemSku.textContent = `АРТИКУЛ: ${product.sku} // ДЕДЛАЙН: ${product.closingIn}`;
@@ -755,11 +770,15 @@
 — Состояние: ${p.condition || 'NEW // DEADSTOCK'}
 — Артикул: ${p.sku}
 — Размер: ${state.selectedSize}
-— Локация: Санкт-Петербург, Balkonsky Store (магазин-партнер SASBOV MARKET)
-— Условия: Примерка / самовывоз в СПб день-в-день, доставка СДЭК 1-2 дня
+— Локация: Санкт-Петербург, Balkonsky Store (ул. Тверская 3/1, Подъезд 2)
+— Условия: Примерка / самовывоз в СПб день-в-день, отправка СДЭК 1-2 дня
 — Стоимость: ${formatRub(p.basePriceRub)}
 ${p.description ? `— Описание: ${p.description}\n` : ''}
-Подтвердите наличие на точке и пришлите точный адрес для примерки / реквизиты для отправки!`;
+Подтвердите наличие на точке и забронируйте вещь за мной!`;
+
+          const tgUrl = `https://t.me/sasbov?text=${encodeURIComponent(messageText)}`;
+          window.open(tgUrl, '_blank', 'noopener,noreferrer');
+          closePreorderModal();
         } else {
           const selectedSpeedVal = Array.from(el.modalSpeedRadios).find(r => r.checked)?.value || 'Авиа-экспресс (7-10 дней)';
           messageText = 
@@ -773,11 +792,11 @@ ${p.description ? `— Описание: ${p.description}\n` : ''}
 — Стоимость под ключ: ${formatRub(p.basePriceRub)}
 ${p.description ? `— Описание: ${p.description}\n` : ''}
 Подтвердите возможность выкупа и пришлите реквизиты!`;
-        }
 
-        const tgUrl = `https://t.me/sasbovstore?text=${encodeURIComponent(messageText)}`;
-        window.open(tgUrl, '_blank', 'noopener,noreferrer');
-        closePreorderModal();
+          const tgUrl = `https://t.me/sasbovstore?text=${encodeURIComponent(messageText)}`;
+          window.open(tgUrl, '_blank', 'noopener,noreferrer');
+          closePreorderModal();
+        }
       });
     }
   }

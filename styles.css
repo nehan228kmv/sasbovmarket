@@ -1699,6 +1699,122 @@ button, input, select {
 }
 
 /* ==========================================================================
+   Balkonsky Store Location & Reservation Info Widget (In-Stock items)
+   ========================================================================== */
+.modal-balkonsky-box {
+  background: rgba(0, 240, 255, 0.05);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  border-radius: 8px;
+  padding: 1.15rem;
+  margin-bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.balkonsky-box-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.balkonsky-pin-icon {
+  font-size: 1.3rem;
+  line-height: 1.2;
+}
+
+.balkonsky-address-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.balkonsky-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: #00f0ff;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.balkonsky-address {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.balkonsky-maps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 0.5rem;
+}
+
+.map-link-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 4px;
+  padding: 7px 10px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.map-link-chip:hover {
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.balkonsky-booking-note {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: #e4e4e7;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  padding-top: 0.65rem;
+  border-top: 1px dashed rgba(255, 255, 255, 0.14);
+}
+
+.balkonsky-tg-link {
+  color: #00f0ff;
+  font-weight: 700;
+  text-decoration: underline;
+  transition: color 0.15s ease;
+}
+
+.balkonsky-tg-link:hover {
+  color: #ffffff;
+}
+
+.btn-instock-buy {
+  background: #00f0ff !important;
+  color: #000000 !important;
+  font-weight: 700 !important;
+  border-color: #00f0ff !important;
+}
+
+.btn-instock-buy:hover {
+  background: #ffffff !important;
+  border-color: #ffffff !important;
+  box-shadow: 0 0 25px rgba(0, 240, 255, 0.45) !important;
+}
+
+/* ==========================================================================
    Pre-order Tray Drawer (Cart)
    ========================================================================== */
 .tray-drawer {

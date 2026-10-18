@@ -688,14 +688,47 @@
     state.selectedProduct = product;
     state.selectedSize = product.sizes[0] || 'Стандарт';
 
-    el.modalRegionTag.textContent = product.regionLabel;
+    const isInstock = product.stockType === 'instock';
+    const speedWrap = document.getElementById('modal-speed-wrap');
+    const pricingTitle = document.getElementById('modal-pricing-title');
+    const pricingNote = document.getElementById('modal-pricing-note');
+    const balkonskyBox = document.getElementById('modal-balkonsky-box');
+
+    if (isInstock) {
+      if (speedWrap) speedWrap.style.display = 'none';
+      if (pricingTitle) pricingTitle.textContent = 'Цена в наличии (Санкт-Петербург):';
+      if (pricingNote) pricingNote.textContent = 'Примерка и покупка в шоуруме Balkonsky Store или быстрая отправка СДЭК.';
+      if (balkonskyBox) balkonskyBox.style.display = 'flex';
+
+      el.modalRegionTag.className = 'origin-badge badge-instock';
+      el.modalRegionTag.textContent = '✦ В НАЛИЧИИ: СПБ // BALKONSKY STORE';
+      el.modalItemSku.textContent = `АРТИКУЛ: ${product.sku} // НАЛИЧИЕ В СПБ: ПРИМЕРКА И САМОВЫВОЗ СЕГОДНЯ`;
+      if (el.modalSubmitTgBtn) {
+        el.modalSubmitTgBtn.className = 'btn btn-instock-buy btn-block';
+        el.modalSubmitTgBtn.innerHTML = `<span>КУПИТЬ / ЗАБРОНИРОВАТЬ В BALKONSKY STORE (СПБ)</span>`;
+      }
+    } else {
+      if (speedWrap) speedWrap.style.display = 'block';
+      if (pricingTitle) pricingTitle.textContent = 'Стоимость предзаказа под ключ:';
+      if (pricingNote) pricingNote.textContent = 'Включает выкуп, легитчек на складе в Азии и доставку в РФ.';
+      if (balkonskyBox) balkonskyBox.style.display = 'none';
+
+      el.modalRegionTag.className = `origin-badge ${product.badgeClass}`;
+      el.modalRegionTag.textContent = product.regionLabel;
+      el.modalItemSku.textContent = `АРТИКУЛ: ${product.sku} // ДЕДЛАЙН: ${product.closingIn}`;
+      if (el.modalSubmitTgBtn) {
+        el.modalSubmitTgBtn.className = 'btn btn-primary btn-block';
+        el.modalSubmitTgBtn.innerHTML = `<span>ОФОРМИТЬ В TELEGRAM</span>`;
+      }
+    }
+
     el.modalItemTitle.textContent = `${product.brand} — ${product.name}`;
-    el.modalItemSku.textContent = `АРТИКУЛ: ${product.sku} // ДЕДЛАЙН: ${product.closingIn}`;
     el.modalPriceVal.textContent = formatRub(product.basePriceRub);
 
-    if (product.image) {
+    const firstImg = (Array.isArray(product.images) && product.images.length > 0) ? product.images[0] : product.image;
+    if (firstImg) {
       el.modalImgPreview.innerHTML = `
-        <img src="${product.image}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
+        <img src="${firstImg}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
       `;
     } else {
       el.modalImgPreview.innerHTML = `
@@ -749,28 +782,42 @@
         if (!state.selectedProduct) return;
 
         const p = state.selectedProduct;
-        const selectedSpeedVal = Array.from(el.modalSpeedRadios).find(r => r.checked)?.value || 'Авиа-экспресс (7-10 дней)';
         const isInstock = p.stockType === 'instock';
 
-        const greeting = isInstock
-          ? 'Здравствуйте! Хочу забронировать вещь В НАЛИЧИИ (СПб, Balkonsky Store):'
-          : 'Здравствуйте! Хочу оформить предзаказ в SASBOV MARKET:';
-
-        const messageText = 
-`${greeting}
+        if (isInstock) {
+          const messageText = 
+`Здравствуйте! Хочу забронировать / купить позицию из наличия в Санкт-Петербурге:
 — Товар: ${p.brand} ${p.name}
 — Состояние: ${p.condition || 'NEW // DEADSTOCK'}
 — Артикул: ${p.sku}
 — Размер: ${state.selectedSize}
-— Локация / Площадка: ${p.regionLabel}
-— Тариф: ${isInstock ? 'Самовывоз в СПб / СДЭК' : selectedSpeedVal}
+— Локация: Санкт-Петербург, Balkonsky Store (ул. Тверская 3/1, Подъезд 2)
+— Условия: Примерка / самовывоз в СПб день-в-день, отправка СДЭК 1-2 дня
+— Стоимость: ${formatRub(p.basePriceRub)}
+${p.description ? `— Описание: ${p.description}\n` : ''}
+Подтвердите наличие на точке и забронируйте вещь за мной!`;
+
+          const tgUrl = `https://t.me/sasbov?text=${encodeURIComponent(messageText)}`;
+          window.open(tgUrl, '_blank', 'noopener,noreferrer');
+          closePreorderModal();
+        } else {
+          const selectedSpeedVal = Array.from(el.modalSpeedRadios).find(r => r.checked)?.value || 'Авиа-экспресс (7-10 дней)';
+          const messageText = 
+`Здравствуйте! Хочу оформить предзаказ в SASBOV MARKET (выкуп с зарубежных площадок):
+— Товар: ${p.brand} ${p.name}
+— Состояние: ${p.condition || 'NEW // DEADSTOCK'}
+— Артикул: ${p.sku}
+— Размер: ${state.selectedSize}
+— Регион / Площадка: ${p.regionLabel}
+— Тариф доставки: ${selectedSpeedVal}
 — Стоимость под ключ: ${formatRub(p.basePriceRub)}
+${p.description ? `— Описание: ${p.description}\n` : ''}
+Подтвердите возможность выкупа и пришлите реквизиты!`;
 
-${isInstock ? 'Подскажите, когда можно подъехать на примерку или отправить СДЭКом?' : 'Подтвердите, пожалуйста, наличие на зарубежной площадке и пришлите реквизиты для выкупа!'}`;
-
-        const tgUrl = `https://t.me/sasbovstore?text=${encodeURIComponent(messageText)}`;
-        window.open(tgUrl, '_blank', 'noopener,noreferrer');
-        closePreorderModal();
+          const tgUrl = `https://t.me/sasbovstore?text=${encodeURIComponent(messageText)}`;
+          window.open(tgUrl, '_blank', 'noopener,noreferrer');
+          closePreorderModal();
+        }
       });
     }
   }

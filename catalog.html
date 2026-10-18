@@ -239,7 +239,7 @@
             <div class="modal-size-grid" id="modal-sizes-list"></div>
           </div>
 
-          <div class="modal-field">
+          <div class="modal-field" id="modal-speed-wrap">
             <label class="modal-label">ТАРИФ ДОСТАВКИ:</label>
             <div class="modal-speed-options">
               <label class="modal-radio active">
@@ -253,12 +253,43 @@
             </div>
           </div>
 
-          <div class="modal-pricing-box">
+          <div class="modal-pricing-box" id="modal-pricing-box">
             <div class="pricing-row">
-              <span>Стоимость предзаказа под ключ:</span>
+              <span id="modal-pricing-title">Стоимость предзаказа под ключ:</span>
               <strong class="pricing-val" id="modal-price-val">18 500 ₽</strong>
             </div>
-            <p class="pricing-note">Включает выкуп, легитчек на складе в Азии и доставку в РФ.</p>
+            <p class="pricing-note" id="modal-pricing-note">Включает выкуп, легитчек на складе в Азии и доставку в РФ.</p>
+          </div>
+
+          <!-- Balkonsky Store In-Stock Location & Reservation Info Block -->
+          <div class="modal-balkonsky-box" id="modal-balkonsky-box" style="display: none;">
+            <div class="balkonsky-box-header">
+              <span class="balkonsky-pin-icon">📍</span>
+              <div class="balkonsky-address-wrap">
+                <span class="balkonsky-label">ПРИМЕРКА И САМОВЫВОЗ В ШОУРУМЕ (СПБ):</span>
+                <strong class="balkonsky-address">Balkonsky Store ул. Тверская 3/1, Подъезд 2📍</strong>
+              </div>
+            </div>
+
+            <div class="balkonsky-maps-grid">
+              <a href="https://yandex.ru/maps/?whatshere%5Bzoom%5D=20&whatshere%5Bpoint%5D=30.380629%2C59.946700" target="_blank" rel="noopener noreferrer" class="map-link-chip">
+                🗺 Яндекс Карты 🗺
+              </a>
+              <a href="https://2gis.ru/spb/geo/5348660212709214/30.380777%2C59.946742/entranceId/70030076159930678?m=30.380673%2C59.946734%2F19.91%2Fr%2F-1.91" target="_blank" rel="noopener noreferrer" class="map-link-chip">
+                🗺 2GIS 🗺
+              </a>
+              <a href="https://maps.app.goo.gl/xkKyfsmEyriQfWRg9?g_st=ic" target="_blank" rel="noopener noreferrer" class="map-link-chip">
+                🗺 Google Maps 🗺
+              </a>
+              <a href="https://maps.apple.com/?ll=59.946692,30.380572&q=%D0%9E%D1%82%D0%BC%D0%B5%D1%87%D0%B5%D0%BD%D0%BD%D0%B0%D1%8F%20%D0%B3%D0%B5%D0%BE%D0%BF%D0%BE%D0%B7%D0%B8%D1%86%D0%B8%D1%8F&t=m" target="_blank" rel="noopener noreferrer" class="map-link-chip">
+                📱 Apple Maps 📱
+              </a>
+            </div>
+
+            <div class="balkonsky-booking-note">
+              <span>Забронировать можно в телеграме:</span>
+              <a href="https://t.me/sasbov" target="_blank" rel="noopener noreferrer" class="balkonsky-tg-link">t.me/sasbov</a>
+            </div>
           </div>
 
           <button type="button" class="btn btn-primary btn-block btn-lg" id="modal-submit-tg-btn">

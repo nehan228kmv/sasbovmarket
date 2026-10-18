@@ -439,47 +439,73 @@
 .admin-modal {
   border: none;
   background: transparent;
-  width: 100%;
-  max-width: 680px;
+  width: min(94vw, 1020px);
+  max-width: 1020px;
   margin: auto;
-  padding: 1rem;
+  padding: 1.5rem 0;
   color: #ffffff;
   outline: none;
+  overflow: hidden !important;
 }
 
 .admin-modal::backdrop {
-  background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(14px);
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 .admin-modal-card {
-  background: #0c0c10;
+  background: #0d0d14;
   border: 1px solid rgba(255, 255, 255, 0.22);
-  border-radius: 12px;
-  padding: clamp(1.5rem, 4vw, 2.5rem);
-  box-shadow: 0 35px 90px rgba(0, 0, 0, 0.95);
+  border-radius: 14px;
+  padding: 1.75rem 2.25rem;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.95), 0 0 50px rgba(255, 255, 255, 0.04);
   position: relative;
-  max-height: 90vh;
+  max-height: 88vh;
   overflow-y: auto;
+  overflow-x: hidden;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.admin-modal-card::-webkit-scrollbar {
+  width: 7px;
+}
+.admin-modal-card::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 4px;
+}
+.admin-modal-card::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.22);
+  border-radius: 4px;
+}
+.admin-modal-card::-webkit-scrollbar-thumb:hover {
+  background: #00f0ff;
 }
 
 .modal-card-wide {
-  max-width: 900px;
+  max-width: 100%;
 }
 
 .admin-modal-head {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   gap: 1.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding-bottom: 1.25rem;
-  margin-bottom: 1.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 1.25rem 2.25rem;
+  margin: -1.75rem -2.25rem 1.5rem -2.25rem;
+  position: sticky;
+  top: -1.75rem;
+  background: #0d0d14;
+  z-index: 30;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
 }
 
 .admin-modal-close {
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   color: #ffffff;
   width: 36px;
   height: 36px;
@@ -496,13 +522,23 @@
 .admin-modal-close:hover {
   background: #ffffff;
   color: #000000;
+  border-color: #ffffff;
 }
 
 /* Form Styles */
 .card-form-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 1.25rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .card-form-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 }
 
 .form-col-full {
@@ -513,6 +549,8 @@
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
+  min-width: 0;
+}
 }
 
 .form-label {
@@ -620,9 +658,17 @@
   display: flex;
   justify-content: flex-end;
   gap: 1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding-top: 1.5rem;
-  margin-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 1.25rem 2.25rem;
+  margin: 1.5rem -2.25rem -1.75rem -2.25rem;
+  position: sticky;
+  bottom: -1.75rem;
+  background: rgba(13, 13, 20, 0.96);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  z-index: 30;
+  border-bottom-left-radius: 14px;
+  border-bottom-right-radius: 14px;
 }
 
 /* Batch Importer */
