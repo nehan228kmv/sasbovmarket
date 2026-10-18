@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>SASBOV MARKET — TikTok Дроп-Лента | Эксклюзивные вещи из Китая и Японии</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Интерактивная видео- и фото-лента редких вещей и закрытых дропов из Китая и Японии в стиле TikTok / Reels. Мгновенный предзаказ с доставкой в РФ.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://sasbovmarket.com/feed.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="SASBOV MARKET — TikTok Дроп-Лента">
+  <meta property="og:description" content="Листай закрытые дропы из Токио и Шанхая в полноэкранном формате.">
+  <meta property="og:image" content="assets/sasbov-logo.jpg">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="assets/sasbov-logo.jpg">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="feed.css">
+</head>
+<body class="feed-body">
+
+  <!-- Feed Top HUD Navigation Overlay -->
+  <header class="feed-top-nav">
+    <a href="index.html" class="feed-logo-link" aria-label="Вернуться на главную">
+      <img src="assets/sasbov-market-logo.png" alt="SASBOV MARKET" style="height: 24px; width: auto;">
+    </a>
+
+    <!-- Quick Feed Filter Chips -->
+    <div class="feed-filter-bar">
+      <button type="button" class="feed-chip active" data-feed-filter="all">ВСЕ (ALL)</button>
+      <button type="button" class="feed-chip" data-feed-filter="japan">ЯПОНИЯ [JP]</button>
+      <button type="button" class="feed-chip" data-feed-filter="china">КИТАЙ [CN]</button>
+    </div>
+
+    <div style="display: flex; gap: 0.5rem; align-items: center;">
+      <a href="catalog.html" class="feed-exit-btn" aria-label="Закрыть ленту и перейти в обычный каталог">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        <span class="exit-label">КАТАЛОГ</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Feed Navigation Floating Arrows (Desktop) -->
+  <div class="feed-arrows" aria-hidden="true">
+    <button type="button" class="feed-arrow-btn" id="feed-prev-btn" title="Предыдущая вещь (Стрелка вверх)">
+      ▲
+    </button>
+    <button type="button" class="feed-arrow-btn" id="feed-next-btn" title="Следующая вещь (Стрелка вниз)">
+      ▼
+    </button>
+  </div>
+
+  <!-- Swipe Instruction Tip for Mobile -->
+  <div class="swipe-hint" id="swipe-hint">
+    <span>СВАЙПАЙТЕ ВВЕРХ / ВНИЗ</span>
+  </div>
+
+  <!-- Fullscreen Vertical Reels Container -->
+  <main class="reels-container" id="reels-container" tabindex="0" aria-label="Лента предзаказов">
+    <!-- Generated dynamically by feed.js -->
+  </main>
+
+  <!-- Sound Toggle & Keyboard Help Floating Pill -->
+  <footer class="feed-bottom-telemetry">
+    <span class="telemetry-item">Используйте клавиши ↑ / ↓ для навигации</span>
+    <span class="telemetry-item" id="feed-counter">АЙТЕМ 1 / 9</span>
+  </footer>
+
+  <script src="feed.js"></script>
+</body>
+</html>

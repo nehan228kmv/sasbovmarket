@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SASBOV MARKET — Панель управления (Admin Console)</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/png" href="assets/sasbov-logo.jpg">
+
+  <!-- Google Fonts: Space Grotesk, Syne, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin-body">
+
+  <!-- Ambient background glow -->
+  <div class="ambient-glow" aria-hidden="true"></div>
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <!-- =========================================================================
+       1. Gatekeeper Terminal Authentication Overlay (Locked by default)
+       ========================================================================= -->
+  <div class="admin-auth-overlay" id="admin-auth-overlay">
+    <div class="terminal-lock-box">
+      <div class="terminal-lock-header">
+        <div class="terminal-dots">
+          <span class="t-dot red"></span>
+          <span class="t-dot yellow"></span>
+          <span class="t-dot green"></span>
+        </div>
+        <span class="terminal-header-title">SASBOV SECURITY PROTOCOL // ROOT CONSOLE</span>
+      </div>
+
+      <div class="terminal-lock-body">
+        <div class="terminal-logo-wrap">
+          <img src="assets/sasbov-market-logo.png" alt="SASBOV MARKET" class="terminal-logo">
+          <div class="terminal-katakana">サスボフ 管理システム — RESTRICTED ACCESS</div>
+        </div>
+
+        <div class="terminal-status-banner">
+          <span class="status-pulse-red"></span>
+          <span>СИСТЕМА ЗАБЛОКИРОВАНА. ТРЕБУЕТСЯ МАСТЕР-ТОКЕН</span>
+        </div>
+
+        <p class="terminal-desc">
+          Панель управления карточками скрыта от публичного доступа. Для разблокировки введите секретный мастер-токен или перейдите по персональной секретной ссылке.
+        </p>
+
+        <form id="admin-auth-form" class="terminal-auth-form">
+          <div class="terminal-input-wrap">
+            <span class="terminal-prompt">$ TOKEN:</span>
+            <input type="password" id="admin-auth-token-input" class="terminal-input" placeholder="Введите мастер-токен..." autofocus autocomplete="current-password" required>
+            <button type="button" class="btn-toggle-token-visibility" id="toggle-token-eye" title="Показать токен" aria-label="Показать токен">[SHOW]</button>
+          </div>
+
+          <div class="terminal-error" id="admin-auth-error" style="display: none;">
+            [ACCESS DENIED] // НЕВЕРНЫЙ МАСТЕР-ТОКЕН
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block terminal-submit-btn" id="admin-auth-submit-btn">
+            РАЗБЛОКИРОВАТЬ ТЕРМИНАЛ [ENTER]
+          </button>
+        </form>
+
+        <div class="terminal-footer-hint">
+          <span>Секретный мастер-токен по умолчанию: <code>sasbov2026</code></span>
+          <br>
+          <span class="text-muted">После входа вы сможете в 1 клик скопировать персональную ссылку для автоматического входа без пароля.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       2. Authenticated Dashboard Root (Revealed only after token validation)
+       ========================================================================= -->
+  <div id="admin-dashboard-root" style="display: none;">
+
+    <!-- Admin Top Navigation Bar -->
+    <header class="admin-top-header">
+      <div class="container admin-header-inner">
+        <div class="admin-brand-group">
+          <a href="index.html" class="admin-logo-link" title="Перейти на главную" target="_blank">
+            <img src="assets/sasbov-market-logo.png" alt="SASBOV MARKET" class="admin-logo-img">
+          </a>
+          <span class="admin-badge">// ADMIN CONTROL CONSOLE</span>
+        </div>
+
+        <nav class="admin-quick-links">
+          <button type="button" class="btn btn-primary btn-sm" id="copy-secret-link-btn" title="Скопировать прямую ссылку с токеном в буфер">
+            [LINK] СКОПИРОВАТЬ СЕКРЕТНЫЙ URL
+          </button>
+          <button type="button" class="btn btn-outline btn-sm" id="change-master-token-btn" title="Сменить секретный мастер-токен">
+            [KEY] СМЕНИТЬ ТОКЕН
+          </button>
+          <a href="index.html" class="btn btn-outline btn-sm" target="_blank">[SITE] ГЛАВНАЯ</a>
+          <a href="catalog.html" class="btn btn-outline btn-sm" target="_blank">[CATALOG] КАТАЛОГ</a>
+          <a href="feed.html" class="btn btn-outline btn-sm" target="_blank">[REELS] TIKTOK</a>
+          <button type="button" class="btn btn-outline btn-sm btn-danger" id="logout-admin-btn" title="Заблокировать консоль">
+            [LOCK] ВЫЙТИ
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Branded Monogram Tape -->
+    <div class="brand-monogram-tape" aria-hidden="true">
+      <div class="monogram-tape-track">
+        <span>SASBOV CONTROL PANEL</span> <span class="tape-dot">•</span>
+        <span>REALTIME DATABASE SYNC</span> <span class="tape-dot">•</span>
+        <span>POIZON DEWU</span> <span class="tape-dot">•</span>
+        <span>GOOFISH / XIANYU</span> <span class="tape-dot">•</span>
+        <span>MERCARI JP</span> <span class="tape-dot">•</span>
+        <span>EBAY JP ARCHIVE</span> <span class="tape-dot">•</span>
+        <span>GRAILED GLOBAL</span> <span class="tape-dot">•</span>
+        <span>SASBOV CONTROL PANEL</span> <span class="tape-dot">•</span>
+        <span>REALTIME DATABASE SYNC</span> <span class="tape-dot">•</span>
+      </div>
+    </div>
+
+    <main class="admin-main">
+      <div class="container">
+
+        <!-- Admin Page Title Header -->
+        <section class="admin-intro-section">
+          <div class="admin-intro-text">
+            <div class="section-tag">DATABASE MANAGEMENT // OBJECT CONTROLLER</div>
+            <h1 class="admin-page-title">УПРАВЛЕНИЕ КАРТОЧКАМИ ДРОПОВ</h1>
+            <p class="admin-page-desc">
+              Все карточки товаров подвязаны как интерактивные объекты. Любые добавления, правки, смена нескольких фотографий и удаления моментально синхронизируются на Главной странице, в Каталоге и в TikTok-ленте.
+            </p>
+          </div>
+
+          <div class="admin-main-actions">
+            <button type="button" class="btn btn-primary" id="open-new-card-btn">
+              + ДОБАВИТЬ КАРТОЧКУ
+            </button>
+            <button type="button" class="btn btn-outline" id="open-batch-upload-btn">
+              [BATCH] AI ИМПОРТ ДРОПОВ
+            </button>
+          </div>
+        </section>
+
+        <!-- Dashboard Telemetry Stats -->
+        <section class="admin-stats-grid">
+          <div class="admin-stat-card">
+            <span class="admin-stat-num" id="stat-total-cards">0</span>
+            <span class="admin-stat-label">АКТИВНЫХ КАРТОЧЕК В БАЗЕ</span>
+          </div>
+          <div class="admin-stat-card">
+            <span class="admin-stat-num" id="stat-jp-cards">0</span>
+            <span class="admin-stat-label">ЯПОНИЯ [JP] // TOKYO ARCHIVE</span>
+          </div>
+          <div class="admin-stat-card">
+            <span class="admin-stat-num" id="stat-cn-cards">0</span>
+            <span class="admin-stat-label">КИТАЙ [CN] // POIZON & GOOFISH</span>
+          </div>
+          <div class="admin-stat-card">
+            <span class="admin-stat-num" id="stat-total-val">0 ₽</span>
+            <span class="admin-stat-label">ОБЩАЯ СУММА ДРОПОВ</span>
+          </div>
+        </section>
+
+        <!-- Manage Toolbar (Search, Filter, Export, Reset) -->
+        <section class="admin-toolbar-section">
+          <div class="admin-search-wrap">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <input type="search" id="admin-search-input" placeholder="Поиск карточки по бренду, модели или SKU...">
+          </div>
+
+          <div class="admin-filter-pills">
+            <button type="button" class="admin-pill active" data-filter="all">ВСЕ (<span id="count-all">0</span>)</button>
+            <button type="button" class="admin-pill" data-filter="japan">ЯПОНИЯ [JP] (<span id="count-jp">0</span>)</button>
+            <button type="button" class="admin-pill" data-filter="china">КИТАЙ [CN] (<span id="count-cn">0</span>)</button>
+          </div>
+
+          <div class="admin-aux-actions">
+            <button type="button" class="btn btn-outline btn-sm" id="export-json-btn" title="Скачать резервную копию базы">
+              [EXPORT] СКАЧАТЬ JSON
+            </button>
+            <label class="btn btn-outline btn-sm file-upload-label" title="Восстановить базу из файла JSON">
+              [IMPORT] ЗАГРУЗИТЬ JSON
+              <input type="file" id="import-json-input" accept=".json" style="display: none;">
+            </label>
+            <button type="button" class="btn btn-outline btn-sm btn-danger" id="reset-factory-btn" title="Сбросить все карточки к заводским">
+              ↺ СБРОСИТЬ К ЗАВОДСКИМ
+            </button>
+          </div>
+        </section>
+
+        <!-- Active Objects Cards List -->
+        <section class="admin-cards-section">
+          <div class="admin-cards-header">
+            <h2 class="admin-section-heading">ОБЪЕКТЫ В БАЗЕ ДАННЫХ</h2>
+            <span class="admin-sync-indicator">
+              <span class="status-pulse"></span>
+              LOCALSTORAGE СИНХРОНИЗИРОВАН
+            </span>
+          </div>
+
+          <div class="admin-cards-grid" id="admin-cards-grid">
+            <!-- Dynamically populated by admin.js -->
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+  </div> <!-- End #admin-dashboard-root -->
+
+  <!-- Toast Notification -->
+  <div id="admin-toast" class="admin-toast" role="status" aria-live="polite"></div>
+
+  <!-- =========================================================================
+       Modal 1: Add / Edit Single Card Object with Multiple Photos
+       ========================================================================= -->
+  <dialog class="admin-modal" id="card-editor-modal">
+    <div class="modal-backdrop" id="card-editor-backdrop"></div>
+    <div class="admin-modal-card modal-card-wide">
+      <div class="admin-modal-head">
+        <div>
+          <span class="modal-tag">// OBJECT EDITOR</span>
+          <h2 class="modal-title" id="card-editor-title">ДОБАВЛЕНИЕ НОВОЙ КАРТОЧКИ</h2>
+        </div>
+        <button type="button" class="admin-modal-close" id="card-editor-close-btn">&times;</button>
+      </div>
+
+      <form id="card-editor-form" class="card-form-grid">
+        <input type="hidden" id="edit-product-id">
+
+        <!-- Multi-Photo Upload Area -->
+        <div class="form-group form-col-full">
+          <div class="photo-section-header">
+            <label class="form-label" style="margin-bottom: 0;">ФОТОГРАФИИ ТОВАРА (МОЖНО НЕСКОЛЬКО ШТУК ДЛЯ ЛИСТАНИЯ СТРЕЛКАМИ)</label>
+            <span class="photo-count-badge" id="editor-photo-count-badge">0 ФОТО</span>
+          </div>
+
+          <div class="multi-photo-uploader">
+            <!-- Dropzone for Multiple Files -->
+            <div class="multi-photo-dropzone" id="multi-photo-dropzone">
+              <input type="file" id="card-photos-input" multiple accept="image/*" style="display: none;">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              <span class="dropzone-text">+ НАЖМИТЕ ИЛИ ПЕРЕТАЩИТЕ СЮДА ФАЙЛЫ (МОЖНО ВЫБРАТЬ ПАЧКУ)</span>
+              <span class="dropzone-subtext">Файлы отобразятся стрелочками прямо на карточке в каталоге и в TikTok</span>
+            </div>
+
+            <!-- URL Input Row -->
+            <div class="photo-url-row">
+              <input type="url" id="card-photo-url-input" class="form-input" placeholder="Или вставьте ссылку на фото (URL)...">
+              <button type="button" class="btn btn-outline btn-sm" id="add-photo-url-btn">+ ДОБАВИТЬ URL</button>
+            </div>
+
+            <!-- Live Interactive Photos Gallery -->
+            <div class="editor-photos-gallery" id="editor-photos-gallery">
+              <!-- Populated dynamically by admin.js -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Brand Name -->
+        <div class="form-group">
+          <label for="card-brand-input" class="form-label">БРЕНД (BRAND) *</label>
+          <input type="text" id="card-brand-input" class="form-input" list="brand-datalist" placeholder="Например: MAISON MIHARA YASUHIRO" required>
+          <datalist id="brand-datalist">
+            <option value="MAISON MIHARA YASUHIRO">
+            <option value="KAPITAL">
+            <option value="ROARINGWILD">
+            <option value="SALOMON x MM6">
+            <option value="THUG CLUB">
+            <option value="UNDERCOVERISM">
+            <option value="YOHJI YAMAMOTO">
+            <option value="RICK OWENS DRKSHDW">
+            <option value="PORTER YOSHIDA & CO">
+            <option value="A BATHING APE">
+            <option value="STUSSY JAPAN">
+            <option value="ARC'TERYX SYSTEM_A">
+            <option value="HUMAN MADE">
+            <option value="WTAPS">
+            <option value="COMME DES GARÇONS">
+            <option value="CLOT">
+            <option value="ANTA SPORTS">
+            <option value="LI-NING 1990">
+            <option value="BALENCIAGA">
+          </datalist>
+        </div>
+
+        <!-- Model Name -->
+        <div class="form-group">
+          <label for="card-name-input" class="form-label">МОДЕЛЬ / НАЗВАНИЕ *</label>
+          <input type="text" id="card-name-input" class="form-input" placeholder="Например: Peterson OG Sole Canvas Low-Top" required>
+        </div>
+
+        <!-- Region & Category -->
+        <div class="form-group">
+          <label for="card-region-select" class="form-label">РЕГИОН ВЫКУПА *</label>
+          <select id="card-region-select" class="form-select" required>
+            <option value="japan">ЯПОНИЯ [JP] // TOKYO ARCHIVE & EBAY JP</option>
+            <option value="china">КИТАЙ [CN] // POIZON & GOOFISH XIANYU</option>
+            <option value="global">GLOBAL [GLB] // GRAILED ARCHIVE</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="card-category-select" class="form-label">КАТЕГОРИЯ *</label>
+          <select id="card-category-select" class="form-select" required>
+            <option value="footwear">Обувь / Кроссовки</option>
+            <option value="clothing">Одежда (Куртки, Худи, Брюки)</option>
+            <option value="accessories">Аксессуары (Сумки, Головные уборы)</option>
+          </select>
+        </div>
+
+        <!-- Price in RUB -->
+        <div class="form-group">
+          <label for="card-price-input" class="form-label">ЦЕНА В РУБЛЯХ (ПОД КЛЮЧ С ДОСТАВКОЙ) *</label>
+          <div class="input-with-addon">
+            <input type="number" id="card-price-input" class="form-input" placeholder="24800" min="100" step="100" required>
+            <span class="addon-text">₽ RUB</span>
+          </div>
+        </div>
+
+        <!-- Available Sizes -->
+        <div class="form-group">
+          <label for="card-sizes-input" class="form-label">ДОСТУПНЫЕ РАЗМЕРЫ (ЧЕРЕЗ ЗАПЯТУЮ) *</label>
+          <input type="text" id="card-sizes-input" class="form-input" placeholder="39 EU, 40 EU, 41 EU, 42 EU, 43 EU" required>
+        </div>
+
+        <!-- Timer & Status -->
+        <div class="form-group">
+          <label for="card-timer-input" class="form-label">ТАЙМЕР ЗАКРЫТИЯ ДРОПА</label>
+          <input type="text" id="card-timer-input" class="form-input" placeholder="03 дн. 16:45" value="03 дн. 18:00">
+        </div>
+
+        <div class="form-group">
+          <label for="card-status-select" class="form-label">СТАТУС КАРТОЧКИ</label>
+          <select id="card-status-select" class="form-select">
+            <option value="ПРЕДЗАКАЗ ОТКРЫТ">ПРЕДЗАКАЗ ОТКРЫТ</option>
+            <option value="СКОРО ЗАКРЫТИЕ">СКОРО ЗАКРЫТИЕ</option>
+            <option value="LIMITED DROP">LIMITED DROP</option>
+            <option value="SOLD OUT">SOLD OUT (ЗАКРЫТО)</option>
+          </select>
+        </div>
+
+        <div class="form-actions form-col-full">
+          <button type="button" class="btn btn-outline" id="card-editor-cancel-btn">ОТМЕНА</button>
+          <button type="submit" class="btn btn-primary" id="card-editor-submit-btn">СОХРАНИТЬ КАРТОЧКУ</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <!-- =========================================================================
+       Modal 2: Batch AI Importer
+       ========================================================================= -->
+  <dialog class="admin-modal" id="batch-upload-modal">
+    <div class="modal-backdrop" id="batch-backdrop"></div>
+    <div class="admin-modal-card modal-card-wide">
+      <div class="admin-modal-head">
+        <div>
+          <span class="modal-tag">// MASS AI DROP IMPORTER</span>
+          <h2 class="modal-title">МАССОВЫЙ ИМПОРТ ФОТОГРАФИЙ</h2>
+          <p class="modal-desc">
+            Перетащите сюда сразу несколько фотографий вещей (1–20 шт). ИИ автоматически распознает бренд по названию файла и подготовит карточки-объекты.
+          </p>
+        </div>
+        <button type="button" class="admin-modal-close" id="batch-close-btn">&times;</button>
+      </div>
+
+      <div class="admin-dropzone" id="batch-dropzone">
+        <input type="file" id="batch-file-input" multiple accept="image/*" class="admin-file-hidden">
+        <div class="dropzone-content">
+          <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          <span class="dropzone-title">ПЕРЕТАЩИТЕ ПАЧКУ ФОТОГРАФИЙ (ОПТОМ)</span>
+          <span class="dropzone-sub">Или нажмите для выбора файлов на диске</span>
+        </div>
+      </div>
+
+      <div class="batch-queue-wrap" id="batch-queue-container">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <div class="batch-footer-bar" id="batch-footer-bar" style="display: none;">
+        <button type="button" class="btn btn-outline" id="batch-clear-btn">ОЧИСТИТЬ ОЧЕРЕДЬ</button>
+        <button type="button" class="btn btn-primary btn-lg" id="batch-publish-btn">
+          [PUBLISH] ОПУБЛИКОВАТЬ ВСЕ КАРТОЧКИ В БАЗУ
+        </button>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="admin.js"></script>
+</body>
+</html>
