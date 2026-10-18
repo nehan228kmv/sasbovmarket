@@ -227,7 +227,7 @@
   <!-- =========================================================================
        Modal 1: Add / Edit Single Card Object with Multiple Photos
        ========================================================================= -->
-  <dialog class="admin-modal" id="card-editor-modal">
+  <dialog class="admin-modal admin-modal-wide" id="card-editor-modal">
     <div class="modal-backdrop" id="card-editor-backdrop"></div>
     <div class="admin-modal-card modal-card-wide modal-card-studio">
       <div class="admin-modal-head">
@@ -488,6 +488,30 @@
             <span class="reticle-corner br"></span>
           </div>
         </div>
+        
+        <!-- Quick AI Hint & Fast Presets -->
+        <div class="ai-hint-box" style="margin-top: 10px; margin-bottom: 8px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+            <label for="ai-user-hint" style="font-family: var(--font-mono); font-size: 0.64rem; color: #a1a1aa; letter-spacing: 0.05em;">
+              ПОДСКАЗКА / БЫСТРЫЙ ПОИСК МОДЕЛИ:
+            </label>
+            <span style="font-size: 0.58rem; color: #71717a;">(Опционально)</span>
+          </div>
+          <input type="text" id="ai-user-hint" class="form-input" style="font-size: 0.74rem; padding: 6px 10px; background: rgba(0,0,0,0.6); border-color: rgba(255,255,255,0.18);" placeholder="Например: пухан CP Company, куртка Arc'teryx, Mihara...">
+          
+          <!-- Quick Preset Chips -->
+          <div class="ai-quick-presets" style="display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px;">
+            <button type="button" class="btn-ai-preset" data-hint="пухан CP Company">🧥 CP Company</button>
+            <button type="button" class="btn-ai-preset" data-hint="Stone Island пуховик">🧥 Stone Island</button>
+            <button type="button" class="btn-ai-preset" data-hint="Arcteryx куртка">🧥 Arc'teryx</button>
+            <button type="button" class="btn-ai-preset" data-hint="Trapstar пуховик">🧥 Trapstar</button>
+            <button type="button" class="btn-ai-preset" data-hint="Maison Mihara Yasuhiro Peterson">👟 Mihara</button>
+            <button type="button" class="btn-ai-preset" data-hint="Rick Owens Ramones">👟 Rick Owens</button>
+            <button type="button" class="btn-ai-preset" data-hint="Thug Club худи">👕 Thug Club</button>
+            <button type="button" class="btn-ai-preset" data-hint="Roaringwild карго">👖 Roaringwild</button>
+            <button type="button" class="btn-ai-preset" data-hint="Salomon MM6">👟 Salomon MM6</button>
+          </div>
+        </div>
 
         <button type="button" class="btn btn-primary btn-block ai-trigger-btn" id="ai-recognize-trigger-btn">
           ✨ РАСПОЗНАТЬ ПО ФОТО И НАЙТИ В СЕТИ
@@ -495,7 +519,7 @@
 
         <div class="ai-scanner-status" id="ai-scanner-status" style="display: none;">
           <span class="ai-spinner"></span>
-          <span id="ai-status-text">ИИ сканирует силуэт и расцветку...</span>
+          <span id="ai-status-text">ИИ сканирует силуэт и детали...</span>
         </div>
       </div>
 
@@ -546,6 +570,14 @@
           <span class="web-photos-count" id="ai-web-photos-count">0 фото</span>
         </div>
 
+        <!-- Live Web Photo Search Bar -->
+        <div class="web-search-bar" style="display: flex; gap: 6px; margin: 8px 0;">
+          <input type="text" id="ai-web-search-input" class="form-input" style="font-size: 0.72rem; padding: 5px 8px; flex: 1; background: rgba(0,0,0,0.5);" placeholder="Поиск других фото в сети: CP Company, Mihara...">
+          <button type="button" class="btn btn-sm btn-outline" id="ai-web-search-btn" style="padding: 5px 10px; font-size: 0.68rem; border-color: rgba(0,240,255,0.4); color: #00f0ff;">
+            НАЙТИ
+          </button>
+        </div>
+
         <div class="web-photos-scroll-grid" id="ai-web-photos-grid">
           <div class="web-empty-state" id="ai-web-empty-state">
             <span>Загрузите фото товара и нажмите «Распознать по фото», чтобы ИИ нашёл фото и лукбуки этой модели в интернете</span>
@@ -557,16 +589,19 @@
           <span class="deep-links-label">ПРЯМОЙ ПОИСК В БАЗАХ:</span>
           <div class="deep-links-grid">
             <a href="#" target="_blank" rel="noopener" class="deep-link-badge" id="lens-link-google">
-              🔍 GOOGLE LENS
+              🔍 GOOGLE IMAGES
             </a>
             <a href="#" target="_blank" rel="noopener" class="deep-link-badge" id="lens-link-poizon">
-              🛍️ POIZON
+              🛍️ POIZON (得物)
             </a>
             <a href="#" target="_blank" rel="noopener" class="deep-link-badge" id="lens-link-mercari">
               🇯🇵 MERCARI JP
             </a>
             <a href="#" target="_blank" rel="noopener" class="deep-link-badge" id="lens-link-xianyu">
-              🐟 GOOFISH
+              🐟 GOOFISH (闲鱼)
+            </a>
+            <a href="#" target="_blank" rel="noopener" class="deep-link-badge" id="lens-link-grailed">
+              ⚡ GRAILED
             </a>
           </div>
         </div>

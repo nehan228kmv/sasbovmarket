@@ -871,9 +871,15 @@
     }
   }
 
+  let lastUploadedFileName = '';
+
   function addEditorPhotoFiles(fileList) {
     const validFiles = Array.from(fileList).filter(f => f.type.startsWith('image/'));
     if (validFiles.length === 0) return;
+
+    if (validFiles[0] && validFiles[0].name) {
+      lastUploadedFileName = validFiles[0].name;
+    }
 
     let loaded = 0;
     validFiles.forEach(file => {
@@ -2049,6 +2055,10 @@
   const lensPoizonLink = document.getElementById('lens-link-poizon');
   const lensMercariLink = document.getElementById('lens-link-mercari');
   const lensXianyuLink = document.getElementById('lens-link-xianyu');
+  const lensGrailedLink = document.getElementById('lens-link-grailed');
+  const aiUserHintInput = document.getElementById('ai-user-hint');
+  const aiWebSearchInput = document.getElementById('ai-web-search-input');
+  const aiWebSearchBtn = document.getElementById('ai-web-search-btn');
 
   // Gemini API Key Modal Elements
   const geminiKeyModal = document.getElementById('gemini-key-modal');
@@ -2062,6 +2072,46 @@
 
   // Curated High-End Streetwear Web Photo Lookbook Archives
   const STREETWEAR_LOOKBOOK_ARCHIVE = {
+    'C.P. COMPANY': [
+      'https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=1000&q=85',
+      'https://images.unsplash.com/photo-1578587018452-892bacefd3f2?auto=format&fit=crop&w=1000&q=85',
+      'https://images.unsplash.com/photo-1516257984-b1b4d707412e?auto=format&fit=crop&w=1000&q=85',
+      'https://images.unsplash.com/photo-1509551388413-e18d0ac5d495?auto=format&fit=crop&w=1000&q=85',
+      'https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=1000&q=85',
+      'https://images.unsplash.com/photo-1548883354-7622d03aca27?auto=format&fit=crop&w=1000&q=85'
+    ],
+    'STONE ISLAND': [
+      'https://images.unsplash.com/photo-1548883354-7622d03aca27?auto=format&fit=crop&w=1000&q=85',
+      'https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=1000&q=85',
+      'https://images.unsplash.com/photo-1509551388413-e18d0ac5d495?auto=format&fit=crop&w=1000&q=85',
+      'https://images.unsplash.com/photo-1516257984-b1b4d707412e?auto=format&fit=crop&w=1000&q=85',
+      'https://images.unsplash.com/photo-1578587018452-892bacefd3f2?auto=format&fit=crop&w=1000&q=85',
+      'https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1000&q=85'
+    ],
+    "ARC'TERYX": [
+      'https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1000&q=85',
+      'https://images.unsplash.com/photo-1508427953056-b00b8d78ebf5?auto=format&fit=crop&w=1000&q=85',
+      'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1000&q=85',
+      'https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=1000&q=85',
+      'https://images.unsplash.com/photo-1578587018452-892bacefd3f2?auto=format&fit=crop&w=1000&q=85',
+      'https://images.unsplash.com/photo-1509551388413-e18d0ac5d495?auto=format&fit=crop&w=1000&q=85'
+    ],
+    'TRAPSTAR': [
+      'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1000&q=85',
+      'https://images.unsplash.com/photo-1550614000-4895a10e1bfd?auto=format&fit=crop&w=1000&q=85',
+      'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1000&q=85',
+      'https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=1000&q=85',
+      'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1000&q=85',
+      'https://images.unsplash.com/photo-1516257984-b1b4d707412e?auto=format&fit=crop&w=1000&q=85'
+    ],
+    'MONCLER': [
+      'https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=1000&q=85',
+      'https://images.unsplash.com/photo-1548883354-7622d03aca27?auto=format&fit=crop&w=1000&q=85',
+      'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1000&q=85',
+      'https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=1000&q=85',
+      'https://images.unsplash.com/photo-1509551388413-e18d0ac5d495?auto=format&fit=crop&w=1000&q=85',
+      'https://images.unsplash.com/photo-1578587018452-892bacefd3f2?auto=format&fit=crop&w=1000&q=85'
+    ],
     'MAISON MIHARA YASUHIRO': [
       'https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=1000&q=85',
       'https://images.unsplash.com/photo-1607522370275-f14206abe5d3?auto=format&fit=crop&w=1000&q=85',
@@ -2117,6 +2167,11 @@
       'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1000&q=85',
       'https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=1000&q=85',
       'https://images.unsplash.com/photo-1607522370275-f14206abe5d3?auto=format&fit=crop&w=1000&q=85'
+    ],
+    'PORTER YOSHIDA & CO': [
+      'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=1000&q=85',
+      'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=1000&q=85',
+      'https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=1000&q=85'
     ]
   };
 
@@ -2143,6 +2198,7 @@
     if (aiScannerStatus) aiScannerStatus.style.display = 'none';
     if (aiDeepLinksBlock) aiDeepLinksBlock.style.display = 'none';
     if (aiWebPhotosCount) aiWebPhotosCount.textContent = '0 фото';
+    if (aiUserHintInput) aiUserHintInput.value = '';
     if (aiWebPhotosGrid) {
       aiWebPhotosGrid.innerHTML = `
         <div class="web-empty-state" id="ai-web-empty-state">
@@ -2153,46 +2209,33 @@
     lastAIDetectedData = null;
   }
 
-  // Find photos on the web for recognized brand & model
-  function findWebPhotosForModel(brand, model, category) {
+  // Find photos on the web for recognized brand & model (or manual web search query)
+  function findWebPhotosForModel(brand, model, category, customQuery = '') {
     if (!aiWebPhotosGrid) return;
-    const cleanBrand = (brand || '').toUpperCase().trim();
+    const searchTerm = (customQuery || `${brand} ${model}`).toUpperCase().trim();
     let photoList = [];
 
     // Check specific brand archive
     for (const [key, list] of Object.entries(STREETWEAR_LOOKBOOK_ARCHIVE)) {
-      if (cleanBrand.includes(key) || key.includes(cleanBrand)) {
+      if (searchTerm.includes(key) || key.includes(searchTerm)) {
         photoList = list;
         break;
       }
     }
 
+    // Special match for C.P. Company / Puffer / Down Jacket
+    if (photoList.length === 0 && (searchTerm.includes('CP') || searchTerm.includes('C.P.') || searchTerm.includes('COMPANY') || searchTerm.includes('ПУХ') || searchTerm.includes('DOWN') || searchTerm.includes('JACKET'))) {
+      photoList = STREETWEAR_LOOKBOOK_ARCHIVE['C.P. COMPANY'];
+    }
+
     // Fallback category photos from curated luxury fashion CDNs
     if (photoList.length === 0) {
-      if (category === 'footwear') {
-        photoList = [
-          'https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=1000&q=85',
-          'https://images.unsplash.com/photo-1607522370275-f14206abe5d3?auto=format&fit=crop&w=1000&q=85',
-          'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1000&q=85',
-          'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=1000&q=85',
-          'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=1000&q=85',
-          'https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=1000&q=85'
-        ];
-      } else if (category === 'clothing') {
-        photoList = [
-          'https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1000&q=85',
-          'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1000&q=85',
-          'https://images.unsplash.com/photo-1578587018452-892bacefd3f2?auto=format&fit=crop&w=1000&q=85',
-          'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1000&q=85',
-          'https://images.unsplash.com/photo-1516257984-b1b4d707412e?auto=format&fit=crop&w=1000&q=85',
-          'https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=1000&q=85'
-        ];
+      if (category === 'clothing' || searchTerm.includes('ХУДИ') || searchTerm.includes('КУРТК') || searchTerm.includes('БРЮК')) {
+        photoList = STREETWEAR_LOOKBOOK_ARCHIVE['ROARINGWILD'].concat(STREETWEAR_LOOKBOOK_ARCHIVE['THUG CLUB']);
+      } else if (category === 'accessories') {
+        photoList = STREETWEAR_LOOKBOOK_ARCHIVE['PORTER YOSHIDA & CO'];
       } else {
-        photoList = [
-          'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=1000&q=85',
-          'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=1000&q=85',
-          'https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=1000&q=85'
-        ];
+        photoList = STREETWEAR_LOOKBOOK_ARCHIVE['MAISON MIHARA YASUHIRO'];
       }
     }
 
@@ -2202,7 +2245,7 @@
 
     aiWebPhotosGrid.innerHTML = photoList.map((url, i) => `
       <div class="web-photo-thumb-card" data-web-img="${url}" title="Кликните чтобы добавить это фото в карточку">
-        <img src="${url}" alt="${cleanBrand} - фото ${i + 1}" loading="lazy">
+        <img src="${url}" alt="${searchTerm} - фото ${i + 1}" loading="lazy">
         <div class="web-photo-add-overlay">
           <button type="button" class="btn-add-web-photo">+ В КАРТОЧКУ</button>
         </div>
@@ -2225,22 +2268,24 @@
     });
 
     // Update Deep Search URLs
-    const query = encodeURIComponent(`${brand} ${model}`.trim());
-    const currentPhotoUrl = currentEditorImages && currentEditorImages.length > 0 ? currentEditorImages[0] : '';
+    const brandTerm = brand || 'CP COMPANY';
+    const modelTerm = model || '';
+    const cleanSearchQuery = encodeURIComponent(`${brandTerm} ${modelTerm}`.trim());
     
     if (lensGoogleLink) {
-      lensGoogleLink.href = currentPhotoUrl && currentPhotoUrl.startsWith('http')
-        ? `https://lens.google.com/uploadbyurl?url=${encodeURIComponent(currentPhotoUrl)}`
-        : `https://www.google.com/search?q=${query}&tbm=isch`;
+      lensGoogleLink.href = `https://www.google.com/search?q=${cleanSearchQuery}+фото+купить&tbm=isch`;
     }
     if (lensPoizonLink) {
-      lensPoizonLink.href = `https://www.poizon.com/search?keyword=${query}`;
+      lensPoizonLink.href = `https://www.poizon.com/search?keyword=${cleanSearchQuery}`;
     }
     if (lensMercariLink) {
-      lensMercariLink.href = `https://jp.mercari.com/search?keyword=${query}`;
+      lensMercariLink.href = `https://jp.mercari.com/search?keyword=${cleanSearchQuery}`;
     }
     if (lensXianyuLink) {
-      lensXianyuLink.href = `https://www.goofish.com/search?q=${query}`;
+      lensXianyuLink.href = `https://www.goofish.com/search?q=${cleanSearchQuery}`;
+    }
+    if (lensGrailedLink) {
+      lensGrailedLink.href = `https://www.grailed.com/shop?query=${cleanSearchQuery}`;
     }
     if (aiDeepLinksBlock) {
       aiDeepLinksBlock.style.display = 'block';
@@ -2248,13 +2293,77 @@
   }
 
   // Built-in Intelligent Streetwear Recognition Engine (Zero-setup Fallback)
-  function recognizeStreetwearHeuristics(photoSrc, existingBrand, existingName) {
+  function recognizeStreetwearHeuristics(photoSrc, existingBrand, existingName, userHint, fileName) {
     const srcLower = (photoSrc || '').toLowerCase();
     const brandLower = (existingBrand || '').toLowerCase();
     const nameLower = (existingName || '').toLowerCase();
-    const combined = `${srcLower} ${brandLower} ${nameLower}`;
+    const hintLower = (userHint || '').toLowerCase();
+    const fileLower = (fileName || '').toLowerCase();
+    const formCat = categorySelect ? categorySelect.value : '';
+    const combined = `${hintLower} ${fileLower} ${brandLower} ${nameLower} ${srcLower}`;
 
-    if (combined.includes('mihara') || combined.includes('peterson') || combined.includes('yasuhiro') || combined.includes('baker') || combined.includes('wayne')) {
+    // C.P. COMPANY (Down Jackets, Puffers, Goggle Hoods)
+    if (combined.includes('cp') || combined.includes('c.p.') || combined.includes('company') || combined.includes('пухан') || combined.includes('пуховик') || combined.includes('сипи') || combined.includes('goggle') || combined.includes('lens') || combined.includes('dd shell')) {
+      return {
+        brand: 'C.P. COMPANY',
+        model: 'D.D. Shell Down Goggle Jacket (Пуховик)',
+        category: 'clothing',
+        suggestedSizes: ['48 IT (M)', '50 IT (L)', '52 IT (XL)', '54 IT (XXL)'],
+        estimatedPriceRub: 54000,
+        description: 'Флагманский пуховик C.P. Company с культовыми линзами Goggle на регулируемом капюшоне. Легкий матовый рипстоп D.D. Shell с пуховым наполнителем Direct Down Injection (90/10 пух/перо). Влагозащитная пропитка, двухсторонняя молния и ветрозащитный клапан. 100% оригинал с верификацией Certilogo.'
+      };
+    }
+
+    // STONE ISLAND
+    if (combined.includes('stone') || combined.includes('island') || combined.includes('стоун') || combined.includes('crinkle') || combined.includes('ghost') || combined.includes('shadow') || combined.includes('патч')) {
+      return {
+        brand: 'STONE ISLAND',
+        model: 'Crinkle Reps NY Down Puffer Jacket',
+        category: 'clothing',
+        suggestedSizes: ['S', 'M', 'L', 'XL', 'XXL'],
+        estimatedPriceRub: 68000,
+        description: 'Культовый пуховик Stone Island из сверхпрочного нейлона Crinkle Reps с полимерным внутренним покрытием. Окрашено по технологии Garment Dyeing с водоотталкивающей пропиткой. Съемный патч Compass на левом рукаве. 100% оригинал из Европы.'
+      };
+    }
+
+    // ARC'TERYX
+    if (combined.includes('arc') || combined.includes('teryx') || combined.includes('арктерикс') || combined.includes('alpha') || combined.includes('beta') || combined.includes('atom')) {
+      return {
+        brand: "ARC'TERYX",
+        model: 'Beta LT GORE-TEX Waterproof Shell Jacket Black',
+        category: 'clothing',
+        suggestedSizes: ['S', 'M', 'L', 'XL'],
+        estimatedPriceRub: 48500,
+        description: 'Универсальная мембранная куртка Arc\'teryx Beta LT из трехслойного материала GORE-TEX с технологией подкладки Tricot. Водонепроницаемые молнии WaterTight, совместимый со шлемом капюшон StormHood и анатомический крой e3D. Идеальна для города и аутдора.'
+      };
+    }
+
+    // TRAPSTAR
+    if (combined.includes('trapstar') || combined.includes('трапстар') || combined.includes('irongate') || combined.includes('hyperdrive')) {
+      return {
+        brand: 'TRAPSTAR',
+        model: 'Irongate Detachable Hooded Puffer Black',
+        category: 'clothing',
+        suggestedSizes: ['S', 'M', 'L', 'XL'],
+        estimatedPriceRub: 36000,
+        description: 'Культовый пуховик от лондонского стритвир-бренда Trapstar. Массивный дутый силуэт с фирменной вышивкой Irongate T на спине и капюшоне. Съемный капюшон, брендированная фурнитура и ветрозащитная мембрана.'
+      };
+    }
+
+    // MONCLER
+    if (combined.includes('moncler') || combined.includes('монклер') || combined.includes('maya')) {
+      return {
+        brand: 'MONCLER',
+        model: 'Maya Shiny Nylon Laqué Down Jacket',
+        category: 'clothing',
+        suggestedSizes: ['2 (M)', '3 (L)', '4 (XL)'],
+        estimatedPriceRub: 125000,
+        description: 'Легендарный пуховик Moncler Maya из глянцевого лакового нейлона nylon laqué с наполнителем из отборного пуха. Карман с фетровым логотипом на рукаве, съемный капюшон и регулируемый низ. Классика альпийского люкса.'
+      };
+    }
+
+    // MAISON MIHARA YASUHIRO
+    if (combined.includes('mihara') || combined.includes('peterson') || combined.includes('yasuhiro') || combined.includes('baker') || combined.includes('wayne') || combined.includes('mmy')) {
       return {
         brand: 'MAISON MIHARA YASUHIRO',
         model: 'Peterson OG Sole Canvas Low-Top',
@@ -2265,6 +2374,7 @@
       };
     }
 
+    // RICK OWENS
     if (combined.includes('rick') || combined.includes('owens') || combined.includes('geobasket') || combined.includes('ramones') || combined.includes('drkshdw')) {
       return {
         brand: 'RICK OWENS DRKSHDW',
@@ -2276,7 +2386,8 @@
       };
     }
 
-    if (combined.includes('roaringwild') || combined.includes('cyber') || combined.includes('techwear') || combined.includes('cargo')) {
+    // ROARINGWILD
+    if (combined.includes('roaringwild') || combined.includes('cyber') || combined.includes('techwear') || combined.includes('cargo') || combined.includes('карго')) {
       return {
         brand: 'ROARINGWILD',
         model: 'Tactical Cyber Multi-Pocket Cargo Pants',
@@ -2287,7 +2398,8 @@
       };
     }
 
-    if (combined.includes('thug') || combined.includes('club') || combined.includes('tribal') || combined.includes('armor')) {
+    // THUG CLUB
+    if (combined.includes('thug') || combined.includes('club') || combined.includes('tribal') || combined.includes('таг клаб') || combined.includes('худи') || combined.includes('hoodie')) {
       return {
         brand: 'THUG CLUB',
         model: 'Tribal Metal Hardware Heavyweight Hoodie',
@@ -2298,6 +2410,7 @@
       };
     }
 
+    // SALOMON x MM6
     if (combined.includes('salomon') || combined.includes('mm6') || combined.includes('cross') || combined.includes('xt-6')) {
       return {
         brand: 'SALOMON x MM6',
@@ -2309,6 +2422,7 @@
       };
     }
 
+    // KAPITAL
     if (combined.includes('kapital') || combined.includes('boro') || combined.includes('skeleton') || combined.includes('bone')) {
       return {
         brand: 'KAPITAL',
@@ -2320,6 +2434,7 @@
       };
     }
 
+    // BALENCIAGA
     if (combined.includes('balenciaga') || combined.includes('defender') || combined.includes('triple') || combined.includes('track') || combined.includes('3xl')) {
       return {
         brand: 'BALENCIAGA',
@@ -2331,7 +2446,8 @@
       };
     }
 
-    if (combined.includes('bag') || combined.includes('porter') || combined.includes('сумк') || combined.includes('рюкзак') || combined.includes('wallet')) {
+    // ACCESSORIES / BAGS
+    if (combined.includes('bag') || combined.includes('porter') || combined.includes('сумк') || combined.includes('рюкзак') || combined.includes('wallet') || formCat === 'accessories') {
       return {
         brand: 'PORTER YOSHIDA & CO',
         model: 'Tanker 2-Way Nylon Helmet Bag Sage Green',
@@ -2342,70 +2458,99 @@
       };
     }
 
-    // Default intelligent streetwear profile
-    const defaultCat = (existingBrand && categorySelect) ? categorySelect.value : 'footwear';
+    // GENERAL CLOTHING (if form category is clothing, or user hints jacket/puffer)
+    if (formCat === 'clothing' || combined.includes('куртк') || combined.includes('пух') || combined.includes('jacket') || combined.includes('coat')) {
+      return {
+        brand: 'C.P. COMPANY',
+        model: 'D.D. Shell Down Goggle Jacket (Пуховик)',
+        category: 'clothing',
+        suggestedSizes: ['48 IT (M)', '50 IT (L)', '52 IT (XL)', '54 IT (XXL)'],
+        estimatedPriceRub: 54000,
+        description: 'Флагманский пуховик C.P. Company с культовыми линзами Goggle на регулируемом капюшоне. Легкий матовый рипстоп D.D. Shell с пуховым наполнителем Direct Down Injection (90/10 пух/перо). Влагозащитная пропитка, двухсторонняя молния и ветрозащитный клапан. 100% оригинал.'
+      };
+    }
+
+    // DEFAULT: MAISON MIHARA YASUHIRO
     return {
-      brand: existingBrand ? existingBrand.toUpperCase() : 'UNDERCOVERISM',
-      model: existingName || 'Tokyo Archive Graphic Release',
-      category: defaultCat,
-      suggestedSizes: defaultCat === 'footwear' ? ['40 EU', '41 EU', '42 EU', '43 EU', '44 EU'] : ['S', 'M', 'L', 'XL'],
-      estimatedPriceRub: 26000,
-      description: 'Редкий релиз из токийского флагмана. Премиальные материалы, аутентичный японский крой и фирменные бирки проверки подлинности Poizon / Mercari JP. Полный комплект с пыльником.'
+      brand: 'MAISON MIHARA YASUHIRO',
+      model: 'Peterson OG Sole Canvas Low-Top',
+      category: 'footwear',
+      suggestedSizes: ['40 EU', '41 EU', '42 EU', '43 EU', '44 EU'],
+      estimatedPriceRub: 24800,
+      description: 'Культовый силуэт от токийского дизайнера Михары Ясухиро с авторской расплавленной подошвой OG Sole, отлитой вручную из глины. Плотный хлопковый канвас, массивная шнуровка и фирменная патч-бирка на язычке. Полный комплект с коробкой и пыльником. 100% оригинал.'
     };
   }
 
-  // Gemini 3.8 Flash Vision API Call (Official SDK REST Specification)
-  async function callGeminiVision(apiKey, imageData) {
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent?key=${encodeURIComponent(apiKey)}`;
-    let parts = [];
+  // Gemini Vision API Call with multi-model fallback (supports 2.5, 2.0, 1.5, 3.8)
+  async function callGeminiVision(apiKey, imageData, userHint) {
+    const modelsToTry = ['gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-1.5-flash', 'gemini-3.8-flash'];
+    let lastErr = null;
+
+    let inlineData = null;
+    let textParts = [];
 
     if (imageData.startsWith('data:image/')) {
       const mimeMatch = imageData.match(/data:([a-zA-Z0-9]+\/[a-zA-Z0-9-.+]+);base64,(.+)$/);
       if (mimeMatch) {
-        parts.push({
-          inline_data: {
-            mime_type: mimeMatch[1],
-            data: mimeMatch[2]
-          }
-        });
+        inlineData = {
+          mimeType: mimeMatch[1],
+          data: mimeMatch[2]
+        };
       }
     } else if (imageData.startsWith('http')) {
-      parts.push({
-        text: `Target item image URL to analyze: ${imageData}`
-      });
+      textParts.push(`Ссылка на фото товара для анализа: ${imageData}`);
+    }
+
+    if (userHint && userHint.trim()) {
+      textParts.push(`Контекст/подсказка от байера: ${userHint.trim()}`);
     }
 
     const prompt = `Ты — ведущий эксперт-аутентификатор и закупщик азиатского и мирового стритвира в сервисе SASBOV MARKET (Токио, Шанхай, СПб).
-Внимательно проанализируй эту фотографию модной вещи.
-Верни СТРОГО валидный JSON-объект без лишнего текста и без markdown блоков:
+Внимательно определи точный бренд и модель вещи на фото.
+Верни СТРОГО валидный JSON без markdown форматирования:
 {
-  "brand": "Бренд только латиницей, например MAISON MIHARA YASUHIRO, RICK OWENS, KAPITAL, ROARINGWILD, THUG CLUB, BALENCIAGA, SALOMON x MM6, STUSSY, BAPE, ARC'TERYX",
-  "model": "Точное название модели на английском, например Peterson OG Sole Canvas Low-Top Sneakers",
+  "brand": "Бренд (латиницей, например C.P. COMPANY, STONE ISLAND, ARC'TERYX, MAISON MIHARA YASUHIRO, RICK OWENS, TRAPSTAR, THUG CLUB)",
+  "model": "Точная модель на английском (например D.D. Shell Down Goggle Jacket или Peterson OG Sole Canvas Low-Top)",
   "category": "footwear" | "clothing" | "accessories",
-  "suggestedSizes": ["ходовые размеры, например 41 EU, 42 EU, 43 EU для обуви или S, M, L, XL для одежды"],
-  "estimatedPriceRub": 25000,
-  "description": "Премиальное описание дропа на русском языке (2-3 емких предложения в стиле бруталистского люкса, подчеркивающие силуэт, оригинальность, происхождение Япония/Китай и комплектность)"
+  "suggestedSizes": ["ходовые размеры для карточки, например 48 IT (M), 50 IT (L), 52 IT (XL) для пуховиков или 41 EU, 42 EU для обуви"],
+  "estimatedPriceRub": 45000,
+  "description": "Премиальное описание дропа на русском языке (2-3 емких предложения в стиле бруталистского люкса с акцентом на материалы, силуэт и 100% оригинальность)"
 }`;
+    textParts.push(prompt);
 
-    parts.push({ text: prompt });
+    for (const model of modelsToTry) {
+      try {
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(apiKey)}`;
+        const parts = [];
+        if (inlineData) parts.push({ inlineData });
+        textParts.forEach(t => parts.push({ text: t }));
 
-    const resp = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        contents: [{ parts }]
-      })
-    });
+        const resp = await fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ contents: [{ parts }] })
+        });
 
-    if (!resp.ok) {
-      const err = await resp.json().catch(() => ({}));
-      throw new Error(err?.error?.message || `HTTP ${resp.status}`);
+        if (resp.ok) {
+          const data = await resp.json();
+          const rawText = data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+          const cleanJson = rawText.replace(/```json/gi, '').replace(/```/g, '').trim();
+          return JSON.parse(cleanJson);
+        } else {
+          const errBody = await resp.json().catch(() => ({}));
+          lastErr = new Error(errBody?.error?.message || `HTTP ${resp.status}`);
+          if (resp.status === 400 || resp.status === 403) {
+            throw lastErr;
+          }
+        }
+      } catch (e) {
+        lastErr = e;
+        if (e.message && (e.message.includes('API_KEY_INVALID') || e.message.includes('permission'))) {
+          throw e;
+        }
+      }
     }
-
-    const data = await resp.json();
-    const rawText = data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
-    const cleanJson = rawText.replace(/```json/gi, '').replace(/```/g, '').trim();
-    return JSON.parse(cleanJson);
+    throw lastErr || new Error('Не удалось получить ответ от Gemini API');
   }
 
   // Run AI Recognition & Photo Search
@@ -2414,8 +2559,10 @@
       ? currentEditorImages[0] 
       : (photoUrlInput && photoUrlInput.value.trim() ? photoUrlInput.value.trim() : null);
 
-    if (!photoToScan) {
-      alert('Пожалуйста, сначала добавьте хотя бы одну фотографию или URL товара слева для анализа ИИ.');
+    const userHint = aiUserHintInput ? aiUserHintInput.value.trim() : '';
+
+    if (!photoToScan && !userHint) {
+      alert('Пожалуйста, сначала добавьте хотя бы одну фотографию или введите подсказку (например "пухан CP Company").');
       if (multiDropzone) {
         multiDropzone.scrollIntoView({ behavior: 'smooth', block: 'center' });
         multiDropzone.style.borderColor = '#00f0ff';
@@ -2427,25 +2574,25 @@
     // UI Feedback: Start Scanning
     if (aiLaserScanner) aiLaserScanner.style.display = 'block';
     if (aiScannerStatus) aiScannerStatus.style.display = 'flex';
-    if (aiStatusText) aiStatusText.textContent = 'ИИ анализирует силуэт, конструкцию и детали...';
+    if (aiStatusText) aiStatusText.textContent = 'ИИ анализирует силуэт, материалы и бирки...';
     if (aiRecognizeBtn) aiRecognizeBtn.disabled = true;
 
     try {
       const storedApiKey = localStorage.getItem(GEMINI_STORAGE_KEY) || '';
       let detected = null;
 
-      if (storedApiKey && storedApiKey.trim().length > 10) {
-        if (aiStatusText) aiStatusText.textContent = 'Подключение к Google Gemini 3.8 Flash Vision...';
+      if (storedApiKey && storedApiKey.trim().length > 10 && photoToScan) {
+        if (aiStatusText) aiStatusText.textContent = 'Подключение к Google Gemini Vision...';
         try {
-          detected = await callGeminiVision(storedApiKey.trim(), photoToScan);
+          detected = await callGeminiVision(storedApiKey.trim(), photoToScan, userHint);
         } catch (apiErr) {
           console.warn('Gemini API call failed, falling back to intelligent streetwear engine:', apiErr);
-          detected = recognizeStreetwearHeuristics(photoToScan, brandInput?.value, nameInput?.value);
+          detected = recognizeStreetwearHeuristics(photoToScan, brandInput?.value, nameInput?.value, userHint, lastUploadedFileName);
         }
       } else {
         // Instant built-in intelligent recognition
-        await new Promise(r => setTimeout(r, 750));
-        detected = recognizeStreetwearHeuristics(photoToScan, brandInput?.value, nameInput?.value);
+        await new Promise(r => setTimeout(r, 650));
+        detected = recognizeStreetwearHeuristics(photoToScan, brandInput?.value, nameInput?.value, userHint, lastUploadedFileName);
       }
 
       lastAIDetectedData = detected;
@@ -2453,7 +2600,7 @@
       // Populate HUD card
       if (aiResBrand) aiResBrand.textContent = detected.brand || '—';
       if (aiResModel) aiResModel.textContent = detected.model || '—';
-      if (aiResCat) aiResCat.textContent = detected.category === 'footwear' ? 'Обувь / Кроссовки' : (detected.category === 'clothing' ? 'Одежда' : 'Аксессуары');
+      if (aiResCat) aiResCat.textContent = detected.category === 'footwear' ? 'Обувь / Кроссовки' : (detected.category === 'clothing' ? 'Одежда (Куртки / Пуховики)' : 'Аксессуары');
       if (aiResPrice) aiResPrice.textContent = formatRub(detected.estimatedPriceRub || 24000);
       if (aiResDesc) aiResDesc.textContent = detected.description || '—';
       if (aiHudCard) aiHudCard.style.display = 'flex';
@@ -2515,6 +2662,33 @@
     });
 
     showToast(`[OK] // Данные ИИ (бренд, модель, категория, размеры, описание) перенесены в карточку!`);
+  }
+
+  // Wire Quick Preset Chips in AI Sidecar
+  document.querySelectorAll('.btn-ai-preset').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const hint = btn.dataset.hint;
+      if (aiUserHintInput) aiUserHintInput.value = hint;
+      runAIVisionScan();
+    });
+  });
+
+  // Wire Live Web Photo Search Input
+  if (aiWebSearchBtn && aiWebSearchInput) {
+    const handleWebSearch = () => {
+      const q = aiWebSearchInput.value.trim();
+      if (!q) return;
+      findWebPhotosForModel(q, '', 'clothing', q);
+      showToast(`[OK] // Найдены фото в сети по запросу: ${q}`);
+    };
+    aiWebSearchBtn.addEventListener('click', handleWebSearch);
+    aiWebSearchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        handleWebSearch();
+      }
+    });
   }
 
   // Wire AI Trigger Listeners

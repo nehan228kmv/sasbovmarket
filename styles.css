@@ -195,7 +195,6 @@ button, input, select {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  gap: 1.25rem;
   height: 100%;
   position: relative;
   width: 100%;
@@ -211,8 +210,8 @@ button, input, select {
   justify-content: center;
   text-decoration: none;
   pointer-events: auto;
-  margin: 0 auto;
-  padding: 0 0.75rem;
+  margin: 0 clamp(1.25rem, 2.5vw, 2.5rem);
+  padding: 0 0.5rem;
   transition: transform var(--transition-fast), opacity var(--transition-fast);
 }
 
@@ -250,7 +249,7 @@ button, input, select {
   grid-column: 1;
   display: none;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: flex-end;
   min-width: 0;
 }
 
@@ -263,7 +262,7 @@ button, input, select {
   .header-left-nav {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: flex-end;
   }
   .header-right-nav {
     display: flex;
@@ -360,9 +359,16 @@ button, input, select {
   grid-column: 3;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  gap: 0.75rem;
+  justify-content: flex-start;
+  gap: clamp(0.5rem, 1vw, 0.85rem);
   min-width: 0;
+}
+
+.header-cta {
+  padding: 8px 16px !important;
+  font-size: 0.78rem !important;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
 }
 
 .cart-btn {
