@@ -86,6 +86,7 @@
     authOverlay.style.display = 'none';
     dashboardRoot.style.display = 'block';
     renderCards();
+    initCloudProducts();
   }
 
   function lockDashboard() {
@@ -462,6 +463,8 @@
     try {
       window.dispatchEvent(new CustomEvent('sasbov:products_updated', { detail: list }));
     } catch (e) {}
+    // Seamless background sync with Vercel Serverless KV / Postgres
+    syncWithCloudDatabase(list);
   }
 
   const TRASH_STORAGE_KEY = 'sasbov_market_trash_v1';
@@ -2872,15 +2875,147 @@
     showToast(`[OK] // Данные ИИ (бренд, модель, категория, размеры, описание) перенесены в карточку!`);
   }
 
-  // Wire Quick Preset Chips in AI Sidecar
+  // Wire Quick Preset Chips in AI Sidecar (Intelligent instant fill)
   document.querySelectorAll('.btn-ai-preset').forEach(btn => {
-    btn.addEventListener('click', (e) => {
+    btn.addEventListener('click', async (e) => {
       e.preventDefault();
       const hint = btn.dataset.hint;
       if (aiUserHintInput) aiUserHintInput.value = hint;
-      runAIVisionScan();
+      
+      const hintLower = (hint || '').toLowerCase();
+      if (hintLower.includes('пухан') || hintLower.includes('куртк') || hintLower.includes('худи') || hintLower.includes('карго') || hintLower.includes('cp') || hintLower.includes('stone') || hintLower.includes('arc') || hintLower.includes('trapstar')) {
+        if (categorySelect) categorySelect.value = 'clothing';
+        updateSizePickerForCategory('clothing');
+        updateAiCategoryButtons('clothing');
+      } else if (hintLower.includes('mihara') || hintLower.includes('rick') || hintLower.includes('salomon') || hintLower.includes('jordan') || hintLower.includes('кроссовк')) {
+        if (categorySelect) categorySelect.value = 'footwear';
+        updateSizePickerForCategory('footwear');
+        updateAiCategoryButtons('footwear');
+      }
+      await runAIVisionScan();
+      applyAIDetectionToForm();
     });
   });
+
+  // Zero-Key Visual Reverse Search (Google Lens & Yandex Images)
+  const btnSearchGoogleLens = document.getElementById('btn-search-google-lens');
+  const btnSearchYandexImages = document.getElementById('btn-search-yandex-images');
+
+  async function performVisualReverseSearch(targetEngine) {
+    const photoToSearch = (currentEditorImages && currentEditorImages.length > 0)
+      ? currentEditorImages[0]
+      : (photoUrlInput && photoUrlInput.value.trim() ? photoUrlInput.value.trim() : null);
+
+    if (!photoToSearch) {
+      alert('Пожалуйста, сначала выберите фото или вставьте ссылку на изображение для поиска в Google Lens / Яндекс.');
+      return;
+    }
+
+    const isHttpUrl = typeof photoToSearch === 'string' && (photoToSearch.startsWith('http://') || photoToSearch.startsWith('https://'));
+
+    if (isHttpUrl) {
+      if (targetEngine === 'google') {
+        const lensUrl = `https://lens.google.com/uploadbyurl?url=${encodeURIComponent(photoToSearch)}`;
+        window.open(lensUrl, '_blank', 'noopener,noreferrer');
+        showToast('[OK] // Открыт Google Объектив (Lens)');
+      } else {
+        const yandexUrl = `https://yandex.ru/images/search?rpt=imageview&url=${encodeURIComponent(photoToSearch)}`;
+        window.open(yandexUrl, '_blank', 'noopener,noreferrer');
+        showToast('[OK] // Открыт поиск по фото в Яндекс.Картинках');
+      }
+      return;
+    }
+
+    // Local Base64 / Blob image: copy to clipboard and open search page
+    try {
+      if (navigator.clipboard && window.ClipboardItem) {
+        const res = await fetch(photoToSearch);
+        const blob = await res.blob();
+        await navigator.clipboard.write([new ClipboardItem({ [blob.type]: blob })]);
+        showToast('[OK] // Фото скопировано в буфер! Нажмите Ctrl+V на открывшейся странице');
+      } else {
+        showToast('[!] Вставьте фото комбинацией Ctrl+V на открывшейся вкладке');
+      }
+    } catch (clipErr) {
+      console.warn('Clipboard write warning:', clipErr);
+      showToast('[!] Вставьте фото комбинацией Ctrl+V на открывшейся вкладке');
+    }
+
+    if (targetEngine === 'google') {
+      window.open('https://lens.google.com', '_blank', 'noopener,noreferrer');
+    } else {
+      window.open('https://yandex.ru/images/search?rpt=imageview', '_blank', 'noopener,noreferrer');
+    }
+  }
+
+  if (btnSearchGoogleLens) {
+    btnSearchGoogleLens.addEventListener('click', (e) => {
+      e.preventDefault();
+      performVisualReverseSearch('google');
+    });
+  }
+
+  if (btnSearchYandexImages) {
+    btnSearchYandexImages.addEventListener('click', (e) => {
+      e.preventDefault();
+      performVisualReverseSearch('yandex');
+    });
+  }
+
+  // =========================================================================
+  // Cloud Database Synchronization (Vercel Serverless / KV)
+  // =========================================================================
+  async function initCloudProducts() {
+    const textEl = document.getElementById('cloud-sync-text');
+    const dotEl = document.getElementById('cloud-sync-dot');
+
+    try {
+      const res = await fetch('/api/products');
+      if (res.ok) {
+        const json = await res.json();
+        if (json && json.success && Array.isArray(json.data) && json.data.length > 0) {
+          const isVercelKv = json.source === 'vercel_kv' || json.source === 'vercel_kv_seeded';
+          if (textEl) textEl.textContent = isVercelKv ? 'VERCEL KV: CONNECTED' : 'VERCEL DB: READY';
+          if (dotEl) dotEl.style.background = '#00ff88';
+
+          PRODUCTS = json.data;
+          try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(PRODUCTS));
+          } catch (e) {}
+          renderCards();
+          updateStats();
+          return;
+        }
+      }
+    } catch (e) {
+      console.info('[SASBOV] Running in local static mode without serverless API.');
+    }
+
+    if (textEl) textEl.textContent = 'LOCAL STORAGE (OFFLINE)';
+    if (dotEl) dotEl.style.background = '#00f0ff';
+  }
+
+  async function syncWithCloudDatabase(list) {
+    const textEl = document.getElementById('cloud-sync-text');
+    try {
+      const res = await fetch('/api/products', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-admin-token': getMasterToken()
+        },
+        body: JSON.stringify({ products: list })
+      });
+      if (res.ok) {
+        const json = await res.json();
+        if (textEl) {
+          textEl.textContent = json.source === 'vercel_kv' ? 'VERCEL KV: SYNCED' : 'CLOUD DB: SYNCED';
+        }
+      }
+    } catch (err) {
+      console.warn('[SASBOV Cloud Sync] API offline or static hosting:', err);
+    }
+  }
 
   // Wire Live Web Photo Search Input
   if (aiWebSearchBtn && aiWebSearchInput) {

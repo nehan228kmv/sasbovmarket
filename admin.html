@@ -138,7 +138,11 @@
             </p>
           </div>
 
-          <div class="admin-main-actions">
+          <div class="admin-main-actions" style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+            <div id="cloud-sync-status-badge" style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; background: rgba(0, 240, 255, 0.08); border: 1px solid rgba(0, 240, 255, 0.3); border-radius: 4px; font-family: var(--font-mono); font-size: 0.72rem; color: #00f0ff;">
+              <span id="cloud-sync-dot" style="width: 8px; height: 8px; border-radius: 50%; background: #00ff88; box-shadow: 0 0 8px #00ff88; display: inline-block;"></span>
+              <span id="cloud-sync-text">VERCEL DB: READY</span>
+            </div>
             <button type="button" class="btn btn-primary" id="open-new-card-btn">
               + ДОБАВИТЬ КАРТОЧКУ
             </button>
@@ -573,6 +577,25 @@
         <button type="button" class="btn btn-primary btn-block ai-trigger-btn" id="ai-recognize-trigger-btn">
           ✨ РАСПОЗНАТЬ ПО ФОТО И НАЙТИ В СЕТИ
         </button>
+
+        <!-- Zero-Key Reverse Visual Search Toolbar (Google Lens + Yandex Images) -->
+        <div class="ai-reverse-search-toolbar" style="margin-top: 10px; padding: 10px; background: rgba(0, 0, 0, 0.45); border: 1px dashed rgba(0, 240, 255, 0.28); border-radius: 6px;">
+          <div style="font-family: var(--font-mono); font-size: 0.64rem; color: #a1a1aa; margin-bottom: 6px; display: flex; align-items: center; justify-content: space-between;">
+            <span>🌐 ПРЯМОЙ ПОИСК В БАЗАХ ПО ФОТО:</span>
+            <span style="color: #00ff88; font-size: 0.58rem; letter-spacing: 0.05em; font-weight: 700;">БЕЗ КЛЮЧЕЙ И VPN</span>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+            <button type="button" class="btn btn-sm btn-outline" id="btn-search-google-lens" style="border-color: rgba(66, 133, 244, 0.5); color: #60a5fa; font-size: 0.68rem; display: flex; align-items: center; justify-content: center; gap: 5px; padding: 7px 6px;" title="Открыть Google Объектив (Lens) с этим фото">
+              <span>🔎</span> <strong>GOOGLE LENS</strong>
+            </button>
+            <button type="button" class="btn btn-sm btn-outline" id="btn-search-yandex-images" style="border-color: rgba(239, 68, 68, 0.5); color: #f87171; font-size: 0.68rem; display: flex; align-items: center; justify-content: center; gap: 5px; padding: 7px 6px;" title="Открыть Яндекс Картинки (поиск по фото)">
+              <span>🔴</span> <strong>ЯНДЕКС ФОТО</strong>
+            </button>
+          </div>
+          <div style="font-size: 0.58rem; color: #71717a; margin-top: 5px; line-height: 1.3;">
+            1-клик поиск: если фото загружено файлом, оно автоматически копируется в буфер — просто нажмите <code style="color:#00f0ff;">Ctrl+V</code> на открывшемся сайте!
+          </div>
+        </div>
 
         <div class="ai-scanner-status" id="ai-scanner-status" style="display: none;">
           <span class="ai-spinner"></span>

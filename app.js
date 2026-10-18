@@ -1459,6 +1459,20 @@ ${listText}
     }
   }
 
+  async function fetchCloudProducts() {
+    try {
+      const res = await fetch('/api/products');
+      if (res.ok) {
+        const json = await res.json();
+        if (json && json.success && Array.isArray(json.data) && json.data.length > 0) {
+          saveStoredProducts(json.data);
+          PRODUCTS = getStoredProducts();
+          renderProducts();
+        }
+      }
+    } catch (e) {}
+  }
+
   /**
    * Initialization
    */
@@ -1476,6 +1490,9 @@ ${listText}
     // Start Clocks
     updateTelemetryClocks();
     setInterval(updateTelemetryClocks, 1000);
+
+    // Initial background sync with Vercel Database API
+    fetchCloudProducts();
 
     // Cross-tab real-time synchronization with Admin Panel
     window.addEventListener('storage', (e) => {
