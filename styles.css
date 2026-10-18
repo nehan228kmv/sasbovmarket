@@ -52,6 +52,8 @@ html {
   font-size: 16px;
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--header-height) + var(--telemetry-height) + 20px);
+  scrollbar-gutter: stable;
+  overflow-y: scroll;
 }
 
 body {
@@ -181,7 +183,7 @@ button, input, select {
    ========================================================================== */
 .site-header {
   height: var(--header-height);
-  background: rgba(8, 8, 10, 0.85);
+  background: rgba(8, 8, 10, 0.88);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border-subtle);
   position: sticky;
@@ -190,51 +192,56 @@ button, input, select {
 }
 
 .header-inner {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  height: 100%;
-  position: relative;
-  gap: 1rem;
-}
-
-.brand-logo-link {
   display: flex;
   align-items: center;
-  transition: transform var(--transition-fast);
+  justify-content: space-between;
+  height: 100%;
+  position: relative;
+  width: 100%;
 }
 
 .brand-logo-link.header-center-logo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto;
+  text-decoration: none;
+  pointer-events: auto;
+  transition: transform var(--transition-fast), opacity var(--transition-fast);
 }
 
-.brand-logo-link:hover {
-  transform: scale(1.02);
-}
-
-.brand-logo-img {
-  height: 38px;
-  width: auto;
-  object-fit: contain;
-  display: block;
-  border-radius: 4px;
-}
-
-.site-header-logo {
-  height: 32px;
-  width: auto;
-  object-fit: contain;
-  display: block;
-  filter: contrast(1.1);
-  transition: opacity var(--transition-fast), transform var(--transition-fast);
-}
-
-.brand-logo-link:hover .site-header-logo {
+.brand-logo-link.header-center-logo:hover {
+  transform: translate(-50%, -50%) scale(1.03);
   opacity: 0.88;
-  transform: scale(1.03);
+}
+
+/* Stacked 2-Line Brutalist Brand Mark (Photo 2 reference) */
+.header-brand-mark {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  line-height: 0.88;
+  text-transform: uppercase;
+  user-select: none;
+}
+
+.header-brand-mark .brand-text-sasbov,
+.header-brand-mark .brand-text-market {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.15rem, 1.8vw, 1.42rem);
+  color: #ffffff;
+  letter-spacing: 0.08em;
+  display: block;
+  line-height: 0.9;
+  text-shadow: 0 0 24px rgba(255, 255, 255, 0.22);
+  white-space: nowrap;
 }
 
 .header-left-nav {
@@ -245,26 +252,14 @@ button, input, select {
   display: none;
 }
 
-@media (min-width: 960px) {
-  .header-left-nav,
-  .header-right-nav {
-    display: block;
-  }
-}
-
-@media (max-width: 959px) {
-  .header-inner {
+@media (min-width: 992px) {
+  .header-left-nav {
     display: flex;
-    justify-content: space-between;
-    position: relative;
+    align-items: center;
   }
-  .brand-logo-link.header-center-logo {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  .site-header-logo {
-    height: 25px;
+  .header-right-nav {
+    display: flex;
+    align-items: center;
   }
 }
 
@@ -511,8 +506,15 @@ button, input, select {
   color: #ffffff;
   text-align: center;
   margin: 0 auto 1.5rem auto;
-  line-height: 1.02;
+  line-height: 0.96;
   text-shadow: 0 0 35px rgba(255, 255, 255, 0.12);
+}
+
+.hero-title .hero-brand-top,
+.hero-title .hero-brand-bottom {
+  display: block;
+  line-height: 0.96;
+  text-align: center;
 }
 
 .text-gradient {
@@ -737,6 +739,78 @@ button, input, select {
     grid-template-columns: repeat(4, 1fr);
     gap: 1.25rem;
   }
+}
+
+/* Fresh Drops Preview Grid (4 columns on desktop + slider controls) */
+#fresh-products-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  margin-bottom: 3rem;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+@media (min-width: 600px) {
+  #fresh-products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  #fresh-products-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+.fresh-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.fresh-slider-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-medium);
+  border-radius: 8px;
+  padding: 4px 10px;
+}
+
+.fresh-nav-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  width: 34px;
+  height: 34px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.fresh-nav-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--accent-cyan);
+}
+
+.fresh-nav-btn:active {
+  transform: scale(0.9);
+}
+
+.fresh-page-count {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  min-width: 48px;
+  text-align: center;
+  user-select: none;
 }
 
 /* Product Card — Cyber Luxury Editorial Card */
@@ -1980,13 +2054,20 @@ button, input, select {
 .footer-container {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 3rem;
-  margin-bottom: 3.5rem;
+  gap: 2.5rem;
+  margin-bottom: 2.5rem;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 680px) {
   .footer-container {
-    grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1080px) {
+  .footer-container {
+    grid-template-columns: 1.4fr 1fr 1.1fr 1.1fr 1.1fr;
+    gap: 2rem;
   }
 }
 
@@ -2019,6 +2100,7 @@ button, input, select {
   letter-spacing: 0.1em;
   color: var(--text-primary);
   margin-bottom: 1.25rem;
+  text-transform: uppercase;
 }
 
 .footer-nav {
@@ -2026,18 +2108,124 @@ button, input, select {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  font-size: 0.85rem;
+  font-size: 0.84rem;
   color: var(--text-secondary);
+}
+
+.footer-nav a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
 }
 
 .footer-nav a:hover {
-  color: var(--text-primary);
+  color: #ffffff;
+  transform: translateX(2px);
 }
 
-.footer-contact-desc {
-  font-size: 0.85rem;
+.footer-platform-badge {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Offline Showroom Office Card in Footer */
+.footer-showroom-card {
+  background: rgba(18, 18, 24, 0.75);
+  border: 1px solid var(--border-medium);
+  border-radius: 12px;
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-showroom-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--accent-cyan);
+}
+
+.showroom-card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.showroom-tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent-cyan);
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+.showroom-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.showroom-address {
+  font-size: 0.95rem;
   color: var(--text-secondary);
-  margin-bottom: 1.25rem;
+  line-height: 1.5;
+}
+
+.showroom-address strong {
+  color: #ffffff;
+}
+
+.showroom-maps-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.map-badge-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.map-badge-link:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+  transform: translateY(-1px);
+}
+
+.map-badge-link.map-badge-cta {
+  background: rgba(0, 240, 255, 0.1);
+  border-color: rgba(0, 240, 255, 0.4);
+  color: var(--accent-cyan);
+}
+
+.map-badge-link.map-badge-cta:hover {
+  background: var(--accent-cyan);
+  color: #000000;
 }
 
 .footer-bottom {

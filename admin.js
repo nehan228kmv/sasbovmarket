@@ -42,9 +42,18 @@
   const authError = document.getElementById('admin-auth-error');
   const toggleEyeBtn = document.getElementById('toggle-token-eye');
 
-  const copySecretLinkBtn = document.getElementById('copy-secret-link-btn');
   const changeTokenBtn = document.getElementById('change-master-token-btn');
   const logoutBtn = document.getElementById('logout-admin-btn');
+
+  // Change Token Modal Elements
+  const changeTokenModal = document.getElementById('change-token-modal');
+  const changeTokenBackdrop = document.getElementById('change-token-backdrop');
+  const changeTokenCloseBtn = document.getElementById('change-token-close-btn');
+  const changeTokenCancelBtn = document.getElementById('change-token-cancel-btn');
+  const changeTokenForm = document.getElementById('change-token-modal-form');
+  const currentTokenField = document.getElementById('current-token-field');
+  const newTokenField = document.getElementById('new-token-field');
+  const changeTokenErrorMsg = document.getElementById('change-token-error-msg');
 
   function checkAuthentication() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -55,7 +64,11 @@
     if (tokenFromUrl && tokenFromUrl.trim() === validToken.trim()) {
       sessionStorage.setItem(AUTH_SESSION_KEY, '1');
       unlockDashboard(false);
-      showToast('[OK] // Вход по секретной ссылке выполнен успешно');
+      // Immediately wipe the token query parameter from browser address bar for security
+      try {
+        window.history.replaceState(null, document.title, window.location.pathname);
+      } catch (e) {}
+      showToast('[OK] // Вход выполнен успешно. Токен скрыт из URL');
       return;
     }
 
@@ -112,33 +125,74 @@
     });
   }
 
-  if (copySecretLinkBtn) {
-    copySecretLinkBtn.addEventListener('click', () => {
-      const token = getMasterToken();
-      const origin = window.location.origin;
-      const pathname = window.location.pathname;
-      const secretUrl = `${origin}${pathname}?token=${encodeURIComponent(token)}`;
+  // Interactive Change Master Token Modal
+  function openChangeTokenModal() {
+    if (!changeTokenModal) return;
+    if (currentTokenField) currentTokenField.value = '';
+    if (newTokenField) newTokenField.value = '';
+    if (changeTokenErrorMsg) changeTokenErrorMsg.style.display = 'none';
+    if (typeof changeTokenModal.showModal === 'function') {
+      changeTokenModal.showModal();
+    } else {
+      changeTokenModal.setAttribute('open', '');
+    }
+    if (currentTokenField) currentTokenField.focus();
+  }
 
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(secretUrl).then(() => {
-          showToast('[OK] // Секретная ссылка с токеном скопирована!');
-        }).catch(() => {
-          prompt('Ваша секретная ссылка для прямого входа:', secretUrl);
-        });
-      } else {
-        prompt('Ваша секретная ссылка для прямого входа:', secretUrl);
-      }
-    });
+  function closeChangeTokenModal() {
+    if (!changeTokenModal) return;
+    if (typeof changeTokenModal.close === 'function') {
+      changeTokenModal.close();
+    } else {
+      changeTokenModal.removeAttribute('open');
+    }
   }
 
   if (changeTokenBtn) {
-    changeTokenBtn.addEventListener('click', () => {
-      const current = getMasterToken();
-      const next = prompt('Введите новый секретный мастер-токен для панели управления:', current);
-      if (next && next.trim() && next.trim() !== current) {
-        setMasterToken(next.trim());
-        showToast('[OK] // Мастер-токен успешно изменен!');
+    changeTokenBtn.addEventListener('click', openChangeTokenModal);
+  }
+  if (changeTokenCloseBtn) {
+    changeTokenCloseBtn.addEventListener('click', closeChangeTokenModal);
+  }
+  if (changeTokenCancelBtn) {
+    changeTokenCancelBtn.addEventListener('click', closeChangeTokenModal);
+  }
+  if (changeTokenBackdrop) {
+    changeTokenBackdrop.addEventListener('click', closeChangeTokenModal);
+  }
+
+  if (changeTokenForm) {
+    changeTokenForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const curEntered = currentTokenField ? currentTokenField.value.trim() : '';
+      const newEntered = newTokenField ? newTokenField.value.trim() : '';
+      const validCurrent = getMasterToken();
+
+      if (curEntered !== validCurrent) {
+        if (changeTokenErrorMsg) {
+          changeTokenErrorMsg.textContent = '[ОШИБКА] Текущий токен указан неверно!';
+          changeTokenErrorMsg.style.display = 'block';
+        }
+        if (currentTokenField) {
+          currentTokenField.select();
+          currentTokenField.focus();
+        }
+        return;
       }
+
+      if (!newEntered || newEntered.length < 4) {
+        if (changeTokenErrorMsg) {
+          changeTokenErrorMsg.textContent = '[ОШИБКА] Новый токен должен содержать минимум 4 символа!';
+          changeTokenErrorMsg.style.display = 'block';
+        }
+        if (newTokenField) newTokenField.focus();
+        return;
+      }
+
+      // Save new token
+      setMasterToken(newEntered);
+      closeChangeTokenModal();
+      showToast(`[OK] // Мастер-токен успешно обновлён на новый!`);
     });
   }
 

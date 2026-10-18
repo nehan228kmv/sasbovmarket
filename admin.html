@@ -37,7 +37,10 @@
 
       <div class="terminal-lock-body">
         <div class="terminal-logo-wrap">
-          <img src="assets/sasbov-market-logo.png" alt="SASBOV MARKET" class="terminal-logo">
+          <div class="header-brand-mark" style="margin-bottom: 0.6rem;">
+            <span class="brand-text-sasbov" style="font-size: 1.6rem;">SASBOV</span>
+            <span class="brand-text-market" style="font-size: 1.6rem;">MARKET</span>
+          </div>
           <div class="terminal-katakana">サスボフ 管理システム — RESTRICTED ACCESS</div>
         </div>
 
@@ -47,7 +50,7 @@
         </div>
 
         <p class="terminal-desc">
-          Панель управления карточками скрыта от публичного доступа. Для разблокировки введите секретный мастер-токен или перейдите по персональной секретной ссылке.
+          Панель управления карточками скрыта от публичного доступа. Для разблокировки введите секретный мастер-токен.
         </p>
 
         <form id="admin-auth-form" class="terminal-auth-form">
@@ -69,7 +72,7 @@
         <div class="terminal-footer-hint">
           <span>Секретный мастер-токен по умолчанию: <code>sasbov2026</code></span>
           <br>
-          <span class="text-muted">После входа вы сможете в 1 клик скопировать персональную ссылку для автоматического входа без пароля.</span>
+          <span class="text-muted">Для безопасности токен не сохраняется в истории браузера и автоматически скрывается из адресной строки.</span>
         </div>
       </div>
     </div>
@@ -84,16 +87,16 @@
     <header class="admin-top-header">
       <div class="container admin-header-inner">
         <div class="admin-brand-group">
-          <a href="index.html" class="admin-logo-link" title="Перейти на главную" target="_blank">
-            <img src="assets/sasbov-market-logo.png" alt="SASBOV MARKET" class="admin-logo-img">
+          <a href="index.html" class="admin-logo-link" title="Перейти на главную" target="_blank" style="text-decoration: none;">
+            <span class="header-brand-mark" style="transform: scale(0.9); transform-origin: left center;">
+              <span class="brand-text-sasbov" style="font-size: 1.25rem;">SASBOV</span>
+              <span class="brand-text-market" style="font-size: 1.25rem;">MARKET</span>
+            </span>
           </a>
           <span class="admin-badge">// ADMIN CONTROL CONSOLE</span>
         </div>
 
         <nav class="admin-quick-links">
-          <button type="button" class="btn btn-primary btn-sm" id="copy-secret-link-btn" title="Скопировать прямую ссылку с токеном в буфер">
-            [LINK] СКОПИРОВАТЬ СЕКРЕТНЫЙ URL
-          </button>
           <button type="button" class="btn btn-outline btn-sm" id="change-master-token-btn" title="Сменить секретный мастер-токен">
             [KEY] СМЕНИТЬ ТОКЕН
           </button>
@@ -138,9 +141,6 @@
           <div class="admin-main-actions">
             <button type="button" class="btn btn-primary" id="open-new-card-btn">
               + ДОБАВИТЬ КАРТОЧКУ
-            </button>
-            <button type="button" class="btn btn-outline" id="open-batch-upload-btn">
-              [BATCH] AI ИМПОРТ ДРОПОВ
             </button>
           </div>
         </section>
@@ -566,6 +566,46 @@
       <div style="margin-top: 1.25rem; display: flex; justify-content: flex-end;">
         <button type="button" class="btn btn-outline" id="trash-modal-done-btn">ЗАКРЫТЬ КОРЗИНУ</button>
       </div>
+    </div>
+  </dialog>
+
+  <!-- =========================================================================
+       Modal 5: Change Master Token
+       ========================================================================= -->
+  <dialog class="admin-modal" id="change-token-modal" aria-labelledby="change-token-modal-title">
+    <div class="modal-backdrop" id="change-token-backdrop"></div>
+    <div class="admin-modal-card" style="max-width: 480px; border-color: rgba(0, 240, 255, 0.4);">
+      <div class="admin-modal-head">
+        <div>
+          <span class="modal-tag" style="color: var(--accent-cyan);">// SECURITY CONTROL</span>
+          <h2 class="modal-title" id="change-token-modal-title">СМЕНА МАСТЕР-ТОКЕНА</h2>
+          <p class="modal-desc" style="color: var(--text-muted); font-size: 0.85rem; margin-top: 4px;">
+            Установите новый пароль для доступа к консоли администратора.
+          </p>
+        </div>
+        <button type="button" class="admin-modal-close" id="change-token-close-btn">&times;</button>
+      </div>
+
+      <form id="change-token-modal-form" style="display: flex; flex-direction: column; gap: 14px; margin-top: 1rem;">
+        <div class="form-group">
+          <label for="current-token-field" class="form-label" style="font-family: var(--font-mono); font-size: 0.75rem; color: #a1a1aa; display: block; margin-bottom: 6px;">ТЕКУЩИЙ ТОКЕН</label>
+          <input type="password" id="current-token-field" class="form-input" placeholder="Введите текущий токен..." style="width: 100%; background: #0c0c10; border: 1px solid var(--border-medium); border-radius: 6px; padding: 10px 14px; color: #ffffff; font-family: var(--font-mono); font-size: 0.85rem;" required>
+        </div>
+
+        <div class="form-group">
+          <label for="new-token-field" class="form-label" style="font-family: var(--font-mono); font-size: 0.75rem; color: #a1a1aa; display: block; margin-bottom: 6px;">НОВЫЙ МАСТЕР-ТОКЕН</label>
+          <input type="text" id="new-token-field" class="form-input" placeholder="Придумайте новый токен (мин. 4 символа)..." minlength="4" style="width: 100%; background: #0c0c10; border: 1px solid var(--border-medium); border-radius: 6px; padding: 10px 14px; color: #ffffff; font-family: var(--font-mono); font-size: 0.85rem;" required>
+        </div>
+
+        <div id="change-token-error-msg" style="display: none; padding: 8px 12px; background: rgba(239, 68, 68, 0.15); border: 1px solid #ef4444; border-radius: 6px; color: #ef4444; font-size: 0.8rem; font-family: var(--font-mono);">
+          [ОШИБКА] Неверный текущий мастер-токен
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 0.5rem;">
+          <button type="button" class="btn btn-outline" id="change-token-cancel-btn">ОТМЕНА</button>
+          <button type="submit" class="btn btn-primary" id="change-token-submit-btn">СОХРАНИТЬ НОВЫЙ ТОКЕН</button>
+        </div>
+      </form>
     </div>
   </dialog>
 

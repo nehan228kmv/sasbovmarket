@@ -316,6 +316,9 @@
     trayItems: []
   };
 
+  let freshSliderPage = 0;
+  const FRESH_PAGE_SIZE = 4;
+
   // DOM Elements Cache
   const el = {
     grid: document.getElementById('fresh-products-grid') || document.getElementById('products-grid'),
@@ -398,7 +401,24 @@
     });
 
     const isFreshPreview = el.grid.id === 'fresh-products-grid';
-    const displayList = isFreshPreview ? filtered.slice(0, 3) : filtered;
+    let displayList = filtered;
+
+    if (isFreshPreview) {
+      const totalFreshPages = Math.ceil(filtered.length / FRESH_PAGE_SIZE) || 1;
+      if (freshSliderPage >= totalFreshPages) freshSliderPage = 0;
+      if (freshSliderPage < 0) freshSliderPage = totalFreshPages - 1;
+      const start = freshSliderPage * FRESH_PAGE_SIZE;
+      displayList = filtered.slice(start, start + FRESH_PAGE_SIZE);
+
+      const pageCountEl = document.getElementById('fresh-page-count');
+      if (pageCountEl) {
+        pageCountEl.textContent = `${freshSliderPage + 1} / ${totalFreshPages}`;
+      }
+      const allLinkEl = document.getElementById('fresh-all-link');
+      if (allLinkEl) {
+        allLinkEl.textContent = `СМОТРЕТЬ ВСЕ В КАТАЛОГЕ (${filtered.length}+) →`;
+      }
+    }
 
     if (displayList.length === 0) {
       el.grid.innerHTML = `
@@ -584,6 +604,60 @@
       el.searchInput.addEventListener('input', (e) => {
         state.searchQuery = e.target.value.trim();
         renderProducts();
+      });
+    }
+  }
+
+  /**
+   * Fresh Drops 4-Item Slider Controls
+   */
+  function setupFreshSlider() {
+    const prevBtn = document.getElementById('fresh-prev-btn');
+    const nextBtn = document.getElementById('fresh-next-btn');
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        const filtered = PRODUCTS.filter(p => {
+          const matchRegion = state.activeRegion === 'all' || p.region === state.activeRegion;
+          const matchCategory = state.activeCategory === 'all' || p.category === state.activeCategory;
+          return matchRegion && matchCategory;
+        });
+        const totalFreshPages = Math.ceil(filtered.length / FRESH_PAGE_SIZE) || 1;
+        freshSliderPage = (freshSliderPage - 1 + totalFreshPages) % totalFreshPages;
+        if (el.grid) {
+          el.grid.style.opacity = '0';
+          el.grid.style.transform = 'translateX(12px)';
+          setTimeout(() => {
+            renderProducts();
+            el.grid.style.opacity = '1';
+            el.grid.style.transform = 'translateX(0)';
+          }, 160);
+        } else {
+          renderProducts();
+        }
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        const filtered = PRODUCTS.filter(p => {
+          const matchRegion = state.activeRegion === 'all' || p.region === state.activeRegion;
+          const matchCategory = state.activeCategory === 'all' || p.category === state.activeCategory;
+          return matchRegion && matchCategory;
+        });
+        const totalFreshPages = Math.ceil(filtered.length / FRESH_PAGE_SIZE) || 1;
+        freshSliderPage = (freshSliderPage + 1) % totalFreshPages;
+        if (el.grid) {
+          el.grid.style.opacity = '0';
+          el.grid.style.transform = 'translateX(-12px)';
+          setTimeout(() => {
+            renderProducts();
+            el.grid.style.opacity = '1';
+            el.grid.style.transform = 'translateX(0)';
+          }, 160);
+        } else {
+          renderProducts();
+        }
       });
     }
   }
@@ -1391,6 +1465,7 @@ ${listText}
   function init() {
     renderProducts();
     setupFilters();
+    setupFreshSlider();
     setupAddProductModal();
     setupHiddenAdminModal();
     setupModalEvents();
