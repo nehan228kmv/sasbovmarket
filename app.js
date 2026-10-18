@@ -35,41 +35,60 @@
   };
 
   // Curated Default Drops (Japan, China, Global Archives)
+  // Curated Default Drops (Japan, China, Global Archives)
   const DEFAULT_PRODUCTS = [
     {
       id: 'sasbov-01',
       brand: 'MAISON MIHARA YASUHIRO',
       name: 'Peterson OG Sole Canvas Low-Top',
+      stockType: 'instock',
+      partner: 'Balkonsky Store (Санкт-Петербург)',
+      location: 'Санкт-Петербург, Balkonsky Store',
+      deliveryTime: 'В наличии в СПб // Примерка и самовывоз сегодня',
+      condition: 'NEW // DEADSTOCK',
+      description: 'Культовый архивный силуэт с фирменной расплавленной подошвой OG Sole, плотный хлопковый канвас, комплект с коробкой.',
       region: 'japan',
-      regionLabel: 'JAPAN [JP] // TOKYO ARCHIVE',
+      regionLabel: 'СПБ // BALKONSKY STORE',
       category: 'footwear',
       sku: 'MMY-PET-904',
       basePriceRub: 24800,
       sizes: ['39 EU', '40 EU', '41 EU', '42 EU', '43 EU', '44 EU'],
-      dropStatus: 'ПРЕДЗАКАЗ ОТКРЫТ',
+      dropStatus: 'В НАЛИЧИИ В СПБ',
       badgeClass: 'jp',
-      closingIn: '03 дн. 16:45',
+      closingIn: 'В НАЛИЧИИ',
       image: null
     },
     {
       id: 'sasbov-02',
       brand: 'KAPITAL',
       name: '14oz Denim Bone Embroidered Jacket',
+      stockType: 'instock',
+      partner: 'Balkonsky Store (Санкт-Петербург)',
+      location: 'Санкт-Петербург, Balkonsky Store',
+      deliveryTime: 'В наличии в СПб // Примерка и самовывоз сегодня',
+      condition: '9.5/10 EXCELLENT',
+      description: 'Архивный японский деним 14oz с фирменной костяной вышивкой. Редкий релиз из Кодзимы в идеальном состоянии.',
       region: 'japan',
-      regionLabel: 'JAPAN [JP] // KOJIMA ARCHIVE',
+      regionLabel: 'СПБ // BALKONSKY STORE',
       category: 'clothing',
       sku: 'KAP-BONE-14OZ',
       basePriceRub: 42500,
       sizes: ['1 (S)', '2 (M)', '3 (L)', '4 (XL)'],
-      dropStatus: 'ПРЕДЗАКАЗ ОТКРЫТ',
+      dropStatus: 'В НАЛИЧИИ В СПБ',
       badgeClass: 'jp',
-      closingIn: '01 дн. 08:20',
+      closingIn: 'В НАЛИЧИИ',
       image: null
     },
     {
       id: 'sasbov-03',
       brand: 'ROARINGWILD',
       name: 'Modular Waterproof Tech Shell Parka',
+      stockType: 'preorder',
+      partner: null,
+      location: 'Китай // Shenzhen Lab',
+      deliveryTime: 'Выкуп под заказ: 10-18 дней',
+      condition: 'NEW // DEADSTOCK',
+      description: 'Шэньчжэньский теквир нового поколения: трехслойная мембрана 20k/20k, магнитные клапаны и модульные съемные карманы.',
       region: 'china',
       regionLabel: 'CHINA [CN] // SHENZHEN LAB',
       category: 'clothing',
@@ -85,21 +104,33 @@
       id: 'sasbov-04',
       brand: 'SALOMON x MM6',
       name: 'Cross Low Sneaker "Black Edition"',
+      stockType: 'instock',
+      partner: 'Balkonsky Store (Санкт-Петербург)',
+      location: 'Санкт-Петербург, Balkonsky Store',
+      deliveryTime: 'В наличии в СПб // Примерка и самовывоз сегодня',
+      condition: 'NEW // DEADSTOCK',
+      description: 'Коллаборация Salomon и Maison Margiela. Гетровая конструкция с быстрой шнуровкой, подошва Contagrip, навесные бирки.',
       region: 'japan',
-      regionLabel: 'JAPAN [JP] // EBAY JP ARCHIVE',
+      regionLabel: 'СПБ // BALKONSKY STORE',
       category: 'footwear',
       sku: 'SAL-MM6-BLK',
       basePriceRub: 32000,
       sizes: ['40.5 EU', '41.5 EU', '42 EU', '43 EU', '44 EU'],
-      dropStatus: 'СКОРО ЗАКРЫТИЕ',
+      dropStatus: 'В НАЛИЧИИ В СПБ',
       badgeClass: 'jp',
-      closingIn: '14 ч. 22 мин',
+      closingIn: 'В НАЛИЧИИ',
       image: null
     },
     {
       id: 'sasbov-05',
       brand: 'THUG CLUB',
       name: 'Tribal Gladiator Heavy Fleece Hoodie',
+      stockType: 'preorder',
+      partner: null,
+      location: 'Китай // Goofish Xianyu',
+      deliveryTime: 'Выкуп под заказ: 10-18 дней',
+      condition: 'NEW // DEADSTOCK',
+      description: 'Плотный корейский хлопок 650 GSM с металлической фурнитурой, оверсайз-крой, аутентичный дроп с площадки Xianyu.',
       region: 'china',
       regionLabel: 'CHINA [CN] // GOOFISH XIANYU',
       category: 'clothing',
@@ -115,21 +146,33 @@
       id: 'sasbov-06',
       brand: 'PORTER YOSHIDA & CO',
       name: 'Tanker 2Way Helmet Shoulder Bag',
+      stockType: 'instock',
+      partner: 'Balkonsky Store (Санкт-Петербург)',
+      location: 'Санкт-Петербург, Balkonsky Store',
+      deliveryTime: 'В наличии в СПб // Примерка и самовывоз сегодня',
+      condition: '9.5/10 EXCELLENT',
+      description: 'Оригинальный японский трехслойный нейлон Tanker цвета Sage Green, оранжевая подкладка, фурнитура YKK, идеальное состояние.',
       region: 'japan',
-      regionLabel: 'JAPAN [JP] // MERCARI JP',
+      regionLabel: 'СПБ // BALKONSKY STORE',
       category: 'accessories',
       sku: 'POR-TNK-2WAY',
       basePriceRub: 21400,
       sizes: ['ONE SIZE (W480/H520)'],
-      dropStatus: 'ПРЕДЗАКАЗ ОТКРЫТ',
+      dropStatus: 'В НАЛИЧИИ В СПБ',
       badgeClass: 'jp',
-      closingIn: '05 дн. 04:15',
+      closingIn: 'В НАЛИЧИИ',
       image: null
     },
     {
       id: 'sasbov-07',
       brand: 'ANTA x KYRIE IRVING',
       name: 'KAI 1 "Artist on Court" Special Edition',
+      stockType: 'preorder',
+      partner: null,
+      location: 'Китай // Poizon Auth',
+      deliveryTime: 'Выкуп под заказ: 10-18 дней',
+      condition: 'NEW // DEADSTOCK',
+      description: 'Первая именная модель Кайри Ирвинга с ANTA. Карбоновая пластина в мидсоли, аутентичный сертификат Poizon Dewu.',
       region: 'china',
       regionLabel: 'CHINA [CN] // POIZON AUTH',
       category: 'footwear',
@@ -145,6 +188,12 @@
       id: 'sasbov-08',
       brand: 'UNDERCOVERISM',
       name: 'Hybrid MA-1 Vintage Military Bomber',
+      stockType: 'preorder',
+      partner: null,
+      location: 'Япония // Harajuku Archive',
+      deliveryTime: 'Выкуп под заказ: 10-18 дней',
+      condition: '9/10 VINTAGE',
+      description: 'Винтажный японский архивный бомбер Дзюна Такахаси. Деконструированные трикотажные вставки, аутентичные патчи.',
       region: 'japan',
       regionLabel: 'JAPAN [JP] // HARAJUKU',
       category: 'clothing',
@@ -160,6 +209,12 @@
       id: 'sasbov-09',
       brand: 'HARSH AND CRUEL',
       name: 'Cyber Crossbody Tactical Harness Rig',
+      stockType: 'preorder',
+      partner: null,
+      location: 'Китай // Dewu Boutique',
+      deliveryTime: 'Выкуп под заказ: 10-18 дней',
+      condition: 'NEW // DEADSTOCK',
+      description: 'Киберпанк тактическая разгрузочная система. Ткань Cordura 1000D, водонепроницаемые молнии, быстросъемные фастексы.',
       region: 'china',
       regionLabel: 'CHINA [CN] // DEWU BOUTIQUE',
       category: 'accessories',
@@ -175,6 +230,12 @@
       id: 'sasbov-10',
       brand: 'HELMUT LANG',
       name: '1998 M-65 Astro Biker Ballistic Jacket',
+      stockType: 'preorder',
+      partner: null,
+      location: 'Global // Grailed Archive',
+      deliveryTime: 'Выкуп под заказ: 10-18 дней',
+      condition: '9/10 ARCHIVE',
+      description: 'Музейный архивный лот 1998 года из Grailed Archive. Баллистический нейлон, внутренние ремни для ношения на спине.',
       region: 'global',
       regionLabel: 'GLOBAL [GLB] // GRAILED ARCHIVE',
       category: 'clothing',
@@ -190,7 +251,7 @@
 
   function getStoredProducts() {
     try {
-      const stored = localStorage.getItem(STORAGE_KEY);
+      const stored = localStorage.getItem('sasbov_products_v2') || localStorage.getItem(STORAGE_KEY);
       if (stored) {
         const parsed = JSON.parse(stored);
         if (Array.isArray(parsed) && parsed.length > 0) {
@@ -200,6 +261,29 @@
             }
             if (p.regionLabel) {
               p.regionLabel = p.regionLabel.replace(/🇯🇵/g, '[JP]').replace(/🇨🇳/g, '[CN]');
+            }
+            const def = DEFAULT_PRODUCTS.find(d => d.id === p.id);
+            if (!p.stockType) {
+              if (['sasbov-01', 'sasbov-02', 'sasbov-04', 'sasbov-06'].includes(p.id) || 
+                  p.region === 'spb' || 
+                  (p.brand && p.brand.includes('BALENCIAGA')) ||
+                  (p.dropStatus && p.dropStatus.includes('НАЛИЧИИ'))) {
+                p.stockType = 'instock';
+                p.partner = 'Balkonsky Store (Санкт-Петербург)';
+                p.location = 'Санкт-Петербург, Balkonsky Store';
+                p.deliveryTime = 'В наличии в СПб // Примерка и самовывоз сегодня';
+              } else {
+                p.stockType = def ? def.stockType : 'preorder';
+                p.partner = def ? def.partner : null;
+                p.location = def ? def.location : 'Зарубежный выкуп';
+                p.deliveryTime = def ? def.deliveryTime : 'Выкуп под заказ: 10-18 дней';
+              }
+            }
+            if (!p.condition) {
+              p.condition = def ? def.condition : 'NEW // DEADSTOCK';
+            }
+            if (!p.description) {
+              p.description = def ? def.description : 'Аутентичный релиз с зарубежных и локальных архивных площадок.';
             }
             return p;
           });
@@ -388,16 +472,22 @@
               </div>
 
               <div class="slot-bottom-row">
-                <span class="slot-sku">${product.sku}</span>
-                <span class="slot-timer">[TIME: ${product.closingIn}]</span>
+                <div class="slot-telemetry-left">
+                  <span class="slot-sku">${product.sku}</span>
+                  <span class="slot-timer">[TIME: ${product.closingIn}]</span>
+                </div>
               </div>
             </div>
           </div>
 
           <!-- Product Details -->
           <div class="product-info">
-            <span class="product-brand">${product.brand}</span>
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 6px; margin-bottom: 2px;">
+              <span class="product-brand">${product.brand}</span>
+              <span class="product-condition-pill">● ${product.condition || 'NEW // DEADSTOCK'}</span>
+            </div>
             <h3 class="product-name">${product.name}</h3>
+            ${product.description ? `<p class="product-mini-desc">${product.description}</p>` : ''}
 
             <div class="product-sizes-wrap">
               <span class="sizes-label">ДОСТУПНЫЕ РАЗМЕРЫ:</span>
@@ -416,7 +506,7 @@
 
             <div class="card-actions">
               <button type="button" class="btn btn-primary btn-block open-preorder-btn" data-id="${product.id}">
-                ПРЕДЗАКАЗАТЬ
+                ${product.stockType === 'instock' ? 'ЗАБРОНИРОВАТЬ' : 'ПРЕДЗАКАЗАТЬ'}
               </button>
               <button type="button" class="btn btn-outline quick-add-tray-btn" data-id="${product.id}" title="Добавить в поднос предзаказов">
                 +
@@ -660,19 +750,25 @@
 
         const p = state.selectedProduct;
         const selectedSpeedVal = Array.from(el.modalSpeedRadios).find(r => r.checked)?.value || 'Авиа-экспресс (7-10 дней)';
+        const isInstock = p.stockType === 'instock';
+
+        const greeting = isInstock
+          ? 'Здравствуйте! Хочу забронировать вещь В НАЛИЧИИ (СПб, Balkonsky Store):'
+          : 'Здравствуйте! Хочу оформить предзаказ в SASBOV MARKET:';
 
         const messageText = 
-`Здравствуйте! Хочу оформить предзаказ в SASBOV MARKET:
+`${greeting}
 — Товар: ${p.brand} ${p.name}
+— Состояние: ${p.condition || 'NEW // DEADSTOCK'}
 — Артикул: ${p.sku}
 — Размер: ${state.selectedSize}
-— Регион выкупа: ${p.regionLabel}
-— Тариф доставки: ${selectedSpeedVal}
+— Локация / Площадка: ${p.regionLabel}
+— Тариф: ${isInstock ? 'Самовывоз в СПб / СДЭК' : selectedSpeedVal}
 — Стоимость под ключ: ${formatRub(p.basePriceRub)}
 
-Подтвердите, пожалуйста, наличие и пришлите реквизиты для выкупа!`;
+${isInstock ? 'Подскажите, когда можно подъехать на примерку или отправить СДЭКом?' : 'Подтвердите, пожалуйста, наличие на зарубежной площадке и пришлите реквизиты для выкупа!'}`;
 
-        const tgUrl = `https://t.me/sasbovmarket?text=${encodeURIComponent(messageText)}`;
+        const tgUrl = `https://t.me/sasbovstore?text=${encodeURIComponent(messageText)}`;
         window.open(tgUrl, '_blank', 'noopener,noreferrer');
         closePreorderModal();
       });
@@ -781,7 +877,7 @@ ${listText}
 — Итого к оплате под ключ: ${formatRub(total)}
 Жду подтверждения наличия и реквизитов!`;
 
-        const tgUrl = `https://t.me/sasbovmarket?text=${encodeURIComponent(messageText)}`;
+        const tgUrl = `https://t.me/sasbovstore?text=${encodeURIComponent(messageText)}`;
         window.open(tgUrl, '_blank', 'noopener,noreferrer');
         closeTray();
       });
@@ -869,7 +965,7 @@ ${listText}
 
 Помогите, пожалуйста, найти и оформить эту позицию!`;
 
-        const tgUrl = `https://t.me/sasbovmarket?text=${encodeURIComponent(message)}`;
+        const tgUrl = `https://t.me/sasbovstore?text=${encodeURIComponent(message)}`;
         window.open(tgUrl, '_blank', 'noopener,noreferrer');
       });
     }

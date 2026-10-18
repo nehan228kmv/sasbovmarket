@@ -158,13 +158,17 @@
       id: 'sasbov-01',
       brand: 'MAISON MIHARA YASUHIRO',
       name: 'Peterson OG Sole Canvas Low-Top',
+      stockType: 'instock',
+      partner: 'Balkonsky Store (Санкт-Петербург)',
+      location: 'Санкт-Петербург, Balkonsky Store',
+      deliveryTime: 'В наличии в СПб // Примерка и самовывоз сегодня',
       region: 'japan',
       regionLabel: 'JAPAN [JP] // TOKYO ARCHIVE',
       category: 'footwear',
       sku: 'MMY-PET-904',
       basePriceRub: 24800,
       sizes: ['39 EU', '40 EU', '41 EU', '42 EU', '43 EU', '44 EU'],
-      dropStatus: 'ПРЕДЗАКАЗ ОТКРЫТ',
+      dropStatus: 'В НАЛИЧИИ В СПБ',
       badgeClass: 'jp',
       closingIn: '03 дн. 16:45',
       image: null,
@@ -174,13 +178,17 @@
       id: 'sasbov-02',
       brand: 'KAPITAL',
       name: '14oz Denim Bone Embroidered Jacket',
+      stockType: 'instock',
+      partner: 'Balkonsky Store (Санкт-Петербург)',
+      location: 'Санкт-Петербург, Balkonsky Store',
+      deliveryTime: 'В наличии в СПб // Примерка и самовывоз сегодня',
       region: 'japan',
       regionLabel: 'JAPAN [JP] // KOJIMA ARCHIVE',
       category: 'clothing',
       sku: 'KAP-BONE-14OZ',
       basePriceRub: 42500,
       sizes: ['1 (S)', '2 (M)', '3 (L)', '4 (XL)'],
-      dropStatus: 'ПРЕДЗАКАЗ ОТКРЫТ',
+      dropStatus: 'В НАЛИЧИИ В СПБ',
       badgeClass: 'jp',
       closingIn: '01 дн. 08:20',
       image: null,
@@ -190,6 +198,10 @@
       id: 'sasbov-03',
       brand: 'ROARINGWILD',
       name: 'Modular Waterproof Tech Shell Parka',
+      stockType: 'preorder',
+      partner: null,
+      location: 'Китай // Shenzhen Lab',
+      deliveryTime: 'Выкуп под заказ: 10-18 дней',
       region: 'china',
       regionLabel: 'CHINA [CN] // SHENZHEN LAB',
       category: 'clothing',
@@ -206,13 +218,17 @@
       id: 'sasbov-04',
       brand: 'SALOMON x MM6',
       name: 'Cross Low Sneaker "Black Edition"',
+      stockType: 'instock',
+      partner: 'Balkonsky Store (Санкт-Петербург)',
+      location: 'Санкт-Петербург, Balkonsky Store',
+      deliveryTime: 'В наличии в СПб // Примерка и самовывоз сегодня',
       region: 'japan',
       regionLabel: 'JAPAN [JP] // EBAY JP ARCHIVE',
       category: 'footwear',
       sku: 'SAL-MM6-BLK',
       basePriceRub: 32000,
       sizes: ['40.5 EU', '41.5 EU', '42 EU', '43 EU', '44 EU'],
-      dropStatus: 'СКОРО ЗАКРЫТИЕ',
+      dropStatus: 'В НАЛИЧИИ В СПБ',
       badgeClass: 'jp',
       closingIn: '14 ч. 22 мин',
       image: null,
@@ -222,6 +238,10 @@
       id: 'sasbov-05',
       brand: 'THUG CLUB',
       name: 'Tribal Gladiator Heavy Fleece Hoodie',
+      stockType: 'preorder',
+      partner: null,
+      location: 'Китай // Goofish Xianyu',
+      deliveryTime: 'Выкуп под заказ: 10-18 дней',
       region: 'china',
       regionLabel: 'CHINA [CN] // GOOFISH XIANYU',
       category: 'clothing',
@@ -238,13 +258,17 @@
       id: 'sasbov-06',
       brand: 'PORTER YOSHIDA & CO',
       name: 'Tanker 2Way Helmet Shoulder Bag',
+      stockType: 'instock',
+      partner: 'Balkonsky Store (Санкт-Петербург)',
+      location: 'Санкт-Петербург, Balkonsky Store',
+      deliveryTime: 'В наличии в СПб // Примерка и самовывоз сегодня',
       region: 'japan',
       regionLabel: 'JAPAN [JP] // MERCARI JP',
       category: 'accessories',
       sku: 'POR-TNK-2WAY',
       basePriceRub: 21400,
       sizes: ['ONE SIZE (W480/H520)'],
-      dropStatus: 'ПРЕДЗАКАЗ ОТКРЫТ',
+      dropStatus: 'В НАЛИЧИИ В СПБ',
       badgeClass: 'jp',
       closingIn: '05 дн. 04:15',
       image: null,
@@ -254,6 +278,10 @@
       id: 'sasbov-07',
       brand: 'ANTA x KYRIE IRVING',
       name: 'KAI 1 "Artist on Court" Special Edition',
+      stockType: 'preorder',
+      partner: null,
+      location: 'Китай // Poizon Auth',
+      deliveryTime: 'Выкуп под заказ: 10-18 дней',
       region: 'china',
       regionLabel: 'CHINA [CN] // POIZON AUTH',
       category: 'footwear',
@@ -270,6 +298,10 @@
       id: 'sasbov-08',
       brand: 'UNDERCOVERISM',
       name: 'Hybrid MA-1 Vintage Military Bomber',
+      stockType: 'preorder',
+      partner: null,
+      location: 'Япония // Harajuku Archive',
+      deliveryTime: 'Выкуп под заказ: 10-18 дней',
       region: 'japan',
       regionLabel: 'JAPAN [JP] // HARAJUKU',
       category: 'clothing',
@@ -286,6 +318,10 @@
       id: 'sasbov-09',
       brand: 'HARSH AND CRUEL',
       name: 'Cyber Crossbody Tactical Harness Rig',
+      stockType: 'preorder',
+      partner: null,
+      location: 'Китай // Dewu Boutique',
+      deliveryTime: 'Выкуп под заказ: 10-18 дней',
       region: 'china',
       regionLabel: 'CHINA [CN] // DEWU BOUTIQUE',
       category: 'accessories',
@@ -302,6 +338,10 @@
       id: 'sasbov-10',
       brand: 'HELMUT LANG',
       name: '1998 M-65 Astro Biker Ballistic Jacket',
+      stockType: 'preorder',
+      partner: null,
+      location: 'Global // Grailed Archive',
+      deliveryTime: 'Выкуп под заказ: 10-18 дней',
       region: 'global',
       regionLabel: 'GLOBAL [GLB] // GRAILED ARCHIVE',
       category: 'clothing',
@@ -329,6 +369,23 @@
             }
             if (item.regionLabel) {
               item.regionLabel = item.regionLabel.replace(/🇯🇵/g, '[JP]').replace(/🇨🇳/g, '[CN]');
+            }
+            // Auto-migrate stockType if missing
+            if (!item.stockType) {
+              if (['sasbov-01', 'sasbov-02', 'sasbov-04', 'sasbov-06'].includes(item.id) || 
+                  item.region === 'spb' || 
+                  (item.brand && item.brand.includes('BALENCIAGA')) ||
+                  (item.dropStatus && item.dropStatus.includes('НАЛИЧИ'))) {
+                item.stockType = 'instock';
+                item.partner = 'Balkonsky Store (Санкт-Петербург)';
+                item.location = 'Санкт-Петербург, Balkonsky Store';
+                item.deliveryTime = 'В наличии в СПб // Примерка и самовывоз сегодня';
+              } else {
+                item.stockType = 'preorder';
+                item.partner = null;
+                item.location = item.regionLabel || 'Зарубежные площадки';
+                item.deliveryTime = 'Выкуп под заказ: 10-18 дней';
+              }
             }
             return item;
           });
@@ -361,10 +418,14 @@
   const searchInput = document.getElementById('admin-search-input');
   const filterPills = document.querySelectorAll('.admin-pill');
   const statTotal = document.getElementById('stat-total-cards');
+  const statInstock = document.getElementById('stat-instock-cards');
+  const statPreorder = document.getElementById('stat-preorder-cards');
   const statJp = document.getElementById('stat-jp-cards');
   const statCn = document.getElementById('stat-cn-cards');
   const statVal = document.getElementById('stat-total-val');
   const countAll = document.getElementById('count-all');
+  const countInstock = document.getElementById('count-instock');
+  const countPreorder = document.getElementById('count-preorder');
   const countJp = document.getElementById('count-jp');
   const countCn = document.getElementById('count-cn');
 
@@ -381,12 +442,18 @@
   const editIdInput = document.getElementById('edit-product-id');
   const brandInput = document.getElementById('card-brand-input');
   const nameInput = document.getElementById('card-name-input');
+  const stockTypeSelect = document.getElementById('card-stock-type-select');
   const regionSelect = document.getElementById('card-region-select');
   const categorySelect = document.getElementById('card-category-select');
   const priceInput = document.getElementById('card-price-input');
   const sizesInput = document.getElementById('card-sizes-input');
+  const timerDatetime = document.getElementById('card-timer-datetime');
   const timerInput = document.getElementById('card-timer-input');
+  const timerPreview = document.getElementById('card-timer-preview');
+  const timerPresetBtns = document.querySelectorAll('.timer-preset-btn');
   const statusSelect = document.getElementById('card-status-select');
+  const conditionSelect = document.getElementById('card-condition-select');
+  const descInput = document.getElementById('card-desc-input');
 
   // Multi-Photo Inputs
   const multiDropzone = document.getElementById('multi-photo-dropzone');
@@ -421,16 +488,20 @@
   // Update Stats & Counts
   function updateStats() {
     const total = PRODUCTS.length;
+    const instockCount = PRODUCTS.filter(p => p.stockType === 'instock').length;
+    const preorderCount = PRODUCTS.filter(p => p.stockType === 'preorder').length;
     const jpCount = PRODUCTS.filter(p => p.region === 'japan').length;
     const cnCount = PRODUCTS.filter(p => p.region === 'china').length;
     const sumVal = PRODUCTS.reduce((sum, p) => sum + (Number(p.basePriceRub) || 0), 0);
 
     if (statTotal) statTotal.textContent = total;
-    if (statJp) statJp.textContent = jpCount;
-    if (statCn) statCn.textContent = cnCount;
+    if (statInstock) statInstock.textContent = instockCount;
+    if (statPreorder) statPreorder.textContent = preorderCount;
     if (statVal) statVal.textContent = formatRub(sumVal);
 
     if (countAll) countAll.textContent = total;
+    if (countInstock) countInstock.textContent = instockCount;
+    if (countPreorder) countPreorder.textContent = preorderCount;
     if (countJp) countJp.textContent = jpCount;
     if (countCn) countCn.textContent = cnCount;
   }
@@ -451,12 +522,19 @@
     updateStats();
 
     const filtered = PRODUCTS.filter(p => {
-      const matchFilter = currentFilter === 'all' || p.region === currentFilter;
+      let matchFilter = true;
+      if (currentFilter === 'instock') matchFilter = p.stockType === 'instock';
+      else if (currentFilter === 'preorder') matchFilter = p.stockType === 'preorder';
+      else if (currentFilter === 'japan') matchFilter = p.region === 'japan';
+      else if (currentFilter === 'china') matchFilter = p.region === 'china';
+      else if (currentFilter !== 'all') matchFilter = p.region === currentFilter;
+
       const q = searchQuery.toLowerCase();
       const matchSearch = !q ||
         (p.brand && p.brand.toLowerCase().includes(q)) ||
         (p.name && p.name.toLowerCase().includes(q)) ||
-        (p.sku && p.sku.toLowerCase().includes(q));
+        (p.sku && p.sku.toLowerCase().includes(q)) ||
+        (p.partner && p.partner.toLowerCase().includes(q));
 
       return matchFilter && matchSearch;
     });
@@ -473,10 +551,16 @@
 
     grid.innerHTML = filtered.map(item => {
       const sizesStr = Array.isArray(item.sizes) ? item.sizes.join(', ') : item.sizes;
+      const isInstock = item.stockType === 'instock';
       const isJp = item.region === 'japan';
       const isGlobal = item.region === 'global';
-      const badgeCls = isJp ? 'jp' : (isGlobal ? 'global' : 'cn');
-      const regionText = isJp ? 'ЯПОНИЯ [JP]' : (isGlobal ? 'GLOBAL [GLB]' : 'КИТАЙ [CN]');
+      const isSpb = item.region === 'spb' || isInstock;
+      const badgeCls = isSpb ? 'spb' : (isJp ? 'jp' : (isGlobal ? 'global' : 'cn'));
+      const regionText = isSpb ? 'СПБ [SPB] // BALKONSKY' : (isJp ? 'ЯПОНИЯ [JP]' : (isGlobal ? 'GLOBAL [GLB]' : 'КИТАЙ [CN]'));
+
+      const stockBadge = isInstock 
+        ? `<span class="admin-card-stock-tag instock">✦ В НАЛИЧИИ: СПБ (BALKONSKY)</span>`
+        : `<span class="admin-card-stock-tag preorder">ПРЕДЗАКАЗ (ВЫКУП)</span>`;
 
       const imgs = getItemImages(item);
       const photoBadge = imgs.length > 1 ? `<span class="thumb-badge" style="position: absolute; bottom: 4px; right: 4px; background: rgba(0,0,0,0.85); color: #00f0ff; border: 1px solid rgba(0,240,255,0.3); font-size: 9px;">${imgs.length} ФОТО</span>` : '';
@@ -489,18 +573,23 @@
       `;
 
       return `
-        <div class="admin-card-row" data-id="${item.id}">
+        <div class="admin-card-row ${isInstock ? 'is-instock' : ''}" data-id="${item.id}">
           <div class="admin-card-thumb-wrap" style="position: relative;">
             ${thumb}
           </div>
 
           <div class="admin-card-title-col">
-            <span class="admin-card-brand">${item.brand || 'БРЕНД'}</span>
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <span class="admin-card-brand">${item.brand || 'БРЕНД'}</span>
+              <span class="product-condition-pill" style="font-size: 9px; padding: 1px 5px;">● ${item.condition || 'NEW // DEADSTOCK'}</span>
+            </div>
             <span class="admin-card-name">${item.name || 'Название позиции'}</span>
+            ${item.description ? `<span style="font-size: 0.72rem; color: #a1a1aa; line-height: 1.25; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden;">${item.description}</span>` : ''}
             <span class="admin-card-sku">SKU: ${item.sku || 'N/A'} • ${item.category || 'Одежда'} • <strong>${imgs.length} фото</strong></span>
           </div>
 
           <div class="admin-card-meta-col">
+            ${stockBadge}
             <span class="admin-region-badge ${badgeCls}">${regionText}</span>
             <span class="admin-card-sizes" title="${sizesStr}">Размеры: ${sizesStr || 'Универсальный'}</span>
             <span class="admin-card-sku">[EXP: ${item.closingIn || '03 дн.'}]</span>
@@ -508,7 +597,7 @@
 
           <div class="admin-card-price-col">
             <span class="admin-card-price">${formatRub(item.basePriceRub || 0)}</span>
-            <span class="admin-card-status-pill">● ${item.dropStatus || 'ПРЕДЗАКАЗ ОТКРЫТ'}</span>
+            <span class="admin-card-status-pill">● ${item.dropStatus || (isInstock ? 'В НАЛИЧИИ В СПБ' : 'ПРЕДЗАКАЗ ОТКРЫТ')}</span>
           </div>
 
           <div class="admin-card-actions-col">
@@ -541,7 +630,7 @@
   }
 
   // =========================================================================
-  // Multi-Photo Manager in Card Editor
+  // Multi-Photo Manager in Card Editor (Reordering + Drag & Drop)
   // =========================================================================
   function renderEditorGallery() {
     if (!photosGallery) return;
@@ -561,14 +650,23 @@
 
     photosGallery.innerHTML = currentEditorImages.map((src, idx) => {
       const isCover = idx === 0;
+      const isFirst = idx === 0;
+      const isLast = idx === currentEditorImages.length - 1;
       return `
-        <div class="editor-thumb-card ${isCover ? 'is-cover' : ''}" data-idx="${idx}">
+        <div class="editor-thumb-card ${isCover ? 'is-cover' : ''}" data-idx="${idx}" draggable="true" title="Перетаскивайте мышью для смены порядка">
           <img src="${src}" alt="Фото ${idx + 1}" class="editor-thumb-img">
           <div class="editor-thumb-overlay">
             <div class="thumb-top-row">
-              <span class="thumb-badge ${isCover ? 'cover' : ''}">${isCover ? '[COVER // #1]' : '#' + (idx + 1)}</span>
+              <span class="thumb-badge ${isCover ? 'cover' : ''}">${isCover ? '[★ ОБЛОЖКА]' : '#' + (idx + 1)}</span>
               <button type="button" class="thumb-del-btn" data-del-photo="${idx}" title="Удалить это фото">&times;</button>
             </div>
+
+            <div class="thumb-reorder-bar">
+              <button type="button" class="thumb-nav-btn" data-move-photo="${idx}" data-dir="-1" title="Сдвинуть влево (раньше)" ${isFirst ? 'disabled' : ''}>◀</button>
+              <span class="thumb-order-num">#${idx + 1}</span>
+              <button type="button" class="thumb-nav-btn" data-move-photo="${idx}" data-dir="1" title="Сдвинуть вправо (позже)" ${isLast ? 'disabled' : ''}>▶</button>
+            </div>
+
             ${!isCover ? `
               <div class="thumb-bottom-row">
                 <button type="button" class="thumb-set-cover-btn" data-set-cover="${idx}">Сделать обложкой</button>
@@ -578,6 +676,62 @@
         </div>
       `;
     }).join('');
+
+    // Reorder buttons (left/right arrows)
+    photosGallery.querySelectorAll('[data-move-photo]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const fromIdx = parseInt(btn.dataset.movePhoto, 10);
+        const dir = parseInt(btn.dataset.dir, 10);
+        const toIdx = fromIdx + dir;
+        if (toIdx >= 0 && toIdx < currentEditorImages.length) {
+          const temp = currentEditorImages[fromIdx];
+          currentEditorImages[fromIdx] = currentEditorImages[toIdx];
+          currentEditorImages[toIdx] = temp;
+          renderEditorGallery();
+          showToast(`[OK] // Порядок фото изменён (#${toIdx + 1})`);
+        }
+      });
+    });
+
+    // Drag and Drop listeners
+    let draggedIdx = null;
+    photosGallery.querySelectorAll('.editor-thumb-card').forEach(card => {
+      card.addEventListener('dragstart', (e) => {
+        draggedIdx = parseInt(card.dataset.idx, 10);
+        e.dataTransfer.effectAllowed = 'move';
+        e.dataTransfer.setData('text/plain', String(draggedIdx));
+        card.classList.add('is-dragging');
+      });
+
+      card.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        e.dataTransfer.dropEffect = 'move';
+        card.classList.add('drag-over-thumb');
+      });
+
+      card.addEventListener('dragleave', () => {
+        card.classList.remove('drag-over-thumb');
+      });
+
+      card.addEventListener('drop', (e) => {
+        e.preventDefault();
+        card.classList.remove('drag-over-thumb');
+        const targetIdx = parseInt(card.dataset.idx, 10);
+        if (draggedIdx !== null && draggedIdx !== targetIdx && !isNaN(draggedIdx)) {
+          const [item] = currentEditorImages.splice(draggedIdx, 1);
+          currentEditorImages.splice(targetIdx, 0, item);
+          renderEditorGallery();
+          showToast(`[OK] // Фото перемещено на позицию #${targetIdx + 1}`);
+        }
+      });
+
+      card.addEventListener('dragend', () => {
+        card.classList.remove('is-dragging');
+        photosGallery.querySelectorAll('.editor-thumb-card').forEach(c => c.classList.remove('drag-over-thumb'));
+        draggedIdx = null;
+      });
+    });
 
     // Delete photo from array
     photosGallery.querySelectorAll('[data-del-photo]').forEach(btn => {
@@ -675,6 +829,55 @@
     });
   }
 
+  // Datetime Picker & Quick Presets Helpers
+  function formatRemainingTime(date) {
+    if (!date || isNaN(date.getTime())) return '03 дн. 18:00';
+    const now = new Date();
+    const diffMs = date.getTime() - now.getTime();
+    if (diffMs <= 0) return 'ДРОП ЗАКРЫТ';
+    const totalHours = Math.floor(diffMs / (1000 * 60 * 60));
+    const days = Math.floor(totalHours / 24);
+    const remHours = totalHours % 24;
+    const mins = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+    if (days > 0) {
+      return `${String(days).padStart(2, '0')} дн. ${String(remHours).padStart(2, '0')}:${String(mins).padStart(2, '0')}`;
+    }
+    return `${remHours} ч. ${mins} мин`;
+  }
+
+  function toDatetimeLocalString(date) {
+    if (!date || isNaN(date.getTime())) return '';
+    const pad = (n) => String(n).padStart(2, '0');
+    const Y = date.getFullYear();
+    const M = pad(date.getMonth() + 1);
+    const D = pad(date.getDate());
+    const H = pad(date.getHours());
+    const Min = pad(date.getMinutes());
+    return `${Y}-${M}-${D}T${H}:${Min}`;
+  }
+
+  if (timerDatetime) {
+    timerDatetime.addEventListener('input', () => {
+      const d = new Date(timerDatetime.value);
+      const rem = formatRemainingTime(d);
+      if (timerInput) timerInput.value = rem;
+      if (timerPreview) timerPreview.textContent = `[ОСТАЛОСЬ: ${rem}]`;
+    });
+  }
+
+  if (timerPresetBtns) {
+    timerPresetBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const hours = parseInt(btn.dataset.hours, 10) || 72;
+        const target = new Date(Date.now() + hours * 3600 * 1000);
+        if (timerDatetime) timerDatetime.value = toDatetimeLocalString(target);
+        const rem = formatRemainingTime(target);
+        if (timerInput) timerInput.value = rem;
+        if (timerPreview) timerPreview.textContent = `[ОСТАЛОСЬ: ${rem}]`;
+      });
+    });
+  }
+
   // Open Add Card Modal
   function openAddModal() {
     editIdInput.value = '';
@@ -682,7 +885,15 @@
     cardForm.reset();
     currentEditorImages = [];
     renderEditorGallery();
-    timerInput.value = '03 дн. 18:00';
+
+    if (stockTypeSelect) stockTypeSelect.value = 'preorder';
+    if (conditionSelect) conditionSelect.value = 'NEW // DEADSTOCK';
+    if (descInput) descInput.value = '';
+    const defaultTarget = new Date(Date.now() + 72 * 3600 * 1000);
+    if (timerDatetime) timerDatetime.value = toDatetimeLocalString(defaultTarget);
+    const rem = formatRemainingTime(defaultTarget);
+    if (timerInput) timerInput.value = rem;
+    if (timerPreview) timerPreview.textContent = `[ОСТАЛОСЬ: ${rem}]`;
     statusSelect.value = 'ПРЕДЗАКАЗ ОТКРЫТ';
     cardModal.showModal();
   }
@@ -696,12 +907,28 @@
     cardModalTitle.textContent = `РЕДАКТИРОВАНИЕ: ${item.brand}`;
     brandInput.value = item.brand || '';
     nameInput.value = item.name || '';
-    regionSelect.value = item.region || 'japan';
+    if (stockTypeSelect) stockTypeSelect.value = item.stockType || 'preorder';
+    if (conditionSelect) conditionSelect.value = item.condition || 'NEW // DEADSTOCK';
+    if (descInput) descInput.value = item.description || '';
+    regionSelect.value = item.region || (item.stockType === 'instock' ? 'spb' : 'japan');
     categorySelect.value = item.category || 'footwear';
     priceInput.value = item.basePriceRub || 20000;
     sizesInput.value = Array.isArray(item.sizes) ? item.sizes.join(', ') : (item.sizes || '');
-    timerInput.value = item.closingIn || '03 дн. 18:00';
-    statusSelect.value = item.dropStatus || 'ПРЕДЗАКАЗ ОТКРЫТ';
+
+    if (item.closingDate) {
+      const d = new Date(item.closingDate);
+      if (timerDatetime) timerDatetime.value = toDatetimeLocalString(d);
+      const rem = formatRemainingTime(d);
+      if (timerInput) timerInput.value = rem;
+      if (timerPreview) timerPreview.textContent = `[ОСТАЛОСЬ: ${rem}]`;
+    } else {
+      const defaultTarget = new Date(Date.now() + 72 * 3600 * 1000);
+      if (timerDatetime) timerDatetime.value = toDatetimeLocalString(defaultTarget);
+      if (timerInput) timerInput.value = item.closingIn || '03 дн. 18:00';
+      if (timerPreview) timerPreview.textContent = `[ОСТАЛОСЬ: ${timerInput.value}]`;
+    }
+
+    statusSelect.value = item.dropStatus || (item.stockType === 'instock' ? 'В НАЛИЧИИ В СПБ' : 'ПРЕДЗАКАЗ ОТКРЫТ');
 
     currentEditorImages = getItemImages(item);
     renderEditorGallery();
@@ -755,17 +982,40 @@
       const editId = editIdInput.value;
       const brandVal = brandInput.value.trim().toUpperCase();
       const nameVal = nameInput.value.trim();
+      const stockTypeVal = stockTypeSelect ? stockTypeSelect.value : 'preorder';
       const regionVal = regionSelect.value;
       const categoryVal = categorySelect.value;
       const priceVal = parseFloat(priceInput.value) || 20000;
       const sizesArray = sizesInput.value.split(',').map(s => s.trim()).filter(Boolean);
       const timerVal = timerInput.value.trim() || '03 дн. 18:00';
       const statusVal = statusSelect.value;
+      const closingDateVal = (timerDatetime && timerDatetime.value) 
+        ? new Date(timerDatetime.value).toISOString() 
+        : null;
 
-      const regionLabelVal = regionVal === 'japan' 
-        ? 'JAPAN [JP] // TOKYO ARCHIVE' 
-        : (regionVal === 'global' ? 'GLOBAL [GLB] // GRAILED ARCHIVE' : 'CHINA [CN] // POIZON & GOOFISH');
-      const badgeClassVal = regionVal === 'japan' ? 'jp' : (regionVal === 'global' ? 'global' : 'cn');
+      const isInstock = stockTypeVal === 'instock';
+      const conditionVal = conditionSelect ? conditionSelect.value : 'NEW // DEADSTOCK';
+      const descVal = descInput ? descInput.value.trim() : '';
+      const partnerVal = isInstock ? 'Balkonsky Store (Санкт-Петербург)' : null;
+      const locationVal = isInstock ? 'Санкт-Петербург, Balkonsky Store' : (
+        regionVal === 'japan' ? 'JAPAN [JP] // TOKYO ARCHIVE' : (regionVal === 'global' ? 'GLOBAL [GLB] // GRAILED' : 'CHINA [CN] // POIZON & GOOFISH')
+      );
+      const deliveryTimeVal = isInstock 
+        ? 'В наличии в СПб // Примерка и самовывоз сегодня' 
+        : 'Выкуп под заказ: 10-18 дней';
+
+      let regionLabelVal = 'CHINA [CN] // POIZON & GOOFISH';
+      let badgeClassVal = 'cn';
+      if (regionVal === 'spb' || isInstock) {
+        regionLabelVal = 'СПБ [SPB] // BALKONSKY STORE';
+        badgeClassVal = 'spb';
+      } else if (regionVal === 'japan') {
+        regionLabelVal = 'JAPAN [JP] // TOKYO ARCHIVE & EBAY JP';
+        badgeClassVal = 'jp';
+      } else if (regionVal === 'global') {
+        regionLabelVal = 'GLOBAL [GLB] // GRAILED ARCHIVE';
+        badgeClassVal = 'global';
+      }
 
       const finalImages = [...currentEditorImages];
       const primaryImage = finalImages[0] || null;
@@ -778,12 +1028,19 @@
             ...PRODUCTS[idx],
             brand: brandVal,
             name: nameVal,
+            condition: conditionVal,
+            description: descVal,
+            stockType: stockTypeVal,
+            partner: partnerVal,
+            location: locationVal,
+            deliveryTime: deliveryTimeVal,
             region: regionVal,
             regionLabel: regionLabelVal,
             category: categoryVal,
             basePriceRub: priceVal,
             sizes: sizesArray,
             closingIn: timerVal,
+            closingDate: closingDateVal,
             dropStatus: statusVal,
             badgeClass: badgeClassVal,
             image: primaryImage,
@@ -798,6 +1055,12 @@
           id: 'sasbov-card-' + Date.now(),
           brand: brandVal,
           name: nameVal,
+          condition: conditionVal,
+          description: descVal,
+          stockType: stockTypeVal,
+          partner: partnerVal,
+          location: locationVal,
+          deliveryTime: deliveryTimeVal,
           region: regionVal,
           regionLabel: regionLabelVal,
           category: categoryVal,
@@ -805,6 +1068,7 @@
           basePriceRub: priceVal,
           sizes: sizesArray,
           closingIn: timerVal,
+          closingDate: closingDateVal,
           dropStatus: statusVal,
           badgeClass: badgeClassVal,
           image: primaryImage,

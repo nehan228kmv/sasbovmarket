@@ -152,12 +152,12 @@
             <span class="admin-stat-label">АКТИВНЫХ КАРТОЧЕК В БАЗЕ</span>
           </div>
           <div class="admin-stat-card">
-            <span class="admin-stat-num" id="stat-jp-cards">0</span>
-            <span class="admin-stat-label">ЯПОНИЯ [JP] // TOKYO ARCHIVE</span>
+            <span class="admin-stat-num" id="stat-instock-cards">0</span>
+            <span class="admin-stat-label">✦ В НАЛИЧИИ В СПБ // BALKONSKY</span>
           </div>
           <div class="admin-stat-card">
-            <span class="admin-stat-num" id="stat-cn-cards">0</span>
-            <span class="admin-stat-label">КИТАЙ [CN] // POIZON & GOOFISH</span>
+            <span class="admin-stat-num" id="stat-preorder-cards">0</span>
+            <span class="admin-stat-label">ПРЕДЗАКАЗ // ЗАРУБЕЖНЫЕ ДРОПЫ</span>
           </div>
           <div class="admin-stat-card">
             <span class="admin-stat-num" id="stat-total-val">0 ₽</span>
@@ -174,6 +174,8 @@
 
           <div class="admin-filter-pills">
             <button type="button" class="admin-pill active" data-filter="all">ВСЕ (<span id="count-all">0</span>)</button>
+            <button type="button" class="admin-pill" data-filter="instock">✦ В НАЛИЧИИ: СПБ (<span id="count-instock">0</span>)</button>
+            <button type="button" class="admin-pill" data-filter="preorder">ПРЕДЗАКАЗ (<span id="count-preorder">0</span>)</button>
             <button type="button" class="admin-pill" data-filter="japan">ЯПОНИЯ [JP] (<span id="count-jp">0</span>)</button>
             <button type="button" class="admin-pill" data-filter="china">КИТАЙ [CN] (<span id="count-cn">0</span>)</button>
           </div>
@@ -294,12 +296,22 @@
           <input type="text" id="card-name-input" class="form-input" placeholder="Например: Peterson OG Sole Canvas Low-Top" required>
         </div>
 
+        <!-- Stock Type & Availability (In Stock SPB vs Pre-order) -->
+        <div class="form-group">
+          <label for="card-stock-type-select" class="form-label">ТИП ПОЗИЦИИ (НАЛИЧИЕ / ПРЕДЗАКАЗ) *</label>
+          <select id="card-stock-type-select" class="form-select" required>
+            <option value="instock">✦ В НАЛИЧИИ В СПБ // BALKONSKY STORE (Примерка / СДЭК 1-2 дня)</option>
+            <option value="preorder" selected>ПРЕДЗАКАЗ // ВЫКУП С ПЛОЩАДОК (Китай / Япония / Grailed 10-18 дней)</option>
+          </select>
+        </div>
+
         <!-- Region & Category -->
         <div class="form-group">
-          <label for="card-region-select" class="form-label">РЕГИОН ВЫКУПА *</label>
+          <label for="card-region-select" class="form-label">РЕГИОН ВЫКУПА / ПЛОЩАДКА *</label>
           <select id="card-region-select" class="form-select" required>
-            <option value="japan">ЯПОНИЯ [JP] // TOKYO ARCHIVE & EBAY JP</option>
-            <option value="china">КИТАЙ [CN] // POIZON & GOOFISH XIANYU</option>
+            <option value="spb">САНКТ-ПЕТЕРБУРГ [SPB] // BALKONSKY STORE</option>
+            <option value="japan">ЯПОНИЯ [JP] // TOKYO ARCHIVE, MERCARI & EBAY JP</option>
+            <option value="china" selected>КИТАЙ [CN] // POIZON DEWU & GOOFISH XIANYU</option>
             <option value="global">GLOBAL [GLB] // GRAILED ARCHIVE</option>
           </select>
         </div>
@@ -328,20 +340,53 @@
           <input type="text" id="card-sizes-input" class="form-input" placeholder="39 EU, 40 EU, 41 EU, 42 EU, 43 EU" required>
         </div>
 
-        <!-- Timer & Status -->
+        <!-- Timer (Click-to-Pick Date & Time) & Status -->
         <div class="form-group">
-          <label for="card-timer-input" class="form-label">ТАЙМЕР ЗАКРЫТИЯ ДРОПА</label>
-          <input type="text" id="card-timer-input" class="form-input" placeholder="03 дн. 16:45" value="03 дн. 18:00">
+          <label for="card-timer-datetime" class="form-label">
+            ТАЙМЕР ЗАКРЫТИЯ ДРОПА (КЛИКНИТЕ ДЛЯ ВЫБОРА ДАТЫ И ВРЕМЕНИ)
+          </label>
+          <div class="datetime-picker-wrap">
+            <input type="datetime-local" id="card-timer-datetime" class="form-input datetime-input">
+            <input type="hidden" id="card-timer-input" value="03 дн. 18:00">
+            <div class="timer-preview-badge" id="card-timer-preview">[ОСТАЛОСЬ: 03 дн. 18:00]</div>
+          </div>
+          <div class="timer-presets-row">
+            <span class="preset-label">БЫСТРЫЙ ВЫБОР:</span>
+            <button type="button" class="timer-preset-btn" data-hours="24">+24 ЧАСА</button>
+            <button type="button" class="timer-preset-btn" data-hours="48">+2 ДНЯ</button>
+            <button type="button" class="timer-preset-btn" data-hours="72">+3 ДНЯ</button>
+            <button type="button" class="timer-preset-btn" data-hours="120">+5 ДНЕЙ</button>
+            <button type="button" class="timer-preset-btn" data-hours="168">+7 ДНЕЙ</button>
+          </div>
         </div>
 
         <div class="form-group">
           <label for="card-status-select" class="form-label">СТАТУС КАРТОЧКИ</label>
           <select id="card-status-select" class="form-select">
-            <option value="ПРЕДЗАКАЗ ОТКРЫТ">ПРЕДЗАКАЗ ОТКРЫТ</option>
+            <option value="В НАЛИЧИИ В СПБ">В НАЛИЧИИ В СПБ (BALKONSKY)</option>
+            <option value="ПРЕДЗАКАЗ ОТКРЫТ" selected>ПРЕДЗАКАЗ ОТКРЫТ</option>
             <option value="СКОРО ЗАКРЫТИЕ">СКОРО ЗАКРЫТИЕ</option>
             <option value="LIMITED DROP">LIMITED DROP</option>
             <option value="SOLD OUT">SOLD OUT (ЗАКРЫТО)</option>
           </select>
+        </div>
+
+        <!-- Item Condition -->
+        <div class="form-group">
+          <label for="card-condition-select" class="form-label">СОСТОЯНИЕ ВЕЩИ (CONDITION) *</label>
+          <select id="card-condition-select" class="form-select">
+            <option value="NEW // DEADSTOCK" selected>NEW // DEADSTOCK (Новое с бирками)</option>
+            <option value="9.5/10 EXCELLENT">9.5/10 EXCELLENT (Идеальное без нюансов)</option>
+            <option value="9/10 VINTAGE">9/10 VINTAGE (Винтаж / архивное)</option>
+            <option value="8.5/10 GOOD">8.5/10 GOOD (Хорошее, легкое б/у)</option>
+            <option value="CUSTOM // UPSCALED">CUSTOM // UPSCALED (Кастом)</option>
+          </select>
+        </div>
+
+        <!-- Mini-Description -->
+        <div class="form-group form-col-full">
+          <label for="card-desc-input" class="form-label">МИНИ-ОПИСАНИЕ И ОСОБЕННОСТИ ДРОПА</label>
+          <textarea id="card-desc-input" class="form-input" rows="2" placeholder="Например: Редкий релиз из Токио, плотный хлопковый канвас, фирменная расплавленная подошва OG Sole, полный комплект."></textarea>
         </div>
 
         <div class="form-actions form-col-full">

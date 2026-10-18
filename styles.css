@@ -676,12 +676,21 @@ button, input, select {
 @media (min-width: 600px) {
   .products-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
   }
 }
 
 @media (min-width: 1024px) {
   .products-grid {
     grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+@media (min-width: 1380px) {
+  .products-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
   }
 }
 
@@ -704,11 +713,11 @@ button, input, select {
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
 }
 
-/* Image Slot Container (3:4 ratio) */
+/* Image Slot Container (Balanced 1:1 Square Ratio) */
 .product-slot-frame {
   position: relative;
   width: 100%;
-  padding-top: 133.33%; /* 3:4 Aspect Ratio */
+  padding-top: 100%; /* 1:1 Square Aspect Ratio for balanced, compact card proportions */
   background: linear-gradient(180deg, #121218 0%, #0c0c10 100%);
   overflow: hidden;
   border-bottom: 1px solid var(--border-subtle);
@@ -826,6 +835,16 @@ button, input, select {
   font-size: 0.68rem;
   color: var(--text-muted);
   z-index: 2;
+  pointer-events: none;
+}
+
+.slot-telemetry-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  max-width: 65%;
+  pointer-events: auto;
 }
 
 .slot-sku {
@@ -834,17 +853,27 @@ button, input, select {
 
 .slot-timer {
   color: var(--accent-gold);
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 215, 0, 0.2);
   padding: 2px 6px;
   border-radius: 2px;
+  white-space: nowrap;
 }
 
 /* Product Info Block */
 .product-info {
-  padding: 1.5rem;
+  padding: 1.15rem 1.15rem 1.25rem;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+}
+
+.product-brand-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
 }
 
 .product-brand {
@@ -853,20 +882,57 @@ button, input, select {
   letter-spacing: 0.1em;
   color: var(--text-muted);
   text-transform: uppercase;
-  margin-bottom: 0.25rem;
+}
+
+.product-condition-pill {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  padding: 2px 6px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+
+.product-condition-pill.deadstock {
+  color: #2ed573;
+  background: rgba(46, 213, 115, 0.12);
+  border-color: rgba(46, 213, 115, 0.35);
+}
+
+.product-condition-pill.vintage {
+  color: #f59e0b;
+  background: rgba(245, 158, 11, 0.12);
+  border-color: rgba(245, 158, 11, 0.35);
 }
 
 .product-name {
   font-family: var(--font-body);
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   font-weight: 700;
   line-height: 1.3;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.4rem;
   color: var(--text-primary);
 }
 
+.product-mini-desc {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  line-height: 1.35;
+  color: var(--text-secondary);
+  margin-bottom: 0.65rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .product-sizes-wrap {
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.85rem;
 }
 
 .sizes-label {
@@ -898,14 +964,14 @@ button, input, select {
   align-items: baseline;
   justify-content: space-between;
   margin-top: auto;
-  padding-top: 1rem;
+  padding-top: 0.75rem;
   border-top: 1px solid var(--border-subtle);
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.85rem;
 }
 
 .price-tag {
   font-family: var(--font-display);
-  font-size: 1.4rem;
+  font-size: 1.25rem;
   font-weight: 800;
   color: var(--text-primary);
 }

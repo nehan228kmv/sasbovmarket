@@ -12,36 +12,54 @@
       id: 'sasbov-01',
       brand: 'MAISON MIHARA YASUHIRO',
       name: 'Peterson OG Sole Canvas Low-Top',
+      stockType: 'instock',
+      partner: 'Balkonsky Store (Санкт-Петербург)',
+      location: 'Санкт-Петербург, Balkonsky Store',
+      deliveryTime: 'В наличии в СПб // Примерка и самовывоз сегодня',
+      condition: 'NEW // DEADSTOCK',
+      description: 'Культовый архивный силуэт с фирменной расплавленной подошвой OG Sole, плотный хлопковый канвас, комплект с коробкой.',
       region: 'japan',
-      regionLabel: 'JAPAN [JP] // TOKYO ARCHIVE',
+      regionLabel: 'СПБ // BALKONSKY STORE',
       category: 'footwear',
       sku: 'MMY-PET-904',
       basePriceRub: 24800,
       sizes: ['39 EU', '40 EU', '41 EU', '42 EU', '43 EU', '44 EU'],
-      dropStatus: 'ПРЕДЗАКАЗ ОТКРЫТ',
+      dropStatus: 'В НАЛИЧИИ В СПБ',
       badgeClass: 'jp',
-      closingIn: '03 дн. 16:45',
+      closingIn: 'В НАЛИЧИИ',
       image: null
     },
     {
       id: 'sasbov-02',
       brand: 'KAPITAL',
       name: '14oz Denim Bone Embroidered Jacket',
+      stockType: 'instock',
+      partner: 'Balkonsky Store (Санкт-Петербург)',
+      location: 'Санкт-Петербург, Balkonsky Store',
+      deliveryTime: 'В наличии в СПб // Примерка и самовывоз сегодня',
+      condition: '9.5/10 EXCELLENT',
+      description: 'Архивный японский деним 14oz с фирменной костяной вышивкой. Редкий релиз из Кодзимы в идеальном состоянии.',
       region: 'japan',
-      regionLabel: 'JAPAN [JP] // KOJIMA ARCHIVE',
+      regionLabel: 'СПБ // BALKONSKY STORE',
       category: 'clothing',
       sku: 'KAP-BONE-14OZ',
       basePriceRub: 42500,
       sizes: ['1 (S)', '2 (M)', '3 (L)', '4 (XL)'],
-      dropStatus: 'ПРЕДЗАКАЗ ОТКРЫТ',
+      dropStatus: 'В НАЛИЧИИ В СПБ',
       badgeClass: 'jp',
-      closingIn: '01 дн. 08:20',
+      closingIn: 'В НАЛИЧИИ',
       image: null
     },
     {
       id: 'sasbov-03',
       brand: 'ROARINGWILD',
       name: 'Modular Waterproof Tech Shell Parka',
+      stockType: 'preorder',
+      partner: null,
+      location: 'Китай // Shenzhen Lab',
+      deliveryTime: 'Выкуп под заказ: 10-18 дней',
+      condition: 'NEW // DEADSTOCK',
+      description: 'Шэньчжэньский теквир нового поколения: трехслойная мембрана 20k/20k, магнитные клапаны и модульные съемные карманы.',
       region: 'china',
       regionLabel: 'CHINA [CN] // SHENZHEN LAB',
       category: 'clothing',
@@ -57,21 +75,33 @@
       id: 'sasbov-04',
       brand: 'SALOMON x MM6',
       name: 'Cross Low Sneaker "Black Edition"',
+      stockType: 'instock',
+      partner: 'Balkonsky Store (Санкт-Петербург)',
+      location: 'Санкт-Петербург, Balkonsky Store',
+      deliveryTime: 'В наличии в СПб // Примерка и самовывоз сегодня',
+      condition: 'NEW // DEADSTOCK',
+      description: 'Коллаборация Salomon и Maison Margiela. Гетровая конструкция с быстрой шнуровкой, подошва Contagrip, навесные бирки.',
       region: 'japan',
-      regionLabel: 'JAPAN [JP] // EBAY JP ARCHIVE',
+      regionLabel: 'СПБ // BALKONSKY STORE',
       category: 'footwear',
       sku: 'SAL-MM6-BLK',
       basePriceRub: 32000,
       sizes: ['40.5 EU', '41.5 EU', '42 EU', '43 EU', '44 EU'],
-      dropStatus: 'СКОРО ЗАКРЫТИЕ',
+      dropStatus: 'В НАЛИЧИИ В СПБ',
       badgeClass: 'jp',
-      closingIn: '14 ч. 22 мин',
+      closingIn: 'В НАЛИЧИИ',
       image: null
     },
     {
       id: 'sasbov-05',
       brand: 'THUG CLUB',
       name: 'Tribal Gladiator Heavy Fleece Hoodie',
+      stockType: 'preorder',
+      partner: null,
+      location: 'Китай // Goofish Xianyu',
+      deliveryTime: 'Выкуп под заказ: 10-18 дней',
+      condition: 'NEW // DEADSTOCK',
+      description: 'Плотный корейский хлопок 650 GSM с металлической фурнитурой, оверсайз-крой, аутентичный дроп с площадки Xianyu.',
       region: 'china',
       regionLabel: 'CHINA [CN] // GOOFISH XIANYU',
       category: 'clothing',
@@ -87,21 +117,33 @@
       id: 'sasbov-06',
       brand: 'PORTER YOSHIDA & CO',
       name: 'Tanker 2Way Helmet Shoulder Bag',
+      stockType: 'instock',
+      partner: 'Balkonsky Store (Санкт-Петербург)',
+      location: 'Санкт-Петербург, Balkonsky Store',
+      deliveryTime: 'В наличии в СПб // Примерка и самовывоз сегодня',
+      condition: '9.5/10 EXCELLENT',
+      description: 'Оригинальный японский трехслойный нейлон Tanker цвета Sage Green, оранжевая подкладка, фурнитура YKK, идеальное состояние.',
       region: 'japan',
-      regionLabel: 'JAPAN [JP] // MERCARI JP',
+      regionLabel: 'СПБ // BALKONSKY STORE',
       category: 'accessories',
       sku: 'POR-TNK-2WAY',
       basePriceRub: 21400,
       sizes: ['ONE SIZE (W480/H520)'],
-      dropStatus: 'ПРЕДЗАКАЗ ОТКРЫТ',
+      dropStatus: 'В НАЛИЧИИ В СПБ',
       badgeClass: 'jp',
-      closingIn: '05 дн. 04:15',
+      closingIn: 'В НАЛИЧИИ',
       image: null
     },
     {
       id: 'sasbov-07',
       brand: 'ANTA x KYRIE IRVING',
       name: 'KAI 1 "Artist on Court" Special Edition',
+      stockType: 'preorder',
+      partner: null,
+      location: 'Китай // Poizon Auth',
+      deliveryTime: 'Выкуп под заказ: 10-18 дней',
+      condition: 'NEW // DEADSTOCK',
+      description: 'Первая именная модель Кайри Ирвинга с ANTA. Карбоновая пластина в мидсоли, аутентичный сертификат Poizon Dewu.',
       region: 'china',
       regionLabel: 'CHINA [CN] // POIZON AUTH',
       category: 'footwear',
@@ -117,6 +159,12 @@
       id: 'sasbov-08',
       brand: 'UNDERCOVERISM',
       name: 'Hybrid MA-1 Vintage Military Bomber',
+      stockType: 'preorder',
+      partner: null,
+      location: 'Япония // Harajuku Archive',
+      deliveryTime: 'Выкуп под заказ: 10-18 дней',
+      condition: '9/10 VINTAGE',
+      description: 'Винтажный японский архивный бомбер Дзюна Такахаси. Деконструированные трикотажные вставки, аутентичные патчи.',
       region: 'japan',
       regionLabel: 'JAPAN [JP] // HARAJUKU',
       category: 'clothing',
@@ -132,6 +180,12 @@
       id: 'sasbov-09',
       brand: 'HARSH AND CRUEL',
       name: 'Cyber Crossbody Tactical Harness Rig',
+      stockType: 'preorder',
+      partner: null,
+      location: 'Китай // Dewu Boutique',
+      deliveryTime: 'Выкуп под заказ: 10-18 дней',
+      condition: 'NEW // DEADSTOCK',
+      description: 'Киберпанк тактическая разгрузочная система. Ткань Cordura 1000D, водонепроницаемые молнии, быстросъемные фастексы.',
       region: 'china',
       regionLabel: 'CHINA [CN] // DEWU BOUTIQUE',
       category: 'accessories',
@@ -147,6 +201,12 @@
       id: 'sasbov-10',
       brand: 'HELMUT LANG',
       name: '1998 M-65 Astro Biker Ballistic Jacket',
+      stockType: 'preorder',
+      partner: null,
+      location: 'Global // Grailed Archive',
+      deliveryTime: 'Выкуп под заказ: 10-18 дней',
+      condition: '9/10 ARCHIVE',
+      description: 'Музейный архивный лот 1998 года из Grailed Archive. Баллистический нейлон, внутренние ремни для ношения на спине.',
       region: 'global',
       regionLabel: 'GLOBAL [GLB] // GRAILED ARCHIVE',
       category: 'clothing',
@@ -173,6 +233,32 @@
             if (p.regionLabel) {
               p.regionLabel = p.regionLabel.replace(/🇯🇵/g, '[JP]').replace(/🇨🇳/g, '[CN]');
             }
+            // Auto-migrate stockType if missing
+            if (!p.stockType) {
+              if (['sasbov-01', 'sasbov-02', 'sasbov-04', 'sasbov-06'].includes(p.id) || 
+                  p.region === 'spb' || 
+                  (p.brand && p.brand.includes('BALENCIAGA')) ||
+                  (p.dropStatus && p.dropStatus.includes('НАЛИЧИ'))) {
+                p.stockType = 'instock';
+                p.partner = 'Balkonsky Store (Санкт-Петербург)';
+                p.location = 'Санкт-Петербург, Balkonsky Store';
+                p.deliveryTime = 'В наличии в СПб // Примерка и самовывоз сегодня';
+              } else {
+                p.stockType = 'preorder';
+                p.partner = null;
+                p.location = p.regionLabel || 'Зарубежные площадки';
+                p.deliveryTime = 'Выкуп под заказ: 10-18 дней';
+              }
+            }
+            // Auto-migrate condition & description if missing
+            if (!p.condition) {
+              const def = DEFAULT_PRODUCTS.find(d => d.id === p.id);
+              p.condition = def ? def.condition : 'NEW // DEADSTOCK';
+            }
+            if (p.description === undefined) {
+              const def = DEFAULT_PRODUCTS.find(d => d.id === p.id);
+              p.description = def ? def.description : '';
+            }
             return p;
           });
         }
@@ -194,6 +280,7 @@
   let PRODUCTS = getStoredProducts();
 
   const state = {
+    activeStock: 'all',
     activeRegion: 'all',
     activeCategory: 'all',
     searchQuery: '',
@@ -207,6 +294,10 @@
     grid: document.getElementById('products-grid'),
     searchInput: document.getElementById('catalog-search-input'),
     resultsCount: document.getElementById('results-count'),
+    stockBtns: document.querySelectorAll('.stock-tab-btn'),
+    countStockAll: document.getElementById('count-stock-all'),
+    countStockInstock: document.getElementById('count-stock-instock'),
+    countStockPreorder: document.getElementById('count-stock-preorder'),
     regionBtns: document.querySelectorAll('[data-filter-type="region"]'),
     categoryBtns: document.querySelectorAll('[data-filter-type="category"]'),
 
@@ -243,18 +334,27 @@
     clockMoscow: document.getElementById('clock-moscow')
   };
 
+  function updateStockTabCounts() {
+    if (el.countStockAll) el.countStockAll.textContent = PRODUCTS.length;
+    if (el.countStockInstock) el.countStockInstock.textContent = PRODUCTS.filter(p => p.stockType === 'instock').length;
+    if (el.countStockPreorder) el.countStockPreorder.textContent = PRODUCTS.filter(p => p.stockType === 'preorder').length;
+  }
+
   function renderProducts() {
     if (!el.grid) return;
+    updateStockTabCounts();
 
     const filtered = PRODUCTS.filter(p => {
-      const matchRegion = state.activeRegion === 'all' || p.region === state.activeRegion;
+      const matchStock = state.activeStock === 'all' || p.stockType === state.activeStock;
+      const matchRegion = state.activeRegion === 'all' || p.region === state.activeRegion || (state.activeRegion === 'spb' && p.stockType === 'instock');
       const matchCategory = state.activeCategory === 'all' || p.category === state.activeCategory;
       const matchSearch = !state.searchQuery || 
         p.name.toLowerCase().includes(state.searchQuery.toLowerCase()) || 
         p.brand.toLowerCase().includes(state.searchQuery.toLowerCase()) ||
-        p.sku.toLowerCase().includes(state.searchQuery.toLowerCase());
+        p.sku.toLowerCase().includes(state.searchQuery.toLowerCase()) ||
+        (p.partner && p.partner.toLowerCase().includes(state.searchQuery.toLowerCase()));
       
-      return matchRegion && matchCategory && matchSearch;
+      return matchStock && matchRegion && matchCategory && matchSearch;
     });
 
     if (el.resultsCount) {
@@ -265,7 +365,7 @@
       el.grid.innerHTML = `
         <div style="grid-column: 1 / -1; padding: 4rem 1rem; text-align: center; color: var(--text-muted); background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 8px;">
           <p style="font-family: var(--font-mono); font-size: 1rem; margin-bottom: 0.5rem; color: var(--text-primary);">// НИЧЕГО НЕ НАЙДЕНО</p>
-          <p style="font-size: 0.9rem;">Попробуйте сбросить параметры поиска или добавьте новую вещь в каталог.</p>
+          <p style="font-size: 0.9rem;">Попробуйте выбрать другой фильтр (например, «Все дропы») или сбросьте параметры поиска.</p>
         </div>
       `;
       return;
@@ -278,6 +378,19 @@
       const images = (Array.isArray(product.images) && product.images.length > 0)
         ? product.images.filter(Boolean)
         : (product.image ? [product.image] : []);
+
+      const isInstock = product.stockType === 'instock';
+      const originBadge = isInstock 
+        ? `<span class="origin-badge badge-instock">✦ В НАЛИЧИИ // СПБ</span>`
+        : `<span class="origin-badge ${product.badgeClass}">${product.regionLabel}</span>`;
+
+      const partnerTag = isInstock
+        ? `<span class="partner-store-pill">📍 СПБ // BALKONSKY STORE (Примерка / СДЭК 1-2 дня)</span>`
+        : '';
+
+      const mainActionBtn = isInstock
+        ? `<button type="button" class="btn btn-instock-buy btn-block open-preorder-btn" data-id="${product.id}">КУПИТЬ В СПБ (BALKONSKY)</button>`
+        : `<button type="button" class="btn btn-primary btn-block open-preorder-btn" data-id="${product.id}">ПРЕДЗАКАЗАТЬ</button>`;
 
       let imageContent = '';
       if (images.length === 0) {
@@ -315,8 +428,18 @@
         `;
       }
 
+      const condition = product.condition || 'NEW // DEADSTOCK';
+      const conditionClass = condition.toLowerCase().includes('deadstock') || condition.toLowerCase().includes('новое')
+        ? 'deadstock'
+        : (condition.toLowerCase().includes('vintage') || condition.toLowerCase().includes('винтаж') ? 'vintage' : '');
+      const conditionBadge = `<span class="product-condition-pill ${conditionClass}">● ${condition}</span>`;
+
+      const descriptionHtml = product.description
+        ? `<p class="product-mini-desc">${product.description}</p>`
+        : '';
+
       return `
-        <article class="product-card" data-product-id="${product.id}">
+        <article class="product-card ${isInstock ? 'is-instock' : ''}" data-product-id="${product.id}">
           <div class="product-slot-frame">
             <div class="slot-hud-corner slot-hud-tl"></div>
             <div class="slot-hud-corner slot-hud-tr"></div>
@@ -327,20 +450,27 @@
 
             <div class="slot-inner-content">
               <div class="slot-top-row">
-                <span class="origin-badge ${product.badgeClass}">${product.regionLabel}</span>
+                ${originBadge}
                 <span class="drop-status-pill">${product.dropStatus}</span>
               </div>
 
               <div class="slot-bottom-row">
-                <span class="slot-sku">${product.sku}</span>
-                <span class="slot-timer">[TIME: ${product.closingIn}]</span>
+                <div class="slot-telemetry-left">
+                  <span class="slot-sku">${product.sku}</span>
+                  <span class="slot-timer">[TIME: ${product.closingIn}]</span>
+                </div>
               </div>
             </div>
           </div>
 
           <div class="product-info">
-            <span class="product-brand">${product.brand}</span>
+            <div class="product-brand-row">
+              <span class="product-brand">${product.brand}</span>
+              ${conditionBadge}
+            </div>
             <h3 class="product-name">${product.name}</h3>
+            ${partnerTag}
+            ${descriptionHtml}
 
             <div class="product-sizes-wrap">
               <span class="sizes-label">ДОСТУПНЫЕ РАЗМЕРЫ:</span>
@@ -353,14 +483,12 @@
             <div class="product-price-row">
               <div>
                 <span class="price-tag">${formatRub(product.basePriceRub)}</span>
-                <span class="price-detail">под ключ с доставкой</span>
+                <span class="price-detail">${isInstock ? 'в наличии в СПб' : 'под ключ с доставкой'}</span>
               </div>
             </div>
 
             <div class="card-actions">
-              <button type="button" class="btn btn-primary btn-block open-preorder-btn" data-id="${product.id}">
-                ПРЕДЗАКАЗАТЬ
-              </button>
+              ${mainActionBtn}
               <button type="button" class="btn btn-outline quick-add-tray-btn" data-id="${product.id}" title="Добавить в поднос предзаказов">
                 +
               </button>
@@ -411,6 +539,15 @@
   }
 
   function setupFilters() {
+    el.stockBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        el.stockBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        state.activeStock = btn.dataset.stockFilter || 'all';
+        renderProducts();
+      });
+    });
+
     el.regionBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         el.regionBtns.forEach(b => b.classList.remove('active'));
@@ -438,9 +575,9 @@
 
     if (el.resetCatalogBtn) {
       el.resetCatalogBtn.addEventListener('click', () => {
-        if (confirm('Сбросить каталог к 9 оригинальным дропам?')) {
-          PRODUCTS = [...DEFAULT_PRODUCTS];
-          saveStoredProducts(PRODUCTS);
+        if (confirm('Сбросить каталог к оригинальным позициям?')) {
+          localStorage.removeItem('sasbov_products_v2');
+          PRODUCTS = getStoredProducts();
           renderProducts();
         }
       });
@@ -492,6 +629,7 @@
             sizes: sizes.length ? sizes : ['ONE SIZE'],
             dropStatus: 'ПРЕДЗАКАЗ ОТКРЫТ',
             badgeClass,
+            stockType: 'preorder',
             closingIn: '03 дн. 12:00',
             image: imageSrc || null
           };
@@ -521,14 +659,48 @@
     state.selectedProduct = product;
     state.selectedSize = product.sizes[0] || 'Стандарт';
 
-    el.modalRegionTag.textContent = product.regionLabel;
+    const isInstock = product.stockType === 'instock';
+    if (isInstock) {
+      el.modalRegionTag.className = 'origin-badge badge-instock';
+      el.modalRegionTag.textContent = '✦ В НАЛИЧИИ: СПБ // BALKONSKY STORE';
+      el.modalItemSku.textContent = `АРТИКУЛ: ${product.sku} // НАЛИЧИЕ В СПБ: ПРИМЕРКА И САМОВЫВОЗ СЕГОДНЯ`;
+      if (el.modalSubmitTgBtn) {
+        el.modalSubmitTgBtn.className = 'btn btn-instock-buy btn-block';
+        el.modalSubmitTgBtn.innerHTML = `<span>КУПИТЬ / ЗАБРОНИРОВАТЬ В BALKONSKY STORE (СПБ)</span>`;
+      }
+    } else {
+      el.modalRegionTag.className = `origin-badge ${product.badgeClass}`;
+      el.modalRegionTag.textContent = product.regionLabel;
+      el.modalItemSku.textContent = `АРТИКУЛ: ${product.sku} // ДЕДЛАЙН: ${product.closingIn}`;
+      if (el.modalSubmitTgBtn) {
+        el.modalSubmitTgBtn.className = 'btn btn-primary btn-block';
+        el.modalSubmitTgBtn.innerHTML = `<span>ОФОРМИТЬ ПРЕДЗАКАЗ В TELEGRAM</span>`;
+      }
+    }
+
     el.modalItemTitle.textContent = `${product.brand} — ${product.name}`;
-    el.modalItemSku.textContent = `АРТИКУЛ: ${product.sku} // ДЕДЛАЙН: ${product.closingIn}`;
     el.modalPriceVal.textContent = formatRub(product.basePriceRub);
 
-    if (product.image) {
+    const conditionEl = document.getElementById('modal-condition-val');
+    if (conditionEl) {
+      conditionEl.textContent = `● ${product.condition || 'NEW // DEADSTOCK'}`;
+    }
+
+    const descEl = document.getElementById('modal-desc-text');
+    const descWrap = document.getElementById('modal-desc-wrap');
+    if (descEl && descWrap) {
+      if (product.description) {
+        descEl.textContent = product.description;
+        descWrap.style.display = 'block';
+      } else {
+        descWrap.style.display = 'none';
+      }
+    }
+
+    const firstImg = (Array.isArray(product.images) && product.images.length > 0) ? product.images[0] : product.image;
+    if (firstImg) {
       el.modalImgPreview.innerHTML = `
-        <img src="${product.image}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
+        <img src="${firstImg}" alt="${product.brand} - ${product.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
       `;
     } else {
       el.modalImgPreview.innerHTML = `
@@ -573,20 +745,37 @@
         if (!state.selectedProduct) return;
 
         const p = state.selectedProduct;
-        const selectedSpeedVal = Array.from(el.modalSpeedRadios).find(r => r.checked)?.value || 'Авиа-экспресс (7-10 дней)';
+        const isInstock = p.stockType === 'instock';
+        let messageText = '';
 
-        const messageText = 
-`Здравствуйте! Хочу оформить предзаказ в SASBOV MARKET:
+        if (isInstock) {
+          messageText = 
+`Здравствуйте! Хочу забронировать / купить позицию из наличия в Санкт-Петербурге:
 — Товар: ${p.brand} ${p.name}
+— Состояние: ${p.condition || 'NEW // DEADSTOCK'}
 — Артикул: ${p.sku}
 — Размер: ${state.selectedSize}
-— Регион: ${p.regionLabel}
-— Тариф: ${selectedSpeedVal}
+— Локация: Санкт-Петербург, Balkonsky Store (магазин-партнер SASBOV MARKET)
+— Условия: Примерка / самовывоз в СПб день-в-день, доставка СДЭК 1-2 дня
+— Стоимость: ${formatRub(p.basePriceRub)}
+${p.description ? `— Описание: ${p.description}\n` : ''}
+Подтвердите наличие на точке и пришлите точный адрес для примерки / реквизиты для отправки!`;
+        } else {
+          const selectedSpeedVal = Array.from(el.modalSpeedRadios).find(r => r.checked)?.value || 'Авиа-экспресс (7-10 дней)';
+          messageText = 
+`Здравствуйте! Хочу оформить предзаказ в SASBOV MARKET (выкуп с зарубежных площадок):
+— Товар: ${p.brand} ${p.name}
+— Состояние: ${p.condition || 'NEW // DEADSTOCK'}
+— Артикул: ${p.sku}
+— Размер: ${state.selectedSize}
+— Регион / Площадка: ${p.regionLabel}
+— Тариф доставки: ${selectedSpeedVal}
 — Стоимость под ключ: ${formatRub(p.basePriceRub)}
+${p.description ? `— Описание: ${p.description}\n` : ''}
+Подтвердите возможность выкупа и пришлите реквизиты!`;
+        }
 
-Подтвердите наличие и пришлите реквизиты для выкупа!`;
-
-        const tgUrl = `https://t.me/sasbovmarket?text=${encodeURIComponent(messageText)}`;
+        const tgUrl = `https://t.me/sasbovstore?text=${encodeURIComponent(messageText)}`;
         window.open(tgUrl, '_blank', 'noopener,noreferrer');
         closePreorderModal();
       });
@@ -683,7 +872,7 @@ ${listText}
 — Итого под ключ: ${formatRub(total)}
 Жду реквизиты!`;
 
-        const tgUrl = `https://t.me/sasbovmarket?text=${encodeURIComponent(messageText)}`;
+        const tgUrl = `https://t.me/sasbovstore?text=${encodeURIComponent(messageText)}`;
         window.open(tgUrl, '_blank', 'noopener,noreferrer');
         closeTray();
       });

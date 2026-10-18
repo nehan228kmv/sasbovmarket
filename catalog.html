@@ -75,7 +75,7 @@
           <span class="cart-label">ПРЕДЗАКАЗ</span>
           <span class="cart-badge" id="tray-count">0</span>
         </button>
-        <a href="https://t.me/sasbovmarket" target="_blank" rel="noopener noreferrer" class="btn btn-outline header-cta">
+        <a href="https://t.me/sasbovstore" target="_blank" rel="noopener noreferrer" class="btn btn-outline header-cta">
           МЕНЕДЖЕР В TG
         </a>
       </div>
@@ -133,14 +133,32 @@
         </div>
       </div>
 
+      <!-- Stock Type High-Profile Filter: In Stock (SPB Balkonsky Store) vs Pre-Order -->
+      <div class="stock-type-bar" role="tablist" aria-label="Фильтр по наличию и типу поставки">
+        <button type="button" class="stock-tab-btn active" data-stock-filter="all" id="stock-filter-all">
+          <span class="stock-tab-dot"></span>
+          ВСЕ ДРОПЫ (<span id="count-stock-all">0</span>)
+        </button>
+        <button type="button" class="stock-tab-btn instock-tab" data-stock-filter="instock" id="stock-filter-instock">
+          <span class="stock-tab-dot instock-dot"></span>
+          ✦ В НАЛИЧИИ: СПБ // BALKONSKY STORE (<span id="count-stock-instock">0</span>)
+        </button>
+        <button type="button" class="stock-tab-btn" data-stock-filter="preorder" id="stock-filter-preorder">
+          <span class="stock-tab-dot"></span>
+          ПРЕДЗАКАЗ: ЗАРУБЕЖНЫЙ ВЫКУП (<span id="count-stock-preorder">0</span>)
+        </button>
+      </div>
+
       <!-- Filter Controls Bar -->
       <div class="filter-controls" role="toolbar" aria-label="Фильтры каталога">
         <!-- Region Filters -->
         <div class="filter-group regions">
           <span class="filter-label">РЕГИОН:</span>
           <button type="button" class="filter-chip active" data-filter-type="region" data-filter-val="all" id="filter-all">ВСЕ (ALL)</button>
+          <button type="button" class="filter-chip" data-filter-type="region" data-filter-val="spb" id="filter-spb">СПБ [SPB]</button>
           <button type="button" class="filter-chip" data-filter-type="region" data-filter-val="japan" id="filter-jp">ЯПОНИЯ [JP]</button>
           <button type="button" class="filter-chip" data-filter-type="region" data-filter-val="china" id="filter-cn">КИТАЙ [CN]</button>
+          <button type="button" class="filter-chip" data-filter-type="region" data-filter-val="global" id="filter-glb">GLOBAL [GLB]</button>
         </div>
 
         <!-- Category Filters -->
@@ -179,7 +197,7 @@
             Пришлите нам скриншот или ссылку на вещь с Poizon, Goofish, Mercari JP, eBay JP или Grailed — выкупим с проверкой на оригинальность и доставим в РФ.
           </p>
         </div>
-        <a href="https://t.me/sasbovmarket" target="_blank" rel="noopener noreferrer" class="btn btn-primary" id="custom-request-btn">
+        <a href="https://t.me/sasbovstore" target="_blank" rel="noopener noreferrer" class="btn btn-primary" id="custom-request-btn">
           НАЙТИ МОЮ ВЕЩЬ В TG
         </a>
       </div>
@@ -206,6 +224,16 @@
         </div>
 
         <div class="modal-config">
+          <div class="modal-field" id="modal-condition-wrap">
+            <label class="modal-label">СОСТОЯНИЕ ВЕЩИ:</label>
+            <div id="modal-condition-val" class="modal-condition-badge">● НОВОЕ // DEADSTOCK</div>
+          </div>
+
+          <div class="modal-field" id="modal-desc-wrap">
+            <label class="modal-label">ОПИСАНИЕ И ОСОБЕННОСТИ ДРОПА:</label>
+            <p id="modal-desc-text" class="modal-desc-text"></p>
+          </div>
+
           <div class="modal-field">
             <label class="modal-label">ВЫБЕРИТЕ ВАШ РАЗМЕР:</label>
             <div class="modal-size-grid" id="modal-sizes-list"></div>
@@ -265,7 +293,7 @@
     </div>
   </aside>
 
-  <!-- Site Footer -->
+  <!-- Site Footer with Official Publics and Contacts -->
   <footer class="site-footer">
     <div class="container footer-container">
       <div class="footer-brand-col">
@@ -273,31 +301,40 @@
         <p class="footer-tagline">
           Премиальный консьерж-сервис предзаказа оригинальной одежды и обуви из Китая и Японии.
         </p>
+        <div class="footer-partner-box" style="margin-top: 1rem; padding: 0.75rem 1rem; background: rgba(0, 240, 255, 0.06); border: 1px solid rgba(0, 240, 255, 0.25); border-radius: 6px;">
+          <span style="font-family: var(--font-mono); font-size: 0.68rem; color: #00f0ff; display: block;">МАГАЗИН-ПАРТНЕР В СПБ:</span>
+          <strong style="font-size: 0.85rem; color: #ffffff;">BALKONSKY STORE (САНКТ-ПЕТЕРБУРГ)</strong>
+          <span style="font-size: 0.75rem; color: var(--text-muted); display: block; margin-top: 2px;">Примерка и самовывоз наличия</span>
+        </div>
       </div>
+
       <div class="footer-links-col">
-        <h4 class="footer-heading">НАВИГАЦИЯ</h4>
+        <h4 class="footer-heading">ПАБЛИКИ ПРОДАЖ VK</h4>
         <ul class="footer-nav">
-          <li><a href="index.html">Главная</a></li>
-          <li><a href="catalog.html">Полный каталог</a></li>
-          <li><a href="feed.html">TikTok Лента</a></li>
-          <li><a href="index.html#calculator">Калькулятор доставки</a></li>
+          <li><a href="https://vk.ru/mplogistics" target="_blank" rel="noopener noreferrer">✦ MP Logistics // Паблик продаж</a></li>
+          <li><a href="https://vk.ru/sasbov.store" target="_blank" rel="noopener noreferrer">✦ SASBOV Store // Паблик продаж</a></li>
+          <li><a href="index.html">На главную</a></li>
+          <li><a href="feed.html">TikTok Reels Дроп-Лента</a></li>
         </ul>
       </div>
+
       <div class="footer-links-col">
-        <h4 class="footer-heading">ПЛОЩАДКИ SOURCING</h4>
+        <h4 class="footer-heading">TELEGRAM КАНАЛЫ</h4>
         <ul class="footer-nav">
-          <li><span>Poizon / Dewu (Китай)</span></li>
-          <li><span>Goofish / Xianyu (Китай)</span></li>
-          <li><span>Mercari JP (Япония)</span></li>
-          <li><span>eBay JP (Япония)</span></li>
-          <li><span>Yahoo! Auctions (Япония)</span></li>
-          <li><span>Grailed (Global Archive)</span></li>
-          <li><span>Tokyo Flagships & Boutiques</span></li>
+          <li><a href="https://t.me/sasbovstore" target="_blank" rel="noopener noreferrer" style="color: #00f0ff;">✦ @sasbovstore (Канал дропов)</a></li>
+          <li><a href="https://t.me/sasbovfeedback" target="_blank" rel="noopener noreferrer" style="color: #2ed573;">✦ @sasbovfeedback (Отзывы)</a></li>
+          <li><span>Poizon & Dewu (Китай)</span></li>
+          <li><span>Mercari & eBay JP (Япония)</span></li>
+          <li><span>Grailed (Архив)</span></li>
         </ul>
       </div>
+
       <div class="footer-contact-col">
-        <h4 class="footer-heading">СВЯЗЬ С МЕНЕДЖЕРОМ</h4>
-        <a href="https://t.me/sasbovmarket" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-block">
+        <h4 class="footer-heading">СВЯЗЬ С МЕНЕДЖЕРОМ 24/7</h4>
+        <p class="footer-contact-desc">
+          Напишите менеджеру для выкупа любой вещи по ссылке, фото или артикулу.
+        </p>
+        <a href="https://t.me/sasbovstore" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-block">
           НАПИСАТЬ В TELEGRAM
         </a>
       </div>
