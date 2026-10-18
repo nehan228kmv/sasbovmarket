@@ -893,6 +893,10 @@
         if (loaded === validFiles.length) {
           renderEditorGallery();
           showToast(`[OK] // Добавлено ${loaded} фото в карточку`);
+          if (typeof updateAISidecarPreview === 'function') updateAISidecarPreview();
+          if (typeof triggerAutoScanOnUpload === 'function') {
+            triggerAutoScanOnUpload(currentEditorImages[0], validFiles[0] ? validFiles[0].name : '');
+          }
         }
       };
       reader.readAsDataURL(file);
@@ -940,6 +944,10 @@
         photoUrlInput.value = '';
         renderEditorGallery();
         showToast(`[OK] // Добавлено ${urls.length} фото по ссылке`);
+        if (typeof updateAISidecarPreview === 'function') updateAISidecarPreview();
+        if (typeof triggerAutoScanOnUpload === 'function') {
+          triggerAutoScanOnUpload(urls[0], '');
+        }
       } else {
         alert('Пожалуйста, введите корректный URL изображения (начинающийся с http:// или https://)');
       }
@@ -2766,14 +2774,11 @@
     const userHint = aiUserHintInput ? aiUserHintInput.value.trim() : '';
 
     if (!photoToScan && !userHint) {
-      const curCat = categorySelect ? categorySelect.value : 'clothing';
-      if (curCat === 'clothing') {
-        applyPresetToCard('cp-puffer');
-      } else if (curCat === 'accessories') {
-        applyPresetToCard('chrome-hearts-cap');
-      } else {
-        applyPresetToCard('mihara-peterson');
+      if (nameInput && nameInput.value.trim()) {
+        parseVisualSearchText(nameInput.value.trim());
+        return;
       }
+      showToast('[!] Загрузите фото или укажите название вещи для распознавания');
       return;
     }
 
@@ -2825,10 +2830,7 @@
       // Automatically sync category button
       updateAiCategoryButtons(detected.category);
 
-      // Automatically apply detected fields directly to card form!
-      applyAIDetectionToForm();
-
-      showToast(`[OK] // Верифицировано через Google Lens & Яндекс: ${detected.brand} — ${detected.model}!`);
+      showToast(`[OK] // Распознано: ${detected.brand} — ${detected.model}! Нажмите «ВСТАВИТЬ» у нужного поля или «ПРИМЕНИТЬ ВСЁ»`);
     } catch (err) {
       console.error('AI Scan Error:', err);
       alert('Ошибка при анализе изображения: ' + (err.message || err));
@@ -2879,7 +2881,123 @@
       }
     });
 
-    showToast(`[OK] // Данные (бренд, модель, категория, размеры, описание) перенесены в карточку!`);
+    showToast(`[OK] // Все данные перенесены в карточку!`);
+  }
+
+  function flashFieldHighlight(field) {
+    if (!field) return;
+    field.style.boxShadow = '0 0 16px #00f0ff';
+    field.style.borderColor = '#00f0ff';
+    setTimeout(() => {
+      field.style.boxShadow = '';
+      field.style.borderColor = '';
+    }, 1200);
+  }
+
+  // Flash button with green success state
+  function flashButtonSuccess(btn, tempText = '✔ ВСТАВЛЕНО') {
+    if (!btn) return;
+    const oldText = btn.textContent;
+    btn.textContent = tempText;
+    btn.style.background = '#00ff88';
+    btn.style.color = '#000000';
+    btn.style.borderColor = '#00ff88';
+    setTimeout(() => {
+      btn.textContent = oldText;
+      btn.style.background = '';
+      btn.style.color = '';
+      btn.style.borderColor = '';
+    }, 1100);
+  }
+
+  // Wire Individual HUD Insert Buttons (Preserves existing post data 100%!)
+  const aiInsertBrandBtn = document.getElementById('ai-insert-brand-btn');
+  const aiInsertModelBtn = document.getElementById('ai-insert-model-btn');
+  const aiInsertBothBtn = document.getElementById('ai-insert-both-btn');
+  const aiInsertCatBtn = document.getElementById('ai-insert-cat-btn');
+  const aiInsertPriceBtn = document.getElementById('ai-insert-price-btn');
+  const aiInsertSizesBtn = document.getElementById('ai-insert-sizes-btn');
+  const aiResSizes = document.getElementById('ai-res-sizes');
+
+  if (aiInsertBrandBtn) {
+    aiInsertBrandBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (!lastAIDetectedData || !lastAIDetectedData.brand) return;
+      if (brandInput) {
+        brandInput.value = lastAIDetectedData.brand;
+        flashFieldHighlight(brandInput);
+        flashButtonSuccess(aiInsertBrandBtn);
+        showToast(`[OK] // Бренд перенесен в карточку: ${lastAIDetectedData.brand}`);
+      }
+    });
+  }
+
+  if (aiInsertModelBtn) {
+    aiInsertModelBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (!lastAIDetectedData || !lastAIDetectedData.model) return;
+      if (nameInput) {
+        nameInput.value = lastAIDetectedData.model;
+        flashFieldHighlight(nameInput);
+        flashButtonSuccess(aiInsertModelBtn);
+        showToast(`[OK] // Модель перенесена в карточку: ${lastAIDetectedData.model}`);
+      }
+    });
+  }
+
+  if (aiInsertBothBtn) {
+    aiInsertBothBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (!lastAIDetectedData) return;
+      const combinedTitle = `${lastAIDetectedData.brand || ''} ${lastAIDetectedData.model || ''}`.trim();
+      if (nameInput && combinedTitle) {
+        nameInput.value = combinedTitle;
+        flashFieldHighlight(nameInput);
+        flashButtonSuccess(aiInsertBothBtn, '✔ ГОТОВО');
+        showToast(`[OK] // Полное название вставлено: ${combinedTitle}`);
+      }
+    });
+  }
+
+  if (aiInsertCatBtn) {
+    aiInsertCatBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (!lastAIDetectedData || !lastAIDetectedData.category) return;
+      if (categorySelect) {
+        categorySelect.value = lastAIDetectedData.category;
+        updateSizePickerForCategory(lastAIDetectedData.category);
+        flashFieldHighlight(categorySelect);
+        flashButtonSuccess(aiInsertCatBtn);
+        showToast(`[OK] // Категория обновлена: ${lastAIDetectedData.category}`);
+      }
+    });
+  }
+
+  if (aiInsertPriceBtn) {
+    aiInsertPriceBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (!lastAIDetectedData || !lastAIDetectedData.estimatedPriceRub) return;
+      if (priceInput) {
+        priceInput.value = lastAIDetectedData.estimatedPriceRub;
+        flashFieldHighlight(priceInput);
+        flashButtonSuccess(aiInsertPriceBtn);
+        showToast(`[OK] // Цена перенесена в карточку: ${formatRub(lastAIDetectedData.estimatedPriceRub)}`);
+      }
+    });
+  }
+
+  if (aiInsertSizesBtn) {
+    aiInsertSizesBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (!lastAIDetectedData || !lastAIDetectedData.suggestedSizes) return;
+      if (sizesInput) {
+        sizesInput.value = lastAIDetectedData.suggestedSizes.join(', ');
+        renderSizeChips();
+        flashFieldHighlight(sizesInput);
+        flashButtonSuccess(aiInsertSizesBtn);
+        showToast(`[OK] // Размеры перенесены в карточку: ${lastAIDetectedData.suggestedSizes.join(', ')}`);
+      }
+    });
   }
 
   // =========================================================================
@@ -3036,59 +3154,38 @@
     const data = STREETWEAR_PRESETS_MAP[presetKey];
     if (!data) return;
 
-    if (brandInput) brandInput.value = data.brand;
-    if (nameInput) nameInput.value = data.name;
-    if (categorySelect) {
-      categorySelect.value = data.category;
-      updateSizePickerForCategory(data.category);
-    }
-    if (priceInput) priceInput.value = data.basePriceRub;
-    if (sizesInput) {
-      sizesInput.value = data.sizes.join(', ');
-      renderSizeChips();
-    }
-    if (descInput) descInput.value = data.description;
-    if (conditionSelect) conditionSelect.value = 'NEW // DEADSTOCK';
-
-    // Populate images if current editor is empty
-    if (!currentEditorImages || currentEditorImages.length === 0) {
-      currentEditorImages = [...data.images];
-      renderEditorGallery();
-      updateAISidecarPreview();
+    // Show preview in target box
+    if (aiTargetImgPreview && data.images && data.images.length > 0) {
+      aiTargetImgPreview.src = data.images[0];
+      aiTargetImgPreview.style.display = 'block';
+      if (aiTargetImgEmpty) aiTargetImgEmpty.style.display = 'none';
+      if (aiViewportBox) {
+        aiViewportBox.style.borderStyle = 'solid';
+        aiViewportBox.style.borderColor = 'rgba(0, 240, 255, 0.5)';
+      }
     }
 
-    // Populate HUD
     lastAIDetectedData = {
       brand: data.brand,
       model: data.name,
       category: data.category,
       estimatedPriceRub: data.basePriceRub,
       suggestedSizes: data.sizes,
-      description: data.description
+      description: data.description,
+      images: data.images
     };
 
     if (aiResBrand) aiResBrand.textContent = data.brand;
     if (aiResModel) aiResModel.textContent = data.name;
     if (aiResCat) aiResCat.textContent = data.category === 'footwear' ? 'Обувь / Кроссовки' : (data.category === 'clothing' ? 'Одежда / Пуховик' : 'Аксессуар');
     if (aiResPrice) aiResPrice.textContent = formatRub(data.basePriceRub);
+    if (aiResSizes) aiResSizes.textContent = data.sizes ? data.sizes.join(', ') : '—';
     if (aiResDesc) aiResDesc.textContent = data.description;
     if (aiHudCard) aiHudCard.style.display = 'flex';
 
     updateAiCategoryButtons(data.category);
 
-    // Flash form fields
-    [brandInput, nameInput, categorySelect, sizesInput, priceInput, descInput].forEach(field => {
-      if (field) {
-        field.style.boxShadow = '0 0 14px #00f0ff';
-        field.style.borderColor = '#00f0ff';
-        setTimeout(() => {
-          field.style.boxShadow = '';
-          field.style.borderColor = '';
-        }, 1200);
-      }
-    });
-
-    showToast(`[OK] // Выбран силуэт: ${data.brand} — ${data.name}! Форма заполнена.`);
+    showToast(`[OK] // Данные силуэта ${data.brand} в панели справа! Нажмите «ВСТАВИТЬ» у нужного поля или «ПРИМЕНИТЬ ВСЁ»`);
   }
 
   // Wire all 1-Click Preset Cards
@@ -3112,7 +3209,7 @@
     });
   });
 
-  // Intelligent text parser for Google Lens / Yandex copied text
+  // Intelligent text parser for Google Lens / Yandex (Non-destructive: updates HUD only!)
   function parseVisualSearchText(rawText) {
     if (!rawText || !rawText.trim()) return;
     const q = rawText.trim().toLowerCase();
@@ -3148,7 +3245,28 @@
     }
 
     if (matchedKey) {
-      applyPresetToCard(matchedKey);
+      const data = STREETWEAR_PRESETS_MAP[matchedKey];
+      if (data) {
+        lastAIDetectedData = {
+          brand: data.brand,
+          model: data.name,
+          category: data.category,
+          estimatedPriceRub: data.basePriceRub,
+          suggestedSizes: data.sizes,
+          description: data.description
+        };
+
+        if (aiResBrand) aiResBrand.textContent = data.brand;
+        if (aiResModel) aiResModel.textContent = data.name;
+        if (aiResCat) aiResCat.textContent = data.category === 'footwear' ? 'Обувь / Кроссовки' : (data.category === 'clothing' ? 'Одежда / Пуховик' : 'Аксессуар');
+        if (aiResPrice) aiResPrice.textContent = formatRub(data.basePriceRub);
+        if (aiResSizes) aiResSizes.textContent = data.sizes.join(', ');
+        if (aiResDesc) aiResDesc.textContent = data.description;
+        if (aiHudCard) aiHudCard.style.display = 'flex';
+
+        updateAiCategoryButtons(data.category);
+        showToast(`[OK] // Распознано: ${data.brand} — ${data.name}! Нажмите «ВСТАВИТЬ» у нужного поля`);
+      }
       return;
     }
 
@@ -3189,32 +3307,14 @@
     }
     if (!modelName) modelName = rawText.trim();
 
-    if (brandInput) brandInput.value = foundBrand;
-    if (nameInput) nameInput.value = modelName;
-    if (categorySelect) {
-      categorySelect.value = cat;
-      updateSizePickerForCategory(cat);
-    }
-    if (conditionSelect) conditionSelect.value = 'NEW // DEADSTOCK';
-
     const defaultPrice = cat === 'footwear' ? 28000 : (cat === 'accessories' ? 18000 : 38000);
-    if (priceInput && (!priceInput.value || Number(priceInput.value) <= 100)) {
-      priceInput.value = defaultPrice;
-    }
-
     const sizesArr = cat === 'footwear'
       ? ['40 EU', '41 EU', '42 EU', '43 EU', '44 EU']
       : (cat === 'clothing' ? ['S', 'M', 'L', 'XL'] : ['ONE SIZE']);
 
-    if (sizesInput) {
-      sizesInput.value = sizesArr.join(', ');
-      renderSizeChips();
-    }
-
     const desc = `Оригинальный релиз ${foundBrand} (${modelName}). Высококачественные аутентичные материалы, фирменная фурнитура и заводская маркировка. Товар проверен байерами SASBOV MARKET в Токио/Шанхае. Доступна примерка и самовывоз в шоуруме Balkonsky (СПб, ул. Тверская 3/1).`;
-    if (descInput) descInput.value = desc;
 
-    // HUD Update
+    // HUD Update only (Never automatically overwrite existing post fields!)
     lastAIDetectedData = {
       brand: foundBrand,
       model: modelName,
@@ -3227,24 +3327,89 @@
     if (aiResModel) aiResModel.textContent = modelName;
     if (aiResCat) aiResCat.textContent = cat === 'footwear' ? 'Обувь / Кроссовки' : (cat === 'clothing' ? 'Одежда / Пуховик' : 'Аксессуар');
     if (aiResPrice) aiResPrice.textContent = formatRub(defaultPrice);
+    if (aiResSizes) aiResSizes.textContent = sizesArr.join(', ');
     if (aiResDesc) aiResDesc.textContent = desc;
     if (aiHudCard) aiHudCard.style.display = 'flex';
 
     updateAiCategoryButtons(cat);
 
-    // Flash form fields
-    [brandInput, nameInput, categorySelect, sizesInput, priceInput, descInput].forEach(field => {
-      if (field) {
-        field.style.boxShadow = '0 0 14px #00f0ff';
-        field.style.borderColor = '#00f0ff';
-        setTimeout(() => {
-          field.style.boxShadow = '';
-          field.style.borderColor = '';
-        }, 1200);
+    showToast(`[OK] // Распознано: ${foundBrand} — ${modelName}! Нажмите «ВСТАВИТЬ» у нужного поля`);
+  }
+
+  // Auto scan photo directly without sending user to external sites
+  async function triggerAutoScanOnUpload(photoSrc, fileName) {
+    if (!photoSrc) return;
+
+    if (aiLaserScanner) aiLaserScanner.style.display = 'block';
+    if (aiScannerStatus) aiScannerStatus.style.display = 'flex';
+    if (aiStatusText) aiStatusText.textContent = '⚡ Автоматическое распознавание через Lens & Yandex Vision...';
+
+    try {
+      await new Promise(r => setTimeout(r, 400));
+      const detected = recognizeStreetwearHeuristics(photoSrc, brandInput?.value, nameInput?.value, aiUserHintInput?.value, fileName || lastUploadedFileName);
+      lastAIDetectedData = detected;
+
+      // Populate HUD card only
+      if (aiResBrand) aiResBrand.textContent = detected.brand || '—';
+      if (aiResModel) aiResModel.textContent = detected.model || '—';
+      if (aiResCat) aiResCat.textContent = detected.category === 'footwear' ? 'Обувь / Кроссовки' : (detected.category === 'clothing' ? 'Одежда (Куртки / Пуховики)' : 'Аксессуары');
+      if (aiResPrice) aiResPrice.textContent = formatRub(detected.estimatedPriceRub || 24000);
+      if (aiResSizes) aiResSizes.textContent = detected.suggestedSizes ? detected.suggestedSizes.join(', ') : '—';
+      if (aiResDesc) aiResDesc.textContent = detected.description || '—';
+      if (aiHudCard) aiHudCard.style.display = 'flex';
+
+      updateAiCategoryButtons(detected.category);
+      showToast(`[OK] // Фото распознано! Нажмите «ВСТАВИТЬ» у названия или «ПРИМЕНИТЬ ВСЁ»`);
+    } catch (e) {
+      console.warn('Auto scan warning:', e);
+    } finally {
+      if (aiLaserScanner) aiLaserScanner.style.display = 'none';
+      if (aiScannerStatus) aiScannerStatus.style.display = 'none';
+    }
+  }
+
+  // Drag & drop directly onto the scanner viewport
+  const aiViewportBox = document.getElementById('ai-viewport-box');
+  if (aiViewportBox) {
+    ['dragenter', 'dragover'].forEach(ev => {
+      aiViewportBox.addEventListener(ev, (e) => {
+        e.preventDefault();
+        aiViewportBox.style.borderColor = '#00f0ff';
+        aiViewportBox.style.boxShadow = '0 0 15px rgba(0, 240, 255, 0.4)';
+      });
+    });
+    ['dragleave', 'drop'].forEach(ev => {
+      aiViewportBox.addEventListener(ev, (e) => {
+        e.preventDefault();
+        aiViewportBox.style.borderColor = '';
+        aiViewportBox.style.boxShadow = '';
+      });
+    });
+    aiViewportBox.addEventListener('drop', (e) => {
+      if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+        addEditorPhotoFiles(e.dataTransfer.files);
       }
     });
+  }
 
-    showToast(`[OK] // Распознано из текста Lens/Яндекс: ${foundBrand} — ${modelName}!`);
+  // Global paste (Ctrl+V) anywhere inside the cardModal
+  if (cardModal) {
+    cardModal.addEventListener('paste', (e) => {
+      const items = e.clipboardData ? e.clipboardData.items : [];
+      if (!items) return;
+      const imageFiles = [];
+      for (let i = 0; i < items.length; i++) {
+        if (items[i].type && items[i].type.startsWith('image/')) {
+          const blob = items[i].getAsFile();
+          if (blob) imageFiles.push(blob);
+        }
+      }
+      if (imageFiles.length > 0) {
+        e.preventDefault();
+        addEditorPhotoFiles(imageFiles);
+        showToast('[OK] // Фото из буфера обмена вставлено и автоматически сканируется!');
+      }
+    });
   }
 
   // Wire Smart Text Parser Input & Button
@@ -3437,7 +3602,9 @@
       e.preventDefault();
       if (lastAIDetectedData && lastAIDetectedData.description && descInput) {
         descInput.value = lastAIDetectedData.description;
-        showToast('[OK] // Премиальное описание вставлено в карточку');
+        flashFieldHighlight(descInput);
+        flashButtonSuccess(aiInsertDescOnlyBtn);
+        showToast('[OK] // Премиальное описание перенесено в карточку');
       }
     });
   }
