@@ -429,9 +429,15 @@
       }
 
       const condition = product.condition || 'NEW // DEADSTOCK';
-      const conditionClass = condition.toLowerCase().includes('deadstock') || condition.toLowerCase().includes('новое')
-        ? 'deadstock'
-        : (condition.toLowerCase().includes('vintage') || condition.toLowerCase().includes('винтаж') ? 'vintage' : '');
+      const cLower = condition.toLowerCase();
+      let conditionClass = '';
+      if (cLower.includes('deadstock') || cLower.includes('новое')) {
+        conditionClass = 'deadstock';
+      } else if (cLower.includes('vintage') || cLower.includes('винтаж')) {
+        conditionClass = 'vintage';
+      } else if (cLower.includes('5/10') || cLower.includes('6/10') || cLower.includes('distressed') || cLower.includes('fair')) {
+        conditionClass = 'distressed';
+      }
       const conditionBadge = `<span class="product-condition-pill ${conditionClass}">● ${condition}</span>`;
 
       const descriptionHtml = product.description

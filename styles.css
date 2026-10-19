@@ -1103,6 +1103,12 @@ button, input, select {
   border-color: rgba(245, 158, 11, 0.35);
 }
 
+.product-condition-pill.distressed {
+  color: #ff6b81;
+  background: rgba(255, 107, 129, 0.12);
+  border-color: rgba(255, 107, 129, 0.35);
+}
+
 .product-name {
   font-family: var(--font-body);
   font-size: 1.05rem;
