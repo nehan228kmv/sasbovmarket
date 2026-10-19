@@ -2994,6 +2994,19 @@
     });
   }
 
+  if (aiInsertDescOnlyBtn) {
+    aiInsertDescOnlyBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (!lastAIDetectedData || !lastAIDetectedData.description) return;
+      if (descInput) {
+        descInput.value = lastAIDetectedData.description;
+        flashFieldHighlight(descInput);
+        flashButtonSuccess(aiInsertDescOnlyBtn);
+        showToast(`[OK] // Описание перенесено в карточку!`);
+      }
+    });
+  }
+
   // =========================================================================
   // Streetwear Visual Presets Database (1-Click Verification & 100% Form Fill)
   // =========================================================================
@@ -3203,44 +3216,120 @@
     });
   });
 
-  // Intelligent text parser for Google Lens / Yandex (Non-destructive: updates HUD only!)
+  // Comprehensive dictionary of luxury, streetwear, techwear and designer brands
+  const KNOWN_BRANDS_DICTIONARY = [
+    // Multi-word Luxury & High Fashion
+    { brand: 'LOUIS VUITTON', aliases: ['louis vuitton malletier', 'louis vuitton paris', 'louis vuitton', 'луи виттон', 'луи вьюттон', 'луи витон', 'lv'] },
+    { brand: 'BOTTEGA VENETA', aliases: ['bottega veneta', 'боттега венета', 'боттега венетта', 'боттега'] },
+    { brand: 'MAISON MIHARA YASUHIRO', aliases: ['maison mihara yasuhiro', 'mihara yasuhiro', 'мейсон михара ясухиро', 'михара ясухиро', 'михара'] },
+    { brand: 'MAISON MARGIELA', aliases: ['maison margiela', 'mm6 maison margiela', 'mm6', 'мейсон марджела', 'марджела'] },
+    { brand: 'RICK OWENS DRKSHDW', aliases: ['rick owens drkshdw', 'rick owens darkshadow', 'drkshdw'] },
+    { brand: 'RICK OWENS', aliases: ['rick owens', 'рик оуэнс', 'рик овенс', 'рик'] },
+    { brand: 'CHROME HEARTS', aliases: ['chrome hearts', 'хром хартс', 'хромхартс'] },
+    { brand: 'SAINT LAURENT', aliases: ['yves saint laurent', 'saint laurent paris', 'saint laurent', 'ysl', 'сен лоран'] },
+    { brand: 'COMME DES GARÇONS', aliases: ['comme des garcons', 'comme des garçons', 'cdg', 'ком де гарсон'] },
+    { brand: 'YOHJI YAMAMOTO', aliases: ['yohji yamamoto', 'y-3', 'y3', 'йоджи ямамото'] },
+    { brand: 'ISSEY MIYAKE', aliases: ['issey miyake', 'homme plisse', 'bao bao issey miyake', 'иссей мияке'] },
+    { brand: 'ALEXANDER MCQUEEN', aliases: ['alexander mcqueen', 'александр маккуин'] },
+    { brand: 'THOM BROWNE', aliases: ['thom browne', 'том браун'] },
+    { brand: 'JIL SANDER', aliases: ['jil sander', 'джил сандер'] },
+    { brand: 'ACNE STUDIOS', aliases: ['acne studios', 'акне студиос', 'acne'] },
+    { brand: 'HELMUT LANG', aliases: ['helmut lang', 'хельмут ланг'] },
+    { brand: 'RAF SIMONS', aliases: ['raf simons', 'раф симонс'] },
+    { brand: 'DENIM TEARS', aliases: ['denim tears', 'деним тирс'] },
+    { brand: 'BALENCIAGA', aliases: ['balenciaga', 'баленсиага', 'баленс'] },
+    { brand: 'GUCCI', aliases: ['gucci', 'гуччи'] },
+    { brand: 'PRADA', aliases: ['prada', 'прада'] },
+    { brand: 'DIOR', aliases: ['christian dior', 'dior', 'диор'] },
+    { brand: 'CHANEL', aliases: ['chanel', 'шанель'] },
+    { brand: 'HERMÈS', aliases: ['hermès', 'hermes', 'гермес', 'эрмес'] },
+    { brand: 'GOYARD', aliases: ['goyard', 'гойярд', 'гоярд'] },
+    { brand: 'FENDI', aliases: ['fendi', 'фенди'] },
+    { brand: 'CELINE', aliases: ['celine', 'селин'] },
+    { brand: 'LOEWE', aliases: ['loewe', 'лоэве'] },
+    { brand: 'BURBERRY', aliases: ['burberry', 'берберри'] },
+    { brand: 'GIVENCHY', aliases: ['givenchy', 'живанши'] },
+    { brand: 'LEMAIRE', aliases: ['lemaire', 'лемер'] },
+    { brand: 'JACQUEMUS', aliases: ['jacquemus', 'жакмюс'] },
+    { brand: 'VALENTINO', aliases: ['valentino', 'валентино'] },
+    { brand: 'VERSACE', aliases: ['versace', 'версаче'] },
+    { brand: 'VETEMENTS', aliases: ['vetements', 'ветмо', 'ветемнтс'] },
+    { brand: 'OFF-WHITE', aliases: ['off-white', 'off white', 'офф вайт', 'оффвайт'] },
+    { brand: 'AMIRI', aliases: ['amiri', 'амири'] },
+    { brand: 'UNDERCOVER', aliases: ['undercover', 'андеркавер', 'jun takahashi'] },
+    { brand: 'KAPITAL', aliases: ['kapital', 'капитал'] },
+
+    // Techwear & Outdoor
+    { brand: 'C.P. COMPANY', aliases: ['c.p. company', 'cp company', 'c.p company', 'cp.company', 'сипи компани', 'сипи'] },
+    { brand: 'STONE ISLAND', aliases: ['stone island', 'стоун айленд', 'стоник', 'stone island shadow project'] },
+    { brand: "ARC'TERYX", aliases: ["arc'teryx", 'arcteryx', 'arc teryx', 'арктерикс', 'veilance', 'system_a'] },
+    { brand: 'MONCLER', aliases: ['moncler', 'монклер', 'moncler grenoble'] },
+    { brand: 'SALOMON', aliases: ['salomon advanced', 'salomon s/lab', 'salomon lab', 'salomon', 'саломон'] },
+    { brand: 'ROARINGWILD', aliases: ['roaringwild', 'роарингвайлд'] },
+    { brand: 'THE NORTH FACE', aliases: ['the north face', 'north face', 'tnf', 'норт фейс'] },
+    { brand: 'OAKLEY', aliases: ['oakley factory team', 'oakley', 'окли'] },
+
+    // Cult Streetwear & Shoes
+    { brand: 'TRAPSTAR', aliases: ['trapstar', 'трапстар', 'trapstar london'] },
+    { brand: 'THUG CLUB', aliases: ['thug club', 'таг клаб', 'thugclub'] },
+    { brand: 'PORTER YOSHIDA & CO', aliases: ['porter yoshida & co', 'porter yoshida', 'yoshida porter', 'yoshida & co', 'porter tokyo', 'портер йошида', 'портер'] },
+    { brand: 'TRAVIS SCOTT x AIR JORDAN', aliases: ['travis scott x jordan', 'travis scott x air jordan', 'cactus jack x jordan', 'тревис скотт джордан', 'тревис скотт'] },
+    { brand: 'AIR JORDAN', aliases: ['air jordan', 'jordan retro', 'jordan brand', 'джордан'] },
+    { brand: 'NIKE', aliases: ['nike sportswear', 'nike acg', 'nike sb', 'nike lab', 'nike', 'найк'] },
+    { brand: 'ADIDAS', aliases: ['adidas originals', 'adidas yeezy', 'yeezy', 'adidas', 'адидас', 'изи'] },
+    { brand: 'NEW BALANCE', aliases: ['new balance', 'нью баланс', 'нью бэланс'] },
+    { brand: 'ASICS', aliases: ['asics sportstyle', 'asics', 'асикс'] },
+    { brand: 'SUPREME', aliases: ['supreme new york', 'supreme', 'суприм'] },
+    { brand: 'STUSSY', aliases: ['stussy', 'стюсси', 'стусси'] },
+    { brand: 'BAPE', aliases: ['a bathing ape', 'bape', 'бейп'] },
+    { brand: 'HUMAN MADE', aliases: ['human made', 'хьюман мейд'] },
+    { brand: 'WTAPS', aliases: ['wtaps', 'втапс'] },
+    { brand: 'NEIGHBORHOOD', aliases: ['neighborhood', 'нейборхуд'] },
+    { brand: 'CORTEIZ', aliases: ['corteiz', 'crtz', 'кортез'] },
+    { brand: 'HELLSTAR', aliases: ['hellstar', 'хеллстар'] },
+    { brand: 'SP5DER', aliases: ['spider 555', 'sp5der 555', 'sp5der', 'спайдер'] },
+    { brand: 'PALACE', aliases: ['palace skateboards', 'palace', 'палас'] }
+  ];
+
+  // Intelligent text & prompt parser for Google Lens / Yandex (Non-destructive: updates HUD only!)
   function parseVisualSearchText(rawText) {
     if (!rawText || !rawText.trim()) return;
-    const q = rawText.trim().toLowerCase();
+    const trimmed = rawText.trim();
+    const lowerText = trimmed.toLowerCase();
 
-    // Check all presets first for exact match
-    let matchedKey = null;
-    if (q.includes('c.p') || q.includes('cp company') || q.includes('goggle') || q.includes('shell down') || q.includes('пуховик cp') || q.includes('пухан cp')) {
-      matchedKey = 'cp-puffer';
-    } else if (q.includes('arc') || q.includes('beta lt') || q.includes('gore-tex') || q.includes('артерикс')) {
-      matchedKey = 'arcteryx-beta';
-    } else if (q.includes('stone') || q.includes('island') || q.includes('стоник') || q.includes('soft shell') || q.includes('crinkle')) {
-      matchedKey = 'stone-island';
-    } else if (q.includes('trapstar') || q.includes('irongate') || q.includes('трапстар')) {
-      matchedKey = 'trapstar-puffer';
-    } else if (q.includes('moncler') || q.includes('maya') || q.includes('монклер')) {
-      matchedKey = 'moncler-maya';
-    } else if (q.includes('mihara') || q.includes('yasuhiro') || q.includes('peterson') || q.includes('михара')) {
-      matchedKey = 'mihara-peterson';
-    } else if (q.includes('rick') || q.includes('owens') || q.includes('ramones') || q.includes('drkshdw') || q.includes('рамоны')) {
-      matchedKey = 'rick-owens-ramones';
-    } else if (q.includes('travis') || q.includes('jordan 1') || q.includes('reverse mocha') || q.includes('тревис')) {
-      matchedKey = 'travis-scott-aj1';
-    } else if (q.includes('3xl') || q.includes('balenciaga') || q.includes('баленсиага')) {
-      matchedKey = 'balenciaga-3xl';
-    } else if (q.includes('salomon') || q.includes('mm6') || q.includes('cross low') || q.includes('саломон')) {
-      matchedKey = 'salomon-mm6';
-    } else if (q.includes('chrome') || q.includes('hearts') || q.includes('хром хартс') || q.includes('тракер')) {
-      matchedKey = 'chrome-hearts-cap';
-    } else if (q.includes('thug club') || q.includes('таг клаб') || q.includes('tribal')) {
-      matchedKey = 'thug-club-hoodie';
-    } else if (q.includes('roaringwild') || q.includes('карго') || q.includes('cargo')) {
-      matchedKey = 'roaringwild-cargo';
-    }
+    // Check exact short preset shortcuts (only when text is short, not a full prompt)
+    if (trimmed.length < 30) {
+      let matchedKey = null;
+      if (lowerText.includes('c.p') || lowerText.includes('cp company') || lowerText.includes('goggle') || lowerText.includes('shell down') || lowerText.includes('пуховик cp') || lowerText.includes('пухан cp')) {
+        matchedKey = 'cp-puffer';
+      } else if (lowerText.includes('arc') || lowerText.includes('beta lt') || lowerText.includes('артерикс')) {
+        matchedKey = 'arcteryx-beta';
+      } else if (lowerText.includes('stone') || lowerText.includes('island') || lowerText.includes('стоник')) {
+        matchedKey = 'stone-island';
+      } else if (lowerText.includes('trapstar') || lowerText.includes('irongate') || lowerText.includes('трапстар')) {
+        matchedKey = 'trapstar-puffer';
+      } else if (lowerText.includes('moncler') || lowerText.includes('maya') || lowerText.includes('монклер')) {
+        matchedKey = 'moncler-maya';
+      } else if (lowerText.includes('mihara') || lowerText.includes('peterson') || lowerText.includes('михара')) {
+        matchedKey = 'mihara-peterson';
+      } else if (lowerText.includes('rick') || lowerText.includes('ramones') || lowerText.includes('drkshdw') || lowerText.includes('рамоны')) {
+        matchedKey = 'rick-owens-ramones';
+      } else if (lowerText.includes('travis') || lowerText.includes('reverse mocha') || lowerText.includes('тревис')) {
+        matchedKey = 'travis-scott-aj1';
+      } else if (lowerText.includes('3xl') || lowerText.includes('defender')) {
+        matchedKey = 'balenciaga-3xl';
+      } else if (lowerText.includes('salomon') || lowerText.includes('cross low')) {
+        matchedKey = 'salomon-mm6';
+      } else if (lowerText.includes('chrome') || lowerText.includes('тракер')) {
+        matchedKey = 'chrome-hearts-cap';
+      } else if (lowerText.includes('thug club') || lowerText.includes('tribal')) {
+        matchedKey = 'thug-club-hoodie';
+      } else if (lowerText.includes('roaringwild') || lowerText.includes('cargo')) {
+        matchedKey = 'roaringwild-cargo';
+      }
 
-    if (matchedKey) {
-      const data = STREETWEAR_PRESETS_MAP[matchedKey];
-      if (data) {
+      if (matchedKey && STREETWEAR_PRESETS_MAP[matchedKey]) {
+        const data = STREETWEAR_PRESETS_MAP[matchedKey];
         lastAIDetectedData = {
           brand: data.brand,
           model: data.name,
@@ -3260,74 +3349,148 @@
 
         updateAiCategoryButtons(data.category);
         showToast(`[OK] // Распознано: ${data.brand} — ${data.name}! Нажмите «ВСТАВИТЬ» у нужного поля`);
-      }
-      return;
-    }
-
-    // Generic intelligent parser for any brand & model from Google Lens / Yandex
-    let cat = 'clothing';
-    if (q.includes('sneaker') || q.includes('shoe') || q.includes('кроссовк') || q.includes('кед') || q.includes('ботинк') || q.includes('low') || q.includes('high') || q.includes('runner')) {
-      cat = 'footwear';
-    } else if (q.includes('cap') || q.includes('hat') || q.includes('bag') || q.includes('сумк') || q.includes('кепк') || q.includes('шапк') || q.includes('glasses') || q.includes('очк') || q.includes('аксессуар')) {
-      cat = 'accessories';
-    }
-
-    // Brand detection
-    const knownBrands = [
-      'C.P. COMPANY', 'STONE ISLAND', 'ARC\'TERYX', 'MONCLER', 'TRAPSTAR',
-      'MAISON MIHARA YASUHIRO', 'RICK OWENS', 'BALENCIAGA', 'SALOMON',
-      'TRAVIS SCOTT', 'NIKE', 'JORDAN', 'CHROME HEARTS', 'THUG CLUB',
-      'ROARINGWILD', 'KAPITAL', 'SUPREME', 'STUSSY', 'BAPE', 'OFF-WHITE',
-      'VETEMENTS', 'ACNE STUDIOS', 'AMIRI', 'HELMUT LANG', 'UNDERCOVER'
-    ];
-
-    let foundBrand = '';
-    const qUpper = rawText.toUpperCase();
-    for (const b of knownBrands) {
-      if (qUpper.includes(b)) {
-        foundBrand = b;
-        break;
+        return;
       }
     }
 
-    if (!foundBrand) {
-      const words = rawText.trim().split(/\s+/);
-      foundBrand = words[0].toUpperCase();
+    // 1. Brand Detection via Comprehensive Dictionary
+    let matchedBrand = null;
+    let matchedAlias = '';
+    let matchPos = -1;
+
+    for (const entry of KNOWN_BRANDS_DICTIONARY) {
+      for (const alias of entry.aliases) {
+        const esc = alias.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const regex = new RegExp('(?:^|[^a-zA-Zа-яА-ЯёЁ0-9])' + esc + '(?=[^a-zA-Zа-яА-ЯёЁ0-9]|$)', 'i');
+        const m = lowerText.match(regex);
+        if (m) {
+          matchedBrand = entry.brand;
+          matchedAlias = alias;
+          matchPos = m.index + (m[0].length - alias.length);
+          break;
+        }
+      }
+      if (matchedBrand) break;
     }
 
-    let modelName = rawText.trim();
-    if (foundBrand && modelName.toUpperCase().startsWith(foundBrand)) {
-      modelName = modelName.substring(foundBrand.length).trim();
+    // 2. Category Detection (High-Precision Accessories, Footwear, Clothing keywords)
+    let detectedCat = 'clothing';
+    const isAccessories = /сумк|сумочк|плечевая|кроссбоди|тоут|клатч|рюкзак|барсетк|портмоне|кошелек|портфель|ремень|пояс|кепк|бейсболк|шапк|бини|панам|очк|шарф|платок|перчатк|палантин|украшен|браслет|цепочк|кольцо|брелок|чехол|аксессуар|bag|handbag|shoulder bag|crossbody|tote|backpack|clutch|pouch|wallet|purse|belt|cap|hat|beanie|glasses|sunglasses|scarf|gloves|jewelry|necklace|bracelet|ring|keychain|case|vernis|monogram vernis|speedy|keepall|neverfull|alma|pochette|birkin|kelly|constance|cassette|jodie|saddle|lady dior|book tote|baguette/i.test(trimmed);
+    const isFootwear = /кроссовк|кед[ыа]?|ботинк|туфл|лофер|сапог|тапочк|слайд|мюл|sneaker|sneakers|shoe|shoes|boot|boots|loafer|mule|slide|runner|runners|og sole|bamba|ramones|geobasket|track|defender|3xl/i.test(trimmed);
+
+    if (isAccessories) {
+      detectedCat = 'accessories';
+    } else if (isFootwear) {
+      detectedCat = 'footwear';
+    } else {
+      detectedCat = 'clothing';
     }
-    if (!modelName) modelName = rawText.trim();
 
-    const defaultPrice = cat === 'footwear' ? 28000 : (cat === 'accessories' ? 18000 : 38000);
-    const sizesArr = cat === 'footwear'
-      ? ['40 EU', '41 EU', '42 EU', '43 EU', '44 EU']
-      : (cat === 'clothing' ? ['S', 'M', 'L', 'XL'] : ['ONE SIZE']);
+    // 3. Model Name Extraction
+    let modelName = '';
+    if (matchedBrand && matchPos !== -1) {
+      modelName = trimmed.substring(matchPos + matchedAlias.length).trim();
+    } else {
+      // Fallback: strip conversational intro and leading product nouns
+      let clean = trimmed
+        .replace(/^(?:на\s+изображении\s+(?:представлен[аоы]?|изображен[аоы]?|показан[аоы]?|виден|видна|видно)?|на\s+фото(?:графии)?\s+(?:представлен[аоы]?|изображен[аоы]?|показан[аоы]?|виден|видна|видно)?|перед\s+нами|это|на\s+картинке|вид[имно]?)\s*/i, '')
+        .trim();
+      clean = clean.replace(/^(?:плечевая\s+сумка|сумка(?:\s+через\s+плечо)?|сумка-тоут|сумочка|рюкзак|кроссовки|кеды|ботинки|пуховик|куртка|худи|толстовка|свитшот|футболка|брюки|карго|джинсы|кепка|бейсболка|шапка)\s+/i, '');
+      const words = clean.split(/\s+/);
+      matchedBrand = words[0].toUpperCase();
+      modelName = clean.substring(words[0].length).trim();
+      if (!modelName) modelName = clean;
+    }
 
-    const desc = `Оригинальный релиз ${foundBrand} (${modelName}). Высококачественные аутентичные материалы, фирменная фурнитура и заводская маркировка. Товар проверен байерами SASBOV MARKET в Токио/Шанхае. Доступна примерка и самовывоз в шоуруме Balkonsky (СПб, ул. Тверская 3/1).`;
+    // Strip descriptive subordinate participle clauses
+    const cutRegex = /[,;]\s*(?:выполненн[аоые]?|изготовленн[аоые]?|сделанн[аоые]?|украшенн[аоые]?|дополненн[аоые]?|созданн[аоые]?|оснащенн[аоые]?|с\s+тиснен|с\s+отделк|с\s+фирменн|материал|состояние|размер|комплект|артикул)/i;
+    const cutMatch = modelName.match(cutRegex);
+    if (cutMatch && cutMatch.index !== undefined) {
+      modelName = modelName.substring(0, cutMatch.index).trim();
+    }
 
-    // HUD Update only (Never automatically overwrite existing post fields!)
+    // Cut at first period or newline
+    const dotIdx = modelName.indexOf('. ');
+    if (dotIdx !== -1) {
+      modelName = modelName.substring(0, dotIdx).trim();
+    }
+    const newlineIdx = modelName.indexOf('\n');
+    if (newlineIdx !== -1) {
+      modelName = modelName.substring(0, newlineIdx).trim();
+    }
+
+    // Clean up color clauses: "в бронзовом/медном цвете (Bronze / Copper)" -> "(Bronze / Copper)"
+    modelName = modelName.replace(/\s+в\s+[^()\n\r]+?(?:цвете|расцветке)\s*(\([^\)]+\))/i, ' $1');
+    modelName = modelName.replace(/\s+в\s+(?:цвете|расцветке)\s+([A-Za-z0-9\s\/\-_]+)/i, ' ($1)');
+    modelName = modelName.replace(/^[-:,\s]+|[-:,\s]+$/g, '').trim();
+
+    if (!modelName) {
+      modelName = trimmed;
+    }
+
+    // 4. Sizing based on Category
+    let sizesArr = [];
+    if (detectedCat === 'accessories') {
+      sizesArr = ['ONE SIZE'];
+    } else if (detectedCat === 'footwear') {
+      sizesArr = ['39 EU', '40 EU', '41 EU', '42 EU', '43 EU', '44 EU'];
+    } else {
+      if (/брюки|штаны|карго|джинсы|pants|cargo|denim|jeans/i.test(trimmed)) {
+        sizesArr = ['S (W28-30)', 'M (W31-32)', 'L (W33-34)', 'XL (W35-36)'];
+      } else if (/пуховик|пухан|куртка|пальто|puffer|down|jacket|parka|coat/i.test(trimmed)) {
+        sizesArr = ['S (46 IT)', 'M (48 IT)', 'L (50 IT)', 'XL (52 IT)', 'XXL (54 IT)'];
+      } else {
+        sizesArr = ['S', 'M', 'L', 'XL'];
+      }
+    }
+
+    // 5. Realistic Market Pricing
+    let estimatedPrice = 35000;
+    const upperBrand = (matchedBrand || '').toUpperCase();
+    if (['LOUIS VUITTON', 'HERMÈS', 'CHANEL', 'DIOR', 'GOYARD', 'BOTTEGA VENETA'].includes(upperBrand)) {
+      estimatedPrice = detectedCat === 'accessories' ? 78000 : 115000;
+    } else if (['PRADA', 'GUCCI', 'BALENCIAGA', 'SAINT LAURENT', 'CELINE', 'LOEWE', 'MONCLER', 'RICK OWENS', 'RICK OWENS DRKSHDW'].includes(upperBrand)) {
+      estimatedPrice = detectedCat === 'accessories' ? 48000 : (detectedCat === 'footwear' ? 58000 : 85000);
+    } else if (['C.P. COMPANY', 'STONE ISLAND', "ARC'TERYX", 'CHROME HEARTS', 'TRAVIS SCOTT x AIR JORDAN'].includes(upperBrand)) {
+      estimatedPrice = detectedCat === 'accessories' ? 28000 : (detectedCat === 'footwear' ? 34000 : 54000);
+    } else if (['MAISON MIHARA YASUHIRO', 'SALOMON', 'THUG CLUB', 'TRAPSTAR', 'ROARINGWILD', 'KAPITAL'].includes(upperBrand)) {
+      estimatedPrice = detectedCat === 'accessories' ? 18000 : (detectedCat === 'footwear' ? 24800 : 22600);
+    } else {
+      estimatedPrice = detectedCat === 'accessories' ? 16000 : (detectedCat === 'footwear' ? 26000 : 32000);
+    }
+
+    // 6. Professional Showroom Description
+    let desc = trimmed
+      .replace(/^(?:на\s+изображении\s+(?:представлен[аоы]?|изображен[аоы]?|показан[аоы]?|виден|видна|видно)?|на\s+фото(?:графии)?\s+(?:представлен[аоы]?|изображен[аоы]?|показан[аоы]?|виден|видна|видно)?|перед\s+нами|это|на\s+картинке|вид[имно]?)\s*/i, '')
+      .trim();
+    if (desc) {
+      desc = desc.charAt(0).toUpperCase() + desc.slice(1);
+      if (!desc.endsWith('.')) desc += '.';
+      desc += ' 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).';
+    } else {
+      desc = `Оригинальный релиз ${matchedBrand} (${modelName}). Высококачественные аутентичные материалы, фирменная фурнитура и заводская маркировка. Товар проверен байерами SASBOV MARKET в Токио/Шанхае. 100% оригинал, любые проверки.`;
+    }
+
+    // 7. Populate HUD Card (Does NOT touch actual card form until user clicks ВСТАВИТЬ!)
     lastAIDetectedData = {
-      brand: foundBrand,
+      brand: matchedBrand,
       model: modelName,
-      category: cat,
-      estimatedPriceRub: defaultPrice,
+      category: detectedCat,
+      estimatedPriceRub: estimatedPrice,
       suggestedSizes: sizesArr,
       description: desc
     };
-    if (aiResBrand) aiResBrand.textContent = foundBrand;
+
+    if (aiResBrand) aiResBrand.textContent = matchedBrand;
     if (aiResModel) aiResModel.textContent = modelName;
-    if (aiResCat) aiResCat.textContent = cat === 'footwear' ? 'Обувь / Кроссовки' : (cat === 'clothing' ? 'Одежда / Пуховик' : 'Аксессуар');
-    if (aiResPrice) aiResPrice.textContent = formatRub(defaultPrice);
+    if (aiResCat) aiResCat.textContent = detectedCat === 'footwear' ? 'Обувь / Кроссовки' : (detectedCat === 'accessories' ? 'Аксессуар (Сумка)' : 'Одежда / Пуховик');
+    if (aiResPrice) aiResPrice.textContent = formatRub(estimatedPrice);
     if (aiResSizes) aiResSizes.textContent = sizesArr.join(', ');
     if (aiResDesc) aiResDesc.textContent = desc;
     if (aiHudCard) aiHudCard.style.display = 'flex';
 
-    updateAiCategoryButtons(cat);
-
-    showToast(`[OK] // Распознано: ${foundBrand} — ${modelName}! Нажмите «ВСТАВИТЬ» у нужного поля`);
+    updateAiCategoryButtons(detectedCat);
+    showToast(`[OK] // Распознано: ${matchedBrand} — ${modelName}! Нажмите «ВСТАВИТЬ» у нужного поля`);
   }
 
   // Drag & drop directly onto the scanner viewport

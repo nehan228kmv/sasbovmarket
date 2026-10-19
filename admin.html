@@ -472,74 +472,43 @@
         </div>
       </div>
 
-      <!-- Fast Object Category Switcher for Scan -->
-      <div class="ai-category-toggle-wrap">
-        <span class="ai-cat-toggle-label">КАТЕГОРИЯ ВЕЩИ:</span>
-        <div class="ai-cat-toggle-buttons">
-          <button type="button" class="ai-cat-btn" data-cat="clothing" id="ai-cat-btn-clothing">
-            🧥 ОДЕЖДА / ПУХОВИК
-          </button>
-          <button type="button" class="ai-cat-btn" data-cat="footwear" id="ai-cat-btn-footwear">
-            👟 ОБУВЬ
-          </button>
-          <button type="button" class="ai-cat-btn" data-cat="accessories" id="ai-cat-btn-accessories">
-            🎒 АКСЕССУАР
-          </button>
+      <!-- 1-Click Reverse Search Verification Toolbar -->
+      <div class="ai-reverse-search-toolbar" style="padding: 10px; background: rgba(0, 0, 0, 0.45); border: 1px dashed rgba(0, 240, 255, 0.28); border-radius: 8px; margin-bottom: 10px;">
+        <div style="font-family: var(--font-mono); font-size: 0.66rem; color: #a1a1aa; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between;">
+          <span style="color: #00f0ff; font-weight: 700;">🌐 ПОИСК ПО ФОТО В БАЗАХ:</span>
+          <span style="color: #00ff88; font-size: 0.6rem; letter-spacing: 0.05em; font-weight: 700;">1-CLICK LOOKUP</span>
         </div>
-      </div>
-
-      <!-- Active Photo Scanner Viewport -->
-      <div class="ai-scanner-panel">
-        <div class="ai-viewport-box" id="ai-viewport-box">
-          <img id="ai-target-img-preview" src="" alt="Сканируемое фото" style="display: none;">
-          <div class="ai-viewport-empty" id="ai-viewport-empty">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
-            <span>ВСТАВЬТЕ ФОТО ДЛЯ АВТО-СКАНИРОВАНИЯ</span>
-            <span class="sub">Перетащите фото сюда или нажмите Ctrl+V в любом месте</span>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <div style="width: 52px; height: 52px; border-radius: 6px; overflow: hidden; background: rgba(0,0,0,0.6); border: 1px solid rgba(0,240,255,0.3); flex-shrink: 0; display: flex; align-items: center; justify-content: center;">
+            <img id="ai-target-img-preview" src="" alt="Фото" style="width: 100%; height: 100%; object-fit: cover; display: none;">
+            <span id="ai-viewport-empty" style="font-size: 1.2rem;">🖼️</span>
           </div>
-          <div class="ai-laser-scanner" id="ai-laser-scanner" style="display: none;"></div>
-          <div class="ai-reticle-marks" aria-hidden="true">
-            <span class="reticle-corner tl"></span>
-            <span class="reticle-corner tr"></span>
-            <span class="reticle-corner bl"></span>
-            <span class="reticle-corner br"></span>
-          </div>
-        </div>
-
-        <!-- 1-Click Reverse Search Verification Toolbar -->
-        <div class="ai-reverse-search-toolbar" style="margin-top: 10px; padding: 10px; background: rgba(0, 0, 0, 0.45); border: 1px dashed rgba(0, 240, 255, 0.28); border-radius: 6px;">
-          <div style="font-family: var(--font-mono); font-size: 0.64rem; color: #a1a1aa; margin-bottom: 6px; display: flex; align-items: center; justify-content: space-between;">
-            <span>🌐 БАЗЫ LENS И ЯНДЕКС:</span>
-            <span style="color: #00ff88; font-size: 0.58rem; letter-spacing: 0.05em; font-weight: 700;">100% ВЕРИФИКАЦИЯ</span>
-          </div>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
-            <button type="button" class="btn btn-sm btn-outline" id="btn-search-google-lens" style="border-color: rgba(66, 133, 244, 0.5); color: #60a5fa; font-size: 0.68rem; display: flex; align-items: center; justify-content: center; gap: 5px; padding: 7px 6px;" title="Открыть Google Объектив (Lens) с этим фото">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; flex: 1;">
+            <button type="button" class="btn btn-sm btn-outline" id="btn-search-google-lens" style="border-color: rgba(66, 133, 244, 0.6); color: #60a5fa; font-size: 0.7rem; display: flex; align-items: center; justify-content: center; gap: 5px; padding: 12px 6px; font-weight: 700;" title="Открыть Google Объектив (Lens) с фото товара">
               <span>🔎</span> <strong>GOOGLE LENS</strong>
             </button>
-            <button type="button" class="btn btn-sm btn-outline" id="btn-search-yandex-images" style="border-color: rgba(239, 68, 68, 0.5); color: #f87171; font-size: 0.68rem; display: flex; align-items: center; justify-content: center; gap: 5px; padding: 7px 6px;" title="Открыть Яндекс Картинки (поиск по фото)">
+            <button type="button" class="btn btn-sm btn-outline" id="btn-search-yandex-images" style="border-color: rgba(239, 68, 68, 0.6); color: #f87171; font-size: 0.7rem; display: flex; align-items: center; justify-content: center; gap: 5px; padding: 12px 6px; font-weight: 700;" title="Открыть Яндекс Картинки с фото товара">
               <span>🔴</span> <strong>ЯНДЕКС ФОТО</strong>
             </button>
           </div>
-          <div style="font-size: 0.58rem; color: #a1a1aa; margin-top: 5px; line-height: 1.35;">
-            Нажмите кнопку, чтобы найти точную модель в Google Lens или Яндекс. Скопируйте название модели, вставьте в поле ниже и нажмите «РАСПАРСИТЬ».
-          </div>
         </div>
+        <div style="font-size: 0.58rem; color: #a1a1aa; margin-top: 6px; line-height: 1.35;">
+          Нажмите кнопку, чтобы открыть поиск по первому фото товара. Скопируйте описание или название модели и вставьте в поле ниже.
+        </div>
+      </div>
 
-        <!-- Instant Smart Verification & Paste Input -->
-        <div class="ai-hint-box" style="margin-top: 10px; margin-bottom: 8px;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-            <label for="ai-user-hint" style="font-family: var(--font-mono); font-size: 0.64rem; color: #00f0ff; letter-spacing: 0.05em; font-weight: 700;">
-              📋 НАЗВАНИЕ ИЛИ ПОДСКАЗКА:
-            </label>
-            <span style="font-size: 0.58rem; color: #a1a1aa;">(Авто-разбор)</span>
-          </div>
-          <div style="display: flex; gap: 6px;">
-            <input type="text" id="ai-user-hint" class="form-input" style="font-size: 0.76rem; padding: 7px 10px; background: rgba(0,0,0,0.6); border-color: rgba(0,240,255,0.35); flex: 1;" placeholder="Например: C.P. Company Goggle, Mihara, Rick...">
-            <button type="button" class="btn btn-sm btn-primary" id="btn-parse-hint-trigger" style="font-size: 0.68rem; padding: 6px 10px;">
-              РАСПАРСИТЬ
-            </button>
-          </div>
+      <!-- Prompt / Description Input Box -->
+      <div class="ai-hint-box" style="margin-bottom: 10px; background: rgba(0,0,0,0.5); border: 1px solid rgba(0,240,255,0.25); border-radius: 8px; padding: 10px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+          <label for="ai-user-hint" style="font-family: var(--font-mono); font-size: 0.64rem; color: #00f0ff; letter-spacing: 0.05em; font-weight: 700;">
+            📋 ВСТАВЬТЕ ПРОМПТ / ОПИСАНИЕ ИЗ ПОИСКА:
+          </label>
+          <span style="font-size: 0.58rem; color: #a1a1aa;">(Авто-разбор)</span>
         </div>
+        <textarea id="ai-user-hint" class="form-input" rows="4" style="font-size: 0.76rem; padding: 8px 10px; background: rgba(0,0,0,0.65); border-color: rgba(0,240,255,0.35); width: 100%; resize: vertical; min-height: 80px; font-family: var(--font-body); line-height: 1.45;" placeholder="Вставьте сюда любой текст или промпт, например: «На изображении представлена плечевая сумка Louis Vuitton Monogram Vernis Thompson Street в бронзовом/медном цвете (Bronze / Copper), выполненная из лакированной кожи с тисненым узором Monogram.»"></textarea>
+        <button type="button" class="btn btn-primary btn-block" id="btn-parse-hint-trigger" style="margin-top: 8px; font-size: 0.72rem; padding: 9px 12px; font-weight: 700; letter-spacing: 0.04em; display: flex; align-items: center; justify-content: center; gap: 6px;">
+          <span>⚡</span> РАСПАРСИТЬ ПРОМПТ В ПОЛЯ
+        </button>
       </div>
 
       <!-- Recognition Results HUD (Brand, Model, Category, Price, Description) -->
