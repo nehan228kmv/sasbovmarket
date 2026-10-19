@@ -274,6 +274,75 @@ async function kvSet(url, token, key, value) {
   }
 }
 
+// Native Redis Client Support (npm: redis)
+let redisClient = null;
+async function getRedisClient() {
+  const redisUrl = process.env.REDIS_URL || process.env.KV_URL;
+  if (!redisUrl) return null;
+  if (redisClient && redisClient.isOpen) return redisClient;
+  try {
+    const { createClient } = require('redis');
+    redisClient = createClient({ url: redisUrl });
+    redisClient.on('error', (err) => console.warn('[Redis Client Error]', err));
+    await redisClient.connect();
+    return redisClient;
+  } catch (err) {
+    console.warn('[Redis Init Failed]', err);
+    return null;
+  }
+}
+
+async function getStoredProducts(kvUrl, kvToken) {
+  // 1. Native Redis connection (if REDIS_URL or KV_URL is provided)
+  const client = await getRedisClient();
+  if (client) {
+    try {
+      const raw = await client.get(KV_STORAGE_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          return { data: parsed, source: 'redis_native' };
+        }
+      }
+    } catch (e) {
+      console.warn('[Redis] get error:', e);
+    }
+  }
+
+  // 2. REST API Vercel KV / Upstash
+  if (kvUrl && kvToken) {
+    const restData = await kvGet(kvUrl, kvToken, KV_STORAGE_KEY);
+    if (Array.isArray(restData) && restData.length > 0) {
+      return { data: restData, source: 'vercel_kv_rest' };
+    }
+  }
+
+  return null;
+}
+
+async function saveStoredProducts(products, kvUrl, kvToken) {
+  let saved = false;
+
+  // 1. Native Redis
+  const client = await getRedisClient();
+  if (client) {
+    try {
+      await client.set(KV_STORAGE_KEY, JSON.stringify(products));
+      saved = true;
+    } catch (e) {
+      console.warn('[Redis] set error:', e);
+    }
+  }
+
+  // 2. REST API Vercel KV / Upstash
+  if (kvUrl && kvToken) {
+    const ok = await kvSet(kvUrl, kvToken, KV_STORAGE_KEY, products);
+    if (ok) saved = true;
+  }
+
+  return saved;
+}
+
 module.exports = async function handler(req, res) {
   setCorsHeaders(res);
 
@@ -283,34 +352,35 @@ module.exports = async function handler(req, res) {
 
   const kvUrl = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
   const kvToken = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
-  const isKvEnabled = Boolean(kvUrl && kvToken);
+  const hasRedisUrl = Boolean(process.env.REDIS_URL || process.env.KV_URL);
+  const isKvEnabled = Boolean((kvUrl && kvToken) || hasRedisUrl);
 
   // GET: Fetch product list
   if (req.method === 'GET') {
     try {
       if (isKvEnabled) {
-        const stored = await kvGet(kvUrl, kvToken, KV_STORAGE_KEY);
-        if (Array.isArray(stored) && stored.length > 0) {
-          memoryStorage = stored;
+        const stored = await getStoredProducts(kvUrl, kvToken);
+        if (stored && Array.isArray(stored.data) && stored.data.length > 0) {
+          memoryStorage = stored.data;
           return res.status(200).json({
             success: true,
-            source: 'vercel_kv',
-            count: stored.length,
-            data: stored
+            source: stored.source,
+            count: stored.data.length,
+            data: stored.data
           });
         }
-        // If KV is connected but empty, seed it with verified catalog
-        await kvSet(kvUrl, kvToken, KV_STORAGE_KEY, DEFAULT_PRODUCTS);
+        // If DB is connected but empty, seed it with verified catalog
+        await saveStoredProducts(DEFAULT_PRODUCTS, kvUrl, kvToken);
         memoryStorage = [...DEFAULT_PRODUCTS];
         return res.status(200).json({
           success: true,
-          source: 'vercel_kv_seeded',
+          source: 'database_seeded',
           count: DEFAULT_PRODUCTS.length,
           data: DEFAULT_PRODUCTS
         });
       }
 
-      // Memory fallback (when no Vercel KV is configured)
+      // Memory fallback (when no Database is configured)
       return res.status(200).json({
         success: true,
         source: 'memory_fallback',
@@ -383,12 +453,12 @@ module.exports = async function handler(req, res) {
       memoryStorage = updatedList;
 
       if (isKvEnabled) {
-        await kvSet(kvUrl, kvToken, KV_STORAGE_KEY, updatedList);
+        await saveStoredProducts(updatedList, kvUrl, kvToken);
       }
 
       return res.status(200).json({
         success: true,
-        source: isKvEnabled ? 'vercel_kv' : 'memory',
+        source: isKvEnabled ? 'database' : 'memory',
         message: 'Products successfully saved to database',
         count: updatedList.length,
         timestamp: Date.now()
@@ -410,7 +480,7 @@ module.exports = async function handler(req, res) {
       memoryStorage = memoryStorage.filter(p => p.id !== id);
 
       if (isKvEnabled) {
-        await kvSet(kvUrl, kvToken, KV_STORAGE_KEY, memoryStorage);
+        await saveStoredProducts(memoryStorage, kvUrl, kvToken);
       }
 
       return res.status(200).json({
