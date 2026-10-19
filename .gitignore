@@ -6,3 +6,5 @@ desktop.ini
 # Logs and temp
 *.log
 .temp/
+.vercel
+.env*
