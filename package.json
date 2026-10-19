@@ -19,5 +19,8 @@
     "sneakers"
   ],
   "author": "SASBOV MARKET",
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "dependencies": {
+    "redis": "^6.3.0"
+  }
 }
