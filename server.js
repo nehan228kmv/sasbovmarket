@@ -13,10 +13,12 @@ const path = require('path');
 const PORT = process.env.PORT || 3333;
 const ROOT_DIR = __dirname;
 const DATA_DIR = path.join(ROOT_DIR, 'data');
+const BACKUPS_DIR = path.join(DATA_DIR, 'backups');
 const UPLOADS_DIR = path.join(ROOT_DIR, 'uploads');
 const PRODUCTS_FILE = path.join(DATA_DIR, 'products.json');
 
 if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
+if (!fs.existsSync(BACKUPS_DIR)) fs.mkdirSync(BACKUPS_DIR, { recursive: true });
 if (!fs.existsSync(UPLOADS_DIR)) fs.mkdirSync(UPLOADS_DIR, { recursive: true });
 
 // Sharp for image processing
@@ -191,6 +193,29 @@ const server = http.createServer(async (req, res) => {
         // 1. Immediately save to local hard drive
         fs.writeFileSync(PRODUCTS_FILE, JSON.stringify(list, null, 2), 'utf8');
         console.log(`[Local DB] Saved ${list.length} cards directly to data/products.json`);
+
+        // 1b. Rolling snapshot backup to local hard drive (Zero-data-loss guarantee)
+        try {
+          const timestamp = Date.now();
+          const backupFile = path.join(BACKUPS_DIR, `products_backup_${timestamp}.json`);
+          const latestBackupFile = path.join(BACKUPS_DIR, 'products_backup_latest.json');
+          const serialized = JSON.stringify(list, null, 2);
+          fs.writeFileSync(backupFile, serialized, 'utf8');
+          fs.writeFileSync(latestBackupFile, serialized, 'utf8');
+
+          // Keep last 50 backup files
+          const files = fs.readdirSync(BACKUPS_DIR)
+            .filter(f => f.startsWith('products_backup_') && f.endsWith('.json') && f !== 'products_backup_latest.json')
+            .sort();
+          if (files.length > 50) {
+            files.slice(0, files.length - 50).forEach(f => {
+              try { fs.unlinkSync(path.join(BACKUPS_DIR, f)); } catch (e) {}
+            });
+          }
+          console.log(`[Local DB Backup] Created timestamped backup: products_backup_${timestamp}.json (${list.length} cards)`);
+        } catch (backupErr) {
+          console.warn('[Backup Warning]:', backupErr.message);
+        }
 
         // 2. Sync to Cloud Redis in the background
         syncToCloudRedis(list);
