@@ -115,6 +115,21 @@
   transition: all 0.2s ease;
 }
 
+@media (max-width: 768px) {
+  .stock-type-bar {
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+  }
+  .stock-tab-btn {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 8px 12px;
+    font-size: 0.74rem;
+    box-sizing: border-box;
+  }
+}
+
 .stock-tab-btn:hover {
   border-color: rgba(255, 255, 255, 0.4);
   color: #ffffff;

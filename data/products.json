@@ -1,5 +1,350 @@
 [
   {
+    "id": "sasbov-card-1792377614662",
+    "brand": "GUCCI",
+    "name": "Guccio",
+    "condition": "9/10 VINTAGE",
+    "description": "Gucci из коллекции Guccio (серия 111, модель YA111401 / 111J) в прямоугольном стальном корпусе с фирменной красно-зеленой полоской Sherry Line и окошком даты на циферблате. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).",
+    "stockType": "preorder",
+    "partner": null,
+    "location": "CHINA [CN] // POIZON & GOOFISH",
+    "deliveryTime": "Выкуп под заказ: 10-18 дней",
+    "region": "china",
+    "regionLabel": "CHINA [CN] // POIZON & GOOFISH",
+    "category": "accessories",
+    "sku": "SAS-GUC-503",
+    "basePriceRub": 12900,
+    "sizes": [
+      "ONE SIZE"
+    ],
+    "closingIn": "07 дн. 00:00",
+    "closingDate": "2026-10-26T02:40:00.000Z",
+    "dropStatus": "ПРЕДЗАКАЗ ОТКРЫТ",
+    "badgeClass": "cn",
+    "image": "/uploads/sasbov-card-1792377614662_main.jpg",
+    "images": [
+      "/uploads/sasbov-card-1792377614662_gallery_0.jpg",
+      "/uploads/sasbov-card-1792377614662_gallery_1.jpg"
+    ]
+  },
+  {
+    "id": "sasbov-card-1792377555768",
+    "brand": "C.P. COMPANY",
+    "name": "Diagonal Raised Fleece Lens Regular Fit Hoodie",
+    "condition": "8.5/10 GOOD",
+    "description": "C.P. Company Diagonal Raised Fleece Lens Regular Fit Hoodie. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).",
+    "stockType": "preorder",
+    "partner": null,
+    "location": "CHINA [CN] // POIZON & GOOFISH",
+    "deliveryTime": "Выкуп под заказ: 10-18 дней",
+    "region": "china",
+    "regionLabel": "CHINA [CN] // POIZON & GOOFISH",
+    "category": "clothing",
+    "sku": "SAS-C.P-510",
+    "basePriceRub": 9900,
+    "sizes": [
+      "L"
+    ],
+    "closingIn": "07 дн. 00:00",
+    "closingDate": "2026-10-26T02:39:00.000Z",
+    "dropStatus": "ПРЕДЗАКАЗ ОТКРЫТ",
+    "badgeClass": "cn",
+    "image": "/uploads/sasbov-card-1792377555768_main.jpg",
+    "images": [
+      "/uploads/sasbov-card-1792377555768_gallery_0.jpg",
+      "/uploads/sasbov-card-1792377555768_gallery_1.jpg"
+    ]
+  },
+  {
+    "id": "sasbov-card-1792377498448",
+    "brand": "STONE ISLAND",
+    "name": "Lino Resinato-TC Down Filled Fur Hooded Jacket",
+    "condition": "9.5/10 EXCELLENT",
+    "description": "Stone Island Lino Resinato-TC Down Filled Fur Hooded Jacket. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).",
+    "stockType": "preorder",
+    "partner": null,
+    "location": "CHINA [CN] // POIZON & GOOFISH",
+    "deliveryTime": "Выкуп под заказ: 10-18 дней",
+    "region": "china",
+    "regionLabel": "CHINA [CN] // POIZON & GOOFISH",
+    "category": "clothing",
+    "sku": "SAS-STO-194",
+    "basePriceRub": 44900,
+    "sizes": [
+      "L"
+    ],
+    "closingIn": "07 дн. 00:00",
+    "closingDate": "2026-10-26T02:38:00.000Z",
+    "dropStatus": "ПРЕДЗАКАЗ ОТКРЫТ",
+    "badgeClass": "cn",
+    "image": "/uploads/sasbov-card-1792377498448_main.jpg",
+    "images": [
+      "/uploads/sasbov-card-1792377498448_gallery_0.jpg",
+      "/uploads/sasbov-card-1792377498448_gallery_1.jpg"
+    ]
+  },
+  {
+    "id": "sasbov-card-1792377426397",
+    "brand": "C.P. COMPANY X FILA",
+    "name": "Goggle Beanie FIne Merino Wool",
+    "condition": "NEW // DEADSTOCK",
+    "description": "Шапка-бини из лимитированной коллаборации C.P. Company x FILA. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).",
+    "stockType": "preorder",
+    "partner": null,
+    "location": "CHINA [CN] // POIZON & GOOFISH",
+    "deliveryTime": "Выкуп под заказ: 10-18 дней",
+    "region": "china",
+    "regionLabel": "CHINA [CN] // POIZON & GOOFISH",
+    "category": "accessories",
+    "sku": "SAS-C.P-135",
+    "basePriceRub": 9900,
+    "sizes": [
+      "ONE SIZE"
+    ],
+    "closingIn": "07 дн. 00:00",
+    "closingDate": "2026-10-26T02:37:00.000Z",
+    "dropStatus": "ПРЕДЗАКАЗ ОТКРЫТ",
+    "badgeClass": "cn",
+    "image": "/uploads/sasbov-card-1792377426397_main.jpg",
+    "images": [
+      "/uploads/sasbov-card-1792377426397_gallery_0.jpg",
+      "/uploads/sasbov-card-1792377426397_gallery_1.jpg"
+    ]
+  },
+  {
+    "id": "sasbov-card-1792377364282",
+    "brand": "C.P. COMPANY",
+    "name": "Diagonal Raised Fleece Half-Zip Lens Sweatshirt",
+    "condition": "NEW // DEADSTOCK",
+    "description": "C.P. Company Diagonal Raised Fleece Half-Zip Lens Sweatshirt. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).",
+    "stockType": "preorder",
+    "partner": null,
+    "location": "CHINA [CN] // POIZON & GOOFISH",
+    "deliveryTime": "Выкуп под заказ: 10-18 дней",
+    "region": "china",
+    "regionLabel": "CHINA [CN] // POIZON & GOOFISH",
+    "category": "clothing",
+    "sku": "SAS-C.P-133",
+    "basePriceRub": 21000,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "closingIn": "07 дн. 00:00",
+    "closingDate": "2026-10-26T02:36:00.000Z",
+    "dropStatus": "ПРЕДЗАКАЗ ОТКРЫТ",
+    "badgeClass": "cn",
+    "image": "/uploads/sasbov-card-1792377364282_main.jpg",
+    "images": [
+      "/uploads/sasbov-card-1792377364282_gallery_0.jpg",
+      "/uploads/sasbov-card-1792377364282_gallery_1.jpg"
+    ]
+  },
+  {
+    "id": "sasbov-card-1792377322346",
+    "brand": "GUCCI",
+    "name": "GG Supreme",
+    "condition": "9/10 VINTAGE",
+    "description": "Мужская сумка-мессенджер Gucci GG Supreme. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).",
+    "stockType": "preorder",
+    "partner": null,
+    "location": "CHINA [CN] // POIZON & GOOFISH",
+    "deliveryTime": "Выкуп под заказ: 10-18 дней",
+    "region": "china",
+    "regionLabel": "CHINA [CN] // POIZON & GOOFISH",
+    "category": "accessories",
+    "sku": "SAS-GUC-531",
+    "basePriceRub": 8900,
+    "sizes": [
+      "ONE SIZE"
+    ],
+    "closingIn": "07 дн. 00:00",
+    "closingDate": "2026-10-26T02:35:00.000Z",
+    "dropStatus": "ПРЕДЗАКАЗ ОТКРЫТ",
+    "badgeClass": "cn",
+    "image": "/uploads/sasbov-card-1792377322346_main.jpg",
+    "images": [
+      "/uploads/sasbov-card-1792377322346_gallery_0.jpg",
+      "/uploads/sasbov-card-1792377322346_gallery_1.jpg"
+    ]
+  },
+  {
+    "id": "sasbov-card-1792377251653",
+    "brand": "STONE ISLAND",
+    "name": "Garment Dyed Down",
+    "condition": "9.5/10 EXCELLENT",
+    "description": "Stone Island Garment Dyed Down. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).",
+    "stockType": "preorder",
+    "partner": null,
+    "location": "CHINA [CN] // POIZON & GOOFISH",
+    "deliveryTime": "Выкуп под заказ: 10-18 дней",
+    "region": "china",
+    "regionLabel": "CHINA [CN] // POIZON & GOOFISH",
+    "category": "clothing",
+    "sku": "SAS-STO-943",
+    "basePriceRub": 51700,
+    "sizes": [
+      "S"
+    ],
+    "closingIn": "06 дн. 23:59",
+    "closingDate": "2026-10-26T02:34:00.000Z",
+    "dropStatus": "ПРЕДЗАКАЗ ОТКРЫТ",
+    "badgeClass": "cn",
+    "image": "/uploads/sasbov-card-1792377251653_main.jpg",
+    "images": [
+      "/uploads/sasbov-card-1792377251653_gallery_0.jpg"
+    ]
+  },
+  {
+    "id": "sasbov-card-1792377187464",
+    "brand": "C.P. COMPANY",
+    "name": "D.D. Shell Hooded Lens Down Jacket",
+    "condition": "NEW // DEADSTOCK",
+    "description": "C.P. Company D.D. Shell Hooded Lens Down Jacket. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).",
+    "stockType": "preorder",
+    "partner": null,
+    "location": "CHINA [CN] // POIZON & GOOFISH",
+    "deliveryTime": "Выкуп под заказ: 10-18 дней",
+    "region": "china",
+    "regionLabel": "CHINA [CN] // POIZON & GOOFISH",
+    "category": "clothing",
+    "sku": "SAS-C.P-769",
+    "basePriceRub": 26700,
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "closingIn": "07 дн. 00:00",
+    "closingDate": "2026-10-26T02:33:00.000Z",
+    "dropStatus": "ПРЕДЗАКАЗ ОТКРЫТ",
+    "badgeClass": "cn",
+    "image": "/uploads/sasbov-card-1792377187464_main.jpg",
+    "images": [
+      "/uploads/sasbov-card-1792377187464_gallery_0.jpg",
+      "/uploads/sasbov-card-1792377187464_gallery_1.jpg",
+      "/uploads/sasbov-card-1792377187464_gallery_2.jpg"
+    ]
+  },
+  {
+    "id": "sasbov-card-1792377110189",
+    "brand": "LOUIS VUITTON",
+    "name": "Monogram Vernis Thompson Street Bronze",
+    "condition": "9/10 VINTAGE",
+    "description": "Louis Vuitton Monogram Vernis Thompson Street в бронзовом (Bronze). 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).",
+    "stockType": "preorder",
+    "partner": null,
+    "location": "CHINA [CN] // POIZON & GOOFISH",
+    "deliveryTime": "Выкуп под заказ: 10-18 дней",
+    "region": "china",
+    "regionLabel": "CHINA [CN] // POIZON & GOOFISH",
+    "category": "accessories",
+    "sku": "SAS-LOU-451",
+    "basePriceRub": 31000,
+    "sizes": [
+      "ONE SIZE"
+    ],
+    "closingIn": "07 дн. 00:00",
+    "closingDate": "2026-10-26T02:31:00.000Z",
+    "dropStatus": "ПРЕДЗАКАЗ ОТКРЫТ",
+    "badgeClass": "cn",
+    "image": "/uploads/sasbov-card-1792377110189_main.jpg",
+    "images": [
+      "/uploads/sasbov-card-1792377110189_gallery_0.jpg",
+      "/uploads/sasbov-card-1792377110189_gallery_1.jpg"
+    ]
+  },
+  {
+    "id": "sasbov-card-1792376798355",
+    "brand": "C.P. COMPANY",
+    "name": "Chrome-R Goggle Down Jacket Flint Stone",
+    "condition": "NEW // DEADSTOCK",
+    "description": "C.P. Company Chrome-R Goggle Down Jacket в цвете Flint Stone (серо-голубой). 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).",
+    "stockType": "preorder",
+    "partner": null,
+    "location": "CHINA [CN] // POIZON & GOOFISH",
+    "deliveryTime": "Выкуп под заказ: 10-18 дней",
+    "region": "china",
+    "regionLabel": "CHINA [CN] // POIZON & GOOFISH",
+    "category": "clothing",
+    "sku": "SAS-C.P-514",
+    "basePriceRub": 52900,
+    "sizes": [
+      "S (46 IT)",
+      "M (48 IT)",
+      "L (50 IT)",
+      "XL (52 IT)",
+      "XXL (54 IT)"
+    ],
+    "closingIn": "07 дн. 00:00",
+    "closingDate": "2026-10-26T02:26:00.000Z",
+    "dropStatus": "ПРЕДЗАКАЗ ОТКРЫТ",
+    "badgeClass": "cn",
+    "image": "/uploads/sasbov-card-1792376798355_main.jpg",
+    "images": [
+      "/uploads/sasbov-card-1792376798355_gallery_0.jpg"
+    ]
+  },
+  {
+    "id": "sasbov-card-1792376700044",
+    "brand": "NIKE X TRAVIS SCOTT",
+    "name": "Air Jordan 6 Retro «Medium Olive»",
+    "condition": "8.5/10 GOOD",
+    "description": "Travis Scott x Air Jordan 6 Retro «Medium Olive». 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).",
+    "stockType": "preorder",
+    "partner": null,
+    "location": "CHINA [CN] // POIZON & GOOFISH",
+    "deliveryTime": "Выкуп под заказ: 10-18 дней",
+    "region": "china",
+    "regionLabel": "CHINA [CN] // POIZON & GOOFISH",
+    "category": "footwear",
+    "sku": "SAS-NIK-608",
+    "basePriceRub": 8900,
+    "sizes": [
+      "44 EU"
+    ],
+    "closingIn": "06 дн. 23:59",
+    "closingDate": "2026-10-26T02:24:00.000Z",
+    "dropStatus": "ПРЕДЗАКАЗ ОТКРЫТ",
+    "badgeClass": "cn",
+    "image": "/uploads/sasbov-card-1792376700044_main.jpg",
+    "images": [
+      "/uploads/sasbov-card-1792376700044_gallery_0.jpg"
+    ]
+  },
+  {
+    "id": "sasbov-card-1792376628420",
+    "brand": "NIKE",
+    "name": "Air Jordan 5 Retro «Island Green»",
+    "condition": "8.5/10 GOOD",
+    "description": "",
+    "stockType": "preorder",
+    "partner": null,
+    "location": "CHINA [CN] // POIZON & GOOFISH",
+    "deliveryTime": "Выкуп под заказ: 10-18 дней",
+    "region": "china",
+    "regionLabel": "CHINA [CN] // POIZON & GOOFISH",
+    "category": "footwear",
+    "sku": "SAS-NIK-678",
+    "basePriceRub": 6700,
+    "sizes": [
+      "44.5 EU"
+    ],
+    "closingIn": "07 дн. 00:00",
+    "closingDate": "2026-10-26T02:23:00.000Z",
+    "dropStatus": "ПРЕДЗАКАЗ ОТКРЫТ",
+    "badgeClass": "cn",
+    "image": "/uploads/sasbov-card-1792376628420_main.jpg",
+    "images": [
+      "/uploads/sasbov-card-1792376628420_gallery_0.jpg"
+    ]
+  },
+  {
     "id": "sasbov-card-1792374224244",
     "brand": "NIKE",
     "name": "Air Jordan 4 Retro '11Lab4 - Red'",

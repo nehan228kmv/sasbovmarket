@@ -317,6 +317,21 @@ async function getStoredProducts(kvUrl, kvToken) {
     }
   }
 
+  // 3. Disk JSON Fallback (bundled with repository)
+  try {
+    const fs = require('fs');
+    const path = require('path');
+    const localJson = path.join(process.cwd(), 'data', 'products.json');
+    if (fs.existsSync(localJson)) {
+      const fileData = JSON.parse(fs.readFileSync(localJson, 'utf8'));
+      if (Array.isArray(fileData) && fileData.length > 0) {
+        return { data: fileData, source: 'disk_json_bundle' };
+      }
+    }
+  } catch (e) {
+    console.warn('[Disk] fallback read error:', e);
+  }
+
   return null;
 }
 
@@ -345,6 +360,9 @@ async function saveStoredProducts(products, kvUrl, kvToken) {
 
 module.exports = async function handler(req, res) {
   setCorsHeaders(res);
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0');
+  res.setHeader('Pragma', 'no-cache');
+  res.setHeader('Expires', '0');
 
   if (req.method === 'OPTIONS') {
     return res.status(200).end();

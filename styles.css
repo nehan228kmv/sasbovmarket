@@ -54,6 +54,9 @@ html {
   scroll-padding-top: calc(var(--header-height) + var(--telemetry-height) + 20px);
   scrollbar-gutter: stable;
   overflow-y: scroll;
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
 }
 
 body {
@@ -66,6 +69,8 @@ body {
   overflow-x: hidden;
   position: relative;
   min-height: 100vh;
+  max-width: 100vw;
+  width: 100%;
 }
 
 /* Ambient Background Lights & Scanlines */
@@ -96,10 +101,11 @@ body {
   max-width: var(--container-max);
   margin-left: auto;
   margin-right: auto;
-  padding-left: clamp(1rem, 4vw, 2.5rem);
-  padding-right: clamp(1rem, 4vw, 2.5rem);
+  padding-left: clamp(0.75rem, 3.5vw, 2.5rem);
+  padding-right: clamp(0.75rem, 3.5vw, 2.5rem);
   position: relative;
   z-index: 1;
+  box-sizing: border-box;
 }
 
 a {
@@ -130,18 +136,36 @@ button, input, select {
   top: 0;
   z-index: 100;
   backdrop-filter: blur(12px);
+  width: 100%;
+  max-width: 100vw;
+  overflow: hidden;
 }
 
 .telemetry-inner {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 
 .telemetry-group {
   display: flex;
   align-items: center;
   gap: 0.6rem;
+}
+
+@media (max-width: 768px) {
+  .telemetry-group.clocks {
+    display: none !important;
+  }
+  .telemetry-text {
+    font-size: 0.65rem;
+    letter-spacing: 0.03em;
+  }
+  .telemetry-link {
+    font-size: 0.65rem !important;
+    padding: 2px 6px !important;
+  }
 }
 
 .status-pulse {
@@ -189,6 +213,8 @@ button, input, select {
   position: sticky;
   top: var(--telemetry-height);
   z-index: 99;
+  width: 100%;
+  max-width: 100vw;
 }
 
 .header-inner {
@@ -198,6 +224,15 @@ button, input, select {
   height: 100%;
   position: relative;
   width: 100%;
+}
+
+@media (max-width: 991px) {
+  .header-inner {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100% !important;
+  }
 }
 
 .brand-logo-link.header-center-logo {
@@ -362,6 +397,27 @@ button, input, select {
   justify-content: flex-start;
   gap: clamp(0.5rem, 1vw, 0.85rem);
   min-width: 0;
+}
+
+@media (max-width: 991px) {
+  .brand-logo-link.header-center-logo {
+    margin: 0 !important;
+    padding: 0 !important;
+    grid-column: auto !important;
+  }
+  .header-actions {
+    grid-column: auto !important;
+    margin-left: auto !important;
+    justify-content: flex-end !important;
+    gap: 8px !important;
+  }
+  .header-cta {
+    display: none !important;
+  }
+  .cart-btn {
+    padding: 6px 11px !important;
+    font-size: 0.72rem !important;
+  }
 }
 
 .header-cta {
@@ -1181,7 +1237,9 @@ button, input, select {
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   border-radius: 8px;
-  padding: clamp(1.5rem, 4vw, 3rem);
+  padding: clamp(1rem, 4vw, 3rem);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 @media (min-width: 992px) {
@@ -1206,7 +1264,7 @@ button, input, select {
 
 .calc-toggle-origin {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
   gap: 0.75rem;
 }
 
@@ -1319,10 +1377,12 @@ button, input, select {
   background: var(--bg-surface-elevated);
   border: 1px solid var(--border-medium);
   border-radius: 8px;
-  padding: 2rem;
+  padding: clamp(1.25rem, 3.5vw, 2rem);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .summary-header {
@@ -1958,8 +2018,10 @@ button, input, select {
 .tray-drawer {
   position: fixed;
   top: 0;
-  right: -420px;
+  right: 0;
+  transform: translateX(100%);
   width: min(400px, 100vw);
+  max-width: 100vw;
   height: 100vh;
   background: var(--bg-surface-elevated);
   border-left: 1px solid var(--border-medium);
@@ -1967,12 +2029,17 @@ button, input, select {
   z-index: 200;
   display: flex;
   flex-direction: column;
-  transition: right var(--transition-normal);
+  transition: transform var(--transition-normal);
+  visibility: hidden;
+  pointer-events: none;
   padding: 1.5rem;
+  box-sizing: border-box;
 }
 
 .tray-drawer.open {
-  right: 0;
+  transform: translateX(0);
+  visibility: visible;
+  pointer-events: auto;
 }
 
 .tray-header {
@@ -2627,6 +2694,9 @@ button, input, select {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding: 10px 0;
   overflow: hidden;
+  width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
   white-space: nowrap;
   user-select: none;
   background-image: url('assets/sasbov-monogram-pattern.png');
