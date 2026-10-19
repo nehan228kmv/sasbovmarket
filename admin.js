@@ -2370,6 +2370,14 @@
 
   // Built-in Intelligent Streetwear Recognition Engine (Zero-setup Fallback)
   function recognizeStreetwearHeuristics(photoSrc, existingBrand, existingName, userHint, fileName) {
+    const rawHint = (userHint || existingName || '').trim();
+    if (rawHint) {
+      const parsed = parseVisualSearchText(rawHint, false);
+      if (parsed && parsed.brand) {
+        return parsed;
+      }
+    }
+
     const srcLower = (photoSrc || '').toLowerCase();
     const brandLower = (existingBrand || '').toLowerCase();
     const nameLower = (existingName || '').toLowerCase();
@@ -3339,66 +3347,10 @@
   ];
 
   // Intelligent text & prompt parser for Google Lens / Yandex (Non-destructive: updates HUD only!)
-  function parseVisualSearchText(rawText) {
-    if (!rawText || !rawText.trim()) return;
+  function parseVisualSearchText(rawText, updateUI = true) {
+    if (!rawText || !rawText.trim()) return null;
     const trimmed = rawText.trim();
     const lowerText = trimmed.toLowerCase();
-
-    // Check exact short preset shortcuts (only when text is short, not a full prompt)
-    if (trimmed.length < 30) {
-      let matchedKey = null;
-      if (lowerText.includes('c.p') || lowerText.includes('cp company') || lowerText.includes('goggle') || lowerText.includes('shell down') || lowerText.includes('пуховик cp') || lowerText.includes('пухан cp')) {
-        matchedKey = 'cp-puffer';
-      } else if (lowerText.includes('arc') || lowerText.includes('beta lt') || lowerText.includes('артерикс')) {
-        matchedKey = 'arcteryx-beta';
-      } else if (lowerText.includes('stone') || lowerText.includes('island') || lowerText.includes('стоник')) {
-        matchedKey = 'stone-island';
-      } else if (lowerText.includes('trapstar') || lowerText.includes('irongate') || lowerText.includes('трапстар')) {
-        matchedKey = 'trapstar-puffer';
-      } else if (lowerText.includes('moncler') || lowerText.includes('maya') || lowerText.includes('монклер')) {
-        matchedKey = 'moncler-maya';
-      } else if (lowerText.includes('mihara') || lowerText.includes('peterson') || lowerText.includes('михара')) {
-        matchedKey = 'mihara-peterson';
-      } else if (lowerText.includes('rick') || lowerText.includes('ramones') || lowerText.includes('drkshdw') || lowerText.includes('рамоны')) {
-        matchedKey = 'rick-owens-ramones';
-      } else if (lowerText.includes('travis') || lowerText.includes('reverse mocha') || lowerText.includes('тревис')) {
-        matchedKey = 'travis-scott-aj1';
-      } else if (lowerText.includes('3xl') || lowerText.includes('defender')) {
-        matchedKey = 'balenciaga-3xl';
-      } else if (lowerText.includes('salomon') || lowerText.includes('cross low')) {
-        matchedKey = 'salomon-mm6';
-      } else if (lowerText.includes('chrome') || lowerText.includes('тракер')) {
-        matchedKey = 'chrome-hearts-cap';
-      } else if (lowerText.includes('thug club') || lowerText.includes('tribal')) {
-        matchedKey = 'thug-club-hoodie';
-      } else if (lowerText.includes('roaringwild') || lowerText.includes('cargo')) {
-        matchedKey = 'roaringwild-cargo';
-      }
-
-      if (matchedKey && STREETWEAR_PRESETS_MAP[matchedKey]) {
-        const data = STREETWEAR_PRESETS_MAP[matchedKey];
-        lastAIDetectedData = {
-          brand: data.brand,
-          model: data.name,
-          category: data.category,
-          estimatedPriceRub: data.basePriceRub,
-          suggestedSizes: data.sizes,
-          description: data.description
-        };
-
-        if (aiResBrand) aiResBrand.textContent = data.brand;
-        if (aiResModel) aiResModel.textContent = data.name;
-        if (aiResCat) aiResCat.textContent = data.category === 'footwear' ? 'Обувь / Кроссовки' : (data.category === 'clothing' ? 'Одежда / Пуховик' : 'Аксессуар');
-        if (aiResPrice) aiResPrice.textContent = formatRub(data.basePriceRub);
-        if (aiResSizes) aiResSizes.textContent = data.sizes.join(', ');
-        if (aiResDesc) aiResDesc.textContent = data.description;
-        if (aiHudCard) aiHudCard.style.display = 'flex';
-
-        updateAiCategoryButtons(data.category);
-        showToast(`[OK] // Распознано: ${data.brand} — ${data.name}! Нажмите «ВСТАВИТЬ» у нужного поля`);
-        return;
-      }
-    }
 
     // 1. Brand Detection via Comprehensive Dictionary
     let matchedBrand = null;
@@ -3422,8 +3374,8 @@
 
     // 2. Category Detection (High-Precision Accessories, Footwear, Clothing keywords)
     let detectedCat = 'clothing';
-    const isAccessories = /сумк|сумочк|плечевая|кроссбоди|тоут|клатч|рюкзак|барсетк|портмоне|кошелек|портфель|ремень|пояс|кепк|бейсболк|шапк|бини|панам|очк|шарф|платок|перчатк|палантин|украшен|браслет|цепочк|кольцо|брелок|чехол|аксессуар|bag|handbag|shoulder bag|crossbody|tote|backpack|clutch|pouch|wallet|purse|belt|cap|hat|beanie|glasses|sunglasses|scarf|gloves|jewelry|necklace|bracelet|ring|keychain|case|vernis|monogram vernis|speedy|keepall|neverfull|alma|pochette|birkin|kelly|constance|cassette|jodie|saddle|lady dior|book tote|baguette/i.test(trimmed);
-    const isFootwear = /кроссовк|кед[ыа]?|ботинк|туфл|лофер|сапог|тапочк|слайд|мюл|sneaker|sneakers|shoe|shoes|boot|boots|loafer|mule|slide|runner|runners|og sole|bamba|ramones|geobasket|track|defender|3xl/i.test(trimmed);
+    const isAccessories = /сумк|сумочк|плечевая|кроссбоди|тоут|клатч|рюкзак|барсетк|портмоне|кошелек|портфель|ремень|пояс|кепк|бейсболк|шапк|бини|панам|очк|шарф|платок|перчатк|палантин|украшен|браслет|цепочк|кольцо|брелок|чехол|аксессуар|хелиад|мантис|гравил|арро|балаклав|картхолдер|слинг|несессер|поясн|bag|handbag|shoulder bag|crossbody|tote|backpack|clutch|pouch|wallet|purse|belt|cap|hat|beanie|glasses|sunglasses|scarf|gloves|jewelry|necklace|bracelet|ring|keychain|case|vernis|monogram vernis|speedy|keepall|neverfull|alma|pochette|birkin|kelly|constance|cassette|jodie|saddle|lady dior|book tote|baguette|heliad|mantis|arro|granville|aerios|maka|index|waistpack|sacoche|sling|duffle|pack|cardholder|card holder|hood|balaclava|headband|bird head|word head/i.test(trimmed);
+    const isFootwear = /кроссовк|кед[ыа]?|ботинк|туфл|лофер|сапог|тапочк|слайд|мюл|sneaker|sneakers|shoe|shoes|boot|boots|loafer|mule|slide|runner|runners|og sole|bamba|ramones|geobasket|track|defender|3xl|acs pro|xt-6|xt-4|xt-wings|dunk|air force|air max|forum|samba|gazelle|campus|superstar|gel-kayano|kayano|gel-1130|gel-nyc/i.test(trimmed);
 
     if (isAccessories) {
       detectedCat = 'accessories';
@@ -3436,7 +3388,15 @@
     // 3. Model Name Extraction
     let modelName = '';
     if (matchedBrand && matchPos !== -1) {
-      modelName = trimmed.substring(matchPos + matchedAlias.length).trim();
+      const beforeBrand = trimmed.substring(0, matchPos).trim();
+      const afterBrand = trimmed.substring(matchPos + matchedAlias.length).trim();
+      if (afterBrand) {
+        modelName = afterBrand;
+      } else if (beforeBrand) {
+        modelName = beforeBrand;
+      } else {
+        modelName = matchedBrand;
+      }
     } else {
       // Fallback: strip conversational intro and leading product nouns
       let clean = trimmed
@@ -3469,10 +3429,12 @@
     // Clean up color clauses: "в бронзовом/медном цвете (Bronze / Copper)" -> "(Bronze / Copper)"
     modelName = modelName.replace(/\s+в\s+[^()\n\r]+?(?:цвете|расцветке)\s*(\([^\)]+\))/i, ' $1');
     modelName = modelName.replace(/\s+в\s+(?:цвете|расцветке)\s+([A-Za-z0-9\s\/\-_]+)/i, ' ($1)');
-    modelName = modelName.replace(/^[-:,\s]+|[-:,\s]+$/g, '').trim();
+    modelName = modelName.replace(/^[-:,\s"'/]+|[-:,\s"'/]+$/g, '').trim();
 
     if (!modelName) {
       modelName = trimmed;
+    } else {
+      modelName = modelName.charAt(0).toUpperCase() + modelName.slice(1);
     }
 
     // 4. Sizing based on Category
@@ -3482,10 +3444,10 @@
     } else if (detectedCat === 'footwear') {
       sizesArr = ['39 EU', '40 EU', '41 EU', '42 EU', '43 EU', '44 EU'];
     } else {
-      if (/брюки|штаны|карго|джинсы|pants|cargo|denim|jeans/i.test(trimmed)) {
+      if (/брюки|штаны|карго|джинсы|pants|cargo|denim|jeans|шорты|shorts/i.test(trimmed)) {
         sizesArr = ['S (W28-30)', 'M (W31-32)', 'L (W33-34)', 'XL (W35-36)'];
       } else if (/пуховик|пухан|куртка|пальто|puffer|down|jacket|parka|coat/i.test(trimmed)) {
-        sizesArr = ['S (46 IT)', 'M (48 IT)', 'L (50 IT)', 'XL (52 IT)', 'XXL (54 IT)'];
+        sizesArr = ['S', 'M', 'L', 'XL', 'XXL'];
       } else {
         sizesArr = ['S', 'M', 'L', 'XL'];
       }
@@ -3498,12 +3460,14 @@
       estimatedPrice = detectedCat === 'accessories' ? 78000 : 115000;
     } else if (['PRADA', 'GUCCI', 'BALENCIAGA', 'SAINT LAURENT', 'CELINE', 'LOEWE', 'MONCLER', 'RICK OWENS', 'RICK OWENS DRKSHDW'].includes(upperBrand)) {
       estimatedPrice = detectedCat === 'accessories' ? 48000 : (detectedCat === 'footwear' ? 58000 : 85000);
-    } else if (['C.P. COMPANY', 'STONE ISLAND', "ARC'TERYX", 'CHROME HEARTS', 'TRAVIS SCOTT x AIR JORDAN'].includes(upperBrand)) {
-      estimatedPrice = detectedCat === 'accessories' ? 28000 : (detectedCat === 'footwear' ? 34000 : 54000);
+    } else if (upperBrand === "ARC'TERYX") {
+      estimatedPrice = detectedCat === 'accessories' ? (/рюкзак|backpack|granville|arro/i.test(trimmed) ? 28000 : 16500) : (detectedCat === 'footwear' ? 34000 : 48500);
+    } else if (['C.P. COMPANY', 'STONE ISLAND', 'CHROME HEARTS', 'TRAVIS SCOTT x AIR JORDAN'].includes(upperBrand)) {
+      estimatedPrice = detectedCat === 'accessories' ? 24000 : (detectedCat === 'footwear' ? 34000 : 54000);
     } else if (['MAISON MIHARA YASUHIRO', 'SALOMON', 'THUG CLUB', 'TRAPSTAR', 'ROARINGWILD', 'KAPITAL'].includes(upperBrand)) {
-      estimatedPrice = detectedCat === 'accessories' ? 18000 : (detectedCat === 'footwear' ? 24800 : 22600);
+      estimatedPrice = detectedCat === 'accessories' ? 14500 : (detectedCat === 'footwear' ? 24800 : 22600);
     } else {
-      estimatedPrice = detectedCat === 'accessories' ? 16000 : (detectedCat === 'footwear' ? 26000 : 32000);
+      estimatedPrice = detectedCat === 'accessories' ? 14000 : (detectedCat === 'footwear' ? 26000 : 32000);
     }
 
     // 6. Professional Showroom Description (15+ Varied Authentic Endings & Fallbacks)
@@ -3525,30 +3489,48 @@
       'Оригинал 100%, любые независимые проверки. Оформляйте предзаказ на ваш размер — привезем в идеале в шоурум или до двери.'
     ];
 
-    const AUTHENTIC_FALLBACKS = [
-      `Лимитированный оригинальный релиз ${matchedBrand} (${modelName}). Высококачественные материалы, фирменная фурнитура и заводская маркировка. Товар проверен байерами SASBOV MARKET. 100% оригинал, доступен предзаказ под ключ.`,
-      `Аутентичный дроп ${matchedBrand} (${modelName}) из официальных азиатских селектов. Безупречное исполнение, оригинальные бирки и серийные номера. Доступен быстрый предзаказ со страховкой.`,
-      `Культовая модель ${matchedBrand} (${modelName}). Фирменный крой, премиальные износостойкие ткани и полный аутентичный комплект. 100% оригинал, предзаказ из Токио/Шанхая.`,
-      `Оригинал ${matchedBrand} (${modelName}). Верифицированная вещь с проверенных зарубежных площадок. Открыт предзаказ на все размеры, быстрая доставка СДЭК или в шоурум в СПб.`,
-      `Оригинальный релиз ${matchedBrand} (${modelName}). Плотные премиальные материалы, аутентичные маркировки и полный комплект. 100% оригинал, любые проверки.`
-    ];
-
     let desc = trimmed
       .replace(/^(?:на\s+изображении\s+(?:представлен[аоы]?|изображен[аоы]?|показан[аоы]?|виден|видна|видно)?|на\s+фото(?:графии)?\s+(?:представлен[аоы]?|изображен[аоы]?|показан[аоы]?|виден|видна|видно)?|перед\s+нами|это|на\s+картинке|вид[имно]?)\s*/i, '')
       .trim();
 
     const selectedEnding = AUTHENTIC_ENDINGS[Math.floor(Math.random() * AUTHENTIC_ENDINGS.length)];
 
-    if (desc) {
+    const isShortInput = desc.split(/\s+/).length <= 4 || desc.length < 35;
+
+    if (isShortInput) {
+      let intro = '';
+      if (detectedCat === 'accessories') {
+        if (/рюкзак|backpack/i.test(trimmed)) {
+          intro = `Оригинальный технологичный рюкзак ${matchedBrand} ${modelName}. Эргономичный дизайн, износостойкий влагозащитный материал и удобная организация отделений.`;
+        } else if (/сумк|bag|crossbody|waistpack|heliad|mantis|sling/i.test(trimmed)) {
+          intro = `Оригинальная легкая сумка ${matchedBrand} ${modelName}. Компактный силуэт, влагостойкий нейлон Cordura/Ripstop, фирменная надежная фурнитура и вышитый логотип.`;
+        } else if (/шапк|бини|кепк|cap|beanie|hat/i.test(trimmed)) {
+          intro = `Оригинальный головной убор ${matchedBrand} ${modelName}. Премиальные материалы, комфортная посадка и фирменный брендинг.`;
+        } else {
+          intro = `Оригинальный аксессуар ${matchedBrand} ${modelName}. Премиальное качество исполнения, фирменная фурнитура и заводская маркировка.`;
+        }
+      } else if (detectedCat === 'footwear') {
+        intro = `Оригинальные кроссовки ${matchedBrand} ${modelName}. Премиальные амортизирующие материалы, анатомическая посадка и узнаваемый силуэт.`;
+      } else {
+        if (/пуховик|пухан|куртк|пальто|jacket|puffer|down/i.test(trimmed)) {
+          intro = `Оригинальная куртка ${matchedBrand} ${modelName}. Защита от ветра и осадков, высокотехнологичные дышащие материалы и анатомический крой.`;
+        } else if (/худи|свитшот|толстовк|hoodie|sweatshirt/i.test(trimmed)) {
+          intro = `Оригинальный худи ${matchedBrand} ${modelName}. Плотный премиальный хлопок, комфортный оверсайз крой и стойкий брендинг.`;
+        } else if (/брюки|карго|джинсы|штаны|pants|cargo|denim/i.test(trimmed)) {
+          intro = `Оригинальные брюки ${matchedBrand} ${modelName}. Износостойкая ткань, эргономичная посадка и фирменная фурнитура.`;
+        } else {
+          intro = `Оригинальный дроп ${matchedBrand} ${modelName}. Высококачественные материалы, аутентичные бирки и внимание к деталям.`;
+        }
+      }
+      desc = `${intro} ${selectedEnding}`;
+    } else {
       desc = desc.charAt(0).toUpperCase() + desc.slice(1);
       if (!desc.endsWith('.')) desc += '.';
       desc += ' ' + selectedEnding;
-    } else {
-      desc = AUTHENTIC_FALLBACKS[Math.floor(Math.random() * AUTHENTIC_FALLBACKS.length)];
     }
 
     // 7. Populate HUD Card (Does NOT touch actual card form until user clicks ВСТАВИТЬ!)
-    lastAIDetectedData = {
+    const resultObj = {
       brand: matchedBrand,
       model: modelName,
       category: detectedCat,
@@ -3557,16 +3539,22 @@
       description: desc
     };
 
-    if (aiResBrand) aiResBrand.textContent = matchedBrand;
-    if (aiResModel) aiResModel.textContent = modelName;
-    if (aiResCat) aiResCat.textContent = detectedCat === 'footwear' ? 'Обувь / Кроссовки' : (detectedCat === 'accessories' ? 'Аксессуар (Сумка)' : 'Одежда / Пуховик');
-    if (aiResPrice) aiResPrice.textContent = formatRub(estimatedPrice);
-    if (aiResSizes) aiResSizes.textContent = sizesArr.join(', ');
-    if (aiResDesc) aiResDesc.textContent = desc;
-    if (aiHudCard) aiHudCard.style.display = 'flex';
+    if (updateUI) {
+      lastAIDetectedData = resultObj;
 
-    updateAiCategoryButtons(detectedCat);
-    showToast(`[OK] // Распознано: ${matchedBrand} — ${modelName}! Нажмите «ВСТАВИТЬ» у нужного поля`);
+      if (aiResBrand) aiResBrand.textContent = matchedBrand;
+      if (aiResModel) aiResModel.textContent = modelName;
+      if (aiResCat) aiResCat.textContent = detectedCat === 'footwear' ? 'Обувь / Кроссовки' : (detectedCat === 'accessories' ? 'Аксессуар' : 'Одежда');
+      if (aiResPrice) aiResPrice.textContent = formatRub(estimatedPrice);
+      if (aiResSizes) aiResSizes.textContent = sizesArr.join(', ');
+      if (aiResDesc) aiResDesc.textContent = desc;
+      if (aiHudCard) aiHudCard.style.display = 'flex';
+
+      updateAiCategoryButtons(detectedCat);
+      showToast(`[OK] // Распознано: ${matchedBrand} — ${modelName}! Нажмите «ВСТАВИТЬ» у нужного поля`);
+    }
+
+    return resultObj;
   }
 
   // Drag & drop directly onto the scanner viewport
