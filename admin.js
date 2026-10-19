@@ -457,8 +457,18 @@
       localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
       localStorage.setItem('sasbov_market_sync_ts', Date.now().toString());
     } catch (e) {
-      console.error('LocalStorage save error in admin:', e);
-      alert('Ошибка при сохранении в память браузера (LocalStorage переполнен).');
+      console.warn('LocalStorage limit reached. Using fallback for local cache:', e);
+      try {
+        const lightweight = list.map(item => ({
+          ...item,
+          image: item.image && item.image.length > 50000 ? item.image.slice(0, 100) : item.image,
+          images: Array.isArray(item.images) ? item.images.map(img => img.length > 50000 ? img.slice(0, 100) : img) : []
+        }));
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(lightweight));
+        localStorage.setItem('sasbov_market_sync_ts', Date.now().toString());
+      } catch (err2) {
+        console.warn('LocalStorage fallback write error:', err2);
+      }
     }
     try {
       window.dispatchEvent(new CustomEvent('sasbov:products_updated', { detail: list }));
@@ -876,7 +886,40 @@
 
   let lastUploadedFileName = '';
 
-  function addEditorPhotoFiles(fileList) {
+  function compressImageFile(file, maxDim = 1000, quality = 0.78) {
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          let width = img.width;
+          let height = img.height;
+          if (width > maxDim || height > maxDim) {
+            if (width > height) {
+              height = Math.round((height * maxDim) / width);
+              width = maxDim;
+            } else {
+              width = Math.round((width * maxDim) / height);
+              height = maxDim;
+            }
+          }
+          const canvas = document.createElement('canvas');
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+          const compressedDataUrl = canvas.toDataURL('image/jpeg', quality);
+          resolve(compressedDataUrl);
+        };
+        img.onerror = () => resolve(e.target.result);
+        img.src = e.target.result;
+      };
+      reader.onerror = () => resolve(null);
+      reader.readAsDataURL(file);
+    });
+  }
+
+  async function addEditorPhotoFiles(fileList) {
     const validFiles = Array.from(fileList).filter(f => f.type.startsWith('image/'));
     if (validFiles.length === 0) return;
 
@@ -884,20 +927,24 @@
       lastUploadedFileName = validFiles[0].name;
     }
 
+    showToast(`// Оптимизация и сжатие ${validFiles.length} фото...`);
+
     let loaded = 0;
-    validFiles.forEach(file => {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        currentEditorImages.push(e.target.result);
-        loaded++;
-        if (loaded === validFiles.length) {
-          renderEditorGallery();
-          showToast(`[OK] // Добавлено ${loaded} фото в карточку`);
-          if (typeof updateAISidecarPreview === 'function') updateAISidecarPreview();
+    for (const file of validFiles) {
+      try {
+        const compressedUrl = await compressImageFile(file, 1000, 0.78);
+        if (compressedUrl) {
+          currentEditorImages.push(compressedUrl);
+          loaded++;
         }
-      };
-      reader.readAsDataURL(file);
-    });
+      } catch (err) {
+        console.warn('Image compression error:', err);
+      }
+    }
+
+    renderEditorGallery();
+    showToast(`[OK] // Добавлено ${loaded} фото (сжато для быстрой загрузки)`);
+    if (typeof updateAISidecarPreview === 'function') updateAISidecarPreview();
   }
 
   if (multiDropzone && cardPhotosInput) {

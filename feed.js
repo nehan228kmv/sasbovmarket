@@ -504,7 +504,7 @@ ${isInstock ? '— Адрес шоурума: Санкт-Петербург, у�
 
 ${isInstock ? 'Подтвердите наличие на точке и забронируйте вещь за мной!' : 'Подтвердите наличие на зарубежной площадке и пришлите реквизиты для выкупа!'}`;
 
-        const tgBase = isInstock ? 'https://t.me/sasbov' : 'https://t.me/sasbovstore';
+        const tgBase = 'https://t.me/Sasbov';
         const url = `${tgBase}?text=${encodeURIComponent(text)}`;
         window.open(url, '_blank', 'noopener,noreferrer');
       });

@@ -793,7 +793,7 @@ ${p.description ? `— Описание: ${p.description}\n` : ''}
 ${p.description ? `— Описание: ${p.description}\n` : ''}
 Подтвердите возможность выкупа и пришлите реквизиты!`;
 
-          const tgUrl = `https://t.me/sasbovstore?text=${encodeURIComponent(messageText)}`;
+          const tgUrl = `https://t.me/Sasbov?text=${encodeURIComponent(messageText)}`;
           window.open(tgUrl, '_blank', 'noopener,noreferrer');
           closePreorderModal();
         }
@@ -891,7 +891,7 @@ ${listText}
 — Итого под ключ: ${formatRub(total)}
 Жду реквизиты!`;
 
-        const tgUrl = `https://t.me/sasbovstore?text=${encodeURIComponent(messageText)}`;
+        const tgUrl = `https://t.me/Sasbov?text=${encodeURIComponent(messageText)}`;
         window.open(tgUrl, '_blank', 'noopener,noreferrer');
         closeTray();
       });

@@ -21,6 +21,7 @@
   "author": "SASBOV MARKET",
   "license": "UNLICENSED",
   "dependencies": {
-    "redis": "^6.3.0"
+    "redis": "^6.3.0",
+    "sharp": "^0.35.5"
   }
 }
