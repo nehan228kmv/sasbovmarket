@@ -3694,8 +3694,9 @@
       if (res.ok) {
         const json = await res.json();
         if (json && json.success && Array.isArray(json.data) && json.data.length > 0) {
-          const isVercelKv = json.source === 'vercel_kv' || json.source === 'vercel_kv_seeded';
-          if (textEl) textEl.textContent = isVercelKv ? 'VERCEL KV: CONNECTED' : 'VERCEL DB: READY';
+          if (textEl) {
+            textEl.textContent = json.source === 'local_database_disk' ? 'HDD DISK DB: ONLINE' : (json.source === 'vercel_kv' ? 'VERCEL KV: CONNECTED' : 'DATABASE: READY');
+          }
           if (dotEl) dotEl.style.background = '#00ff88';
 
           PRODUCTS = json.data;
@@ -3717,6 +3718,7 @@
 
   async function syncWithCloudDatabase(list) {
     const textEl = document.getElementById('cloud-sync-text');
+    const dotEl = document.getElementById('cloud-sync-dot');
     try {
       const res = await fetch('/api/products', {
         method: 'POST',
@@ -3728,9 +3730,17 @@
       });
       if (res.ok) {
         const json = await res.json();
-        if (textEl) {
-          textEl.textContent = json.source === 'vercel_kv' ? 'VERCEL KV: SYNCED' : 'CLOUD DB: SYNCED';
+        if (json.data && Array.isArray(json.data) && json.data.length > 0) {
+          PRODUCTS = json.data;
+          try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(PRODUCTS));
+          } catch (e) {}
+          renderCards();
         }
+        if (textEl) {
+          textEl.textContent = json.source === 'local_disk_and_redis' ? 'HDD & CLOUD: SAVED 100%' : (json.source === 'vercel_kv' ? 'VERCEL KV: SYNCED' : 'CLOUD DB: SYNCED');
+        }
+        if (dotEl) dotEl.style.background = '#00ff88';
       }
     } catch (err) {
       console.warn('[SASBOV Cloud Sync] API offline or static hosting:', err);

@@ -594,6 +594,23 @@ ${isInstock ? 'Подтвердите наличие на точке и забр
   renderFeed();
   observeSlides();
 
+  // Async sync with database
+  async function fetchFeedProducts() {
+    try {
+      const res = await fetch('/api/products');
+      if (res.ok) {
+        const json = await res.json();
+        if (json && json.success && Array.isArray(json.data) && json.data.length > 0) {
+          PRODUCTS = json.data;
+          try { localStorage.setItem(STORAGE_KEY, JSON.stringify(PRODUCTS)); } catch (e) {}
+          renderFeed();
+          observeSlides();
+        }
+      }
+    } catch (e) {}
+  }
+  fetchFeedProducts();
+
   // Cross-tab real-time synchronization with Admin Panel
   window.addEventListener('storage', (e) => {
     if (e.key === STORAGE_KEY || e.key === 'sasbov_market_sync_ts') {
