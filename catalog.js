@@ -181,11 +181,27 @@
       const matchRegion = state.activeRegion === 'all' || p.region === state.activeRegion || (state.activeRegion === 'spb' && p.stockType === 'instock');
       const matchCategory = state.activeCategory === 'all' || p.category === state.activeCategory;
       const matchSubcat = state.activeSubcat === 'all' || getProductSubcategory(p) === state.activeSubcat;
-      const matchSearch = !state.searchQuery || 
-        p.name.toLowerCase().includes(state.searchQuery.toLowerCase()) || 
-        p.brand.toLowerCase().includes(state.searchQuery.toLowerCase()) ||
-        p.sku.toLowerCase().includes(state.searchQuery.toLowerCase()) ||
-        (p.partner && p.partner.toLowerCase().includes(state.searchQuery.toLowerCase()));
+      const q = (state.searchQuery || '').toLowerCase().trim();
+      let matchSearch = true;
+      if (q) {
+        const pool = [
+          p.name,
+          p.brand,
+          p.sku,
+          p.itemType,
+          ...(Array.isArray(p.subcategories) ? p.subcategories : [p.subcategories]),
+          ...(Array.isArray(p.tags) ? p.tags : []),
+          p.partner,
+          p.category
+        ].filter(Boolean).join(' ').toLowerCase();
+
+        const stem = (w) => (w.length > 3 && /[иыаяео]$/.test(w)) ? w.slice(0, -1) : w;
+        const words = q.split(/\s+/).filter(Boolean);
+        matchSearch = words.every(w => {
+          const st = stem(w);
+          return pool.includes(w) || pool.includes(st);
+        });
+      }
       
       return matchStock && matchRegion && matchCategory && matchSubcat && matchSearch;
     });
@@ -739,7 +755,9 @@ ${p.description ? `— Описание: ${p.description}\n` : ''}
   }
 
   function setupTrayEvents() {
-    if (el.trayBtn) el.trayBtn.addEventListener('click', openTray);
+    document.querySelectorAll('#preorder-tray-btn, .footer-tray-btn, #footer-preorder-tray-btn').forEach(btn => {
+      btn.addEventListener('click', openTray);
+    });
     if (el.trayCloseBtn) el.trayCloseBtn.addEventListener('click', closeTray);
 
     if (el.trayCheckoutBtn) {
@@ -769,9 +787,12 @@ ${listText}
       timeZone, hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
     }).format(now);
 
-    if (el.clockTokyo) el.clockTokyo.textContent = `TYO: ${formatTime('Asia/Tokyo')} JST`;
-    if (el.clockShanghai) el.clockShanghai.textContent = `SHA: ${formatTime('Asia/Shanghai')} CST`;
-    if (el.clockMoscow) el.clockMoscow.textContent = `MSK: ${formatTime('Europe/Moscow')} MSK`;
+    const tyo = `TYO: ${formatTime('Asia/Tokyo')} JST`;
+    const sha = `SHA: ${formatTime('Asia/Shanghai')} CST`;
+    const msk = `MSK: ${formatTime('Europe/Moscow')} MSK`;
+    document.querySelectorAll('#clock-tokyo, #footer-clock-tokyo, .clock-tokyo').forEach(e => e.textContent = tyo);
+    document.querySelectorAll('#clock-shanghai, #footer-clock-shanghai, .clock-shanghai').forEach(e => e.textContent = sha);
+    document.querySelectorAll('#clock-moscow, #footer-clock-moscow, .clock-moscow').forEach(e => e.textContent = msk);
   }
 
   async function fetchCloudProducts() {
@@ -1431,14 +1452,14 @@ ${listText}
     if (!toggleBtn || !drawer || !overlay) return;
 
     function openDrawer() {
-      drawer.classList.add('is-active');
-      overlay.classList.add('is-active');
+      drawer.classList.add('is-active', 'active');
+      overlay.classList.add('is-active', 'active');
       document.body.style.overflow = 'hidden';
     }
 
     function closeDrawer() {
-      drawer.classList.remove('is-active');
-      overlay.classList.remove('is-active');
+      drawer.classList.remove('is-active', 'active');
+      overlay.classList.remove('is-active', 'active');
       document.body.style.overflow = '';
     }
 

@@ -25,6 +25,15 @@
     "images": [
       "/uploads/sasbov-card-1792377614662_gallery_0.jpg",
       "/uploads/sasbov-card-1792377614662_gallery_1.jpg"
+    ],
+    "itemType": "Аксессуары",
+    "tags": [
+      "аксессуары",
+      "gucci"
+    ],
+    "subcategories": [
+      "Аксессуары",
+      "accessories"
     ]
   },
   {
@@ -53,6 +62,17 @@
     "images": [
       "/uploads/sasbov-card-1792377555768_gallery_0.jpg",
       "/uploads/sasbov-card-1792377555768_gallery_1.jpg"
+    ],
+    "itemType": "Худи",
+    "tags": [
+      "худи",
+      "hoodie",
+      "толстовка",
+      "c.p. company"
+    ],
+    "subcategories": [
+      "Худи",
+      "clothing"
     ]
   },
   {
@@ -81,6 +101,19 @@
     "images": [
       "/uploads/sasbov-card-1792377498448_gallery_0.jpg",
       "/uploads/sasbov-card-1792377498448_gallery_1.jpg"
+    ],
+    "itemType": "Пуховик",
+    "tags": [
+      "пуховик",
+      "пуховики",
+      "puffer",
+      "down jacket",
+      "куртка",
+      "stone island"
+    ],
+    "subcategories": [
+      "Пуховик",
+      "clothing"
     ]
   },
   {
@@ -109,6 +142,15 @@
     "images": [
       "/uploads/sasbov-card-1792377426397_gallery_0.jpg",
       "/uploads/sasbov-card-1792377426397_gallery_1.jpg"
+    ],
+    "itemType": "Аксессуары",
+    "tags": [
+      "аксессуары",
+      "c.p. company x fila"
+    ],
+    "subcategories": [
+      "Аксессуары",
+      "accessories"
     ]
   },
   {
@@ -140,6 +182,20 @@
     "images": [
       "/uploads/sasbov-card-1792377364282_gallery_0.jpg",
       "/uploads/sasbov-card-1792377364282_gallery_1.jpg"
+    ],
+    "itemType": "Зип-худи",
+    "tags": [
+      "зипхуди",
+      "зип-худи",
+      "zip hoodie",
+      "zip",
+      "худи",
+      "hoodie",
+      "c.p. company"
+    ],
+    "subcategories": [
+      "Зип-худи",
+      "clothing"
     ]
   },
   {
@@ -168,6 +224,15 @@
     "images": [
       "/uploads/sasbov-card-1792377322346_gallery_0.jpg",
       "/uploads/sasbov-card-1792377322346_gallery_1.jpg"
+    ],
+    "itemType": "Аксессуары",
+    "tags": [
+      "аксессуары",
+      "gucci"
+    ],
+    "subcategories": [
+      "Аксессуары",
+      "accessories"
     ]
   },
   {
@@ -195,6 +260,19 @@
     "image": "/uploads/sasbov-card-1792377251653_main.jpg",
     "images": [
       "/uploads/sasbov-card-1792377251653_gallery_0.jpg"
+    ],
+    "itemType": "Пуховик",
+    "tags": [
+      "пуховик",
+      "пуховики",
+      "puffer",
+      "down jacket",
+      "куртка",
+      "stone island"
+    ],
+    "subcategories": [
+      "Пуховик",
+      "clothing"
     ]
   },
   {
@@ -229,6 +307,19 @@
       "/uploads/sasbov-card-1792377187464_gallery_0.jpg",
       "/uploads/sasbov-card-1792377187464_gallery_1.jpg",
       "/uploads/sasbov-card-1792377187464_gallery_2.jpg"
+    ],
+    "itemType": "Пуховик",
+    "tags": [
+      "пуховик",
+      "пуховики",
+      "puffer",
+      "down jacket",
+      "куртка",
+      "c.p. company"
+    ],
+    "subcategories": [
+      "Пуховик",
+      "clothing"
     ]
   },
   {
@@ -257,6 +348,15 @@
     "images": [
       "/uploads/sasbov-card-1792377110189_gallery_0.jpg",
       "/uploads/sasbov-card-1792377110189_gallery_1.jpg"
+    ],
+    "itemType": "Аксессуары",
+    "tags": [
+      "аксессуары",
+      "louis vuitton"
+    ],
+    "subcategories": [
+      "Аксессуары",
+      "accessories"
     ]
   },
   {
@@ -288,6 +388,19 @@
     "image": "/uploads/sasbov-card-1792376798355_main.jpg",
     "images": [
       "/uploads/sasbov-card-1792376798355_gallery_0.jpg"
+    ],
+    "itemType": "Пуховик",
+    "tags": [
+      "пуховик",
+      "пуховики",
+      "puffer",
+      "down jacket",
+      "куртка",
+      "c.p. company"
+    ],
+    "subcategories": [
+      "Пуховик",
+      "clothing"
     ]
   },
   {
@@ -315,6 +428,17 @@
     "image": "/uploads/sasbov-card-1792376700044_main.jpg",
     "images": [
       "/uploads/sasbov-card-1792376700044_gallery_0.jpg"
+    ],
+    "itemType": "Кроссовки",
+    "tags": [
+      "кроссовки",
+      "обувь",
+      "sneakers",
+      "nike x travis scott"
+    ],
+    "subcategories": [
+      "Кроссовки",
+      "footwear"
     ]
   },
   {
@@ -342,6 +466,17 @@
     "image": "/uploads/sasbov-card-1792376628420_main.jpg",
     "images": [
       "/uploads/sasbov-card-1792376628420_gallery_0.jpg"
+    ],
+    "itemType": "Кроссовки",
+    "tags": [
+      "кроссовки",
+      "обувь",
+      "sneakers",
+      "nike"
+    ],
+    "subcategories": [
+      "Кроссовки",
+      "footwear"
     ]
   },
   {
@@ -369,6 +504,17 @@
     "image": "/uploads/sasbov-card-1792374224244_main.jpg",
     "images": [
       "/uploads/sasbov-card-1792374224244_gallery_0.jpg"
+    ],
+    "itemType": "Кроссовки",
+    "tags": [
+      "кроссовки",
+      "обувь",
+      "sneakers",
+      "nike"
+    ],
+    "subcategories": [
+      "Кроссовки",
+      "footwear"
     ]
   },
   {
@@ -396,6 +542,15 @@
     "image": "/uploads/sasbov-card-1792374077196_main.jpg",
     "images": [
       "/uploads/sasbov-card-1792374077196_gallery_0.jpg"
+    ],
+    "itemType": "Аксессуары",
+    "tags": [
+      "аксессуары",
+      "prada"
+    ],
+    "subcategories": [
+      "Аксессуары",
+      "accessories"
     ]
   },
   {
@@ -423,6 +578,20 @@
     "image": "/uploads/sasbov-card-1792373892517_main.jpg",
     "images": [
       "/uploads/sasbov-card-1792373892517_gallery_0.jpg"
+    ],
+    "itemType": "Зип-худи",
+    "tags": [
+      "зипхуди",
+      "зип-худи",
+      "zip hoodie",
+      "zip",
+      "худи",
+      "hoodie",
+      "c.p. company"
+    ],
+    "subcategories": [
+      "Зип-худи",
+      "clothing"
     ]
   },
   {
@@ -450,6 +619,15 @@
     "image": "/uploads/sasbov-card-1792373839649_main.jpg",
     "images": [
       "/uploads/sasbov-card-1792373839649_gallery_0.jpg"
+    ],
+    "itemType": "Одежда",
+    "tags": [
+      "одежда",
+      "bottega veneta"
+    ],
+    "subcategories": [
+      "Одежда",
+      "clothing"
     ]
   },
   {
@@ -478,6 +656,20 @@
     "images": [
       "/uploads/sasbov-card-1792373749248_gallery_0.jpg",
       "/uploads/sasbov-card-1792373749248_gallery_1.jpg"
+    ],
+    "itemType": "Зип-худи",
+    "tags": [
+      "зипхуди",
+      "зип-худи",
+      "zip hoodie",
+      "zip",
+      "худи",
+      "hoodie",
+      "c.p. company"
+    ],
+    "subcategories": [
+      "Зип-худи",
+      "clothing"
     ]
   },
   {
@@ -505,6 +697,18 @@
     "image": "/uploads/sasbov-card-1792373696451_main.jpg",
     "images": [
       "/uploads/sasbov-card-1792373696451_gallery_0.jpg"
+    ],
+    "itemType": "Куртка",
+    "tags": [
+      "куртка",
+      "куртки",
+      "ветровка",
+      "jacket",
+      "c.p. company"
+    ],
+    "subcategories": [
+      "Куртка",
+      "clothing"
     ]
   },
   {
@@ -532,6 +736,17 @@
     "image": "/uploads/sasbov-card-1792373633395_main.jpg",
     "images": [
       "/uploads/sasbov-card-1792373633395_gallery_0.jpg"
+    ],
+    "itemType": "Кроссовки",
+    "tags": [
+      "кроссовки",
+      "обувь",
+      "sneakers",
+      "nike"
+    ],
+    "subcategories": [
+      "Кроссовки",
+      "footwear"
     ]
   },
   {
@@ -559,6 +774,15 @@
     "image": "/uploads/sasbov-card-1792373571555_main.jpg",
     "images": [
       "/uploads/sasbov-card-1792373571555_gallery_0.jpg"
+    ],
+    "itemType": "Аксессуары",
+    "tags": [
+      "аксессуары",
+      "c.p. company"
+    ],
+    "subcategories": [
+      "Аксессуары",
+      "accessories"
     ]
   },
   {
@@ -586,6 +810,19 @@
     "image": "/uploads/sasbov-card-1792371743702_main.jpg",
     "images": [
       "/uploads/sasbov-card-1792371743702_gallery_0.jpg"
+    ],
+    "itemType": "Пуховик",
+    "tags": [
+      "пуховик",
+      "пуховики",
+      "puffer",
+      "down jacket",
+      "куртка",
+      "c.p. company"
+    ],
+    "subcategories": [
+      "Пуховик",
+      "clothing"
     ]
   },
   {
@@ -616,6 +853,19 @@
     "images": [
       "/uploads/sasbov-card-1792371619571_gallery_0.jpg",
       "/uploads/sasbov-card-1792371619571_gallery_1.jpg"
+    ],
+    "itemType": "Пуховик",
+    "tags": [
+      "пуховик",
+      "пуховики",
+      "puffer",
+      "down jacket",
+      "куртка",
+      "c.p. company"
+    ],
+    "subcategories": [
+      "Пуховик",
+      "clothing"
     ]
   },
   {
@@ -644,6 +894,15 @@
     "images": [
       "/uploads/sasbov-card-1792371542116_gallery_0.jpg",
       "/uploads/sasbov-card-1792371542116_gallery_1.jpg"
+    ],
+    "itemType": "Аксессуары",
+    "tags": [
+      "аксессуары",
+      "louis vuitton"
+    ],
+    "subcategories": [
+      "Аксессуары",
+      "accessories"
     ]
   },
   {
@@ -673,6 +932,18 @@
     "image": "/uploads/sasbov-card-1792371453767_main.jpg",
     "images": [
       "/uploads/sasbov-card-1792371453767_gallery_0.jpg"
+    ],
+    "itemType": "Куртка",
+    "tags": [
+      "куртка",
+      "куртки",
+      "ветровка",
+      "jacket",
+      "c.p. company x fila"
+    ],
+    "subcategories": [
+      "Куртка",
+      "clothing"
     ]
   },
   {
@@ -700,6 +971,17 @@
     "image": "/uploads/sasbov-card-1792371369116_main.jpg",
     "images": [
       "/uploads/sasbov-card-1792371369116_gallery_0.jpg"
+    ],
+    "itemType": "Кроссовки",
+    "tags": [
+      "кроссовки",
+      "обувь",
+      "sneakers",
+      "nike"
+    ],
+    "subcategories": [
+      "Кроссовки",
+      "footwear"
     ]
   },
   {
@@ -729,6 +1011,18 @@
       "/uploads/sasbov-card-1792371233586_gallery_0.jpg",
       "/uploads/sasbov-card-1792371233586_gallery_1.jpg",
       "/uploads/sasbov-card-1792371233586_gallery_2.jpg"
+    ],
+    "itemType": "Футболка",
+    "tags": [
+      "футболка",
+      "футболки",
+      "tee",
+      "t-shirt",
+      "miu miu"
+    ],
+    "subcategories": [
+      "Футболка",
+      "clothing"
     ]
   },
   {
@@ -759,6 +1053,15 @@
       "/uploads/sasbov-card-1792371110180_gallery_1.jpg",
       "/uploads/sasbov-card-1792371110180_gallery_2.jpg",
       "/uploads/sasbov-card-1792371110180_gallery_3.jpg"
+    ],
+    "itemType": "Одежда",
+    "tags": [
+      "одежда",
+      "givenchy"
+    ],
+    "subcategories": [
+      "Одежда",
+      "clothing"
     ]
   },
   {
@@ -786,6 +1089,15 @@
     "image": "/uploads/sasbov-card-1792391879402_main_1792391882547_220.jpg",
     "images": [
       "/uploads/sasbov-card-1792391879402_gal_0_1792391882553_161.jpg"
+    ],
+    "itemType": "Аксессуары",
+    "tags": [
+      "аксессуары",
+      "sprayground"
+    ],
+    "subcategories": [
+      "Аксессуары",
+      "accessories"
     ]
   },
   {
@@ -816,6 +1128,17 @@
       "/uploads/sasbov-card-1792391973865_gal_1_1792391976671_538.jpg",
       "/uploads/sasbov-card-1792391973865_gal_2_1792391976672_987.jpg",
       "/uploads/sasbov-card-1792391973865_gal_3_1792391976672_17.jpg"
+    ],
+    "itemType": "Штаны",
+    "tags": [
+      "штаны",
+      "брюки",
+      "pants",
+      "bape"
+    ],
+    "subcategories": [
+      "Штаны",
+      "clothing"
     ]
   },
   {
@@ -846,6 +1169,15 @@
       "/uploads/sasbov-card-1792392065449_gal_1_1792392068629_637.jpg",
       "/uploads/sasbov-card-1792392065449_gal_2_1792392068630_375.jpg",
       "/uploads/sasbov-card-1792392065449_gal_3_1792392068631_244.jpg"
+    ],
+    "itemType": "Аксессуары",
+    "tags": [
+      "аксессуары",
+      "stone island"
+    ],
+    "subcategories": [
+      "Аксессуары",
+      "accessories"
     ]
   },
   {
@@ -877,6 +1209,17 @@
       "/uploads/sasbov-card-1792392149354_gal_2_1792392152444_50.jpg",
       "/uploads/sasbov-card-1792392149354_gal_3_1792392152445_831.jpg",
       "/uploads/sasbov-card-1792392149354_gal_4_1792392152446_764.jpg"
+    ],
+    "itemType": "Кроссовки",
+    "tags": [
+      "кроссовки",
+      "обувь",
+      "sneakers",
+      "dior x kenny scharf"
+    ],
+    "subcategories": [
+      "Кроссовки",
+      "footwear"
     ]
   },
   {
@@ -908,6 +1251,17 @@
       "/uploads/sasbov-card-1792392230019_gal_2_1792392233400_96.jpg",
       "/uploads/sasbov-card-1792392230019_gal_3_1792392233400_288.jpg",
       "/uploads/sasbov-card-1792392230019_gal_4_1792392233401_962.jpg"
+    ],
+    "itemType": "Кроссовки",
+    "tags": [
+      "кроссовки",
+      "обувь",
+      "sneakers",
+      "nike x off-white"
+    ],
+    "subcategories": [
+      "Кроссовки",
+      "footwear"
     ]
   },
   {
@@ -939,6 +1293,17 @@
       "/uploads/sasbov-card-1792393485462_gal_2_1792393488930_8.jpg",
       "/uploads/sasbov-card-1792393485462_gal_3_1792393488931_663.jpg",
       "/uploads/sasbov-card-1792393485462_gal_4_1792393488932_860.jpg"
+    ],
+    "itemType": "Кроссовки",
+    "tags": [
+      "кроссовки",
+      "обувь",
+      "sneakers",
+      "valentino"
+    ],
+    "subcategories": [
+      "Кроссовки",
+      "footwear"
     ]
   },
   {
@@ -969,6 +1334,15 @@
       "/uploads/sasbov-card-1792393568191_gal_1_1792393571294_58.jpg",
       "/uploads/sasbov-card-1792393568191_gal_2_1792393571295_425.jpg",
       "/uploads/sasbov-card-1792393568191_gal_3_1792393571295_402.jpg"
+    ],
+    "itemType": "Одежда",
+    "tags": [
+      "одежда",
+      "c.p. company"
+    ],
+    "subcategories": [
+      "Одежда",
+      "clothing"
     ]
   },
   {
@@ -997,6 +1371,15 @@
     "images": [
       "/uploads/sasbov-card-1792393616380_gal_0_1792393619156_903.jpg",
       "/uploads/sasbov-card-1792393616380_gal_1_1792393619158_664.jpg"
+    ],
+    "itemType": "Аксессуары",
+    "tags": [
+      "аксессуары",
+      "sprayground"
+    ],
+    "subcategories": [
+      "Аксессуары",
+      "accessories"
     ]
   },
   {
@@ -1026,6 +1409,15 @@
       "/uploads/sasbov-card-1792393681211_gal_0_1792393684339_735.jpg",
       "/uploads/sasbov-card-1792393681211_gal_1_1792393684340_396.jpg",
       "/uploads/sasbov-card-1792393681211_gal_2_1792393684340_280.jpg"
+    ],
+    "itemType": "Аксессуары",
+    "tags": [
+      "аксессуары",
+      "arc'teryx"
+    ],
+    "subcategories": [
+      "Аксессуары",
+      "accessories"
     ]
   },
   {
@@ -1055,6 +1447,17 @@
       "/uploads/sasbov-card-1792393746875_gal_0_1792393749937_804.jpg",
       "/uploads/sasbov-card-1792393746875_gal_1_1792393749938_114.jpg",
       "/uploads/sasbov-card-1792393746875_gal_2_1792393749939_92.jpg"
+    ],
+    "itemType": "Кроссовки",
+    "tags": [
+      "кроссовки",
+      "обувь",
+      "sneakers",
+      "nike"
+    ],
+    "subcategories": [
+      "Кроссовки",
+      "accessories"
     ]
   },
   {
@@ -1083,6 +1486,15 @@
     "images": [
       "/uploads/sasbov-card-1792393986802_gal_0_1792393990021_171.jpg",
       "/uploads/sasbov-card-1792393986802_gal_1_1792393990022_495.jpg"
+    ],
+    "itemType": "Аксессуары",
+    "tags": [
+      "аксессуары",
+      "sprayground"
+    ],
+    "subcategories": [
+      "Аксессуары",
+      "accessories"
     ]
   },
   {
@@ -1114,6 +1526,17 @@
       "/uploads/sasbov-card-1792394267491_gal_2_1792394271026_512.jpg",
       "/uploads/sasbov-card-1792394267491_gal_3_1792394271027_985.jpg",
       "/uploads/sasbov-card-1792394267491_gal_4_1792394271028_271.jpg"
+    ],
+    "itemType": "Кроссовки",
+    "tags": [
+      "кроссовки",
+      "обувь",
+      "sneakers",
+      "nike x off-white"
+    ],
+    "subcategories": [
+      "Кроссовки",
+      "footwear"
     ]
   },
   {
@@ -1142,6 +1565,17 @@
     "images": [
       "/uploads/sasbov-card-1792394313001_gal_0_1792394315973_139.jpg",
       "/uploads/sasbov-card-1792394313001_gal_1_1792394315974_553.jpg"
+    ],
+    "itemType": "Кроссовки",
+    "tags": [
+      "кроссовки",
+      "обувь",
+      "sneakers",
+      "timberland"
+    ],
+    "subcategories": [
+      "Кроссовки",
+      "footwear"
     ]
   },
   {
@@ -1169,6 +1603,15 @@
     "image": "/uploads/sasbov-card-1792394403549_main_1792394406627_509.jpg",
     "images": [
       "/uploads/sasbov-card-1792394403549_gal_0_1792394406629_564.jpg"
+    ],
+    "itemType": "Аксессуары",
+    "tags": [
+      "аксессуары",
+      "yeenjoy"
+    ],
+    "subcategories": [
+      "Аксессуары",
+      "accessories"
     ]
   },
   {
@@ -1199,6 +1642,20 @@
       "/uploads/sasbov-card-1792394471632_gal_1_1792394475165_560.jpg",
       "/uploads/sasbov-card-1792394471632_gal_2_1792394475166_892.jpg",
       "/uploads/sasbov-card-1792394471632_gal_3_1792394475167_131.jpg"
+    ],
+    "itemType": "Зип-худи",
+    "tags": [
+      "зипхуди",
+      "зип-худи",
+      "zip hoodie",
+      "zip",
+      "худи",
+      "hoodie",
+      "bape"
+    ],
+    "subcategories": [
+      "Зип-худи",
+      "clothing"
     ]
   },
   {
@@ -1229,6 +1686,15 @@
       "/uploads/sasbov-card-1792394558246_gal_1_1792394561661_651.jpg",
       "/uploads/sasbov-card-1792394558246_gal_2_1792394561662_409.jpg",
       "/uploads/sasbov-card-1792394558246_gal_3_1792394561662_73.jpg"
+    ],
+    "itemType": "Одежда",
+    "tags": [
+      "одежда",
+      "bape"
+    ],
+    "subcategories": [
+      "Одежда",
+      "clothing"
     ]
   },
   {
@@ -1258,6 +1724,15 @@
       "/uploads/sasbov-card-1792394623517_gal_0_1792394626352_700.jpg",
       "/uploads/sasbov-card-1792394623517_gal_1_1792394626352_424.jpg",
       "/uploads/sasbov-card-1792394623517_gal_2_1792394626353_193.jpg"
+    ],
+    "itemType": "Одежда",
+    "tags": [
+      "одежда",
+      "polo"
+    ],
+    "subcategories": [
+      "Одежда",
+      "clothing"
     ]
   },
   {
@@ -1289,6 +1764,18 @@
       "/uploads/sasbov-card-1792394753468_gal_2_1792394757000_970.jpg",
       "/uploads/sasbov-card-1792394753468_gal_3_1792394757001_778.jpg",
       "/uploads/sasbov-card-1792394753468_gal_4_1792394757002_884.jpg"
+    ],
+    "itemType": "Куртка",
+    "tags": [
+      "куртка",
+      "куртки",
+      "ветровка",
+      "jacket",
+      "c.p. company"
+    ],
+    "subcategories": [
+      "Куртка",
+      "clothing"
     ]
   },
   {
@@ -1321,6 +1808,18 @@
       "/uploads/sasbov-card-1792394875476_gal_3_1792394879155_117.jpg",
       "/uploads/sasbov-card-1792394875476_gal_4_1792394879156_638.jpg",
       "/uploads/sasbov-card-1792394875476_gal_5_1792394879157_275.jpg"
+    ],
+    "itemType": "Куртка",
+    "tags": [
+      "куртка",
+      "куртки",
+      "ветровка",
+      "jacket",
+      "bape"
+    ],
+    "subcategories": [
+      "Куртка",
+      "clothing"
     ]
   },
   {
@@ -1350,6 +1849,18 @@
       "/uploads/sasbov-card-1792394952065_gal_0_1792394955160_951.jpg",
       "/uploads/sasbov-card-1792394952065_gal_1_1792394955161_779.jpg",
       "/uploads/sasbov-card-1792394952065_gal_2_1792394955161_333.jpg"
+    ],
+    "itemType": "Куртка",
+    "tags": [
+      "куртка",
+      "куртки",
+      "ветровка",
+      "jacket",
+      "bape"
+    ],
+    "subcategories": [
+      "Куртка",
+      "clothing"
     ]
   },
   {
@@ -1379,6 +1890,15 @@
       "/uploads/sasbov-card-1792395053374_gal_0_1792395056773_118.jpg",
       "/uploads/sasbov-card-1792395053374_gal_1_1792395056774_262.jpg",
       "/uploads/sasbov-card-1792395053374_gal_2_1792395056775_86.jpg"
+    ],
+    "itemType": "Одежда",
+    "tags": [
+      "одежда",
+      "balenciaga"
+    ],
+    "subcategories": [
+      "Одежда",
+      "clothing"
     ]
   },
   {
@@ -1407,6 +1927,18 @@
     "images": [
       "/uploads/sasbov-card-1792395116972_gal_0_1792395119982_856.jpg",
       "/uploads/sasbov-card-1792395116972_gal_1_1792395119982_754.jpg"
+    ],
+    "itemType": "Футболка",
+    "tags": [
+      "футболка",
+      "футболки",
+      "tee",
+      "t-shirt",
+      "balenciaga"
+    ],
+    "subcategories": [
+      "Футболка",
+      "clothing"
     ]
   },
   {
@@ -1438,6 +1970,20 @@
       "/uploads/sasbov-card-1792395246120_gal_2_1792395252562_536.jpg",
       "/uploads/sasbov-card-1792395246120_gal_3_1792395252563_66.jpg",
       "/uploads/sasbov-card-1792395246120_gal_4_1792395252563_79.jpg"
+    ],
+    "itemType": "Зип-худи",
+    "tags": [
+      "зипхуди",
+      "зип-худи",
+      "zip hoodie",
+      "zip",
+      "худи",
+      "hoodie",
+      "bape x neighborhood"
+    ],
+    "subcategories": [
+      "Зип-худи",
+      "clothing"
     ]
   },
   {
@@ -1467,6 +2013,18 @@
       "/uploads/sasbov-card-1792395328649_gal_0_1792395331934_152.jpg",
       "/uploads/sasbov-card-1792395328649_gal_1_1792395331935_45.jpg",
       "/uploads/sasbov-card-1792395328649_gal_2_1792395331936_309.jpg"
+    ],
+    "itemType": "Футболка",
+    "tags": [
+      "футболка",
+      "футболки",
+      "tee",
+      "t-shirt",
+      "balenciaga"
+    ],
+    "subcategories": [
+      "Футболка",
+      "clothing"
     ]
   },
   {
@@ -1496,6 +2054,15 @@
       "/uploads/sasbov-card-1792395398649_gal_0_1792395399661_646.jpg",
       "/uploads/sasbov-card-1792395398649_gal_1_1792395399662_42.jpg",
       "/uploads/sasbov-card-1792395398649_gal_2_1792395399662_804.jpg"
+    ],
+    "itemType": "Одежда",
+    "tags": [
+      "одежда",
+      "balenciaga"
+    ],
+    "subcategories": [
+      "Одежда",
+      "clothing"
     ]
   },
   {
@@ -1525,6 +2092,15 @@
       "/uploads/sasbov-card-1792395455686_gal_0_1792395456697_901.jpg",
       "/uploads/sasbov-card-1792395455686_gal_1_1792395456698_234.jpg",
       "/uploads/sasbov-card-1792395455686_gal_2_1792395456698_691.jpg"
+    ],
+    "itemType": "Одежда",
+    "tags": [
+      "одежда",
+      "balenciaga"
+    ],
+    "subcategories": [
+      "Одежда",
+      "clothing"
     ]
   },
   {
@@ -1553,6 +2129,15 @@
     "images": [
       "/uploads/sasbov-card-1792395528771_gal_0_1792395529512_178.jpg",
       "/uploads/sasbov-card-1792395528771_gal_1_1792395529513_139.jpg"
+    ],
+    "itemType": "Одежда",
+    "tags": [
+      "одежда",
+      "balenciaga x the simpsons"
+    ],
+    "subcategories": [
+      "Одежда",
+      "clothing"
     ]
   },
   {
@@ -1586,6 +2171,15 @@
       "/uploads/sasbov-card-1792395600920_gal_1_1792395601780_405.jpg",
       "/uploads/sasbov-card-1792395600920_gal_2_1792395601781_622.jpg",
       "/uploads/sasbov-card-1792395600920_gal_3_1792395601782_46.jpg"
+    ],
+    "itemType": "Одежда",
+    "tags": [
+      "одежда",
+      "stone island"
+    ],
+    "subcategories": [
+      "Одежда",
+      "clothing"
     ]
   },
   {
@@ -1615,6 +2209,16 @@
       "/uploads/sasbov-card-1792395661998_gal_0_1792395662973_508.jpg",
       "/uploads/sasbov-card-1792395661998_gal_1_1792395662973_977.jpg",
       "/uploads/sasbov-card-1792395661998_gal_2_1792395662974_944.jpg"
+    ],
+    "itemType": "Шорты",
+    "tags": [
+      "шорты",
+      "shorts",
+      "nikelab x fear of god"
+    ],
+    "subcategories": [
+      "Шорты",
+      "clothing"
     ]
   },
   {
@@ -1644,6 +2248,18 @@
     "images": [
       "/uploads/sasbov-card-1792395732420_gal_0_1792395733299_786.jpg",
       "/uploads/sasbov-card-1792395732420_gal_1_1792395733300_827.jpg"
+    ],
+    "itemType": "Футболка",
+    "tags": [
+      "футболка",
+      "футболки",
+      "tee",
+      "t-shirt",
+      "balenciaga"
+    ],
+    "subcategories": [
+      "Футболка",
+      "clothing"
     ]
   },
   {
@@ -1673,6 +2289,15 @@
       "/uploads/sasbov-card-1792395847178_gal_0_1792395848468_562.jpg",
       "/uploads/sasbov-card-1792395847178_gal_1_1792395848468_575.jpg",
       "/uploads/sasbov-card-1792395847178_gal_2_1792395848469_384.jpg"
+    ],
+    "itemType": "Одежда",
+    "tags": [
+      "одежда",
+      "balenciaga"
+    ],
+    "subcategories": [
+      "Одежда",
+      "clothing"
     ]
   },
   {
@@ -1703,6 +2328,15 @@
       "/uploads/sasbov-card-1792395911320_gal_1_1792395912452_252.jpg",
       "/uploads/sasbov-card-1792395911320_gal_2_1792395912452_39.jpg",
       "/uploads/sasbov-card-1792395911320_gal_3_1792395912453_657.jpg"
+    ],
+    "itemType": "Одежда",
+    "tags": [
+      "одежда",
+      "gucci"
+    ],
+    "subcategories": [
+      "Одежда",
+      "clothing"
     ]
   },
   {
@@ -1730,6 +2364,18 @@
     "image": "/uploads/sasbov-card-1792395955575_main_1792395956426_788.jpg",
     "images": [
       "/uploads/sasbov-card-1792395955575_gal_0_1792395956428_339.jpg"
+    ],
+    "itemType": "Футболка",
+    "tags": [
+      "футболка",
+      "футболки",
+      "tee",
+      "t-shirt",
+      "balenciaga"
+    ],
+    "subcategories": [
+      "Футболка",
+      "clothing"
     ]
   },
   {
@@ -1760,6 +2406,15 @@
       "/uploads/sasbov-card-1792396011822_gal_1_1792396012820_685.jpg",
       "/uploads/sasbov-card-1792396011822_gal_2_1792396012821_445.jpg",
       "/uploads/sasbov-card-1792396011822_gal_3_1792396012822_852.jpg"
+    ],
+    "itemType": "Одежда",
+    "tags": [
+      "одежда",
+      "maison margiela"
+    ],
+    "subcategories": [
+      "Одежда",
+      "clothing"
     ]
   },
   {
@@ -1791,6 +2446,15 @@
       "/uploads/sasbov-card-1792396074853_gal_2_1792396076136_136.jpg",
       "/uploads/sasbov-card-1792396074853_gal_3_1792396076137_514.jpg",
       "/uploads/sasbov-card-1792396074853_gal_4_1792396076137_454.jpg"
+    ],
+    "itemType": "Одежда",
+    "tags": [
+      "одежда",
+      "cav empt"
+    ],
+    "subcategories": [
+      "Одежда",
+      "clothing"
     ]
   },
   {
@@ -1820,6 +2484,18 @@
       "/uploads/sasbov-card-1792396128444_gal_0_1792396129292_717.jpg",
       "/uploads/sasbov-card-1792396128444_gal_1_1792396129293_385.jpg",
       "/uploads/sasbov-card-1792396128444_gal_2_1792396129294_925.jpg"
+    ],
+    "itemType": "Футболка",
+    "tags": [
+      "футболка",
+      "футболки",
+      "tee",
+      "t-shirt",
+      "chrome hearts"
+    ],
+    "subcategories": [
+      "Футболка",
+      "clothing"
     ]
   },
   {
@@ -1853,6 +2529,17 @@
       "/uploads/sasbov-card-1792396204742_gal_4_1792396206241_734.jpg",
       "/uploads/sasbov-card-1792396204742_gal_5_1792396206242_253.jpg",
       "/uploads/sasbov-card-1792396204742_gal_6_1792396206243_711.jpg"
+    ],
+    "itemType": "Кроссовки",
+    "tags": [
+      "кроссовки",
+      "обувь",
+      "sneakers",
+      "nike x off-white"
+    ],
+    "subcategories": [
+      "Кроссовки",
+      "footwear"
     ]
   },
   {
@@ -1883,6 +2570,17 @@
       "/uploads/sasbov-card-1792396372147_gal_1_1792396373656_617.jpg",
       "/uploads/sasbov-card-1792396372147_gal_2_1792396373658_232.jpg",
       "/uploads/sasbov-card-1792396372147_gal_3_1792396373660_827.jpg"
+    ],
+    "itemType": "Кроссовки",
+    "tags": [
+      "кроссовки",
+      "обувь",
+      "sneakers",
+      "prada x adidas"
+    ],
+    "subcategories": [
+      "Кроссовки",
+      "footwear"
     ]
   },
   {
@@ -1914,6 +2612,17 @@
       "/uploads/sasbov-card-1792396501495_gal_2_1792396503582_749.jpg",
       "/uploads/sasbov-card-1792396501495_gal_3_1792396503584_448.jpg",
       "/uploads/sasbov-card-1792396501495_gal_4_1792396503585_397.jpg"
+    ],
+    "itemType": "Кроссовки",
+    "tags": [
+      "кроссовки",
+      "обувь",
+      "sneakers",
+      "nike x off-white"
+    ],
+    "subcategories": [
+      "Кроссовки",
+      "footwear"
     ]
   },
   {
@@ -1944,6 +2653,17 @@
       "/uploads/sasbov-card-1792396647697_gal_1_1792396649654_777.jpg",
       "/uploads/sasbov-card-1792396647697_gal_2_1792396649657_393.jpg",
       "/uploads/sasbov-card-1792396647697_gal_3_1792396649660_494.jpg"
+    ],
+    "itemType": "Кроссовки",
+    "tags": [
+      "кроссовки",
+      "обувь",
+      "sneakers",
+      "gucci"
+    ],
+    "subcategories": [
+      "Кроссовки",
+      "footwear"
     ]
   },
   {
@@ -1974,6 +2694,16 @@
       "/uploads/sasbov-card-1792396697852_gal_1_1792396699363_37.jpg",
       "/uploads/sasbov-card-1792396697852_gal_2_1792396699365_950.jpg",
       "/uploads/sasbov-card-1792396697852_gal_3_1792396699367_663.jpg"
+    ],
+    "itemType": "Шорты",
+    "tags": [
+      "шорты",
+      "shorts",
+      "stone island"
+    ],
+    "subcategories": [
+      "Шорты",
+      "clothing"
     ]
   },
   {
@@ -2001,6 +2731,15 @@
     "image": "/uploads/sasbov-card-1792396922319_gal_0_1792396923214_30.jpg",
     "images": [
       "/uploads/sasbov-card-1792396922319_gal_0_1792396923214_30.jpg"
+    ],
+    "itemType": "Одежда",
+    "tags": [
+      "одежда",
+      "stone island"
+    ],
+    "subcategories": [
+      "Одежда",
+      "clothing"
     ]
   },
   {
@@ -2028,6 +2767,15 @@
     "image": "/uploads/sasbov-card-1792945382526_main_1792945384386_496.jpg",
     "images": [
       "/uploads/sasbov-card-1792945382526_gal_0_1792945384414_62.jpg"
+    ],
+    "itemType": "Одежда",
+    "tags": [
+      "одежда",
+      "stone island"
+    ],
+    "subcategories": [
+      "Одежда",
+      "clothing"
     ]
   },
   {
@@ -2055,6 +2803,15 @@
     "image": "/uploads/sasbov-card-1792945484226_main_1792945487122_150.jpg",
     "images": [
       "/uploads/sasbov-card-1792945484226_gal_0_1792945487141_4.jpg"
+    ],
+    "itemType": "Аксессуары",
+    "tags": [
+      "аксессуары",
+      "gucci"
+    ],
+    "subcategories": [
+      "Аксессуары",
+      "accessories"
     ]
   },
   {
@@ -2082,6 +2839,15 @@
     "image": "/uploads/sasbov-card-1792945573391_main_1792945575874_152.jpg",
     "images": [
       "/uploads/sasbov-card-1792945573391_gal_0_1792945575886_267.jpg"
+    ],
+    "itemType": "Аксессуары",
+    "tags": [
+      "аксессуары",
+      "gucci"
+    ],
+    "subcategories": [
+      "Аксессуары",
+      "accessories"
     ]
   },
   {
@@ -2109,6 +2875,17 @@
     "image": "/uploads/sasbov-card-1792945668335_main_1792945670134_453.jpg",
     "images": [
       "/uploads/sasbov-card-1792945668335_gal_0_1792945670136_246.jpg"
+    ],
+    "itemType": "Кроссовки",
+    "tags": [
+      "кроссовки",
+      "обувь",
+      "sneakers",
+      "bape"
+    ],
+    "subcategories": [
+      "Кроссовки",
+      "footwear"
     ]
   },
   {
@@ -2136,6 +2913,15 @@
     "image": "/uploads/sasbov-card-1792945929449_main_1792945931244_400.jpg",
     "images": [
       "/uploads/sasbov-card-1792945929449_gal_0_1792945931247_876.jpg"
+    ],
+    "itemType": "Одежда",
+    "tags": [
+      "одежда",
+      "uniqlo x kaws"
+    ],
+    "subcategories": [
+      "Одежда",
+      "clothing"
     ]
   }
 ]

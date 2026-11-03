@@ -343,8 +343,37 @@
     </div>
   </aside>
 
-  <!-- Site Footer with Official Publics, Platforms and Showroom -->
-  <footer class="site-footer">
+    <!-- Site Footer with Official Publics, Platforms and Showroom -->
+  <footer class="site-footer" id="site-footer">
+    <!-- Footer Telemetry & Live World Clocks (Synced with Header) -->
+    <div class="footer-telemetry-hud">
+      <div class="container footer-telemetry-inner">
+        <div class="footer-telemetry-left">
+          <div class="theme-switch-bar footer-theme-switch-bar" aria-label="Выбор темы сайта в футере">
+            <span class="footer-hud-label">ТЕМА:</span>
+            <button type="button" class="theme-pill-btn active" data-theme-val="dark" title="Тёмная тема"><span class="theme-dot theme-dot-dark"></span> ТЁМНАЯ</button>
+            <button type="button" class="theme-pill-btn" data-theme-val="chrome" title="Тема хром"><span class="theme-dot theme-dot-chrome"></span> ХРОМ</button>
+            <button type="button" class="theme-pill-btn poster-switch-btn" data-action="random-poster" title="Случайный постер фона">СМЕНИТЬ ФОН</button>
+          </div>
+        </div>
+
+        <div class="footer-telemetry-center clocks">
+          <span class="telemetry-clock clock-tokyo" id="footer-clock-tokyo">TYO: --:-- JST</span>
+          <span class="telemetry-separator">/</span>
+          <span class="telemetry-clock clock-shanghai" id="footer-clock-shanghai">SHA: --:-- CST</span>
+          <span class="telemetry-separator">/</span>
+          <span class="telemetry-clock clock-moscow" id="footer-clock-moscow">MSK: --:-- MSK</span>
+        </div>
+
+        <div class="footer-telemetry-right">
+          <a href="https://t.me/Sasbov" target="_blank" rel="noopener noreferrer" class="telemetry-link" title="Прямая связь с основателем в Telegram">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-1.92 9.07c-.14.65-.53.81-1.07.51l-2.97-2.19-1.43 1.38c-.16.16-.29.29-.6.29l.21-3.04 5.53-5c.24-.22-.05-.34-.38-.13l-6.84 4.3-2.95-.92c-.64-.2-.65-.64.13-.95l11.53-4.44c.53-.2 1 .12.89.82z"/></svg>
+            TELEGRAM (@SASBOV)
+          </a>
+        </div>
+      </div>
+    </div>
+
     <div class="container footer-container">
       <div class="footer-brand-col">
         <a href="index.html" class="brand-logo-link" aria-label="SASBOV MARKET — На главную">
@@ -363,13 +392,15 @@
       </div>
 
       <div class="footer-links-col">
-        <h4 class="footer-heading">КАТАЛОГ</h4>
+        <h4 class="footer-heading">НАВИГАЦИЯ САЙТА</h4>
         <ul class="footer-nav">
-          <li><a href="catalog.html">Все позиции (Каталог)</a></li>
-          <li><a href="catalog.html?filter=instock">В наличии (СПб)</a></li>
-          <li><a href="catalog.html?filter=preorder">Предзаказ (Выкуп)</a></li>
-          <li><a href="feed.html">Свайп-Лукбук (Feed)</a></li>
+          <li><a href="index.html">Главная страница</a></li>
+          <li><a href="catalog.html">Каталог товаров</a></li>
+          <li><a href="blog.html">Блог & Гиды</a></li>
           <li><a href="index.html#calculator">Калькулятор выкупа</a></li>
+          <li><a href="index.html#guarantee">Гарантии подлинности</a></li>
+          <li><a href="faq.html">Частые вопросы (FAQ)</a></li>
+          <li><a href="feed.html">Свайп-Лукбук (Feed)</a></li>
         </ul>
       </div>
 
@@ -401,16 +432,27 @@
       </div>
 
       <div class="footer-links-col">
-        <h4 class="footer-heading">TELEGRAM КАНАЛЫ</h4>
+        <h4 class="footer-heading">СВЯЗЬ И ЗАКАЗЫ</h4>
         <ul class="footer-nav">
           <li>
             <a href="https://t.me/Sasbov" target="_blank" rel="noopener noreferrer" style="color: #00f0ff; font-weight: 600;">
-              @Sasbov (Заказы)
+              @Sasbov (Менеджер)
             </a>
           </li>
           <li>
             <a href="https://t.me/sasbovfeedback" target="_blank" rel="noopener noreferrer" style="color: #2ed573; font-weight: 600;">
               @sasbovfeedback (Отзывы)
+            </a>
+          </li>
+          <li style="margin-top: 6px;">
+            <button type="button" class="btn btn-outline footer-tray-btn action-btn cart-btn" id="footer-preorder-tray-btn" style="width: 100%; justify-content: center; font-size: 0.76rem; padding: 7px 12px;">
+              <span class="cart-label">ПРЕДЗАКАЗ</span>
+              <span class="cart-badge footer-tray-count">0</span>
+            </button>
+          </li>
+          <li style="margin-top: 4px;">
+            <a href="https://t.me/Sasbov" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%; justify-content: center; font-size: 0.76rem; padding: 7px 12px; background: #00f0ff; color: #000; font-weight: 700;">
+              МЕНЕДЖЕР В TG
             </a>
           </li>
         </ul>
