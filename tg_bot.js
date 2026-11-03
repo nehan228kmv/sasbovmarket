@@ -1246,7 +1246,9 @@ async function publishItem(chatId) {
     fullName: `${draft.brand} ${draft.name}`,
     itemType: itemType,
     price: Number(draft.price),
+    basePriceRub: Number(draft.price),
     originalPrice: Math.round(Number(draft.price) * 1.25),
+    sku: draft.sku || `SAS-${draft.brand.replace(/[^a-zA-Z0-9]/g, '').slice(0, 3).toUpperCase() || 'ITM'}-${Math.floor(100 + Math.random() * 900)}`,
     category: category,
     subcategories: [itemType, category],
     tags: Array.from(new Set([...tags, itemType.toLowerCase(), draft.brand.toLowerCase()])),
@@ -1257,8 +1259,12 @@ async function publishItem(chatId) {
     sizes: draft.sizes || ['ONE SIZE'],
     condition: draft.condition || 'NEW // DEADSTOCK',
     status: statusText,
+    dropStatus: statusText,
+    closingIn: '07 дн. 00:00',
+    badgeClass: draft.region === 'japan' ? 'jp' : (draft.stockType === 'instock' ? 'badge-instock' : 'cn'),
     image: imagesList[0],
     images: imagesList,
+    description: draft.description || `${draft.brand} ${draft.name}. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.`,
     features: ['100% Legit Check', 'Фирменная упаковка', 'Экспресс-доставка СДЭК'],
     createdAt: new Date().toISOString()
   };

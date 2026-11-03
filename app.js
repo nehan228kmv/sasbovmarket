@@ -211,7 +211,9 @@
    * Format numbers to Russian Ruble format
    */
   function formatRub(num) {
-    return Math.round(num).toLocaleString('ru-RU') + ' ₽';
+    const val = Number(num);
+    if (!val || isNaN(val) || val <= 0) return '0 ₽';
+    return Math.round(val).toLocaleString('ru-RU') + ' ₽';
   }
 
   /**
@@ -367,7 +369,7 @@
 
             <div class="product-price-row">
               <div>
-                <span class="price-tag">${formatRub(product.basePriceRub)}</span>
+                <span class="price-tag">${formatRub(product.basePriceRub || product.price)}</span>
                 <span class="price-detail">под ключ с доставкой</span>
               </div>
             </div>

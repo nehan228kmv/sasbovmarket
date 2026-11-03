@@ -105,7 +105,9 @@
   }
 
   function formatRub(num) {
-    return Math.round(num).toLocaleString('ru-RU') + ' ₽';
+    const val = Number(num);
+    if (!val || isNaN(val) || val <= 0) return '0 ₽';
+    return Math.round(val).toLocaleString('ru-RU') + ' ₽';
   }
 
   let PRODUCTS = getStoredProducts();
@@ -337,7 +339,7 @@
 
             <div class="product-price-row">
               <div>
-                <span class="price-tag">${formatRub(product.basePriceRub)}</span>
+                <span class="price-tag">${formatRub(product.basePriceRub || product.price)}</span>
                 <span class="price-detail">${isInstock ? 'в наличии в СПб' : 'под ключ с доставкой'}</span>
               </div>
             </div>
