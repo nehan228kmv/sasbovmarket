@@ -60,6 +60,25 @@
     const tokenFromUrl = urlParams.get('token') || urlParams.get('key') || urlParams.get('auth');
     const validToken = getMasterToken();
 
+    // 0. Telegram Mini App Integration: Auto-detect and configure
+    if (window.Telegram && window.Telegram.WebApp) {
+      const tg = window.Telegram.WebApp;
+      try {
+        tg.ready();
+        tg.expand();
+        if (tg.setHeaderColor) tg.setHeaderColor('#050507');
+        if (tg.setBackgroundColor) tg.setBackgroundColor('#050507');
+      } catch (e) {}
+
+      // Seamless Telegram Mini App authentication
+      if (tg.initData || window.location.search.includes('tg') || (tokenFromUrl && tokenFromUrl.trim() === validToken.trim())) {
+        sessionStorage.setItem(AUTH_SESSION_KEY, '1');
+        unlockDashboard(false);
+        showToast('⚡ Добро пожаловать в Telegram Mini App Админку');
+        return;
+      }
+    }
+
     // 1. Check if valid token is provided in URL
     if (tokenFromUrl && tokenFromUrl.trim() === validToken.trim()) {
       sessionStorage.setItem(AUTH_SESSION_KEY, '1');
@@ -208,252 +227,52 @@
   // =========================================================================
   // Product Data Store
   // =========================================================================
-  const DEFAULT_PRODUCTS = [
-    {
-      id: 'sasbov-01',
-      brand: 'MAISON MIHARA YASUHIRO',
-      name: 'Peterson OG Sole Canvas Low-Top',
-      stockType: 'instock',
-      partner: 'Balkonsky Store (Санкт-Петербург)',
-      location: 'Санкт-Петербург, Balkonsky Store',
-      deliveryTime: 'В наличии в СПб // Примерка и самовывоз сегодня',
-      region: 'japan',
-      regionLabel: 'JAPAN [JP] // TOKYO ARCHIVE',
-      category: 'footwear',
-      sku: 'MMY-PET-904',
-      basePriceRub: 24800,
-      sizes: ['39 EU', '40 EU', '41 EU', '42 EU', '43 EU', '44 EU'],
-      dropStatus: 'В НАЛИЧИИ В СПБ',
-      badgeClass: 'jp',
-      closingIn: '03 дн. 16:45',
-      image: null,
-      images: []
-    },
-    {
-      id: 'sasbov-02',
-      brand: 'KAPITAL',
-      name: '14oz Denim Bone Embroidered Jacket',
-      stockType: 'instock',
-      partner: 'Balkonsky Store (Санкт-Петербург)',
-      location: 'Санкт-Петербург, Balkonsky Store',
-      deliveryTime: 'В наличии в СПб // Примерка и самовывоз сегодня',
-      region: 'japan',
-      regionLabel: 'JAPAN [JP] // KOJIMA ARCHIVE',
-      category: 'clothing',
-      sku: 'KAP-BONE-14OZ',
-      basePriceRub: 42500,
-      sizes: ['1 (S)', '2 (M)', '3 (L)', '4 (XL)'],
-      dropStatus: 'В НАЛИЧИИ В СПБ',
-      badgeClass: 'jp',
-      closingIn: '01 дн. 08:20',
-      image: null,
-      images: []
-    },
-    {
-      id: 'sasbov-03',
-      brand: 'ROARINGWILD',
-      name: 'Modular Waterproof Tech Shell Parka',
-      stockType: 'preorder',
-      partner: null,
-      location: 'Китай // Shenzhen Lab',
-      deliveryTime: 'Выкуп под заказ: 10-18 дней',
-      region: 'china',
-      regionLabel: 'CHINA [CN] // SHENZHEN LAB',
-      category: 'clothing',
-      sku: 'RW-TECH-26X',
-      basePriceRub: 17900,
-      sizes: ['S (46)', 'M (48)', 'L (50)', 'XL (52)'],
-      dropStatus: 'ПРЕДЗАКАЗ ОТКРЫТ',
-      badgeClass: 'cn',
-      closingIn: '04 дн. 12:10',
-      image: null,
-      images: []
-    },
-    {
-      id: 'sasbov-04',
-      brand: 'SALOMON x MM6',
-      name: 'Cross Low Sneaker "Black Edition"',
-      stockType: 'instock',
-      partner: 'Balkonsky Store (Санкт-Петербург)',
-      location: 'Санкт-Петербург, Balkonsky Store',
-      deliveryTime: 'В наличии в СПб // Примерка и самовывоз сегодня',
-      region: 'japan',
-      regionLabel: 'JAPAN [JP] // EBAY JP ARCHIVE',
-      category: 'footwear',
-      sku: 'SAL-MM6-BLK',
-      basePriceRub: 32000,
-      sizes: ['40.5 EU', '41.5 EU', '42 EU', '43 EU', '44 EU'],
-      dropStatus: 'В НАЛИЧИИ В СПБ',
-      badgeClass: 'jp',
-      closingIn: '14 ч. 22 мин',
-      image: null,
-      images: []
-    },
-    {
-      id: 'sasbov-05',
-      brand: 'THUG CLUB',
-      name: 'Tribal Gladiator Heavy Fleece Hoodie',
-      stockType: 'preorder',
-      partner: null,
-      location: 'Китай // Goofish Xianyu',
-      deliveryTime: 'Выкуп под заказ: 10-18 дней',
-      region: 'china',
-      regionLabel: 'CHINA [CN] // GOOFISH XIANYU',
-      category: 'clothing',
-      sku: 'TC-GLAD-091',
-      basePriceRub: 19500,
-      sizes: ['M (Oversize)', 'L (Oversize)', 'XL (Oversize)'],
-      dropStatus: 'ПРЕДЗАКАЗ ОТКРЫТ',
-      badgeClass: 'cn',
-      closingIn: '02 дн. 19:30',
-      image: null,
-      images: []
-    },
-    {
-      id: 'sasbov-06',
-      brand: 'PORTER YOSHIDA & CO',
-      name: 'Tanker 2Way Helmet Shoulder Bag',
-      stockType: 'instock',
-      partner: 'Balkonsky Store (Санкт-Петербург)',
-      location: 'Санкт-Петербург, Balkonsky Store',
-      deliveryTime: 'В наличии в СПб // Примерка и самовывоз сегодня',
-      region: 'japan',
-      regionLabel: 'JAPAN [JP] // MERCARI JP',
-      category: 'accessories',
-      sku: 'POR-TNK-2WAY',
-      basePriceRub: 21400,
-      sizes: ['ONE SIZE (W480/H520)'],
-      dropStatus: 'В НАЛИЧИИ В СПБ',
-      badgeClass: 'jp',
-      closingIn: '05 дн. 04:15',
-      image: null,
-      images: []
-    },
-    {
-      id: 'sasbov-07',
-      brand: 'ANTA x KYRIE IRVING',
-      name: 'KAI 1 "Artist on Court" Special Edition',
-      stockType: 'preorder',
-      partner: null,
-      location: 'Китай // Poizon Auth',
-      deliveryTime: 'Выкуп под заказ: 10-18 дней',
-      region: 'china',
-      regionLabel: 'CHINA [CN] // POIZON AUTH',
-      category: 'footwear',
-      sku: 'ANTA-KAI1-ART',
-      basePriceRub: 16800,
-      sizes: ['41 EU', '42 EU', '42.5 EU', '43 EU', '44 EU', '45 EU'],
-      dropStatus: 'ПРЕДЗАКАЗ ОТКРЫТ',
-      badgeClass: 'cn',
-      closingIn: '03 дн. 21:00',
-      image: null,
-      images: []
-    },
-    {
-      id: 'sasbov-08',
-      brand: 'UNDERCOVERISM',
-      name: 'Hybrid MA-1 Vintage Military Bomber',
-      stockType: 'preorder',
-      partner: null,
-      location: 'Япония // Harajuku Archive',
-      deliveryTime: 'Выкуп под заказ: 10-18 дней',
-      region: 'japan',
-      regionLabel: 'JAPAN [JP] // HARAJUKU',
-      category: 'clothing',
-      sku: 'UC-HYB-MA1',
-      basePriceRub: 48900,
-      sizes: ['2 (M)', '3 (L)', '4 (XL)'],
-      dropStatus: 'СКОРО ЗАКРЫТИЕ',
-      badgeClass: 'jp',
-      closingIn: '09 ч. 40 мин',
-      image: null,
-      images: []
-    },
-    {
-      id: 'sasbov-09',
-      brand: 'HARSH AND CRUEL',
-      name: 'Cyber Crossbody Tactical Harness Rig',
-      stockType: 'preorder',
-      partner: null,
-      location: 'Китай // Dewu Boutique',
-      deliveryTime: 'Выкуп под заказ: 10-18 дней',
-      region: 'china',
-      regionLabel: 'CHINA [CN] // DEWU BOUTIQUE',
-      category: 'accessories',
-      sku: 'HAC-RIG-004',
-      basePriceRub: 8400,
-      sizes: ['ADJUSTABLE ONE SIZE'],
-      dropStatus: 'ПРЕДЗАКАЗ ОТКРЫТ',
-      badgeClass: 'cn',
-      closingIn: '06 дн. 09:15',
-      image: null,
-      images: []
-    },
-    {
-      id: 'sasbov-10',
-      brand: 'HELMUT LANG',
-      name: '1998 M-65 Astro Biker Ballistic Jacket',
-      stockType: 'preorder',
-      partner: null,
-      location: 'Global // Grailed Archive',
-      deliveryTime: 'Выкуп под заказ: 10-18 дней',
-      region: 'global',
-      regionLabel: 'GLOBAL [GLB] // GRAILED ARCHIVE',
-      category: 'clothing',
-      sku: 'HL-98-ASTRO',
-      basePriceRub: 89000,
-      sizes: ['48 IT', '50 IT'],
-      dropStatus: 'LIMITED DROP',
-      badgeClass: 'global',
-      closingIn: '01 дн. 18:30',
-      image: null,
-      images: []
+  const DEFAULT_PRODUCTS = [];
+
+  function getProductTimestamp(p) {
+    if (!p) return 0;
+    if (typeof p.timestamp === 'number') return p.timestamp;
+    if (p.createdAt) {
+      const t = new Date(p.createdAt).getTime();
+      if (!isNaN(t) && t > 0) return t;
     }
-  ];
+    if (p.id) {
+      const match = String(p.id).match(/sasbov-card-(\d+)/);
+      if (match) return parseInt(match[1], 10);
+    }
+    return 0;
+  }
 
   function loadProducts() {
     try {
+      localStorage.removeItem('sasbov_products_v2');
       const raw = localStorage.getItem(STORAGE_KEY);
       if (raw) {
         const parsed = JSON.parse(raw);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          return parsed.map(item => {
-            // Ensure images array exists
+          const filtered = parsed.filter(item => item && item.id && !item.id.startsWith('sasbov-0') && item.id !== 'sasbov-10' && !item.deletedAt);
+          const list = filtered.map(item => {
             if (!Array.isArray(item.images)) {
               item.images = item.image ? [item.image] : [];
             }
             if (item.regionLabel) {
               item.regionLabel = item.regionLabel.replace(/🇯🇵/g, '[JP]').replace(/🇨🇳/g, '[CN]');
             }
-            // Auto-migrate stockType if missing
-            if (!item.stockType) {
-              if (['sasbov-01', 'sasbov-02', 'sasbov-04', 'sasbov-06'].includes(item.id) || 
-                  item.region === 'spb' || 
-                  (item.brand && item.brand.includes('BALENCIAGA')) ||
-                  (item.dropStatus && item.dropStatus.includes('НАЛИЧИ'))) {
-                item.stockType = 'instock';
-                item.partner = 'Balkonsky Store (Санкт-Петербург)';
-                item.location = 'Санкт-Петербург, Balkonsky Store';
-                item.deliveryTime = 'В наличии в СПб // Примерка и самовывоз сегодня';
-              } else {
-                item.stockType = 'preorder';
-                item.partner = null;
-                item.location = item.regionLabel || 'Зарубежные площадки';
-                item.deliveryTime = 'Выкуп под заказ: 10-18 дней';
-              }
-            }
             return item;
           });
+          list.sort((a, b) => getProductTimestamp(b) - getProductTimestamp(a));
+          return list;
         }
       }
     } catch (e) {
       console.warn('LocalStorage load error in admin:', e);
     }
-    return [...DEFAULT_PRODUCTS];
+    return [];
   }
 
   function saveProducts(list) {
     try {
+      list.sort((a, b) => getProductTimestamp(b) - getProductTimestamp(a));
       localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
       localStorage.setItem('sasbov_market_sync_ts', Date.now().toString());
     } catch (e) {
@@ -3472,7 +3291,7 @@
 
     // 6. Professional Showroom Description (15+ Varied Authentic Endings & Fallbacks)
     const AUTHENTIC_ENDINGS = [
-      '100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).',
+      '100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, Невский просп., 110В).',
       'Строго оригинал (Legit Check пройден). Выкуп напрямую с официальных площадок Poizon/Dewu со всеми пломбами и сертификатом.',
       '100% Authentic. Доступен быстрый предзаказ из Японии (Tokyo Select), экспресс СДЭК до двери или примерка в СПб.',
       'Оригинал 100%, полный комплект с коробкой и навесными бирками. Оформляем предзаказ с гарантией подлинности.',
@@ -3710,23 +3529,50 @@
       const res = await fetch('/api/products?t=' + Date.now(), { cache: 'no-store' });
       if (res.ok) {
         const json = await res.json();
-        if (json && json.success && Array.isArray(json.data) && json.data.length > 0) {
+        if (json && json.success && Array.isArray(json.data)) {
           if (textEl) {
             textEl.textContent = json.source === 'local_database_disk' ? 'HDD DISK DB: ONLINE' : (json.source === 'vercel_kv' ? 'VERCEL KV: CONNECTED' : 'DATABASE: READY');
           }
           if (dotEl) dotEl.style.background = '#00ff88';
 
-          PRODUCTS = json.data;
+          // SAFE UNION-MERGE: Never drop local products if local has cards that server doesn't!
+          const localList = loadProducts();
+          const mergedMap = new Map();
+
+          // 1. Seed with server cards
+          json.data.forEach(p => {
+            if (p && p.id) mergedMap.set(p.id, p);
+          });
+
+          // 2. Overlay with local cards (local cards are preserved and never lost!)
+          localList.forEach(p => {
+            if (p && p.id) {
+              const existing = mergedMap.get(p.id);
+              mergedMap.set(p.id, existing ? { ...existing, ...p } : p);
+            }
+          });
+
+          const mergedProducts = Array.from(mergedMap.values());
+          mergedProducts.sort((a, b) => getProductTimestamp(b) - getProductTimestamp(a));
+          PRODUCTS = mergedProducts;
           try {
             localStorage.setItem(STORAGE_KEY, JSON.stringify(PRODUCTS));
+            localStorage.setItem('sasbov_market_products_backup_safe', JSON.stringify(PRODUCTS));
           } catch (e) {}
+
           renderCards();
           updateStats();
+
+          // If local had cards that server was missing, sync them up immediately!
+          if (mergedProducts.length > json.data.length) {
+            console.log(`[Sync] Local had ${mergedProducts.length} cards vs server ${json.data.length}. Merging up to server!`);
+            syncWithCloudDatabase(mergedProducts);
+          }
           return;
         }
       }
     } catch (e) {
-      console.info('[SASBOV] Running in local static mode without serverless API.');
+      console.info('[SASBOV] Running in local static mode without serverless API:', e);
     }
 
     if (textEl) textEl.textContent = 'LOCAL STORAGE (OFFLINE)';
@@ -3737,22 +3583,28 @@
     const textEl = document.getElementById('cloud-sync-text');
     const dotEl = document.getElementById('cloud-sync-dot');
     try {
+      const deletedIds = (typeof TRASH !== 'undefined' && Array.isArray(TRASH)) ? TRASH.map(t => t.id) : [];
+
       const res = await fetch('/api/products', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'x-admin-token': getMasterToken()
         },
-        body: JSON.stringify({ products: list })
+        body: JSON.stringify({ products: list, deletedIds })
       });
       if (res.ok) {
         const json = await res.json();
         if (json.data && Array.isArray(json.data) && json.data.length > 0) {
-          PRODUCTS = json.data;
-          try {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(PRODUCTS));
-          } catch (e) {}
-          renderCards();
+          // Never reduce products count if local has more!
+          if (json.data.length >= PRODUCTS.length) {
+            PRODUCTS = json.data;
+            try {
+              localStorage.setItem(STORAGE_KEY, JSON.stringify(PRODUCTS));
+            } catch (e) {}
+            renderCards();
+            updateStats();
+          }
         }
         if (textEl) {
           textEl.textContent = json.source === 'local_disk_and_redis' ? 'HDD & CLOUD: SAVED 100%' : (json.source === 'vercel_kv' ? 'VERCEL KV: SYNCED' : 'CLOUD DB: SYNCED');

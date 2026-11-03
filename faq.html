@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ // Частые вопросы и ответы — SASBOV MARKET</title>
+  <meta name="description" content="Ответы на все вопросы о выкупе одежды и обуви: Poizon, Mercari JP, Grailed, Legit Check, сроки доставки по всей России, шоурум в СПб и транзитные хабы.">
+  <link rel="canonical" href="https://sasbov.online/faq.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="FAQ // Часто задаваемые вопросы — SASBOV MARKET">
+  <meta property="og:description" content="Всё о выкупе, оригинальности, сроках доставки по РФ и шоуруме в Санкт-Петербурге.">
+  <meta property="og:url" content="https://sasbov.online/faq.html">
+  <meta property="og:image" content="https://sasbov.online/uploads/poster_travis_jordan.jpg">
+
+  <!-- Fonts & Styles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+  <script>
+    (function() {
+      const saved = localStorage.getItem('sasbov_theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', saved);
+    })();
+  
+    // Mobile Drawer Setup
+    const toggleBtn = document.getElementById('mobile-nav-toggle');
+    const drawer = document.getElementById('mobile-drawer');
+    const overlay = document.getElementById('mobile-drawer-overlay');
+    const closeBtn = document.getElementById('mobile-drawer-close');
+    const drawerLinks = document.querySelectorAll('.mobile-drawer-link');
+
+    if (toggleBtn && drawer && overlay) {
+      function openDrawer() {
+        drawer.classList.add('is-active');
+        overlay.classList.add('is-active');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeDrawer() {
+        drawer.classList.remove('is-active');
+        overlay.classList.remove('is-active');
+        document.body.style.overflow = '';
+      }
+      toggleBtn.addEventListener('click', openDrawer);
+      if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+      overlay.addEventListener('click', closeDrawer);
+      drawerLinks.forEach(l => l.addEventListener('click', closeDrawer));
+    }
+
+  </script>
+
+  <!-- Schema.org FAQPage JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Как работает выкуп с Poizon, Goofish и закрытых площадок Японии?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Вы отправляете ссылку или фото нужной вещи нашему менеджеру или выбираете из каталога на сайте. Мы выкупаем вещь напрямую через официальные китайские и японские аккаунты, принимаем на собственном хабе проверки, проводим физический легитчек и отправляем авиаэкспрессом СДЭК до вашей двери по всей России."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "В чём разница между наличием в СПб, товарами в пути и предзаказом?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "1. «В наличии в СПб»: вещь уже находится в шоуруме Балконский (СПб, Невский просп., 110В), её можно примерить и забрать день в день, либо заказать доставку курьером по Санкт-Петербургу за 2–3 часа. 2. «В пути из Китая в СПб»: товар уже выкуплен и летит в Санкт-Петербург (ожидание 5–8 дней), доступна бронь. 3. «В пути из Китая в Иркутск»: товар в транзите на сибирский хаб в Иркутск (ожидание 3–6 дней). 4. «Предзаказ на всю РФ»: индивидуальный выкуп любого размера из Китая, Японии или Европы со сроком доставки 7–12 дней в любой город РФ."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Как гарантируется 100% оригинальность (Legit Check)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Каждая пара обуви и вещь проходит тройной контроль: машинную проверку лабораторией Poizon (Dewu), ультрафиолетовую спектроскопию швов и микрокодов, а также ручной осмотр нашими экспертами перед отправкой клиенту. Мы предоставляем сертификат подлинности и бирки верификации."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Сколько длится доставка по России?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Авиаэкспресс из Китая занимает 7–12 рабочих дней. Позиции в пути прибывают в течение 3–8 дней. Позиции из наличия в СПб передаются курьеру или готовы к самовывозу в день оформления заказа."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Где находится шоурум и как забрать заказ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Шоурум Балконский расположен по адресу: г. Санкт-Петербург, Невский просп., 110В. Работаем ежедневно. Для визита или брони размера напишите в Telegram @SASBOV."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Ambient Full-Screen Poster Backdrop -->
+  <div class="ambient-poster-backdrop" id="ambient-poster-backdrop" aria-hidden="true">
+    <div class="ambient-poster-img-wrap">
+      <img src="/uploads/poster_travis_jordan.jpg" alt="SASBOV MARKET FAQ Background" class="ambient-poster-img" id="ambient-poster-img" width="1920" height="1080" fetchpriority="high" decoding="async">
+    </div>
+    <div class="ambient-poster-gradient"></div>
+    <div class="ambient-poster-vignette"></div>
+  </div>
+
+  <!-- Telemetry Bar -->
+  <aside class="telemetry-bar" id="telemetry-bar" aria-label="Панель темы и города">
+    <div class="container telemetry-inner">
+      <div class="theme-switch-bar" id="theme-switch-bar" aria-label="Выбор темы сайта">
+        <button type="button" class="theme-pill-btn active" data-theme-val="dark" title="Тёмная тема"><span class="theme-dot theme-dot-dark"></span> ТЁМНАЯ</button>
+        <button type="button" class="theme-pill-btn" data-theme-val="chrome" title="Тема хром"><span class="theme-dot theme-dot-chrome"></span> ХРОМ</button>
+        <button type="button" class="theme-pill-btn poster-switch-btn" id="btn-random-poster" title="Случайный постер фона">СМЕНИТЬ ФОН</button>
+      </div>
+
+      <div class="telemetry-group clocks">
+        <span class="telemetry-clock">СПБ: ШОУРУМ BALKONSKY (НЕВСКИЙ 110В)</span>
+        <span class="telemetry-separator">/</span>
+        <span class="telemetry-clock">ПРЕДЗАКАЗ: ВСЯ РФ</span>
+      </div>
+
+      <div class="telemetry-group links">
+        <a href="https://t.me/Sasbov" target="_blank" rel="noopener noreferrer" class="telemetry-link" id="top-tg-link">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-1.92 9.07c-.14.65-.53.81-1.07.51l-2.97-2.19-1.43 1.38c-.16.16-.29.29-.6.29l.21-3.04 5.53-5c.24-.22-.05-.34-.38-.13l-6.84 4.3-2.95-.92c-.64-.2-.65-.64.13-.95l11.53-4.44c.53-.2 1 .12.89.82z"/></svg>
+          TELEGRAM (@SASBOV)
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Header -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo-link" aria-label="SASBOV MARKET — На главную">
+        <span class="header-brand-mark">
+          <span class="brand-text-sasbov">SASBOV</span>
+          <span class="brand-text-market">MARKET</span>
+        </span>
+      </a>
+
+      <nav class="main-nav" aria-label="Основное меню">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link">ГЛАВНАЯ</a></li>
+          <li><a href="catalog.html" class="nav-link">КАТАЛОГ</a></li>
+          <li><a href="blog.html" class="nav-link">БЛОГ</a></li>
+          <li><a href="index.html#calculator" class="nav-link">КАЛЬКУЛЯТОР</a></li>
+          <li><a href="index.html#guarantee" class="nav-link">ГАРАНТИИ</a></li>
+          <li><a href="faq.html" class="nav-link active">FAQ</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" class="action-btn cart-btn" id="preorder-tray-btn" aria-label="Корзина предзаказов">
+          <span class="cart-label">ПРЕДЗАКАЗ</span>
+          <span class="cart-badge" id="tray-count">0</span>
+        </button>
+        <a href="https://t.me/Sasbov" target="_blank" rel="noopener noreferrer" class="btn btn-outline header-cta" id="header-contact-btn">
+          МЕНЕДЖЕР В TG
+        </a>
+        <button type="button" class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Открыть мобильное меню"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button>
+      </div>
+    </div>
+  </header>
+
+  <main style="padding: 40px 0 80px 0;">
+    <div class="container">
+      
+      <!-- Breadcrumbs -->
+      <div class="catalog-breadcrumbs" style="margin-bottom: 24px;">
+        <a href="index.html">ГЛАВНАЯ</a>
+        <span>/</span>
+        <span class="current">ЧАСТЫЕ ВОПРОСЫ (FAQ)</span>
+      </div>
+
+      <!-- FAQ Header -->
+      <div style="margin-bottom: 40px; text-align: left;">
+        <span class="badge-hud" style="margin-bottom: 12px; display: inline-block;">KNOWLEDGE BASE // ОТВЕТЫ НА ВОПРОСЫ</span>
+        <h1 class="catalog-page-title" style="font-size: clamp(2rem, 4vw, 3rem); font-family: var(--font-display); margin-bottom: 12px;">
+          ЧАСТО ЗАДАВАЕМЫЕ ВОПРОСЫ
+        </h1>
+        <p style="color: var(--text-secondary); max-width: 720px; font-size: 1.05rem;">
+          Всё о доставке по всей России, наличии в Санкт-Петербурге, проверке оригинальности (Legit Check) и выкупе с Poizon и японских архивов.
+        </p>
+      </div>
+
+      <!-- FAQ Accordion Container -->
+      <div class="faq-accordion" style="max-width: 900px; display: flex; flex-direction: column; gap: 16px;">
+
+        <details class="faq-item" open style="background: var(--bg-surface, #0e0e13); border: 1px solid var(--border-medium); border-radius: 12px; padding: 20px 24px;">
+          <summary style="font-weight: 700; font-size: 1.15rem; cursor: pointer; color: var(--text-primary); display: flex; justify-content: space-between; align-items: center; list-style: none;">
+            <span>1. В чём разница между наличием в СПб, товарами в пути и предзаказом?</span>
+            <span style="color: var(--accent-cyan); font-family: var(--font-mono);">[+]</span>
+          </summary>
+          <div style="margin-top: 14px; color: var(--text-secondary); line-height: 1.7; font-size: 0.95rem; border-top: 1px solid var(--border-subtle); padding-top: 12px;">
+            <p><strong>В наличии в СПб:</strong> Вещь находится в нашем шоуруме Балконский (Санкт-Петербург, Невский просп., 110В). Вы можете прийти, примерить и купить её прямо сегодня. Также доступна экспресс-доставка курьером по СПб (2–3 часа).</p>
+            <p style="margin-top: 8px;"><strong>В пути из Китая в СПб:</strong> Товар уже выкуплен у официального поставщика и находится на этапе авиадоставки в Санкт-Петербург (осталось 5–8 дней). Вы можете забронировать его заранее до приезда в шоурум.</p>
+            <p style="margin-top: 8px;"><strong>В пути из Китая в Иркутск:</strong> Товар летит на наш сибирский логистический хаб в Иркутск (осталось 3–6 дней). Доступна бронь и быстрая отправка по Сибири и Дальнему Востоку.</p>
+            <p style="margin-top: 8px;"><strong>Предзаказ на всю РФ:</strong> Индивидуальный выкуп любого бренда, модели и размера под ваш запрос из Китая (Poizon / Dewu), Японии (Mercari JP / eBay JP) или Европы (Grailed). Доставка 7–12 рабочих дней СДЭКом в любой город России.</p>
+          </div>
+        </details>
+
+        <details class="faq-item" open style="background: var(--bg-surface, #0e0e13); border: 1px solid var(--border-medium); border-radius: 12px; padding: 20px 24px;">
+          <summary style="font-weight: 700; font-size: 1.15rem; cursor: pointer; color: var(--text-primary); display: flex; justify-content: space-between; align-items: center; list-style: none;">
+            <span>2. Как работает 100% Legit Check и проверка на оригинальность?</span>
+            <span style="color: var(--accent-cyan); font-family: var(--font-mono);">[+]</span>
+          </summary>
+          <div style="margin-top: 14px; color: var(--text-secondary); line-height: 1.7; font-size: 0.95rem; border-top: 1px solid var(--border-subtle); padding-top: 12px;">
+            Мы категорически не работаем с репликами и копиями любого качества. Каждая позиция проходит строгий многоэтапный контроль:
+            <ul style="margin: 8px 0 8px 20px; list-style-type: square;">
+              <li>Верификация в лаборатории Poizon / Dewu с пломбированием сертифицированными клипсами и QR-сертификатом;</li>
+              <li>Проверка микрокодов, швов, стелек, ультрафиолетовых водяных знаков и соответствия артикулов;</li>
+              <li>Повторная ручная проверка нашими специалистами перед отправкой покупателю.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="faq-item" style="background: var(--bg-surface, #0e0e13); border: 1px solid var(--border-medium); border-radius: 12px; padding: 20px 24px;">
+          <summary style="font-weight: 700; font-size: 1.15rem; cursor: pointer; color: var(--text-primary); display: flex; justify-content: space-between; align-items: center; list-style: none;">
+            <span>3. Сколько времени занимает доставка и как отслеживать заказ?</span>
+            <span style="color: var(--accent-cyan); font-family: var(--font-mono);">[+]</span>
+          </summary>
+          <div style="margin-top: 14px; color: var(--text-secondary); line-height: 1.7; font-size: 0.95rem; border-top: 1px solid var(--border-subtle); padding-top: 12px;">
+            Срок авиа-доставки по РФ составляет <strong>7–12 рабочих дней</strong>. После выкупа и прохождения таможенного контроля мы присылаем трек-номер СДЭК для отслеживания посылки в реальном времени. Все посылки застрахованы на полную стоимость.
+          </div>
+        </details>
+
+        <details class="faq-item" style="background: var(--bg-surface, #0e0e13); border: 1px solid var(--border-medium); border-radius: 12px; padding: 20px 24px;">
+          <summary style="font-weight: 700; font-size: 1.15rem; cursor: pointer; color: var(--text-primary); display: flex; justify-content: space-between; align-items: center; list-style: none;">
+            <span>4. Как заказать вещь, которой нет на сайте?</span>
+            <span style="color: var(--accent-cyan); font-family: var(--font-mono);">[+]</span>
+          </summary>
+          <div style="margin-top: 14px; color: var(--text-secondary); line-height: 1.7; font-size: 0.95rem; border-top: 1px solid var(--border-subtle); padding-top: 12px;">
+            Просто отправьте скриншот, артикул или ссылку на вещь нашему менеджеру в Telegram: <a href="https://t.me/Sasbov" target="_blank" style="color: var(--accent-cyan); font-weight: 700;">@SASBOV</a>. Мы найдем её на китайских или японских складах, проверим цену и ответим в течение 15 минут.
+          </div>
+        </details>
+
+        <details class="faq-item" style="background: var(--bg-surface, #0e0e13); border: 1px solid var(--border-medium); border-radius: 12px; padding: 20px 24px;">
+          <summary style="font-weight: 700; font-size: 1.15rem; cursor: pointer; color: var(--text-primary); display: flex; justify-content: space-between; align-items: center; list-style: none;">
+            <span>5. Адрес шоурума Балконский и условия самовывоза в СПб</span>
+            <span style="color: var(--accent-cyan); font-family: var(--font-mono);">[+]</span>
+          </summary>
+          <div style="margin-top: 14px; color: var(--text-secondary); line-height: 1.7; font-size: 0.95rem; border-top: 1px solid var(--border-subtle); padding-top: 12px;">
+            Шоурум расположен в Санкт-Петербурге по адресу: <strong>Невский просп., 110В (Balkonsky Store)</strong>. Все товары со статусом «В наличии в СПб» можно примерить в комфортной обстановке и забрать день в день.<br>
+            <div style="margin-top: 10px;">
+              <a href="https://yandex.ru/maps/org/balkonskiy_stor/109683827425/?indoorLevel=1&ll=30.358538%2C59.932829&z=17" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline" style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.8rem; padding: 6px 14px;" title="Открыть Balkonsky Store на Яндекс Картах">
+                Открыть Balkonsky Store на Яндекс Картах ↗
+              </a>
+            </div>
+          </div>
+        </details>
+
+      </div>
+
+      <!-- Contact Banner -->
+      <div style="margin-top: 48px; background: rgba(22, 22, 32, 0.8); border: 1px solid var(--border-glow); border-radius: 16px; padding: 32px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px;">
+        <div>
+          <span style="font-family: var(--font-mono); color: var(--accent-cyan); font-size: 0.8rem; text-transform: uppercase;">Остались вопросы?</span>
+          <h3 style="font-family: var(--font-display); font-size: 1.5rem; margin-top: 6px;">Напишите основателю и байерам напрямую</h3>
+          <p style="color: var(--text-secondary); margin-top: 4px;">Отвечаем на любые вопросы по подбору размеров, выкупу и доставке 24/7.</p>
+        </div>
+        <a href="https://t.me/Sasbov" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 14px 28px;">
+          НАПИСАТЬ В TELEGRAM (@SASBOV)
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer" id="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-col brand-col">
+        <a href="index.html" class="brand-logo-link">
+          <span class="header-brand-mark">
+            <span class="brand-text-sasbov">SASBOV</span>
+            <span class="brand-text-market">MARKET</span>
+          </span>
+        </a>
+        <p class="footer-about">
+          Аутентичный стритвир и редкая обувь. Шоурум в Санкт-Петербурге и экспресс-выкуп из Китая и Японии по всей России.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <span class="footer-heading">НАВИГАЦИЯ</span>
+        <ul class="footer-links">
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="catalog.html">Каталог позиций</a></li>
+          <li><a href="blog.html">Блог & Гайды</a></li>
+          <li><a href="faq.html">Частые вопросы (FAQ)</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <span class="footer-heading">ЛОГИСТИКА</span>
+        <ul class="footer-links">
+          <li><a href="catalog.html?stock=instock">Наличие в СПб (Шоурум)</a></li>
+          <li><a href="catalog.html?stock=transit_spb">В пути в СПб</a></li>
+          <li><a href="catalog.html?stock=transit_irkutsk">В пути в Иркутск</a></li>
+          <li><a href="catalog.html?stock=preorder">Предзаказ по РФ (Poizon)</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <span class="footer-heading">КОНТАКТЫ</span>
+        <ul class="footer-links">
+          <li><a href="https://t.me/Sasbov" target="_blank">Telegram: @SASBOV</a></li>
+          <li><a href="https://yandex.ru/maps/org/balkonskiy_stor/109683827425/?indoorLevel=1&ll=30.358538%2C59.932829&z=17" target="_blank" rel="noopener noreferrer" title="Balkonsky Store на Яндекс Картах">Шоурум: СПб, Невский просп., 110В (Яндекс Карты ↗)</a></li>
+          <li><span>Поддержка: 24/7</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Offline Showroom Office Card in St. Petersburg -->
+    <div class="container" style="margin-top: 2rem;">
+      <div class="footer-showroom-card">
+        <div class="showroom-card-header">
+          <div class="showroom-tag">ПАРТНЁР // ОФФЛАЙН-ШОУРУМ В САНКТ-ПЕТЕРБУРГЕ</div>
+          <h3 class="showroom-title">Оффлайн Офис Балконский стор (Balkonsky Store)</h3>
+          <p class="showroom-address">
+            Оффлайн-шоурум расположен по адресу: <a href="https://yandex.ru/maps/org/balkonskiy_stor/109683827425/?indoorLevel=1&ll=30.358538%2C59.932829&z=17" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-decoration-color: var(--accent-cyan);" title="Открыть Балконский стор на Яндекс Картах"><strong>Невский просп., 110В (Яндекс Карты ↗)</strong></a><br>
+            <span class="text-muted" style="font-size: 0.82rem;">(Рейтинг ★ 4.8 • 24 оценки • Ежедневно до 22:00 • Тел: +7 (981) 800-07-46 • Примерка и самовывоз)</span>
+          </p>
+        </div>
+        <div class="showroom-maps-grid">
+          <a href="https://yandex.ru/maps/org/balkonskiy_stor/109683827425/?indoorLevel=1&ll=30.358538%2C59.932829&z=17" target="_blank" rel="noopener noreferrer" class="map-badge-link map-badge-primary" title="Открыть организацию Балконский стор на Яндекс Картах">
+            Яндекс Карты (Балконский стор) ↗
+          </a>
+          <a href="tel:+79818000746" class="map-badge-link" title="Позвонить в шоурум">
+            Тел: +7 (981) 800-07-46
+          </a>
+          <a href="https://t.me/Sasbov" target="_blank" rel="noopener noreferrer" class="map-badge-link map-badge-cta">
+            Связь с менеджером (@Sasbov)
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="catalog.js"></script>
+  <!-- Mobile Navigation Cyber Drawer -->
+  <div class="mobile-drawer-overlay" id="mobile-drawer-overlay"></div>
+  <aside class="mobile-drawer" id="mobile-drawer" aria-label="Мобильное меню">
+    <div class="mobile-drawer-header">
+      <span class="brand-wordmark" style="font-size: 1.15rem;">SASBOV</span>
+      <button type="button" class="mobile-drawer-close" id="mobile-drawer-close" aria-label="Закрыть меню">&times;</button>
+    </div>
+    <nav class="mobile-drawer-nav">
+      <a href="index.html" class="mobile-drawer-link">ГЛАВНАЯ <span>// 01</span></a>
+      <a href="catalog.html" class="mobile-drawer-link">КАТАЛОГ <span>// 02</span></a>
+      <a href="blog.html" class="mobile-drawer-link">БЛОГ <span>// 03</span></a>
+      <a href="index.html#calculator" class="mobile-drawer-link">КАЛЬКУЛЯТОР <span>// 04</span></a>
+      <a href="index.html#guarantee" class="mobile-drawer-link">ГАРАНТИИ <span>// 05</span></a>
+      <a href="faq.html" class="mobile-drawer-link">FAQ <span>// 06</span></a>
+    </nav>
+    <div class="mobile-drawer-footer">
+      <a href="https://t.me/Sasbov" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="justify-content: center; font-size: 0.82rem;">
+        СВЯЗАТЬСЯ В TG (@SASBOV)
+      </a>
+      <div style="font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-muted); text-align: center;">
+        НЕВСКИЙ 110В // СПБ (БАЛКОНСКИЙ)
+      </div>
+    </div>
+  </aside>
+</body>
+</html>
+

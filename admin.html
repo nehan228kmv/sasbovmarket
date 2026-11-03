@@ -12,6 +12,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 
+  <!-- Telegram Web App SDK for Mini App Support -->
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="admin.css">
 </head>
@@ -110,20 +113,7 @@
       </div>
     </header>
 
-    <!-- Branded Monogram Tape -->
-    <div class="brand-monogram-tape" aria-hidden="true">
-      <div class="monogram-tape-track">
-        <span>SASBOV CONTROL PANEL</span> <span class="tape-dot">•</span>
-        <span>REALTIME DATABASE SYNC</span> <span class="tape-dot">•</span>
-        <span>POIZON DEWU</span> <span class="tape-dot">•</span>
-        <span>GOOFISH / XIANYU</span> <span class="tape-dot">•</span>
-        <span>MERCARI JP</span> <span class="tape-dot">•</span>
-        <span>EBAY JP ARCHIVE</span> <span class="tape-dot">•</span>
-        <span>GRAILED GLOBAL</span> <span class="tape-dot">•</span>
-        <span>SASBOV CONTROL PANEL</span> <span class="tape-dot">•</span>
-        <span>REALTIME DATABASE SYNC</span> <span class="tape-dot">•</span>
-      </div>
-    </div>
+
 
     <main class="admin-main">
       <div class="container">
@@ -132,7 +122,7 @@
         <section class="admin-intro-section">
           <div class="admin-intro-text">
             <div class="section-tag">DATABASE MANAGEMENT // OBJECT CONTROLLER</div>
-            <h1 class="admin-page-title">УПРАВЛЕНИЕ КАРТОЧКАМИ ДРОПОВ</h1>
+            <h1 class="admin-page-title">УПРАВЛЕНИЕ КАРТОЧКАМИ позиций</h1>
             <p class="admin-page-desc">
               Все карточки товаров подвязаны как интерактивные объекты. Любые добавления, правки, смена нескольких фотографий и удаления моментально синхронизируются на Главной странице, в Каталоге и в TikTok-ленте.
             </p>
@@ -157,19 +147,19 @@
           </div>
           <div class="admin-stat-card">
             <span class="admin-stat-num" id="stat-instock-cards">0</span>
-            <span class="admin-stat-label">✦ В НАЛИЧИИ В СПБ // BALKONSKY</span>
+            <span class="admin-stat-label"> В НАЛИЧИИ В СПБ // BALKONSKY</span>
           </div>
           <div class="admin-stat-card">
             <span class="admin-stat-num" id="stat-preorder-cards">0</span>
-            <span class="admin-stat-label">ПРЕДЗАКАЗ // ЗАРУБЕЖНЫЕ ДРОПЫ</span>
+            <span class="admin-stat-label">ПРЕДЗАКАЗ // ЗАРУБЕЖНЫЕ позиций</span>
           </div>
           <div class="admin-stat-card">
             <span class="admin-stat-num" id="stat-total-val">0 ₽</span>
-            <span class="admin-stat-label">ОБЩАЯ СУММА ДРОПОВ</span>
+            <span class="admin-stat-label">ОБЩАЯ СУММА позиций</span>
           </div>
           <div class="admin-stat-card" id="stat-card-trash" style="cursor: pointer;" title="Открыть корзину">
             <span class="admin-stat-num" id="stat-trash-cards" style="color: #ef4444;">0</span>
-            <span class="admin-stat-label">🗑 КОРЗИНА / АРХИВ</span>
+            <span class="admin-stat-label"> КОРЗИНА / АРХИВ</span>
           </div>
         </section>
 
@@ -182,7 +172,7 @@
 
           <div class="admin-filter-pills">
             <button type="button" class="admin-pill active" data-filter="all">ВСЕ (<span id="count-all">0</span>)</button>
-            <button type="button" class="admin-pill" data-filter="instock">✦ В НАЛИЧИИ: СПБ (<span id="count-instock">0</span>)</button>
+            <button type="button" class="admin-pill" data-filter="instock"> В НАЛИЧИИ: СПБ (<span id="count-instock">0</span>)</button>
             <button type="button" class="admin-pill" data-filter="preorder">ПРЕДЗАКАЗ (<span id="count-preorder">0</span>)</button>
             <button type="button" class="admin-pill" data-filter="japan">ЯПОНИЯ [JP] (<span id="count-jp">0</span>)</button>
             <button type="button" class="admin-pill" data-filter="china">КИТАЙ [CN] (<span id="count-cn">0</span>)</button>
@@ -190,7 +180,7 @@
 
           <div class="admin-aux-actions">
             <button type="button" class="btn btn-outline btn-sm" id="open-trash-btn" style="border-color: rgba(239, 68, 68, 0.45); color: #ff6b81;" title="Открыть корзину и архив удаленных карточек">
-              🗑 КОРЗИНА (<span id="count-trash">0</span>)
+               КОРЗИНА (<span id="count-trash">0</span>)
             </button>
             <button type="button" class="btn btn-outline btn-sm" id="export-json-btn" title="Скачать резервную копию базы">
               [EXPORT] СКАЧАТЬ JSON
@@ -241,7 +231,7 @@
         </div>
         <div class="modal-head-actions" style="display: flex; align-items: center; gap: 10px;">
           <button type="button" class="btn btn-outline btn-sm" id="toggle-ai-sidecar-btn" style="border-color: rgba(0, 240, 255, 0.45); color: #00f0ff; display: inline-flex; align-items: center; gap: 6px;">
-            <span>⚡ АВТОЗАПОЛНЕНИЕ ДРОПА</span>
+            <span> АВТОЗАПОЛНЕНИЕ позиций</span>
           </button>
           <button type="button" class="admin-modal-close" id="card-editor-close-btn">&times;</button>
         </div>
@@ -320,7 +310,7 @@
         <div class="form-group" id="group-stock-type">
           <label for="card-stock-type-select" class="form-label">ТИП ПОЗИЦИИ (НАЛИЧИЕ / ПРЕДЗАКАЗ) *</label>
           <select id="card-stock-type-select" class="form-select" required>
-            <option value="instock">✦ В НАЛИЧИИ В СПБ // BALKONSKY STORE (Примерка / СДЭК 1-2 дня)</option>
+            <option value="instock"> В НАЛИЧИИ В СПБ // BALKONSKY STORE (Примерка / СДЭК 1-2 дня)</option>
             <option value="preorder" selected>ПРЕДЗАКАЗ // ВЫКУП С ПЛОЩАДОК (Китай / Япония / Grailed 10-18 дней)</option>
           </select>
         </div>
@@ -328,10 +318,10 @@
         <!-- In-stock showroom info banner (shown only for in-stock) -->
         <div class="form-group form-col-full" id="group-instock-partner-info" style="display: none;">
           <div style="display: flex; align-items: center; gap: 10px; background: rgba(0, 240, 255, 0.08); border: 1px solid rgba(0, 240, 255, 0.35); border-radius: 6px; padding: 10px 14px; font-family: var(--font-mono); font-size: 0.78rem; color: #ffffff;">
-            <span style="font-size: 1.2rem;">📍</span>
+            <span style="font-size: 1.2rem;"></span>
             <div>
               <span style="color: #00f0ff; font-weight: 700;">ЛОКАЦИЯ В СПБ: </span>
-              <span>Balkonsky Store (ул. Тверская 3/1, Подъезд 2) — примерка и самовывоз день-в-день, доставка СДЭК 1-2 дня</span>
+              <a href="https://yandex.ru/maps/org/balkonskiy_stor/109683827425/?indoorLevel=1&ll=30.358538%2C59.932829&z=17" target="_blank" rel="noopener noreferrer" style="color: #00f0ff; text-decoration: underline;" title="Открыть на Яндекс Картах">Balkonsky Store (Невский просп., 110В ↗)</a> — примерка и самовывоз день-в-день, доставка СДЭК 1-2 дня
             </div>
           </div>
         </div>
@@ -379,12 +369,12 @@
           <!-- Interactive Size Preset Widget -->
           <div class="size-picker-widget" id="size-picker-widget">
             <div class="size-presets-tabs">
-              <button type="button" class="size-system-tab active" data-system="shoes-eu" data-category="footwear">👟 ОБУВЬ [EU]</button>
-              <button type="button" class="size-system-tab" data-system="shoes-us" data-category="footwear">👟 ОБУВЬ [US]</button>
-              <button type="button" class="size-system-tab" data-system="shoes-cm" data-category="footwear">📏 ОБУВЬ [CM / СТЕЛЬКА]</button>
-              <button type="button" class="size-system-tab" data-system="clothes" data-category="clothing">👕 ОДЕЖДА [XS-XXL]</button>
-              <button type="button" class="size-system-tab" data-system="pants" data-category="clothing">👖 БРЮКИ / ДЖИНСЫ</button>
-              <button type="button" class="size-system-tab" data-system="accessories" data-category="accessories">🎒 АКСЕССУАРЫ</button>
+              <button type="button" class="size-system-tab active" data-system="shoes-eu" data-category="footwear"> ОБУВЬ [EU]</button>
+              <button type="button" class="size-system-tab" data-system="shoes-us" data-category="footwear"> ОБУВЬ [US]</button>
+              <button type="button" class="size-system-tab" data-system="shoes-cm" data-category="footwear"> ОБУВЬ [CM / СТЕЛЬКА]</button>
+              <button type="button" class="size-system-tab" data-system="clothes" data-category="clothing"> ОДЕЖДА [XS-XXL]</button>
+              <button type="button" class="size-system-tab" data-system="pants" data-category="clothing"> БРЮКИ / ДЖИНСЫ</button>
+              <button type="button" class="size-system-tab" data-system="accessories" data-category="accessories"> АКСЕССУАРЫ</button>
             </div>
 
             <div class="size-chips-grid" id="size-chips-container">
@@ -398,7 +388,7 @@
                   + ХОДОВЫЕ РАЗМЕРЫ
                 </button>
                 <button type="button" class="btn-size-util btn-danger-util" id="btn-clear-sizes" title="Очистить все размеры">
-                  ✕ ОЧИСТИТЬ
+                   ОЧИСТИТЬ
                 </button>
               </div>
             </div>
@@ -435,7 +425,7 @@
         <!-- Timer & Presets (Shown ONLY for Pre-order drops) -->
         <div class="form-group form-col-full" id="group-card-timer">
           <label for="card-timer-datetime" class="form-label">
-            ТАЙМЕР ЗАКРЫТИЯ ДРОПА (КЛИКНИТЕ ДЛЯ ВЫБОРА ДАТЫ И ВРЕМЕНИ)
+            ТАЙМЕР ЗАКРЫТИЯ позиций (КЛИКНИТЕ ДЛЯ ВЫБОРА ДАТЫ И ВРЕМЕНИ)
           </label>
           <div class="datetime-picker-wrap">
             <input type="datetime-local" id="card-timer-datetime" class="form-input datetime-input">
@@ -454,7 +444,7 @@
 
         <!-- Mini-Description -->
         <div class="form-group form-col-full" id="group-card-desc">
-          <label for="card-desc-input" class="form-label">МИНИ-ОПИСАНИЕ И ОСОБЕННОСТИ ДРОПА</label>
+          <label for="card-desc-input" class="form-label">МИНИ-ОПИСАНИЕ И ОСОБЕННОСТИ позиций</label>
           <textarea id="card-desc-input" class="form-input" rows="3" placeholder="Например: Редкий релиз из Токио, плотный хлопковый канвас, фирменная расплавленная подошва OG Sole, полный комплект."></textarea>
         </div>
 
@@ -470,7 +460,7 @@
       <div class="ai-sidecar-header">
         <div class="ai-sidecar-title-wrap">
           <span class="ai-pulse-dot"></span>
-          <span class="ai-sidecar-title">⚡ ВЕРИФИКАЦИЯ И АВТОЗАПОЛНЕНИЕ</span>
+          <span class="ai-sidecar-title"> ВЕРИФИКАЦИЯ И АВТОЗАПОЛНЕНИЕ</span>
           <span class="ai-model-tag" id="ai-active-engine-tag">LENS & YANDEX</span>
         </div>
       </div>
@@ -478,20 +468,20 @@
       <!-- 1-Click Reverse Search Verification Toolbar -->
       <div class="ai-reverse-search-toolbar" style="padding: 10px; background: rgba(0, 0, 0, 0.45); border: 1px dashed rgba(0, 240, 255, 0.28); border-radius: 8px; margin-bottom: 10px;">
         <div style="font-family: var(--font-mono); font-size: 0.66rem; color: #a1a1aa; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between;">
-          <span style="color: #00f0ff; font-weight: 700;">🌐 ПОИСК ПО ФОТО В БАЗАХ:</span>
+          <span style="color: #00f0ff; font-weight: 700;"> ПОИСК ПО ФОТО В БАЗАХ:</span>
           <span style="color: #00ff88; font-size: 0.6rem; letter-spacing: 0.05em; font-weight: 700;">1-CLICK LOOKUP</span>
         </div>
         <div style="display: flex; gap: 8px; align-items: center;">
           <div style="width: 52px; height: 52px; border-radius: 6px; overflow: hidden; background: rgba(0,0,0,0.6); border: 1px solid rgba(0,240,255,0.3); flex-shrink: 0; display: flex; align-items: center; justify-content: center;">
             <img id="ai-target-img-preview" src="" alt="Фото" style="width: 100%; height: 100%; object-fit: cover; display: none;">
-            <span id="ai-viewport-empty" style="font-size: 1.2rem;">🖼️</span>
+            <span id="ai-viewport-empty" style="font-size: 1.2rem;">️</span>
           </div>
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; flex: 1;">
             <button type="button" class="btn btn-sm btn-outline" id="btn-search-google-lens" style="border-color: rgba(66, 133, 244, 0.6); color: #60a5fa; font-size: 0.7rem; display: flex; align-items: center; justify-content: center; gap: 5px; padding: 12px 6px; font-weight: 700;" title="Открыть Google Объектив (Lens) с фото товара">
-              <span>🔎</span> <strong>GOOGLE LENS</strong>
+              <span></span> <strong>GOOGLE LENS</strong>
             </button>
             <button type="button" class="btn btn-sm btn-outline" id="btn-search-yandex-images" style="border-color: rgba(239, 68, 68, 0.6); color: #f87171; font-size: 0.7rem; display: flex; align-items: center; justify-content: center; gap: 5px; padding: 12px 6px; font-weight: 700;" title="Открыть Яндекс Картинки с фото товара">
-              <span>🔴</span> <strong>ЯНДЕКС ФОТО</strong>
+              <span></span> <strong>ЯНДЕКС ФОТО</strong>
             </button>
           </div>
         </div>
@@ -504,13 +494,13 @@
       <div class="ai-hint-box" style="margin-bottom: 10px; background: rgba(0,0,0,0.5); border: 1px solid rgba(0,240,255,0.25); border-radius: 8px; padding: 10px;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
           <label for="ai-user-hint" style="font-family: var(--font-mono); font-size: 0.64rem; color: #00f0ff; letter-spacing: 0.05em; font-weight: 700;">
-            📋 ВСТАВЬТЕ ПРОМПТ / ОПИСАНИЕ ИЗ ПОИСКА:
+             ВСТАВЬТЕ ПРОМПТ / ОПИСАНИЕ ИЗ ПОИСКА:
           </label>
           <span style="font-size: 0.58rem; color: #a1a1aa;">(Авто-разбор)</span>
         </div>
         <textarea id="ai-user-hint" class="form-input" rows="4" style="font-size: 0.76rem; padding: 8px 10px; background: rgba(0,0,0,0.65); border-color: rgba(0,240,255,0.35); width: 100%; resize: vertical; min-height: 80px; font-family: var(--font-body); line-height: 1.45;" placeholder="Вставьте сюда любой текст или промпт, например: «На изображении представлена плечевая сумка Louis Vuitton Monogram Vernis Thompson Street в бронзовом/медном цвете (Bronze / Copper), выполненная из лакированной кожи с тисненым узором Monogram.»"></textarea>
         <button type="button" class="btn btn-primary btn-block" id="btn-parse-hint-trigger" style="margin-top: 8px; font-size: 0.72rem; padding: 9px 12px; font-weight: 700; letter-spacing: 0.04em; display: flex; align-items: center; justify-content: center; gap: 6px;">
-          <span>⚡</span> РАСПАРСИТЬ ПРОМПТ В ПОЛЯ
+          <span></span> РАСПАРСИТЬ ПРОМПТ В ПОЛЯ
         </button>
       </div>
 
@@ -522,7 +512,7 @@
             <span style="font-size: 0.58rem; color: #a1a1aa;">Нажмите «ВСТАВИТЬ» у нужного поля или примените всё</span>
           </div>
           <button type="button" class="btn-hud-action" id="ai-fill-all-btn" title="Перенести все распознанные поля в карточку">
-            ✔ ПРИМЕНИТЬ ВСЁ
+             ПРИМЕНИТЬ ВСЁ
           </button>
         </div>
 
@@ -678,7 +668,7 @@
         <div>
           <span class="modal-tag" style="color: #ef4444;">// TRASH & RECYCLE BIN</span>
           <h2 class="modal-title" style="display: flex; align-items: center; gap: 8px;">
-            <span>🗑 КОРЗИНА И АРХИВ УДАЛЁННЫХ КАРТОЧЕК</span>
+            <span> КОРЗИНА И АРХИВ УДАЛЁННЫХ КАРТОЧЕК</span>
           </h2>
           <p class="modal-desc" style="color: var(--text-muted); font-size: 0.85rem; margin-top: 4px;">
             Удалённые карточки сохраняются здесь. Вы можете в 1 клик восстановить любую позицию обратно в активную базу и каталог, либо стереть навсегда.
@@ -693,7 +683,7 @@
         </div>
         <div style="display: flex; gap: 8px;">
           <button type="button" class="btn btn-outline btn-sm btn-danger" id="trash-purge-all-btn" style="border-color: rgba(239, 68, 68, 0.4); color: #ff6b81;" title="Безвозвратно удалить все карточки из корзины">
-            ✕ ОЧИСТИТЬ ВСЮ КОРЗИНУ
+             ОЧИСТИТЬ ВСЮ КОРЗИНУ
           </button>
         </div>
       </div>

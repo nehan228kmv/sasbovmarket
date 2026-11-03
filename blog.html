@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SASBOV BLOG // Культура стритвира, Legit Check и гиды по выкупу</title>
+  <meta name="description" content="Блог SASBOV MARKET: экспертные статьи, правила аутентификации Stone Island и C.P. Company, гид по выкупу с Poizon и индивидуальный поиск вещей.">
+  <link rel="canonical" href="https://sasbov.online/blog.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="SASBOV BLOG // Культура стритвира, Legit Check и выкуп">
+  <meta property="og:description" content="Экспертные гиды по выкупу, проверка аутентичности и архивный стритвир.">
+  <meta property="og:url" content="https://sasbov.online/blog.html">
+  <meta property="og:image" content="https://sasbov.online/uploads/poster_travis_jordan.jpg">
+
+  <!-- Fonts & Styles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+  <script>
+    (function() {
+      const saved = localStorage.getItem('sasbov_theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', saved);
+    })();
+  
+    // Mobile Drawer Setup
+    const toggleBtn = document.getElementById('mobile-nav-toggle');
+    const drawer = document.getElementById('mobile-drawer');
+    const overlay = document.getElementById('mobile-drawer-overlay');
+    const closeBtn = document.getElementById('mobile-drawer-close');
+    const drawerLinks = document.querySelectorAll('.mobile-drawer-link');
+
+    if (toggleBtn && drawer && overlay) {
+      function openDrawer() {
+        drawer.classList.add('is-active');
+        overlay.classList.add('is-active');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeDrawer() {
+        drawer.classList.remove('is-active');
+        overlay.classList.remove('is-active');
+        document.body.style.overflow = '';
+      }
+      toggleBtn.addEventListener('click', openDrawer);
+      if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+      overlay.addEventListener('click', closeDrawer);
+      drawerLinks.forEach(l => l.addEventListener('click', closeDrawer));
+    }
+
+  </script>
+
+  <!-- Schema.org Blog Microdata -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "SASBOV BLOG",
+    "description": "Экспертные материалы о выкупе уличной моды, легитчеке и культуре азиатского стритвира",
+    "url": "https://sasbov.online/blog.html",
+    "publisher": {
+      "@type": "Organization",
+      "name": "SASBOV MARKET",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://sasbov.online/uploads/poster_travis_jordan.jpg"
+      }
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Ambient Full-Screen Poster Backdrop -->
+  <div class="ambient-poster-backdrop" id="ambient-poster-backdrop" aria-hidden="true">
+    <div class="ambient-poster-img-wrap">
+      <img id="ambient-poster-img" src="/uploads/poster_travis_jordan.jpg" alt="SASBOV MARKET Blog Background" class="ambient-poster-img" width="1920" height="1080" fetchpriority="high" decoding="async">
+    </div>
+    <div class="ambient-poster-gradient"></div>
+    <div class="ambient-poster-vignette"></div>
+  </div>
+
+  <!-- Telemetry Bar -->
+  <aside class="telemetry-bar" id="telemetry-bar" aria-label="Панель темы и города">
+    <div class="container telemetry-inner">
+      <div class="theme-switch-bar" id="theme-switch-bar" aria-label="Выбор темы сайта">
+        <button type="button" class="theme-pill-btn active" data-theme-val="dark" title="Тёмная тема"><span class="theme-dot theme-dot-dark"></span> ТЁМНАЯ</button>
+        <button type="button" class="theme-pill-btn" data-theme-val="chrome" title="Тема хром"><span class="theme-dot theme-dot-chrome"></span> ХРОМ</button>
+        <button type="button" class="theme-pill-btn poster-switch-btn" id="btn-random-poster" title="Случайный постер фона">СМЕНИТЬ ФОН</button>
+      </div>
+
+      <div class="telemetry-group clocks">
+        <span class="telemetry-clock">СПБ: ШОУРУМ BALKONSKY (НЕВСКИЙ 110В)</span>
+        <span class="telemetry-separator">/</span>
+        <span class="telemetry-clock">ПРЕДЗАКАЗ: ВСЯ РФ</span>
+      </div>
+
+      <div class="telemetry-group links">
+        <a href="https://t.me/Sasbov" target="_blank" rel="noopener noreferrer" class="telemetry-link" id="top-tg-link">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-1.92 9.07c-.14.65-.53.81-1.07.51l-2.97-2.19-1.43 1.38c-.16.16-.29.29-.6.29l.21-3.04 5.53-5c.24-.22-.05-.34-.38-.13l-6.84 4.3-2.95-.92c-.64-.2-.65-.64.13-.95l11.53-4.44c.53-.2 1 .12.89.82z"/></svg>
+          TELEGRAM (@SASBOV)
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Site Header -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo-link" aria-label="SASBOV MARKET — На главную">
+        <span class="header-brand-mark">
+          <span class="brand-text-sasbov">SASBOV</span>
+          <span class="brand-text-market">MARKET</span>
+        </span>
+      </a>
+
+      <nav class="main-nav" aria-label="Основное меню">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link">ГЛАВНАЯ</a></li>
+          <li><a href="catalog.html" class="nav-link">КАТАЛОГ</a></li>
+          <li><a href="blog.html" class="nav-link active">БЛОГ</a></li>
+          <li><a href="index.html#calculator" class="nav-link">КАЛЬКУЛЯТОР</a></li>
+          <li><a href="index.html#guarantee" class="nav-link">ГАРАНТИИ</a></li>
+          <li><a href="faq.html" class="nav-link">FAQ</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" class="action-btn cart-btn" id="preorder-tray-btn" aria-label="Корзина предзаказов">
+          <span class="cart-label">ПРЕДЗАКАЗ</span>
+          <span class="cart-badge" id="tray-count">0</span>
+        </button>
+        <a href="https://t.me/Sasbov" target="_blank" rel="noopener noreferrer" class="btn btn-outline header-cta" id="header-contact-btn">
+          МЕНЕДЖЕР В TG
+        </a>
+        <button type="button" class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Открыть мобильное меню"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button>
+      </div>
+    </div>
+  </header>
+
+  <main style="padding: 40px 0 80px 0;">
+    <div class="container">
+      
+      <!-- Breadcrumbs -->
+      <div class="catalog-breadcrumbs" style="margin-bottom: 24px;">
+        <a href="index.html">ГЛАВНАЯ</a>
+        <span>/</span>
+        <span class="current">БЛОГ & ГАЙДЫ</span>
+      </div>
+
+      <!-- Hero Header -->
+      <div style="margin-bottom: 40px;">
+        <span class="badge-hud" style="margin-bottom: 12px; display: inline-block;">EDITORIAL // КУЛЬТУРА & ГАЙДЫ</span>
+        <h1 class="catalog-page-title" style="font-size: clamp(2rem, 4vw, 3.2rem); font-family: var(--font-display); margin-bottom: 14px;">
+          SASBOV EDITORIAL & LEGIT CHECK
+        </h1>
+        <p style="color: var(--text-secondary); max-width: 780px; font-size: 1.05rem; line-height: 1.6;">
+          Гайды по зарубежному выкупу, разбор аутентификации брендов, история культовых силуэтов и экспертные советы по подбору редких позиций.
+        </p>
+
+        <!-- Category Filters -->
+        <div class="blog-filter-pills" style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px;">
+          <button type="button" class="blog-pill-btn active" data-blog-cat="all">ВСЕ СТАТЬИ (13)</button>
+          <button type="button" class="blog-pill-btn" data-blog-cat="legit">LEGIT CHECK (4)</button>
+          <button type="button" class="blog-pill-btn" data-blog-cat="guide">ГИДЫ ПО ВЫКУПУ (4)</button>
+          <button type="button" class="blog-pill-btn" data-blog-cat="culture">ИСТОРИЯ & КУЛЬТУРА (5)</button>
+        </div>
+      </div>
+
+      <!-- Articles Grid -->
+      <div class="blog-grid" id="blog-grid">
+        
+        <!-- Article 1: Poizon & Dewu Guide -->
+        <article class="blog-card" data-cat="guide">
+          <a href="blog-poizon-guide.html" class="blog-card-media" style="text-decoration: none; display: block;">
+            <img src="/uploads/poster_travis_jordan.jpg" alt="Выкуп с Poizon и Goofish" class="blog-card-img" width="600" height="338" loading="lazy" decoding="async">
+            <span class="blog-badge guide">ГИД ПО ВЫКУПУ</span>
+          </a>
+          <div class="blog-card-body">
+            <div class="blog-meta">
+              <span>ЛОГИСТИКА & ВЫКУП</span> • <span>7 МИН ЧТЕНИЯ</span>
+            </div>
+            <h2 class="blog-card-title">
+              <a href="blog-poizon-guide.html" style="color: inherit; text-decoration: none;">
+                Гид по выкупу с Poizon & Dewu: как мы привозим оригиналы за 7–12 дней
+              </a>
+            </h2>
+            <p class="blog-card-excerpt">
+              Всё, что нужно знать о китайском внутреннем рынке: почему на Poizon (Dewu) цены на 30–50% ниже, чем в РФ, как устроена тройная проверка подлинности и почему выкуп через проверенного агента безопаснее самостоятельных попыток.
+            </p>
+            <div class="blog-card-footer">
+              <a href="blog-poizon-guide.html" class="btn btn-sm btn-primary">ЧИТАТЬ МАТЕРИАЛ →</a>
+              <span class="blog-author">SASBOV Logistics</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Article 2: Stone Island & C.P. Company Legit Check -->
+        <article class="blog-card" data-cat="legit">
+          <a href="blog-stone-island-legit-check.html" class="blog-card-media" style="text-decoration: none; display: block;">
+            <img src="/uploads/poster_stone_cp_grail.jpg" alt="Legit Check C.P. Company и Stone Island" class="blog-card-img" width="600" height="338" loading="lazy" decoding="async">
+            <span class="blog-badge legit">LEGIT CHECK</span>
+          </a>
+          <div class="blog-card-body">
+            <div class="blog-meta">
+              <span>АУТЕНТИФИКАЦИЯ</span> • <span>6 МИН ЧТЕНИЯ</span>
+            </div>
+            <h2 class="blog-card-title">
+              <a href="blog-stone-island-legit-check.html" style="color: inherit; text-decoration: none;">
+                Как отличить оригинальный Stone Island и C.P. Company от качественной реплики
+              </a>
+            </h2>
+            <p class="blog-card-excerpt">
+              Полный гайд от наших байеров: на что смотреть в патче, пуговицах с крестовой прорезью, бирках Certilogo и качестве нейлона David-TC и Chrome-R.
+            </p>
+            <div class="blog-card-footer">
+              <a href="blog-stone-island-legit-check.html" class="btn btn-sm btn-primary">ЧИТАТЬ МАТЕРИАЛ →</a>
+              <span class="blog-author">SASBOV Legit Lab</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Article 3: Order by Photo & Sourcing -->
+        <article class="blog-card" data-cat="guide">
+          <a href="blog-custom-preorder.html" class="blog-card-media" style="text-decoration: none; display: block;">
+            <img src="/uploads/poster_bape_harajuku.jpg" alt="Заказ любой вещи по фото" class="blog-card-img" width="600" height="338" loading="lazy" decoding="async">
+            <span class="blog-badge guide">ГИД ПО ВЫКУПУ</span>
+          </a>
+          <div class="blog-card-body">
+            <div class="blog-meta">
+              <span>СЕРВИС SASBOV</span> • <span>4 МИН ЧТЕНИЯ</span>
+            </div>
+            <h2 class="blog-card-title">
+              <a href="blog-custom-preorder.html" style="color: inherit; text-decoration: none;">
+                Не нашли вещь в каталоге? Как оформить индивидуальный предзаказ по фото или ссылке
+              </a>
+            </h2>
+            <p class="blog-card-excerpt">
+              У нас нет ограничений по позициям. Если вы увидели кроссовки в запрещенной соцсети, лукбуке или на Pinterest — отправьте скриншот нашему Telegram-менеджеру.
+            </p>
+            <div class="blog-card-footer">
+              <a href="blog-custom-preorder.html" class="btn btn-sm btn-primary">ЧИТАТЬ МАТЕРИАЛ →</a>
+              <span class="blog-author">SASBOV Concierge</span>
+            </div>
+          </div>
+        </article>
+
+
+        <!-- Article: Гид по Rick Owens: от Geobasket до DRKSHDW — история темного люкса и проверка подлинности -->
+        <article class="blog-card" data-cat="legit">
+          <a href="blog-rick-owens.html" class="blog-card-media" style="text-decoration: none; display: block;">
+            <img src="/uploads/poster_rick_owens.jpg" alt="Гид по Rick Owens: от Geobasket до DRKSHDW — история темного люкса и проверка подлинности" class="blog-card-img" width="600" height="338" loading="lazy" decoding="async">
+            <span class="blog-badge legit">LEGIT CHECK & КУЛЬТУРА</span>
+          </a>
+          <div class="blog-card-body">
+            <div class="blog-meta">
+              <span>LEGIT</span> • <span>8 МИН ЧТЕНИЯ</span>
+            </div>
+            <h2 class="blog-card-title">
+              <a href="blog-rick-owens.html">
+                Гид по Rick Owens: от Geobasket до DRKSHDW — история темного люкса и проверка подлинности
+              </a>
+            </h2>
+            <p class="blog-card-excerpt">
+              Как калифорнийский бунтарь Рик Оуэнс создал культ темной готики в Париже: анатомия легендарных Geobasket, Ramones, карго Creatch и правила легитчека фурнитуры Raccagni.
+            </p>
+            <div class="blog-card-footer">
+              <a href="blog-rick-owens.html" class="btn btn-sm btn-primary">ЧИТАТЬ МАТЕРИАЛ →</a>
+              <span class="blog-author">SASBOV Legit Lab</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Article: Феномен Corteiz RTW: как лондонский андерграунд подчинил мир уличной моды -->
+        <article class="blog-card" data-cat="culture">
+          <a href="blog-corteiz.html" class="blog-card-media" style="text-decoration: none; display: block;">
+            <img src="/uploads/poster_corteiz_london.jpg" alt="Феномен Corteiz RTW: как лондонский андерграунд подчинил мир уличной моды" class="blog-card-img" width="600" height="338" loading="lazy" decoding="async">
+            <span class="blog-badge culture">ИСТОРИЯ БРЕНДА</span>
+          </a>
+          <div class="blog-card-body">
+            <div class="blog-meta">
+              <span>CULTURE</span> • <span>6 МИН ЧТЕНИЯ</span>
+            </div>
+            <h2 class="blog-card-title">
+              <a href="blog-corteiz.html">
+                Феномен Corteiz RTW: как лондонский андерграунд подчинил мир уличной моды
+              </a>
+            </h2>
+            <p class="blog-card-excerpt">
+              История Клинта 419: секретные релизы по координатам, штурмы автобусов в Лондоне, коллаборация с Nike Air Max 95 и почему остров Алькатрас стал символом сопротивления мейнстриму.
+            </p>
+            <div class="blog-card-footer">
+              <a href="blog-corteiz.html" class="btn btn-sm btn-primary">ЧИТАТЬ МАТЕРИАЛ →</a>
+              <span class="blog-author">SASBOV Streetwear Desk</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Article: Sp5der Worldwide: почему за худи Янг Тага охотятся все и как отличить оригинал -->
+        <article class="blog-card" data-cat="legit">
+          <a href="blog-sp5der.html" class="blog-card-media" style="text-decoration: none; display: block;">
+            <img src="/uploads/poster_sp5der_worldwide.jpg" alt="Sp5der Worldwide: почему за худи Янг Тага охотятся все и как отличить оригинал" class="blog-card-img" width="600" height="338" loading="lazy" decoding="async">
+            <span class="blog-badge legit">LEGIT CHECK</span>
+          </a>
+          <div class="blog-card-body">
+            <div class="blog-meta">
+              <span>LEGIT</span> • <span>7 МИН ЧТЕНИЯ</span>
+            </div>
+            <h2 class="blog-card-title">
+              <a href="blog-sp5der.html">
+                Sp5der Worldwide: почему за худи Янг Тага охотятся все и как отличить оригинал
+              </a>
+            </h2>
+            <p class="blog-card-excerpt">
+              Атланта, стразы и паутина: феномен бренда Young Thug, различия между оригиналом и репликами, рельефная печать Puff Print и микрошрифты на ярлыках.
+            </p>
+            <div class="blog-card-footer">
+              <a href="blog-sp5der.html" class="btn btn-sm btn-primary">ЧИТАТЬ МАТЕРИАЛ →</a>
+              <span class="blog-author">SASBOV Legit Lab</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Article: Hellstar Studios: взлет нового короля винтажной графики и калифорнийского панка -->
+        <article class="blog-card" data-cat="culture">
+          <a href="blog-hellstar.html" class="blog-card-media" style="text-decoration: none; display: block;">
+            <img src="/uploads/poster_hellstar_studios.jpg" alt="Hellstar Studios: взлет нового короля винтажной графики и калифорнийского панка" class="blog-card-img" width="600" height="338" loading="lazy" decoding="async">
+            <span class="blog-badge legit">ИСТОРИЯ & ЛЕГИТЧЕК</span>
+          </a>
+          <div class="blog-card-body">
+            <div class="blog-meta">
+              <span>CULTURE</span> • <span>6 МИН ЧТЕНИЯ</span>
+            </div>
+            <h2 class="blog-card-title">
+              <a href="blog-hellstar.html">
+                Hellstar Studios: взлет нового короля винтажной графики и калифорнийского панка
+              </a>
+            </h2>
+            <p class="blog-card-excerpt">
+              От подвала в Лас-Вегасе до гардеробов топовых рэперов: кастомные варки, винтажный вываренный хлопок, капсулы с пламенем и легитчек чипов NFC.
+            </p>
+            <div class="blog-card-footer">
+              <a href="blog-hellstar.html" class="btn btn-sm btn-primary">ЧИТАТЬ МАТЕРИАЛ →</a>
+              <span class="blog-author">SASBOV Streetwear Desk</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Article: Stüssy: от досок для серфинга в Лагуна-Бич до статуса крестного отца уличной моды -->
+        <article class="blog-card" data-cat="culture">
+          <a href="blog-stussy.html" class="blog-card-media" style="text-decoration: none; display: block;">
+            <img src="/uploads/poster_stussy_heritage.jpg" alt="Stüssy: от досок для серфинга в Лагуна-Бич до статуса крестного отца уличной моды" class="blog-card-img" width="600" height="338" loading="lazy" decoding="async">
+            <span class="blog-badge culture">ИСТОРИЯ КЛАССИКИ</span>
+          </a>
+          <div class="blog-card-body">
+            <div class="blog-meta">
+              <span>CULTURE</span> • <span>9 МИН ЧТЕНИЯ</span>
+            </div>
+            <h2 class="blog-card-title">
+              <a href="blog-stussy.html">
+                Stüssy: от досок для серфинга в Лагуна-Бич до статуса крестного отца уличной моды
+              </a>
+            </h2>
+            <p class="blog-card-excerpt">
+              Как Шон Стусси в 1980 году случайно запустил всю индустрию стритвира: International Stüssy Tribe, коллаборации с Nike, культовый флис 8-Ball и архивные силуэты.
+            </p>
+            <div class="blog-card-footer">
+              <a href="blog-stussy.html" class="btn btn-sm btn-primary">ЧИТАТЬ МАТЕРИАЛ →</a>
+              <span class="blog-author">SASBOV Editorial</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Article: Gallery Dept.: когда деконструкция и пятна краски стоят сотни тысяч рублей -->
+        <article class="blog-card" data-cat="legit">
+          <a href="blog-gallery-dept.html" class="blog-card-media" style="text-decoration: none; display: block;">
+            <img src="/uploads/poster_gallery_dept.jpg" alt="Gallery Dept.: когда деконструкция и пятна краски стоят сотни тысяч рублей" class="blog-card-img" width="600" height="338" loading="lazy" decoding="async">
+            <span class="blog-badge legit">LEGIT CHECK & АРХИВ</span>
+          </a>
+          <div class="blog-card-body">
+            <div class="blog-meta">
+              <span>LEGIT</span> • <span>7 МИН ЧТЕНИЯ</span>
+            </div>
+            <h2 class="blog-card-title">
+              <a href="blog-gallery-dept.html">
+                Gallery Dept.: когда деконструкция и пятна краски стоят сотни тысяч рублей
+              </a>
+            </h2>
+            <p class="blog-card-excerpt">
+              Джоша Томас и его манифест против масс-маркета: ручная роспись Carpenter Pants, вывернутые винтажные худи, архивные патчи и признаки оригинальной кастомизации.
+            </p>
+            <div class="blog-card-footer">
+              <a href="blog-gallery-dept.html" class="btn btn-sm btn-primary">ЧИТАТЬ МАТЕРИАЛ →</a>
+              <span class="blog-author">SASBOV Legit Lab</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Article: Gorpcore лихорадка: почему Arc'teryx Alpha SV и Salomon вытеснили классические пуховики -->
+        <article class="blog-card" data-cat="guide">
+          <a href="blog-arcteryx-gorpcore.html" class="blog-card-media" style="text-decoration: none; display: block;">
+            <img src="/uploads/poster_arcteryx_alpine.jpg" alt="Gorpcore лихорадка: почему Arc'teryx Alpha SV и Salomon вытеснили классические пуховики" class="blog-card-img" width="600" height="338" loading="lazy" decoding="async">
+            <span class="blog-badge guide">ТЕХНИЧЕСКИЙ ГАЙД</span>
+          </a>
+          <div class="blog-card-body">
+            <div class="blog-meta">
+              <span>GUIDE</span> • <span>8 МИН ЧТЕНИЯ</span>
+            </div>
+            <h2 class="blog-card-title">
+              <a href="blog-arcteryx-gorpcore.html">
+                Gorpcore лихорадка: почему Arc'teryx Alpha SV и Salomon вытеснили классические пуховики
+              </a>
+            </h2>
+            <p class="blog-card-excerpt">
+              Из альпинистских ущелий Ванкувера на подиумы Парижа: мембрана Gore-Tex Pro Most Rugged, водонепроницаемые молнии WaterTight и гайд по уходу за хардшеллом.
+            </p>
+            <div class="blog-card-footer">
+              <a href="blog-arcteryx-gorpcore.html" class="btn btn-sm btn-primary">ЧИТАТЬ МАТЕРИАЛ →</a>
+              <span class="blog-author">SASBOV Tech Lab</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Article: Denim Tears и хлопковый венок: история Тремейна Эмори и феномен 501-х Levi's -->
+        <article class="blog-card" data-cat="culture">
+          <a href="blog-denim-tears.html" class="blog-card-media" style="text-decoration: none; display: block;">
+            <img src="/uploads/poster_denim_tears.jpg" alt="Denim Tears и хлопковый венок: история Тремейна Эмори и феномен 501-х Levi's" class="blog-card-img" width="600" height="338" loading="lazy" decoding="async">
+            <span class="blog-badge culture">КУЛЬТУРА & ИСТОРИЯ</span>
+          </a>
+          <div class="blog-card-body">
+            <div class="blog-meta">
+              <span>CULTURE</span> • <span>6 МИН ЧТЕНИЯ</span>
+            </div>
+            <h2 class="blog-card-title">
+              <a href="blog-denim-tears.html">
+                Denim Tears и хлопковый венок: история Тремейна Эмори и феномен 501-х Levi's
+              </a>
+            </h2>
+            <p class="blog-card-excerpt">
+              Глубокий исторический нарратив афроамериканской культуры, превращенный в самый желанный деним десятилетия: трафаретная печать Cotton Wreath, Levi's коллаборации и легитчек.
+            </p>
+            <div class="blog-card-footer">
+              <a href="blog-denim-tears.html" class="btn btn-sm btn-primary">ЧИТАТЬ МАТЕРИАЛ →</a>
+              <span class="blog-author">SASBOV Editorial</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Article: Vetements: анти-мода, гипер-оверсайз и провокация как главное оружие Демны -->
+        <article class="blog-card" data-cat="culture">
+          <a href="blog-vetements.html" class="blog-card-media" style="text-decoration: none; display: block;">
+            <img src="/uploads/poster_vetements_oversized.jpg" alt="Vetements: анти-мода, гипер-оверсайз и провокация как главное оружие Демны" class="blog-card-img" width="600" height="338" loading="lazy" decoding="async">
+            <span class="blog-badge culture">АРХИВ & АВАНГАРД</span>
+          </a>
+          <div class="blog-card-body">
+            <div class="blog-meta">
+              <span>CULTURE</span> • <span>8 МИН ЧТЕНИЯ</span>
+            </div>
+            <h2 class="blog-card-title">
+              <a href="blog-vetements.html">
+                Vetements: анти-мода, гипер-оверсайз и провокация как главное оружие Демны
+              </a>
+            </h2>
+            <p class="blog-card-excerpt">
+              Как анонимный коллектив из Парижа разрушил каноны Недели моды: гигантские рукава, логотипы DHL и Titanic, платформа New Rock и почему архивный Vetements только дорожает.
+            </p>
+            <div class="blog-card-footer">
+              <a href="blog-vetements.html" class="btn btn-sm btn-primary">ЧИТАТЬ МАТЕРИАЛ →</a>
+              <span class="blog-author">SASBOV Archive Desk</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Article: Kith и Ронни Файг: как обувной магазин из Квинса стал мировым люкс-гигантом -->
+        <article class="blog-card" data-cat="guide">
+          <a href="blog-kith-ny.html" class="blog-card-media" style="text-decoration: none; display: block;">
+            <img src="/uploads/poster_kith_newyork.jpg" alt="Kith и Ронни Файг: как обувной магазин из Квинса стал мировым люкс-гигантом" class="blog-card-img" width="600" height="338" loading="lazy" decoding="async">
+            <span class="blog-badge guide">ГИД & ИСТОРИЯ</span>
+          </a>
+          <div class="blog-card-body">
+            <div class="blog-meta">
+              <span>GUIDE</span> • <span>7 МИН ЧТЕНИЯ</span>
+            </div>
+            <h2 class="blog-card-title">
+              <a href="blog-kith-ny.html">
+                Kith и Ронни Файг: как обувной магазин из Квинса стал мировым люкс-гигантом
+              </a>
+            </h2>
+            <p class="blog-card-excerpt">
+              Энциклопедия американского сникер-ретейла: от коллабораций с Asics Gel-Lyte III до собственного универмага в SoHo, премиальный трикотаж Williams и культура предзаказа.
+            </p>
+            <div class="blog-card-footer">
+              <a href="blog-kith-ny.html" class="btn btn-sm btn-primary">ЧИТАТЬ МАТЕРИАЛ →</a>
+              <span class="blog-author">SASBOV Editorial</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Universal Footer -->
+  <footer class="site-footer" id="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col brand-col">
+        <a href="index.html" class="header-brand-mark" style="text-decoration: none;">
+          <span class="brand-text-sasbov">SASBOV</span>
+          <span class="brand-text-market">MARKET</span>
+        </a>
+        <p class="footer-desc">
+          Закрытый селект культовой одежды, обуви и аксессуаров. Прямой выкуп с проверенных площадок Китая и бутиков Японии.
+        </p>
+        <span class="footer-contact-badge">ОФИЦИАЛЬНЫЙ ТЕЛЕГРАМ: @SASBOV</span>
+      </div>
+
+      <div class="footer-col">
+        <span class="footer-col-title">НАВИГАЦИЯ</span>
+        <ul class="footer-links">
+          <li><a href="index.html">Главная страница</a></li>
+          <li><a href="catalog.html">Каталог (74+ позиции)</a></li>
+          <li><a href="blog.html">Блог & Статьи</a></li>
+          <li><a href="faq.html">Частые вопросы (FAQ)</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <span class="footer-col-title">ЛОКАЦИИ & СТОК</span>
+        <ul class="footer-links">
+          <li><a href="catalog.html?stock=instock">Наличие в СПб</a> (<a href="https://yandex.ru/maps/org/balkonskiy_stor/109683827425/?indoorLevel=1&ll=30.358538%2C59.932829&z=17" target="_blank" rel="noopener noreferrer" style="text-decoration: underline; color: var(--accent-cyan);" title="Balkonsky Store на Яндекс Картах">Балконский Стор ↗</a>)</li>
+          <li><a href="catalog.html?stock=transit_spb">В пути в СПб</a></li>
+          <li><a href="catalog.html?stock=transit_irkutsk">В пути в Иркутск</a></li>
+          <li><a href="catalog.html?stock=preorder">Предзаказ по РФ</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <span class="footer-col-title">СВЯЗЬ С МЕНЕДЖЕРОМ</span>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 12px; line-height: 1.5;">
+          Отвечаем в течение 5 минут. Поможем подобрать размер, проверить легит и рассчитать выкуп.
+        </p>
+        <a href="https://t.me/Sasbov" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="text-align: center; display: block; padding: 12px 20px;">
+          НАПИСАТЬ В TG (@SASBOV)
+        </a>
+      </div>
+    </div>
+
+    <!-- Offline Showroom Office Card in St. Petersburg -->
+    <div class="container">
+      <div class="footer-showroom-card">
+        <div class="showroom-card-header">
+          <div class="showroom-tag">ПАРТНЁР // ОФФЛАЙН-ШОУРУМ В САНКТ-ПЕТЕРБУРГЕ</div>
+          <h3 class="showroom-title">Оффлайн Офис Балконский стор (Balkonsky Store)</h3>
+          <p class="showroom-address">
+            Оффлайн-шоурум расположен по адресу: <a href="https://yandex.ru/maps/org/balkonskiy_stor/109683827425/?indoorLevel=1&ll=30.358538%2C59.932829&z=17" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-decoration-color: var(--accent-cyan);" title="Открыть Балконский стор на Яндекс Картах"><strong>Невский просп., 110В (Яндекс Карты ↗)</strong></a><br>
+            <span class="text-muted" style="font-size: 0.82rem;">(Рейтинг ★ 4.8 • 24 оценки • Ежедневно до 22:00 • Тел: +7 (981) 800-07-46 • Примерка и самовывоз)</span>
+          </p>
+        </div>
+        <div class="showroom-maps-grid">
+          <a href="https://yandex.ru/maps/org/balkonskiy_stor/109683827425/?indoorLevel=1&ll=30.358538%2C59.932829&z=17" target="_blank" rel="noopener noreferrer" class="map-badge-link map-badge-primary" title="Открыть организацию Балконский стор на Яндекс Картах">
+            Яндекс Карты (Балконский стор) ↗
+          </a>
+          <a href="tel:+79818000746" class="map-badge-link" title="Позвонить в шоурум">
+            Тел: +7 (981) 800-07-46
+          </a>
+          <a href="https://t.me/Sasbov" target="_blank" rel="noopener noreferrer" class="map-badge-link map-badge-cta">
+            Связь с менеджером (@Sasbov)
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>&copy; 2026 SASBOV MARKET. Все права защищены. Эксклюзивный предзаказ одежды и обуви из Китая и Японии.</p>
+      <div class="footer-bottom-meta">
+        <span>SECURITY: ENCRYPTED // SSL VERIFIED</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Blog filtering logic
+    document.querySelectorAll('.blog-pill-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.blog-pill-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const cat = btn.getAttribute('data-blog-cat');
+        document.querySelectorAll('.blog-card').forEach(card => {
+          if (cat === 'all' || card.getAttribute('data-cat') === cat) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Theme Switcher
+    const themeBtns = document.querySelectorAll('.theme-pill-btn[data-theme-val]');
+    themeBtns.forEach(b => {
+      b.addEventListener('click', () => {
+        const t = b.getAttribute('data-theme-val');
+        document.documentElement.setAttribute('data-theme', t);
+        localStorage.setItem('sasbov_theme', t);
+        themeBtns.forEach(x => x.classList.remove('active'));
+        b.classList.add('active');
+      });
+    });
+    const savedTheme = localStorage.getItem('sasbov_theme');
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      themeBtns.forEach(x => {
+        if (x.getAttribute('data-theme-val') === savedTheme) x.classList.add('active');
+        else x.classList.remove('active');
+      });
+    }
+
+    // Random poster background switcher (strictly without removed rick owens poster)
+    const POSTERS = [
+        "/uploads/poster_glogang.jpg",
+        "/uploads/poster_chrome_hearts.jpg",
+        "/uploads/poster_bape_harajuku.jpg",
+        "/uploads/poster_gorpcore_arcteryx.jpg",
+        "/uploads/poster_mihara_yasuhiro.jpg",
+        "/uploads/poster_travis_jordan.jpg",
+        "/uploads/poster_balenciaga.jpg",
+        "/uploads/poster_gucci_luxury.jpg",
+        "/uploads/poster_amiri_luxury.jpg",
+        "/uploads/poster_stone_cp_grail.jpg",
+        "/uploads/poster_rick_owens.jpg",
+        "/uploads/poster_corteiz_london.jpg",
+        "/uploads/poster_sp5der_worldwide.jpg",
+        "/uploads/poster_hellstar_studios.jpg",
+        "/uploads/poster_stussy_heritage.jpg",
+        "/uploads/poster_gallery_dept.jpg",
+        "/uploads/poster_arcteryx_alpine.jpg",
+        "/uploads/poster_denim_tears.jpg",
+        "/uploads/poster_vetements_oversized.jpg",
+        "/uploads/poster_kith_newyork.jpg"
+      ];
+    function setRandomPoster() {
+      const idx = Math.floor(Math.random() * POSTERS.length);
+      const img = document.getElementById('ambient-poster-img');
+      if (img) {
+        img.style.opacity = '0';
+        setTimeout(() => {
+          img.src = POSTERS[idx];
+          img.onload = () => { img.style.opacity = '0.52'; };
+        }, 150);
+      }
+    }
+    const randBtn = document.getElementById('btn-random-poster');
+    if (randBtn) randBtn.addEventListener('click', setRandomPoster);
+
+    // Specular Card Hover & Scroll Reveal
+    document.addEventListener('mousemove', (e) => {
+      const card = e.target.closest('.blog-card');
+      if (!card) return;
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+      card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+    }, { passive: true });
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-revealed');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+      document.querySelectorAll('.blog-card, .blog-hero').forEach(el => {
+        el.classList.add('reveal-on-scroll');
+        observer.observe(el);
+      });
+    }
+  </script>
+  <!-- Mobile Navigation Cyber Drawer -->
+  <div class="mobile-drawer-overlay" id="mobile-drawer-overlay"></div>
+  <aside class="mobile-drawer" id="mobile-drawer" aria-label="Мобильное меню">
+    <div class="mobile-drawer-header">
+      <span class="brand-wordmark" style="font-size: 1.15rem;">SASBOV</span>
+      <button type="button" class="mobile-drawer-close" id="mobile-drawer-close" aria-label="Закрыть меню">&times;</button>
+    </div>
+    <nav class="mobile-drawer-nav">
+      <a href="index.html" class="mobile-drawer-link">ГЛАВНАЯ <span>// 01</span></a>
+      <a href="catalog.html" class="mobile-drawer-link">КАТАЛОГ <span>// 02</span></a>
+      <a href="blog.html" class="mobile-drawer-link">БЛОГ <span>// 03</span></a>
+      <a href="index.html#calculator" class="mobile-drawer-link">КАЛЬКУЛЯТОР <span>// 04</span></a>
+      <a href="index.html#guarantee" class="mobile-drawer-link">ГАРАНТИИ <span>// 05</span></a>
+      <a href="faq.html" class="mobile-drawer-link">FAQ <span>// 06</span></a>
+    </nav>
+    <div class="mobile-drawer-footer">
+      <a href="https://t.me/Sasbov" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="justify-content: center; font-size: 0.82rem;">
+        СВЯЗАТЬСЯ В TG (@SASBOV)
+      </a>
+      <div style="font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-muted); text-align: center;">
+        НЕВСКИЙ 110В // СПБ (БАЛКОНСКИЙ)
+      </div>
+    </div>
+  </aside>
+</body>
+</html>

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vetements: история бренда Демны Гвасалии, оверсайз и худи // SASBOV BLOG</title>
+  <meta name="description" content="Как анонимный коллектив Vetements разрушил каноны парижской недели моды: футболка DHL, худи Titanic и Total Darkness, обувь New Rock и архивные дропы.">
+  <link rel="canonical" href="https://sasbov.online/blog-vetements.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Vetements: анти-мода, гипер-оверсайз и провокация как главное оружие Демны // SASBOV MARKET">
+  <meta property="og:description" content="Как анонимный коллектив Vetements разрушил каноны парижской недели моды: футболка DHL, худи Titanic и Total Darkness, обувь New Rock и архивные дропы.">
+  <meta property="og:url" content="https://sasbov.online/blog-vetements.html">
+  <meta property="og:image" content="https://sasbov.online/uploads/poster_vetements_oversized.jpg">
+
+  <!-- Fonts & Styles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+  <script>
+    (function() {
+      const saved = localStorage.getItem('sasbov_theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', saved);
+    })();
+  
+    // Mobile Drawer Setup
+    const toggleBtn = document.getElementById('mobile-nav-toggle');
+    const drawer = document.getElementById('mobile-drawer');
+    const overlay = document.getElementById('mobile-drawer-overlay');
+    const closeBtn = document.getElementById('mobile-drawer-close');
+    const drawerLinks = document.querySelectorAll('.mobile-drawer-link');
+
+    if (toggleBtn && drawer && overlay) {
+      function openDrawer() {
+        drawer.classList.add('is-active');
+        overlay.classList.add('is-active');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeDrawer() {
+        drawer.classList.remove('is-active');
+        overlay.classList.remove('is-active');
+        document.body.style.overflow = '';
+      }
+      toggleBtn.addEventListener('click', openDrawer);
+      if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+      overlay.addEventListener('click', closeDrawer);
+      drawerLinks.forEach(l => l.addEventListener('click', closeDrawer));
+    }
+
+  </script>
+
+  <!-- Schema.org BlogPosting -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Vetements: анти-мода, гипер-оверсайз и провокация как главное оружие Демны",
+    "description": "Как анонимный коллектив Vetements разрушил каноны парижской недели моды: футболка DHL, худи Titanic и Total Darkness, обувь New Rock и архивные дропы.",
+    "image": "https://sasbov.online/uploads/poster_vetements_oversized.jpg",
+    "datePublished": "2026-10-30T16:00:00+03:00",
+    "dateModified": "2026-10-30T16:00:00+03:00",
+    "author": {
+      "@type": "Organization",
+      "name": "SASBOV Paris Runway Archive"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "SASBOV MARKET",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://sasbov.online/uploads/poster_travis_jordan.jpg"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://sasbov.online/blog-vetements.html"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Ambient Full-Screen Poster Backdrop -->
+  <div class="ambient-poster-backdrop" id="ambient-poster-backdrop" aria-hidden="true">
+    <div class="ambient-poster-img-wrap">
+      <img id="ambient-poster-img" src="/uploads/poster_vetements_oversized.jpg" alt="SASBOV Article Ambient" class="ambient-poster-img" width="1920" height="1080" decoding="async">
+    </div>
+    <div class="ambient-poster-gradient"></div>
+    <div class="ambient-poster-vignette"></div>
+  </div>
+
+  <!-- Telemetry Bar -->
+  <aside class="telemetry-bar" id="telemetry-bar" aria-label="Панель темы и города">
+    <div class="container telemetry-inner">
+      <div class="theme-switch-bar" id="theme-switch-bar" aria-label="Выбор темы сайта">
+        <button type="button" class="theme-pill-btn active" data-theme-val="dark" title="Тёмная тема"><span class="theme-dot theme-dot-dark"></span> ТЁМНАЯ</button>
+        <button type="button" class="theme-pill-btn" data-theme-val="chrome" title="Тема хром"><span class="theme-dot theme-dot-chrome"></span> ХРОМ</button>
+        <button type="button" class="theme-pill-btn poster-switch-btn" id="btn-random-poster" title="Случайный постер фона">СМЕНИТЬ ФОН</button>
+      </div>
+
+      <div class="telemetry-group clocks">
+        <span class="telemetry-clock"> СПБ: ШОУРУМ БАЛКОНСКИЙ (НЕВСКИЙ 110В)</span>
+        <span class="telemetry-separator">/</span>
+        <span class="telemetry-clock"> ПРЕДЗАКАЗ НА ВСЮ РФ</span>
+      </div>
+
+      <div class="telemetry-group links">
+        <a href="https://t.me/Sasbov" target="_blank" rel="noopener noreferrer" class="telemetry-link" id="top-tg-link">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-1.92 9.07c-.14.65-.53.81-1.07.51l-2.97-2.19-1.43 1.38c-.16.16-.29.29-.6.29l.21-3.04 5.53-5c.24-.22-.05-.34-.38-.13l-6.84 4.3-2.95-.92c-.64-.2-.65-.64.13-.95l11.53-4.44c.53-.2 1 .12.89.82z"/></svg>
+          TELEGRAM (@SASBOV)
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Site Header -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo-link" aria-label="SASBOV MARKET — На главную">
+        <span class="header-brand-mark">
+          <span class="brand-text-sasbov">SASBOV</span>
+          <span class="brand-text-market">MARKET</span>
+        </span>
+      </a>
+
+      <nav class="main-nav" aria-label="Основное меню">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link">ГЛАВНАЯ</a></li>
+          <li><a href="catalog.html" class="nav-link">КАТАЛОГ</a></li>
+          <li><a href="blog.html" class="nav-link active">БЛОГ</a></li>
+          <li><a href="index.html#calculator" class="nav-link">КАЛЬКУЛЯТОР</a></li>
+          <li><a href="index.html#guarantee" class="nav-link">ГАРАНТИИ</a></li>
+          <li><a href="faq.html" class="nav-link">FAQ</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" class="action-btn cart-btn" id="preorder-tray-btn" aria-label="Корзина предзаказов">
+          <span class="cart-label">ПРЕДЗАКАЗ</span>
+          <span class="cart-badge" id="tray-count">0</span>
+        </button>
+        <a href="https://t.me/Sasbov" target="_blank" rel="noopener noreferrer" class="btn btn-outline header-cta" id="header-contact-btn">
+          МЕНЕДЖЕР В TG
+        </a>
+        <button type="button" class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Открыть мобильное меню"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button>
+      </div>
+    </div>
+  </header>
+
+  <main class="article-page">
+    <div class="container">
+      
+      <!-- Article Header & Hero -->
+      <article class="article-hero">
+        <div class="article-breadcrumbs">
+          <a href="index.html">ГЛАВНАЯ</a>
+          <span>/</span>
+          <a href="blog.html">БЛОГ</a>
+          <span>/</span>
+          <span class="current">Vetements: анти-мода, гипер-оверсайз и провокация как главное оружие Демны</span>
+        </div>
+
+        <span class="blog-badge culture">АРХИВ & АВАНГАРД</span>
+        <h1 class="article-title">Vetements: анти-мода, гипер-оверсайз и провокация как главное оружие Демны</h1>
+
+        <div class="article-meta-bar">
+          <span>АВТОР: SASBOV Archive Desk</span>
+          <span>•</span>
+          <span>ВРЕМЯ ЧТЕНИЯ: 8 МИН ЧТЕНИЯ</span>
+          <span>•</span>
+          <span>ОБНОВЛЕНО: 2026 ГОД</span>
+        </div>
+
+        <div class="article-hero-media">
+          <img src="/uploads/poster_vetements_oversized.jpg" alt="Vetements: анти-мода, гипер-оверсайз и провокация как главное оружие Демны" class="article-hero-img" width="1200" height="675" fetchpriority="high" decoding="async">
+        </div>
+      </article>
+
+      <!-- Article Content Body -->
+      <div class="article-body">
+        
+      <p class="article-lead">
+        Появившись в 2014 году как тайный проект группы выпускников Антверпенской королевской академии изящных искусств во главе с Демной Гвасалией, Vetements («Одежда» по-французски) устроил землетрясение в мире высокой моды. Они перенесли показы в китайский ресторан и гей-клуб, выпустили футболку с логотипом курьерской службы DHL за $330 и заставили весь мир полюбить гипертрофированный оверсайз.
+      </p>
+
+      <h2>1. Анатомия идеального оверсайза</h2>
+      <p>
+        В отличие от масс-маркета, который просто берет стандартную выкройку и увеличивает её на три размера, лекала Vetements конструируются по законам сложной скульптуры: удлиненная пройма рукава, смещенные вперед плечевые швы, укороченный и стянутый пояс и массивный двухслойный капюшон, стоящий как шлем.
+      </p>
+      <p>
+        Худи вроде <em>«May The Bridges I Burn Light The Way»</em>, <em>«Titanic»</em>, <em>«Total Fucking Darkness»</em> и <em>«Polizei»</em> стали эталонами коллекционного гардероба 2010-х и 2020-х.
+      </p>
+
+      <h2>2. Коллаборация с New Rock и тяжелая обувь</h2>
+      <p>
+        Vetements первыми вернули моду на готическую и рейв-обувь испанского бренда <strong>New Rock</strong>, добавив к массивным металлическим подошвам с болтами фирменные детали и состаренную кожу. Эти гигантские платформы стали идеальным противовесом ультра-широким брюкам с необработанным краем.
+      </p>
+
+      <div class="article-callout">
+        <strong> ВЫКУП АРХИВНОГО VETEMENTS:</strong><br>
+        Мы регулярно находим и выкупаем редкие архивные позиции Vetements с японских аукционов Yahoo Japan и проверенных китайских закрытых стоков. Напишите нашему байеру в Telegram, если ищете определенный архивный релиз.
+      </div>
+    
+
+        <!-- Interactive Consultation Banner -->
+        <div class="article-callout" style="text-align: center; background: rgba(0, 240, 255, 0.05); border-color: var(--accent-cyan); margin: 48px 0;">
+          <h3 style="font-family: var(--font-display); font-size: 1.4rem; margin-bottom: 10px; color: #fff;">
+            Понравилась вещь из статьи? Найдем и доставим
+          </h3>
+          <p style="font-size: 0.95rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto 20px auto;">
+            Пришлите фото или ссылку менеджеру в Telegram. Рассчитаем стоимость выкупа с учетом авиадоставки СДЭК за 5 минут.
+          </p>
+          <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+            <a href="catalog.html" class="btn btn-primary">ОТКРЫТЬ КАТАЛОГ ДРОПОВ</a>
+            <a href="https://t.me/Sasbov" target="_blank" rel="noopener noreferrer" class="btn btn-outline">НАПИСАТЬ В TELEGRAM (@SASBOV)</a>
+          </div>
+        </div>
+
+        <!-- Author Card -->
+        <div class="article-author-card">
+          <div class="article-author-avatar">S</div>
+          <div>
+            <div class="article-author-name">SASBOV Paris Runway Archive</div>
+            <div class="article-author-bio">
+              Анализируем феномен деконструкции, архивные коллекции Демны и Гурама Гвасалия.
+            </div>
+          </div>
+        </div>
+
+        <!-- Article Navigation Footer -->
+        <div class="article-nav-footer">
+          <a href="blog.html" class="btn btn-outline btn-sm">← ВСЕ СТАТЬИ БЛОГА</a>
+          <a href="blog-kith-ny.html" class="btn btn-outline btn-sm">СЛЕДУЮЩАЯ СТАТЬЯ </a>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Universal Footer -->
+  <footer class="site-footer" id="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col brand-col">
+        <a href="index.html" class="header-brand-mark" style="text-decoration: none;">
+          <span class="brand-text-sasbov">SASBOV</span>
+          <span class="brand-text-market">MARKET</span>
+        </a>
+        <p class="footer-desc">
+          Закрытый селект культовой одежды, обуви и аксессуаров. Прямой выкуп с проверенных площадок Китая и бутиков Японии.
+        </p>
+        <span class="footer-contact-badge">ОФИЦИАЛЬНЫЙ ТЕЛЕГРАМ: @SASBOV</span>
+      </div>
+
+      <div class="footer-col">
+        <span class="footer-col-title">НАВИГАЦИЯ</span>
+        <ul class="footer-links">
+          <li><a href="index.html">Главная страница</a></li>
+          <li><a href="catalog.html">Каталог (74+ дропа)</a></li>
+          <li><a href="blog.html">Блог & Статьи</a></li>
+          <li><a href="faq.html">Частые вопросы (FAQ)</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <span class="footer-col-title">ЛОКАЦИИ & СТОК</span>
+        <ul class="footer-links">
+          <li><a href="catalog.html?stock=instock"> Наличие в СПб</a> (<a href="https://yandex.ru/maps/org/balkonskiy_stor/109683827425/?indoorLevel=1&ll=30.358538%2C59.932829&z=17" target="_blank" rel="noopener noreferrer" style="text-decoration: underline; color: var(--accent-cyan);" title="Balkonsky Store на Яндекс Картах">Балконский Стор ↗</a>)</li>
+          <li><a href="catalog.html?stock=transit_spb"> В пути в СПб</a></li>
+          <li><a href="catalog.html?stock=transit_irkutsk"> В пути в Иркутск</a></li>
+          <li><a href="catalog.html?stock=preorder"> Предзаказ по РФ</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <span class="footer-col-title">СВЯЗЬ С МЕНЕДЖЕРОМ</span>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 12px; line-height: 1.5;">
+          Отвечаем в течение 5 минут. Поможем подобрать размер, проверить легит и рассчитать выкуп.
+        </p>
+        <a href="https://t.me/Sasbov" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="text-align: center; display: block; padding: 12px 20px;">
+          НАПИСАТЬ В TG (@SASBOV)
+        </a>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>&copy; 2026 SASBOV MARKET. Все права защищены. Эксклюзивный предзаказ одежды и обуви из Китая и Японии.</p>
+      <div class="footer-bottom-meta">
+        <span>SECURITY: ENCRYPTED // SSL VERIFIED</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Theme Switcher
+    const themeBtns = document.querySelectorAll('.theme-pill-btn[data-theme-val]');
+    themeBtns.forEach(b => {
+      b.addEventListener('click', () => {
+        const t = b.getAttribute('data-theme-val');
+        document.documentElement.setAttribute('data-theme', t);
+        localStorage.setItem('sasbov_theme', t);
+        themeBtns.forEach(x => x.classList.remove('active'));
+        b.classList.add('active');
+      });
+    });
+    const savedTheme = localStorage.getItem('sasbov_theme');
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      themeBtns.forEach(x => {
+        if (x.getAttribute('data-theme-val') === savedTheme) x.classList.add('active');
+        else x.classList.remove('active');
+      });
+    }
+
+    // Random poster background switcher
+    const POSTERS = [
+        "/uploads/poster_glogang.jpg",
+        "/uploads/poster_chrome_hearts.jpg",
+        "/uploads/poster_bape_harajuku.jpg",
+        "/uploads/poster_gorpcore_arcteryx.jpg",
+        "/uploads/poster_mihara_yasuhiro.jpg",
+        "/uploads/poster_travis_jordan.jpg",
+        "/uploads/poster_balenciaga.jpg",
+        "/uploads/poster_gucci_luxury.jpg",
+        "/uploads/poster_amiri_luxury.jpg",
+        "/uploads/poster_stone_cp_grail.jpg",
+        "/uploads/poster_rick_owens.jpg",
+        "/uploads/poster_corteiz_london.jpg",
+        "/uploads/poster_sp5der_worldwide.jpg",
+        "/uploads/poster_hellstar_studios.jpg",
+        "/uploads/poster_stussy_heritage.jpg",
+        "/uploads/poster_gallery_dept.jpg",
+        "/uploads/poster_arcteryx_alpine.jpg",
+        "/uploads/poster_denim_tears.jpg",
+        "/uploads/poster_vetements_oversized.jpg",
+        "/uploads/poster_kith_newyork.jpg"
+      ];
+    function setRandomPoster() {
+      const idx = Math.floor(Math.random() * POSTERS.length);
+      const img = document.getElementById('ambient-poster-img');
+      if (img) {
+        img.style.opacity = '0';
+        setTimeout(() => {
+          img.src = POSTERS[idx];
+          img.onload = () => { img.style.opacity = '0.52'; };
+        }, 150);
+      }
+    }
+    const randBtn = document.getElementById('btn-random-poster');
+    if (randBtn) randBtn.addEventListener('click', setRandomPoster);
+  </script>
+  <!-- Mobile Navigation Cyber Drawer -->
+  <div class="mobile-drawer-overlay" id="mobile-drawer-overlay"></div>
+  <aside class="mobile-drawer" id="mobile-drawer" aria-label="Мобильное меню">
+    <div class="mobile-drawer-header">
+      <span class="brand-wordmark" style="font-size: 1.15rem;">SASBOV</span>
+      <button type="button" class="mobile-drawer-close" id="mobile-drawer-close" aria-label="Закрыть меню">&times;</button>
+    </div>
+    <nav class="mobile-drawer-nav">
+      <a href="index.html" class="mobile-drawer-link">ГЛАВНАЯ <span>// 01</span></a>
+      <a href="catalog.html" class="mobile-drawer-link">КАТАЛОГ <span>// 02</span></a>
+      <a href="blog.html" class="mobile-drawer-link">БЛОГ <span>// 03</span></a>
+      <a href="index.html#calculator" class="mobile-drawer-link">КАЛЬКУЛЯТОР <span>// 04</span></a>
+      <a href="index.html#guarantee" class="mobile-drawer-link">ГАРАНТИИ <span>// 05</span></a>
+      <a href="faq.html" class="mobile-drawer-link">FAQ <span>// 06</span></a>
+    </nav>
+    <div class="mobile-drawer-footer">
+      <a href="https://t.me/Sasbov" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="justify-content: center; font-size: 0.82rem;">
+        СВЯЗАТЬСЯ В TG (@SASBOV)
+      </a>
+      <div style="font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-muted); text-align: center;">
+        НЕВСКИЙ 110В // СПБ (БАЛКОНСКИЙ)
+      </div>
+    </div>
+  </aside>
+</body>
+</html>

@@ -36,226 +36,55 @@
 
   // Curated Default Drops (Japan, China, Global Archives)
   // Curated Default Drops (Japan, China, Global Archives)
-  const DEFAULT_PRODUCTS = [
-    {
-      id: 'sasbov-01',
-      brand: 'MAISON MIHARA YASUHIRO',
-      name: 'Peterson OG Sole Canvas Low-Top',
-      stockType: 'instock',
-      partner: 'Balkonsky Store (Санкт-Петербург)',
-      location: 'Санкт-Петербург, Balkonsky Store',
-      deliveryTime: 'В наличии в СПб // Примерка и самовывоз сегодня',
-      condition: 'NEW // DEADSTOCK',
-      description: 'Культовый архивный силуэт с фирменной расплавленной подошвой OG Sole, плотный хлопковый канвас, комплект с коробкой.',
-      region: 'japan',
-      regionLabel: 'СПБ // BALKONSKY STORE',
-      category: 'footwear',
-      sku: 'MMY-PET-904',
-      basePriceRub: 24800,
-      sizes: ['39 EU', '40 EU', '41 EU', '42 EU', '43 EU', '44 EU'],
-      dropStatus: 'В НАЛИЧИИ В СПБ',
-      badgeClass: 'jp',
-      closingIn: 'В НАЛИЧИИ',
-      image: null
-    },
-    {
-      id: 'sasbov-02',
-      brand: 'KAPITAL',
-      name: '14oz Denim Bone Embroidered Jacket',
-      stockType: 'instock',
-      partner: 'Balkonsky Store (Санкт-Петербург)',
-      location: 'Санкт-Петербург, Balkonsky Store',
-      deliveryTime: 'В наличии в СПб // Примерка и самовывоз сегодня',
-      condition: '9.5/10 EXCELLENT',
-      description: 'Архивный японский деним 14oz с фирменной костяной вышивкой. Редкий релиз из Кодзимы в идеальном состоянии.',
-      region: 'japan',
-      regionLabel: 'СПБ // BALKONSKY STORE',
-      category: 'clothing',
-      sku: 'KAP-BONE-14OZ',
-      basePriceRub: 42500,
-      sizes: ['1 (S)', '2 (M)', '3 (L)', '4 (XL)'],
-      dropStatus: 'В НАЛИЧИИ В СПБ',
-      badgeClass: 'jp',
-      closingIn: 'В НАЛИЧИИ',
-      image: null
-    },
-    {
-      id: 'sasbov-03',
-      brand: 'ROARINGWILD',
-      name: 'Modular Waterproof Tech Shell Parka',
-      stockType: 'preorder',
-      partner: null,
-      location: 'Китай // Shenzhen Lab',
-      deliveryTime: 'Выкуп под заказ: 10-18 дней',
-      condition: 'NEW // DEADSTOCK',
-      description: 'Шэньчжэньский теквир нового поколения: трехслойная мембрана 20k/20k, магнитные клапаны и модульные съемные карманы.',
-      region: 'china',
-      regionLabel: 'CHINA [CN] // SHENZHEN LAB',
-      category: 'clothing',
-      sku: 'RW-TECH-26X',
-      basePriceRub: 17900,
-      sizes: ['S (46)', 'M (48)', 'L (50)', 'XL (52)'],
-      dropStatus: 'ПРЕДЗАКАЗ ОТКРЫТ',
-      badgeClass: 'cn',
-      closingIn: '04 дн. 12:10',
-      image: null
-    },
-    {
-      id: 'sasbov-04',
-      brand: 'SALOMON x MM6',
-      name: 'Cross Low Sneaker "Black Edition"',
-      stockType: 'instock',
-      partner: 'Balkonsky Store (Санкт-Петербург)',
-      location: 'Санкт-Петербург, Balkonsky Store',
-      deliveryTime: 'В наличии в СПб // Примерка и самовывоз сегодня',
-      condition: 'NEW // DEADSTOCK',
-      description: 'Коллаборация Salomon и Maison Margiela. Гетровая конструкция с быстрой шнуровкой, подошва Contagrip, навесные бирки.',
-      region: 'japan',
-      regionLabel: 'СПБ // BALKONSKY STORE',
-      category: 'footwear',
-      sku: 'SAL-MM6-BLK',
-      basePriceRub: 32000,
-      sizes: ['40.5 EU', '41.5 EU', '42 EU', '43 EU', '44 EU'],
-      dropStatus: 'В НАЛИЧИИ В СПБ',
-      badgeClass: 'jp',
-      closingIn: 'В НАЛИЧИИ',
-      image: null
-    },
-    {
-      id: 'sasbov-05',
-      brand: 'THUG CLUB',
-      name: 'Tribal Gladiator Heavy Fleece Hoodie',
-      stockType: 'preorder',
-      partner: null,
-      location: 'Китай // Goofish Xianyu',
-      deliveryTime: 'Выкуп под заказ: 10-18 дней',
-      condition: 'NEW // DEADSTOCK',
-      description: 'Плотный корейский хлопок 650 GSM с металлической фурнитурой, оверсайз-крой, аутентичный дроп с площадки Xianyu.',
-      region: 'china',
-      regionLabel: 'CHINA [CN] // GOOFISH XIANYU',
-      category: 'clothing',
-      sku: 'TC-GLAD-091',
-      basePriceRub: 19500,
-      sizes: ['M (Oversize)', 'L (Oversize)', 'XL (Oversize)'],
-      dropStatus: 'ПРЕДЗАКАЗ ОТКРЫТ',
-      badgeClass: 'cn',
-      closingIn: '02 дн. 19:30',
-      image: null
-    },
-    {
-      id: 'sasbov-06',
-      brand: 'PORTER YOSHIDA & CO',
-      name: 'Tanker 2Way Helmet Shoulder Bag',
-      stockType: 'instock',
-      partner: 'Balkonsky Store (Санкт-Петербург)',
-      location: 'Санкт-Петербург, Balkonsky Store',
-      deliveryTime: 'В наличии в СПб // Примерка и самовывоз сегодня',
-      condition: '9.5/10 EXCELLENT',
-      description: 'Оригинальный японский трехслойный нейлон Tanker цвета Sage Green, оранжевая подкладка, фурнитура YKK, идеальное состояние.',
-      region: 'japan',
-      regionLabel: 'СПБ // BALKONSKY STORE',
-      category: 'accessories',
-      sku: 'POR-TNK-2WAY',
-      basePriceRub: 21400,
-      sizes: ['ONE SIZE (W480/H520)'],
-      dropStatus: 'В НАЛИЧИИ В СПБ',
-      badgeClass: 'jp',
-      closingIn: 'В НАЛИЧИИ',
-      image: null
-    },
-    {
-      id: 'sasbov-07',
-      brand: 'ANTA x KYRIE IRVING',
-      name: 'KAI 1 "Artist on Court" Special Edition',
-      stockType: 'preorder',
-      partner: null,
-      location: 'Китай // Poizon Auth',
-      deliveryTime: 'Выкуп под заказ: 10-18 дней',
-      condition: 'NEW // DEADSTOCK',
-      description: 'Первая именная модель Кайри Ирвинга с ANTA. Карбоновая пластина в мидсоли, аутентичный сертификат Poizon Dewu.',
-      region: 'china',
-      regionLabel: 'CHINA [CN] // POIZON AUTH',
-      category: 'footwear',
-      sku: 'ANTA-KAI1-ART',
-      basePriceRub: 16800,
-      sizes: ['41 EU', '42 EU', '42.5 EU', '43 EU', '44 EU', '45 EU'],
-      dropStatus: 'ПРЕДЗАКАЗ ОТКРЫТ',
-      badgeClass: 'cn',
-      closingIn: '03 дн. 21:00',
-      image: null
-    },
-    {
-      id: 'sasbov-08',
-      brand: 'UNDERCOVERISM',
-      name: 'Hybrid MA-1 Vintage Military Bomber',
-      stockType: 'preorder',
-      partner: null,
-      location: 'Япония // Harajuku Archive',
-      deliveryTime: 'Выкуп под заказ: 10-18 дней',
-      condition: '9/10 VINTAGE',
-      description: 'Винтажный японский архивный бомбер Дзюна Такахаси. Деконструированные трикотажные вставки, аутентичные патчи.',
-      region: 'japan',
-      regionLabel: 'JAPAN [JP] // HARAJUKU',
-      category: 'clothing',
-      sku: 'UC-HYB-MA1',
-      basePriceRub: 48900,
-      sizes: ['2 (M)', '3 (L)', '4 (XL)'],
-      dropStatus: 'СКОРО ЗАКРЫТИЕ',
-      badgeClass: 'jp',
-      closingIn: '09 ч. 40 мин',
-      image: null
-    },
-    {
-      id: 'sasbov-09',
-      brand: 'HARSH AND CRUEL',
-      name: 'Cyber Crossbody Tactical Harness Rig',
-      stockType: 'preorder',
-      partner: null,
-      location: 'Китай // Dewu Boutique',
-      deliveryTime: 'Выкуп под заказ: 10-18 дней',
-      condition: 'NEW // DEADSTOCK',
-      description: 'Киберпанк тактическая разгрузочная система. Ткань Cordura 1000D, водонепроницаемые молнии, быстросъемные фастексы.',
-      region: 'china',
-      regionLabel: 'CHINA [CN] // DEWU BOUTIQUE',
-      category: 'accessories',
-      sku: 'HAC-RIG-004',
-      basePriceRub: 8400,
-      sizes: ['ADJUSTABLE ONE SIZE'],
-      dropStatus: 'ПРЕДЗАКАЗ ОТКРЫТ',
-      badgeClass: 'cn',
-      closingIn: '06 дн. 11:20',
-      image: null
-    },
-    {
-      id: 'sasbov-10',
-      brand: 'HELMUT LANG',
-      name: '1998 M-65 Astro Biker Ballistic Jacket',
-      stockType: 'preorder',
-      partner: null,
-      location: 'Global // Grailed Archive',
-      deliveryTime: 'Выкуп под заказ: 10-18 дней',
-      condition: '9/10 ARCHIVE',
-      description: 'Музейный архивный лот 1998 года из Grailed Archive. Баллистический нейлон, внутренние ремни для ношения на спине.',
-      region: 'global',
-      regionLabel: 'GLOBAL [GLB] // GRAILED ARCHIVE',
-      category: 'clothing',
-      sku: 'HL-98-ASTRO',
-      basePriceRub: 89000,
-      sizes: ['48 IT', '50 IT'],
-      dropStatus: 'LIMITED DROP',
-      badgeClass: 'global',
-      closingIn: '01 дн. 18:30',
-      image: null
+  const DEFAULT_PRODUCTS = [];
+
+  function getProductTimestamp(p) {
+    if (!p) return 0;
+    if (typeof p.timestamp === 'number') return p.timestamp;
+    if (p.createdAt) {
+      const t = new Date(p.createdAt).getTime();
+      if (!isNaN(t) && t > 0) return t;
     }
-  ];
+    if (p.id) {
+      const match = String(p.id).match(/sasbov-card-(\d+)/);
+      if (match) return parseInt(match[1], 10);
+    }
+    return 0;
+  }
+
+  function getProductSubcategory(p) {
+    if (!p) return 'other';
+    const text = `${p.category || ''} ${p.name || ''} ${p.brand || ''} ${p.description || ''} ${p.sku || ''}`.toLowerCase();
+    
+    if (text.includes('худи') || text.includes('hoodie') || text.includes('толстовк') || text.includes('свитшот') || text.includes('зипк') || text.includes('zip') || text.includes('crewneck')) {
+      return 'hoodie';
+    }
+    if (text.includes('футболк') || text.includes('t-shirt') || text.includes('tee') || text.includes('лонгслив') || text.includes('майк') || text.includes('longsleeve')) {
+      return 'tshirt';
+    }
+    if (text.includes('кроссовк') || text.includes('sneaker') || text.includes('shoe') || text.includes('ботинк') || text.includes('boots') || text.includes('кед') || text.includes('тапочк') || text.includes('loafer') || text.includes('mule') || p.category === 'shoes') {
+      return 'footwear';
+    }
+    if (text.includes('куртк') || text.includes('jacket') || text.includes('пуховик') || text.includes('down') || text.includes('бомбер') || text.includes('ветровк') || text.includes('parka') || text.includes('coat') || text.includes('пальто') || p.category === 'jacket') {
+      return 'jacket';
+    }
+    if (text.includes('штан') || text.includes('брюк') || text.includes('джинс') || text.includes('jeans') || text.includes('pants') || text.includes('trousers') || text.includes('шорт') || text.includes('cargo') || text.includes('карго')) {
+      return 'pants';
+    }
+    if (text.includes('сумк') || text.includes('bag') || text.includes('ремень') || text.includes('belt') || text.includes('очки') || text.includes('glasses') || text.includes('кепк') || text.includes('cap') || text.includes('шапк') || text.includes('beanie') || text.includes('шарф') || text.includes('scarf') || text.includes('часы') || text.includes('watch') || text.includes('кошелек') || text.includes('wallet') || text.includes('украшен') || text.includes('браслет') || text.includes('кольцо') || text.includes('подвеск') || text.includes('цепь') || p.category === 'accessories') {
+      return 'accessories';
+    }
+    return p.category === 'shoes' ? 'footwear' : (p.category === 'hoodie' ? 'hoodie' : 'accessories');
+  }
 
   function getStoredProducts() {
     try {
-      const stored = localStorage.getItem('sasbov_products_v2') || localStorage.getItem(STORAGE_KEY);
+      localStorage.removeItem('sasbov_products_v2');
+      const stored = localStorage.getItem(STORAGE_KEY);
       if (stored) {
         const parsed = JSON.parse(stored);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          return parsed.map(p => {
+          const list = parsed.filter(p => !p.deletedAt).map(p => {
             if (!Array.isArray(p.images)) {
               p.images = p.image ? [p.image] : [];
             }
@@ -287,6 +116,8 @@
             }
             return p;
           });
+          list.sort((a, b) => getProductTimestamp(b) - getProductTimestamp(a));
+          return list;
         }
       }
     } catch (e) {
@@ -452,14 +283,14 @@
         `;
       } else if (images.length === 1) {
         imageContent = `
-          <img src="${images[0]}" alt="${product.brand} - ${product.name}" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;">
+          <img src="${images[0]}" alt="${product.brand} - ${product.name}" width="600" height="800" loading="lazy" decoding="async" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;">
         `;
       } else {
         imageContent = `
           <div class="card-carousel-wrap" data-card-id="${product.id}">
             <div class="card-carousel-slides">
               ${images.map((src, i) => `
-                <img src="${src}" alt="${product.brand} - ${product.name} (Фото ${i + 1})" class="card-carousel-img ${i === 0 ? 'active' : ''}" data-idx="${i}">
+                <img src="${src}" alt="${product.brand} - ${product.name} (Фото ${i + 1})" width="600" height="800" class="card-carousel-img ${i === 0 ? 'active' : ''}" data-idx="${i}" loading="lazy" decoding="async">
               `).join('')}
             </div>
             <button type="button" class="card-arrow-btn arrow-prev" data-dir="prev" title="Предыдущее фото" aria-label="Предыдущее фото">‹</button>
@@ -475,7 +306,7 @@
       }
 
       return `
-        <article class="product-card" data-product-id="${product.id}">
+        <article class="product-card reveal-on-scroll is-revealed" data-product-id="${product.id}">
           <!-- Photo Slot Frame (3:4 ratio) -->
           <div class="product-slot-frame">
             <div class="slot-hud-corner slot-hud-tl"></div>
@@ -507,6 +338,7 @@
               <span class="product-condition-pill">● ${product.condition || 'NEW // DEADSTOCK'}</span>
             </div>
             <h3 class="product-name">${product.name}</h3>
+            ${(product.stockType === 'instock' || product.region === 'spb') ? `<a href="https://yandex.ru/maps/org/balkonskiy_stor/109683827425/?indoorLevel=1&ll=30.358538%2C59.932829&z=17" target="_blank" rel="noopener noreferrer" class="partner-store-pill" title="Открыть Balkonsky Store на Яндекс Картах">СПБ // BALKONSKY STORE (Невский просп., 110В ↗)</a>` : ''}
             ${product.description ? `<p class="product-mini-desc">${product.description}</p>` : ''}
 
             <div class="product-sizes-wrap">
@@ -684,7 +516,7 @@
     // Reset catalog button
     if (el.resetCatalogBtn) {
       el.resetCatalogBtn.addEventListener('click', () => {
-        if (confirm('Сбросить каталог к 9 оригинальным дропам?')) {
+        if (confirm('Сбросить фильтры каталога?')) {
           PRODUCTS = [...DEFAULT_PRODUCTS];
           saveStoredProducts(PRODUCTS);
           renderProducts();
@@ -708,10 +540,24 @@
         const imageUrlInput = document.getElementById('new-image-url')?.value.trim();
         const fileInput = document.getElementById('new-image-file');
 
-        const regionLabel = region === 'japan' 
-          ? 'JAPAN [JP] // TOKYO ARCHIVE' 
-          : (region === 'global' ? 'GLOBAL [GLB] // GRAILED ARCHIVE' : 'CHINA [CN] // POIZON AUTH');
-        const badgeClass = region === 'japan' ? 'jp' : (region === 'global' ? 'global' : 'cn');
+        let regionLabel = 'CHINA [CN] // POIZON AUTH';
+        let badgeClass = 'cn';
+        if (region === 'japan') {
+          regionLabel = 'JAPAN [JP] // TOKYO ARCHIVE';
+          badgeClass = 'jp';
+        } else if (region === 'global') {
+          regionLabel = 'GLOBAL [GLB] // GRAILED ARCHIVE';
+          badgeClass = 'global';
+        } else if (region === 'spb') {
+          regionLabel = '🟢 В НАЛИЧИИ В СПБ';
+          badgeClass = 'badge-instock';
+        } else if (region === 'transit_spb') {
+          regionLabel = 'В ПУТИ: СПБ';
+          badgeClass = 'badge-transit-spb';
+        } else if (region === 'transit_irkutsk') {
+          regionLabel = 'В ПУТИ: ИРКУТСК';
+          badgeClass = 'badge-transit-irk';
+        }
         const sku = `SAS-${brand.slice(0, 3)}-${Math.floor(100 + Math.random() * 900)}`;
 
         const createAndInsert = (imageSrc) => {
@@ -775,7 +621,7 @@
       if (balkonskyBox) balkonskyBox.style.display = 'flex';
 
       el.modalRegionTag.className = 'origin-badge badge-instock';
-      el.modalRegionTag.textContent = '✦ В НАЛИЧИИ: СПБ // BALKONSKY STORE';
+      el.modalRegionTag.textContent = 'В НАЛИЧИИ: СПБ // BALKONSKY STORE';
       el.modalItemSku.textContent = `АРТИКУЛ: ${product.sku} // НАЛИЧИЕ В СПБ: ПРИМЕРКА И САМОВЫВОЗ СЕГОДНЯ`;
       if (el.modalSubmitTgBtn) {
         el.modalSubmitTgBtn.className = 'btn btn-instock-buy btn-block';
@@ -865,7 +711,7 @@
 — Состояние: ${p.condition || 'NEW // DEADSTOCK'}
 — Артикул: ${p.sku}
 — Размер: ${state.selectedSize}
-— Локация: Санкт-Петербург, Balkonsky Store (ул. Тверская 3/1, Подъезд 2)
+— Локация: Санкт-Петербург, Balkonsky Store (Невский просп., 110В | https://yandex.ru/maps/org/balkonskiy_stor/109683827425/?indoorLevel=1&ll=30.358538%2C59.932829&z=17)
 — Условия: Примерка / самовывоз в СПб день-в-день, отправка СДЭК 1-2 дня
 — Стоимость: ${formatRub(p.basePriceRub)}
 ${p.description ? `— Описание: ${p.description}\n` : ''}
@@ -1473,10 +1319,295 @@ ${listText}
     } catch (e) {}
   }
 
+  // =========================================================================
+  // Ambient Luxury Poster Backdrop Controller (Random / Selectable)
+  // =========================================================================
+  const POSTER_COLLECTION = [
+      "/uploads/poster_glogang.jpg",
+      "/uploads/poster_chrome_hearts.jpg",
+      "/uploads/poster_bape_harajuku.jpg",
+      "/uploads/poster_gorpcore_arcteryx.jpg",
+      "/uploads/poster_mihara_yasuhiro.jpg",
+      "/uploads/poster_travis_jordan.jpg",
+      "/uploads/poster_balenciaga.jpg",
+      "/uploads/poster_gucci_luxury.jpg",
+      "/uploads/poster_amiri_luxury.jpg",
+      "/uploads/poster_stone_cp_grail.jpg",
+      "/uploads/poster_rick_owens.jpg",
+      "/uploads/poster_corteiz_london.jpg",
+      "/uploads/poster_sp5der_worldwide.jpg",
+      "/uploads/poster_hellstar_studios.jpg",
+      "/uploads/poster_stussy_heritage.jpg",
+      "/uploads/poster_gallery_dept.jpg",
+      "/uploads/poster_arcteryx_alpine.jpg",
+      "/uploads/poster_denim_tears.jpg",
+      "/uploads/poster_vetements_oversized.jpg",
+      "/uploads/poster_kith_newyork.jpg"
+  ];
+
+  function setupAmbientPosterBackdrop() {
+    const posterImg = document.getElementById('ambient-poster-img');
+    const randomBtn = document.getElementById('btn-random-poster');
+    if (!posterImg) return;
+
+    function applyRandomPoster() {
+      const idx = Math.floor(Math.random() * POSTER_COLLECTION.length);
+      const chosen = POSTER_COLLECTION[idx];
+      posterImg.classList.add('is-switching');
+      setTimeout(() => {
+        posterImg.src = chosen;
+        posterImg.onload = () => {
+          posterImg.classList.remove('is-switching');
+        };
+      }, 180);
+    }
+
+    applyRandomPoster();
+
+    if (randomBtn) {
+      randomBtn.addEventListener('click', applyRandomPoster);
+    }
+  }
+
   /**
    * Initialization
    */
-  function init() {
+  
+  // ---------------------------------------------------------------------------
+  // Hero Search & Autocomplete
+  // ---------------------------------------------------------------------------
+  function setupHeroSearch() {
+    const input = document.getElementById('hero-search-input');
+    const submitBtn = document.getElementById('hero-search-btn');
+    const clearBtn = document.getElementById('hero-search-clear');
+    const dropdown = document.getElementById('hero-search-dropdown');
+    const countEl = document.getElementById('search-dropdown-count');
+    const resultsContainer = document.getElementById('hero-search-results');
+    const quickTags = document.querySelectorAll('.quick-tag-btn');
+
+    if (!input) return;
+
+    function doSearchRedirect(query) {
+      const q = (query || input.value || '').trim();
+      if (!q) return;
+      window.location.href = 'catalog.html?q=' + encodeURIComponent(q);
+    }
+
+    // Input live suggestions
+    input.addEventListener('input', () => {
+      const q = input.value.trim().toLowerCase();
+      if (!q) {
+        if (dropdown) dropdown.style.display = 'none';
+        return;
+      }
+
+      const matches = PRODUCTS.filter(p => {
+        const name = (p.name || '').toLowerCase();
+        const brand = (p.brand || '').toLowerCase();
+        const cat = (p.category || '').toLowerCase();
+        const sku = (p.sku || '').toLowerCase();
+        const reg = (p.regionLabel || '').toLowerCase();
+        return name.includes(q) || brand.includes(q) || cat.includes(q) || sku.includes(q) || reg.includes(q);
+      });
+
+      if (!dropdown || !resultsContainer) return;
+
+      if (countEl) countEl.textContent = `НАЙДЕНО ПОЗИЦИЙ: ${matches.length}`;
+
+      if (matches.length === 0) {
+        resultsContainer.innerHTML = `
+          <div style="padding: 16px; text-align: center; color: var(--text-muted); font-size: 0.85rem;">
+            По запросу «${q}» ничего не найдено.<br>
+            <span style="color: var(--accent-cyan); font-weight: 700;">Нажмите ENTER для индивидуального поиска</span>
+          </div>
+        `;
+      } else {
+        resultsContainer.innerHTML = matches.slice(0, 6).map(p => {
+          const img = (Array.isArray(p.images) && p.images[0]) || p.image || '/uploads/poster_travis_jordan.jpg';
+          let badgeText = 'ПРЕДЗАКАЗ';
+          let badgeColor = '#00f0ff';
+          if (p.stockType === 'instock' || p.region === 'spb') {
+            badgeText = '🟢 СПБ';
+            badgeColor = '#00ff88';
+          } else if (p.stockType === 'transit_spb') {
+            badgeText = 'В ПУТИ: СПБ';
+            badgeColor = '#00f0ff';
+          } else if (p.stockType === 'transit_irkutsk') {
+            badgeText = 'В ПУТИ: ИРКУТСК';
+            badgeColor = '#fbbf24';
+          }
+
+          return `
+            <a href="catalog.html?q=${encodeURIComponent(p.brand + ' ' + p.name)}" class="search-suggestion-item" style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; text-decoration: none; border-bottom: 1px solid var(--border-subtle); transition: background 0.15s ease;">
+              <img src="${img}" alt="${p.name}" style="width: 44px; height: 44px; object-fit: cover; border-radius: 6px; background: #161620;">
+              <div style="flex: 1; min-width: 0;">
+                <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-cyan); text-transform: uppercase;">${p.brand}</div>
+                <div style="color: var(--text-primary); font-size: 0.86rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${p.name}</div>
+              </div>
+              <div style="text-align: right;">
+                <div style="color: var(--text-primary); font-weight: 700; font-size: 0.88rem;">${formatRub(p.basePriceRub || p.price)}</div>
+                <div style="font-size: 0.65rem; color: ${badgeColor}; font-family: var(--font-mono);">${badgeText}</div>
+              </div>
+            </a>
+          `;
+        }).join('');
+      }
+
+      dropdown.style.display = 'block';
+    });
+
+    // Enter key
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        doSearchRedirect();
+      }
+    });
+
+    if (submitBtn) {
+      submitBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        doSearchRedirect();
+      });
+    }
+
+    if (clearBtn) {
+      clearBtn.addEventListener('click', () => {
+        input.value = '';
+        if (dropdown) dropdown.style.display = 'none';
+      });
+    }
+
+    // Quick tag clicks
+    quickTags.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tag = btn.getAttribute('data-search-tag');
+        if (tag) doSearchRedirect(tag);
+      });
+    });
+
+    // Close dropdown on click outside
+    document.addEventListener('click', (e) => {
+      if (dropdown && !dropdown.contains(e.target) && e.target !== input) {
+        dropdown.style.display = 'none';
+      }
+    });
+  }
+
+  // ---------------------------------------------------------------------------
+  // Theme Switcher
+  // ---------------------------------------------------------------------------
+  function setupThemeSwitcher() {
+    let savedTheme = localStorage.getItem('sasbov_theme') || 'dark';
+    if (savedTheme !== 'chrome' && savedTheme !== 'dark') {
+      savedTheme = 'dark';
+      localStorage.setItem('sasbov_theme', 'dark');
+    }
+    document.documentElement.setAttribute('data-theme', savedTheme);
+
+    function updatePills(t) {
+      document.querySelectorAll('.theme-pill-btn[data-theme-val]').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-theme-val') === t);
+      });
+    }
+    updatePills(savedTheme);
+
+    document.querySelectorAll('.theme-pill-btn[data-theme-val]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const t = btn.getAttribute('data-theme-val');
+        if (!t) return;
+        document.documentElement.setAttribute('data-theme', t);
+        localStorage.setItem('sasbov_theme', t);
+        updatePills(t);
+      });
+    });
+  }
+
+  // ---------------------------------------------------------------------------
+  // Awwwards WOW Interactive Effects: Specular Tilt & Scroll Reveal
+  // ---------------------------------------------------------------------------
+  function initCardSpecularHighlights() {
+    const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    if (!canHover) return;
+
+    document.addEventListener('mousemove', (e) => {
+      const card = e.target.closest('.product-card, .fresh-drop-card, .blog-card, .footer-showroom-card');
+      if (!card) return;
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
+
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = ((y - centerY) / centerY) * -5.5;
+      const rotateY = ((x - centerX) / centerX) * 5.5;
+
+      card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.018, 1.018, 1.018)`;
+    }, { passive: true });
+
+    document.addEventListener('mouseout', (e) => {
+      const card = e.target.closest('.product-card, .fresh-drop-card, .blog-card, .footer-showroom-card');
+      if (card && (!e.relatedTarget || !card.contains(e.relatedTarget))) {
+        card.style.transform = '';
+      }
+    });
+  }
+
+  function setupMobileDrawer() {
+    const toggleBtn = document.getElementById('mobile-nav-toggle');
+    const drawer = document.getElementById('mobile-drawer');
+    const overlay = document.getElementById('mobile-drawer-overlay');
+    const closeBtn = document.getElementById('mobile-drawer-close');
+    const links = document.querySelectorAll('.mobile-drawer-link');
+
+    if (!toggleBtn || !drawer || !overlay) return;
+
+    function openDrawer() {
+      drawer.classList.add('is-active');
+      overlay.classList.add('is-active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDrawer() {
+      drawer.classList.remove('is-active');
+      overlay.classList.remove('is-active');
+      document.body.style.overflow = '';
+    }
+
+    toggleBtn.addEventListener('click', openDrawer);
+    if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+    overlay.addEventListener('click', closeDrawer);
+    links.forEach(l => l.addEventListener('click', closeDrawer));
+  }
+
+  function initScrollReveal() {
+    if (!('IntersectionObserver' in window)) return;
+    const targets = document.querySelectorAll(
+      '.hero-container, .fresh-drops-section, .calculator-section, .process-section, .faq-section, .footer-showroom-card, .product-card, .fresh-drop-card'
+    );
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.08,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    targets.forEach(el => {
+      el.classList.add('reveal-on-scroll');
+      observer.observe(el);
+    });
+  }
+
+function init() {
+    setupThemeSwitcher();
+    setupHeroSearch();
     renderProducts();
     setupFilters();
     setupFreshSlider();
@@ -1485,13 +1616,14 @@ ${listText}
     setupModalEvents();
     setupTrayEvents();
     setupCalculator();
-    setup3DMonolith();
+    setupMobileDrawer();
+    setupAmbientPosterBackdrop();
+    initCardSpecularHighlights();
+    initScrollReveal();
 
     // Start Clocks
     updateTelemetryClocks();
     setInterval(updateTelemetryClocks, 1000);
-
-    // Initial background sync with Vercel Database API
     fetchCloudProducts();
 
     // Cross-tab real-time synchronization with Admin Panel
@@ -1519,3 +1651,15 @@ ${listText}
   }
 
 })();
+
+// Smooth scroll for home link when already on home page
+document.querySelectorAll('a[href="index.html"], a[href="/"]').forEach(a => {
+  a.addEventListener('click', (e) => {
+    if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/')) {
+      if (a.getAttribute('href') === 'index.html' || a.getAttribute('href') === '/') {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+  });
+});

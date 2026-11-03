@@ -1,0 +1,68 @@
+[
+  {
+    "id": "rick_owens",
+    "name": "Rick Owens // Opium Zero-G",
+    "video": "/uploads/bg_rick_owens.mp4",
+    "poster": "/uploads/poster_rick_owens.jpg"
+  },
+  {
+    "id": "glogang",
+    "name": "Glo Gang // Cyber Gold Sun",
+    "video": "/uploads/bg_glogang.mp4",
+    "poster": "/uploads/poster_glogang.jpg"
+  },
+  {
+    "id": "chrome_hearts",
+    "name": "Chrome Hearts // Gothic Vault",
+    "video": "/uploads/bg_chrome_hearts.mp4",
+    "poster": "/uploads/poster_chrome_hearts.jpg"
+  },
+  {
+    "id": "bape_harajuku",
+    "name": "Bape Shark // Tokyo Neon 90s",
+    "video": "/uploads/bg_bape_harajuku.mp4",
+    "poster": "/uploads/poster_bape_harajuku.jpg"
+  },
+  {
+    "id": "gorpcore_arcteryx",
+    "name": "Arc’teryx & Salomon // Alpine Lab",
+    "video": "/uploads/bg_gorpcore_arcteryx.mp4",
+    "poster": "/uploads/poster_gorpcore_arcteryx.jpg"
+  },
+  {
+    "id": "mihara_yasuhiro",
+    "name": "Maison Mihara // Tokyo Archive",
+    "video": "/uploads/bg_mihara_yasuhiro.mp4",
+    "poster": "/uploads/poster_mihara_yasuhiro.jpg"
+  },
+  {
+    "id": "travis_jordan",
+    "name": "Travis Scott AJ1 // Reverse Grail",
+    "video": "/uploads/bg_travis_jordan.mp4",
+    "poster": "/uploads/poster_travis_jordan.jpg"
+  },
+  {
+    "id": "balenciaga",
+    "name": "Balenciaga 3XL // Paris Dystopia",
+    "video": "/uploads/bg_balenciaga.mp4",
+    "poster": "/uploads/poster_balenciaga.jpg"
+  },
+  {
+    "id": "gucci_luxury",
+    "name": "Gucci GG // Italian Marble Vault",
+    "video": "/uploads/bg_gucci_luxury.mp4",
+    "poster": "/uploads/poster_gucci_luxury.jpg"
+  },
+  {
+    "id": "amiri_luxury",
+    "name": "Amiri MX1 // Beverly Hills Rock",
+    "video": "/uploads/bg_amiri_luxury.mp4",
+    "poster": "/uploads/poster_amiri_luxury.jpg"
+  },
+  {
+    "id": "stone_cp_grail",
+    "name": "Stone Island & C.P. // Goggle Lab",
+    "video": "/uploads/bg_stone_cp_grail.mp4",
+    "poster": "/uploads/poster_stone_cp_grail.jpg"
+  }
+]

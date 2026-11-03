@@ -9,226 +9,30 @@
   const LIKES_KEY = 'sasbov_market_likes_v1';
 
   // Default initial dataset with In-Stock (Balkonsky Store, St. Petersburg) vs Pre-Order division
-  const DEFAULT_PRODUCTS = [
-    {
-      id: 'sasbov-01',
-      brand: 'MAISON MIHARA YASUHIRO',
-      name: 'Peterson OG Sole Canvas Low-Top',
-      stockType: 'instock',
-      partner: 'Balkonsky Store (Санкт-Петербург)',
-      location: 'Санкт-Петербург, Balkonsky Store',
-      deliveryTime: 'В наличии в СПб // Примерка и самовывоз сегодня',
-      condition: 'NEW // DEADSTOCK',
-      description: 'Культовый архивный силуэт с фирменной расплавленной подошвой OG Sole, плотный хлопковый канвас, комплект с коробкой.',
-      region: 'japan',
-      regionLabel: 'СПБ // BALKONSKY STORE',
-      category: 'footwear',
-      sku: 'MMY-PET-904',
-      basePriceRub: 24800,
-      sizes: ['39 EU', '40 EU', '41 EU', '42 EU', '43 EU', '44 EU'],
-      dropStatus: 'В НАЛИЧИИ В СПБ',
-      badgeClass: 'jp',
-      closingIn: 'В НАЛИЧИИ',
-      image: null
-    },
-    {
-      id: 'sasbov-02',
-      brand: 'KAPITAL',
-      name: '14oz Denim Bone Embroidered Jacket',
-      stockType: 'instock',
-      partner: 'Balkonsky Store (Санкт-Петербург)',
-      location: 'Санкт-Петербург, Balkonsky Store',
-      deliveryTime: 'В наличии в СПб // Примерка и самовывоз сегодня',
-      condition: '9.5/10 EXCELLENT',
-      description: 'Архивный японский деним 14oz с фирменной костяной вышивкой. Редкий релиз из Кодзимы в идеальном состоянии.',
-      region: 'japan',
-      regionLabel: 'СПБ // BALKONSKY STORE',
-      category: 'clothing',
-      sku: 'KAP-BONE-14OZ',
-      basePriceRub: 42500,
-      sizes: ['1 (S)', '2 (M)', '3 (L)', '4 (XL)'],
-      dropStatus: 'В НАЛИЧИИ В СПБ',
-      badgeClass: 'jp',
-      closingIn: 'В НАЛИЧИИ',
-      image: null
-    },
-    {
-      id: 'sasbov-03',
-      brand: 'ROARINGWILD',
-      name: 'Modular Waterproof Tech Shell Parka',
-      stockType: 'preorder',
-      partner: null,
-      location: 'Китай // Shenzhen Lab',
-      deliveryTime: 'Выкуп под заказ: 10-18 дней',
-      condition: 'NEW // DEADSTOCK',
-      description: 'Шэньчжэньский теквир нового поколения: трехслойная мембрана 20k/20k, магнитные клапаны и модульные съемные карманы.',
-      region: 'china',
-      regionLabel: 'CHINA [CN] // POIZON & SHENZHEN',
-      category: 'clothing',
-      sku: 'RW-TECH-26X',
-      basePriceRub: 17900,
-      sizes: ['S (46)', 'M (48)', 'L (50)', 'XL (52)'],
-      dropStatus: 'ПРЕДЗАКАЗ ОТКРЫТ',
-      badgeClass: 'cn',
-      closingIn: '04 дн. 12:10',
-      image: null
-    },
-    {
-      id: 'sasbov-04',
-      brand: 'SALOMON x MM6',
-      name: 'Cross Low Sneaker "Black Edition"',
-      stockType: 'instock',
-      partner: 'Balkonsky Store (Санкт-Петербург)',
-      location: 'Санкт-Петербург, Balkonsky Store',
-      deliveryTime: 'В наличии в СПб // Примерка и самовывоз сегодня',
-      condition: 'NEW // DEADSTOCK',
-      description: 'Коллаборация Salomon и Maison Margiela. Гетровая конструкция с быстрой шнуровкой, подошва Contagrip, навесные бирки.',
-      region: 'japan',
-      regionLabel: 'СПБ // BALKONSKY STORE',
-      category: 'footwear',
-      sku: 'SAL-MM6-BLK',
-      basePriceRub: 32000,
-      sizes: ['40.5 EU', '41.5 EU', '42 EU', '43 EU', '44 EU'],
-      dropStatus: 'В НАЛИЧИИ В СПБ',
-      badgeClass: 'jp',
-      closingIn: 'В НАЛИЧИИ',
-      image: null
-    },
-    {
-      id: 'sasbov-05',
-      brand: 'THUG CLUB',
-      name: 'Tribal Gladiator Heavy Fleece Hoodie',
-      stockType: 'preorder',
-      partner: null,
-      location: 'Китай // Goofish Xianyu',
-      deliveryTime: 'Выкуп под заказ: 10-18 дней',
-      condition: 'NEW // DEADSTOCK',
-      description: 'Плотный корейский хлопок 650 GSM с металлической фурнитурой, оверсайз-крой, аутентичный дроп с площадки Xianyu.',
-      region: 'china',
-      regionLabel: 'CHINA [CN] // GOOFISH XIANYU',
-      category: 'clothing',
-      sku: 'TC-GLAD-091',
-      basePriceRub: 19500,
-      sizes: ['M (Oversize)', 'L (Oversize)', 'XL (Oversize)'],
-      dropStatus: 'ПРЕДЗАКАЗ ОТКРЫТ',
-      badgeClass: 'cn',
-      closingIn: '02 дн. 19:30',
-      image: null
-    },
-    {
-      id: 'sasbov-06',
-      brand: 'PORTER YOSHIDA & CO',
-      name: 'Tanker 2Way Helmet Shoulder Bag',
-      stockType: 'instock',
-      partner: 'Balkonsky Store (Санкт-Петербург)',
-      location: 'Санкт-Петербург, Balkonsky Store',
-      deliveryTime: 'В наличии в СПб // Примерка и самовывоз сегодня',
-      condition: '9.5/10 EXCELLENT',
-      description: 'Оригинальный японский трехслойный нейлон Tanker цвета Sage Green, оранжевая подкладка, фурнитура YKK, идеальное состояние.',
-      region: 'japan',
-      regionLabel: 'СПБ // BALKONSKY STORE',
-      category: 'accessories',
-      sku: 'POR-TNK-2WAY',
-      basePriceRub: 21400,
-      sizes: ['ONE SIZE (W480/H520)'],
-      dropStatus: 'В НАЛИЧИИ В СПБ',
-      badgeClass: 'jp',
-      closingIn: 'В НАЛИЧИИ',
-      image: null
-    },
-    {
-      id: 'sasbov-07',
-      brand: 'ANTA x KYRIE IRVING',
-      name: 'KAI 1 "Artist on Court" Special Edition',
-      stockType: 'preorder',
-      partner: null,
-      location: 'Китай // Poizon Auth',
-      deliveryTime: 'Выкуп под заказ: 10-18 дней',
-      condition: 'NEW // DEADSTOCK',
-      description: 'Первая именная модель Кайри Ирвинга с ANTA. Карбоновая пластина в мидсоли, аутентичный сертификат Poizon Dewu.',
-      region: 'china',
-      regionLabel: 'CHINA [CN] // POIZON AUTH',
-      category: 'footwear',
-      sku: 'ANTA-KAI1-ART',
-      basePriceRub: 16800,
-      sizes: ['41 EU', '42 EU', '42.5 EU', '43 EU', '44 EU', '45 EU'],
-      dropStatus: 'ПРЕДЗАКАЗ ОТКРЫТ',
-      badgeClass: 'cn',
-      closingIn: '03 дн. 21:00',
-      image: null
-    },
-    {
-      id: 'sasbov-08',
-      brand: 'UNDERCOVERISM',
-      name: 'Hybrid MA-1 Vintage Military Bomber',
-      stockType: 'preorder',
-      partner: null,
-      location: 'Япония // Harajuku Archive',
-      deliveryTime: 'Выкуп под заказ: 10-18 дней',
-      condition: '9/10 VINTAGE',
-      description: 'Винтажный японский архивный бомбер Дзюна Такахаси. Деконструированные трикотажные вставки, аутентичные патчи.',
-      region: 'japan',
-      regionLabel: 'JAPAN [JP] // MERCARI JP',
-      category: 'clothing',
-      sku: 'UC-HYB-MA1',
-      basePriceRub: 48900,
-      sizes: ['2 (M)', '3 (L)', '4 (XL)'],
-      dropStatus: 'СКОРО ЗАКРЫТИЕ',
-      badgeClass: 'jp',
-      closingIn: '09 ч. 40 мин',
-      image: null
-    },
-    {
-      id: 'sasbov-09',
-      brand: 'HARSH AND CRUEL',
-      name: 'Cyber Crossbody Tactical Harness Rig',
-      stockType: 'preorder',
-      partner: null,
-      location: 'Китай // Dewu Boutique',
-      deliveryTime: 'Выкуп под заказ: 10-18 дней',
-      condition: 'NEW // DEADSTOCK',
-      description: 'Киберпанк тактическая разгрузочная система. Ткань Cordura 1000D, водонепроницаемые молнии, быстросъемные фастексы.',
-      region: 'china',
-      regionLabel: 'CHINA [CN] // DEWU BOUTIQUE',
-      category: 'accessories',
-      sku: 'HAC-RIG-004',
-      basePriceRub: 8400,
-      sizes: ['ADJUSTABLE ONE SIZE'],
-      dropStatus: 'ПРЕДЗАКАЗ ОТКРЫТ',
-      badgeClass: 'cn',
-      closingIn: '06 дн. 11:20',
-      image: null
-    },
-    {
-      id: 'sasbov-10',
-      brand: 'HELMUT LANG',
-      name: '1998 M-65 Astro Biker Ballistic Jacket',
-      stockType: 'preorder',
-      partner: null,
-      location: 'Global // Grailed Archive',
-      deliveryTime: 'Выкуп под заказ: 10-18 дней',
-      condition: '9/10 ARCHIVE',
-      description: 'Музейный архивный лот 1998 года из Grailed Archive. Баллистический нейлон, внутренние ремни для ношения на спине.',
-      region: 'global',
-      regionLabel: 'GLOBAL [GLB] // GRAILED ARCHIVE',
-      category: 'clothing',
-      sku: 'HL-98-ASTRO',
-      basePriceRub: 89000,
-      sizes: ['48 IT', '50 IT'],
-      dropStatus: 'LIMITED DROP',
-      badgeClass: 'global',
-      closingIn: '01 дн. 18:30',
-      image: null
+  const DEFAULT_PRODUCTS = [];
+
+  function getProductTimestamp(p) {
+    if (!p) return 0;
+    if (typeof p.timestamp === 'number') return p.timestamp;
+    if (p.createdAt) {
+      const t = new Date(p.createdAt).getTime();
+      if (!isNaN(t) && t > 0) return t;
     }
-  ];
+    if (p.id) {
+      const match = String(p.id).match(/sasbov-card-(\d+)/);
+      if (match) return parseInt(match[1], 10);
+    }
+    return 0;
+  }
 
   function getProducts() {
     try {
-      const stored = localStorage.getItem('sasbov_products_v2') || localStorage.getItem(STORAGE_KEY);
+      localStorage.removeItem('sasbov_products_v2');
+      const stored = localStorage.getItem(STORAGE_KEY);
       if (stored) {
         const parsed = JSON.parse(stored);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          return parsed.map(p => {
+          const list = parsed.filter(p => !p.deletedAt).map(p => {
             if (!Array.isArray(p.images)) {
               p.images = p.image ? [p.image] : [];
             }
@@ -260,6 +64,8 @@
             }
             return p;
           });
+          list.sort((a, b) => getProductTimestamp(b) - getProductTimestamp(a));
+          return list;
         }
       }
     } catch (e) {
@@ -290,17 +96,45 @@
   let likesState = getLikes();
   let currentFilter = 'all';
   let activeSlideIndex = 0;
+  let isRandomMode = true;
+  let currentShuffledDeck = [];
+
+  // Fisher-Yates shuffle algorithm: 100% random permutation, ZERO duplicates
+  function shuffleCards(arr) {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  // Floating feedback toast for shuffle / actions
+  function showFeedToast(msg) {
+    let t = document.getElementById('feed-toast');
+    if (!t) {
+      t = document.createElement('div');
+      t.id = 'feed-toast';
+      t.style.cssText = 'position:fixed;bottom:75px;left:50%;transform:translateX(-50%);background:rgba(15,15,20,0.92);backdrop-filter:blur(16px);border:1px solid rgba(168,85,247,0.6);color:#ffffff;padding:9px 18px;border-radius:20px;font-family:var(--font-mono);font-size:0.75rem;font-weight:600;z-index:9999;box-shadow:0 8px 30px rgba(0,0,0,0.7);pointer-events:none;transition:opacity 0.25s ease;letter-spacing:0.02em;';
+      document.body.appendChild(t);
+    }
+    t.textContent = msg;
+    t.style.opacity = '1';
+    clearTimeout(t._timer);
+    t._timer = setTimeout(() => { t.style.opacity = '0'; }, 2200);
+  }
 
   const container = document.getElementById('reels-container');
   const counterEl = document.getElementById('feed-counter');
   const filterChips = document.querySelectorAll('[data-feed-filter]');
+  const randomToggleBtn = document.getElementById('feed-random-toggle');
   const prevBtn = document.getElementById('feed-prev-btn');
   const nextBtn = document.getElementById('feed-next-btn');
 
-  function renderFeed() {
+  function renderFeed(reshuffle = false) {
     if (!container) return;
 
-    const filtered = products.filter(p => {
+    const baseFiltered = products.filter(p => {
       if (currentFilter === 'all') return true;
       if (currentFilter === 'instock') return p.stockType === 'instock';
       if (currentFilter === 'preorder') return p.stockType === 'preorder';
@@ -308,6 +142,15 @@
       if (currentFilter === 'china') return p.region === 'china';
       return p.region === currentFilter;
     });
+
+    // Apply random mix without duplicates
+    let filtered = baseFiltered;
+    if (isRandomMode) {
+      if (reshuffle || !currentShuffledDeck.length || currentShuffledDeck.length !== baseFiltered.length) {
+        currentShuffledDeck = shuffleCards(baseFiltered);
+      }
+      filtered = currentShuffledDeck;
+    }
 
     if (filtered.length === 0) {
       container.innerHTML = `
@@ -500,7 +343,7 @@
 — Артикул: ${item.sku}
 — Размер: ${activeSize}
 — Площадка / Локация: ${item.regionLabel}
-${isInstock ? '— Адрес шоурума: Санкт-Петербург, ул. Тверская 3/1, Подъезд 2 (Balkonsky Store)\n' : ''}— Стоимость: ${formatRub(item.basePriceRub)}
+${isInstock ? '— Адрес шоурума: Санкт-Петербург, Невский просп., 110В (Balkonsky Store)\n' : ''}— Стоимость: ${formatRub(item.basePriceRub)}
 
 ${isInstock ? 'Подтвердите наличие на точке и забронируйте вещь за мной!' : 'Подтвердите наличие на зарубежной площадке и пришлите реквизиты для выкупа!'}`;
 
@@ -542,6 +385,17 @@ ${isInstock ? 'Подтвердите наличие на точке и забр
     });
   }
 
+  // Shuffle / Random Toggle Setup
+  if (randomToggleBtn) {
+    randomToggleBtn.addEventListener('click', () => {
+      renderFeed(true);
+      observeSlides();
+      activeSlideIndex = 0;
+      container.scrollTo({ top: 0, behavior: 'smooth' });
+      showFeedToast('🎲 Новый микс: ' + currentShuffledDeck.length + ' дропов без повторов!');
+    });
+  }
+
   // Filter Chips setup
   filterChips.forEach(chip => {
     chip.addEventListener('click', () => {
@@ -549,7 +403,8 @@ ${isInstock ? 'Подтвердите наличие на точке и забр
       chip.classList.add('active');
       currentFilter = chip.dataset.feedFilter;
       activeSlideIndex = 0;
-      renderFeed();
+      renderFeed(true);
+      observeSlides();
       container.scrollTo({ top: 0, behavior: 'smooth' });
     });
   });
@@ -601,9 +456,10 @@ ${isInstock ? 'Подтвердите наличие на точке и забр
       if (res.ok) {
         const json = await res.json();
         if (json && json.success && Array.isArray(json.data) && json.data.length > 0) {
-          PRODUCTS = json.data;
-          try { localStorage.setItem(STORAGE_KEY, JSON.stringify(PRODUCTS)); } catch (e) {}
-          renderFeed();
+          products = json.data;
+          products.sort((a, b) => getProductTimestamp(b) - getProductTimestamp(a));
+          try { localStorage.setItem(STORAGE_KEY, JSON.stringify(products)); } catch (e) {}
+          renderFeed(true);
           observeSlides();
         }
       }
@@ -614,18 +470,18 @@ ${isInstock ? 'Подтвердите наличие на точке и забр
   // Cross-tab real-time synchronization with Admin Panel
   window.addEventListener('storage', (e) => {
     if (e.key === STORAGE_KEY || e.key === 'sasbov_market_sync_ts') {
-      PRODUCTS = getProducts();
-      renderFeed();
+      products = getProducts();
+      renderFeed(true);
       observeSlides();
     }
   });
   window.addEventListener('sasbov:products_updated', (e) => {
     if (Array.isArray(e.detail)) {
-      PRODUCTS = e.detail;
+      products = e.detail;
     } else {
-      PRODUCTS = getProducts();
+      products = getProducts();
     }
-    renderFeed();
+    renderFeed(true);
     observeSlides();
   });
 

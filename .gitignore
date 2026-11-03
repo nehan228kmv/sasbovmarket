@@ -9,3 +9,11 @@ desktop.ini
 .vercel
 .env*
 node_modules/
+
+# Backups & local dumps
+data/backups/
+data/*backup*.json
+data/rescued_*.json
+
+# Scratch and test files
+scratch/

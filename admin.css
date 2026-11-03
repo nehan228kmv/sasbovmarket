@@ -2375,3 +2375,66 @@
 
 
 
+
+
+/* ==========================================================================
+   Telegram Mini App (TMA) & Mobile Touch Adaptations
+   ========================================================================== */
+@media (max-width: 768px) {
+  body.admin-body {
+    padding-top: env(safe-area-inset-top, 0);
+    padding-bottom: env(safe-area-inset-bottom, 30px);
+  }
+
+  .admin-top-header {
+    height: auto;
+    padding: 0.6rem 0.8rem;
+    position: sticky;
+    top: 0;
+  }
+
+  .admin-header-inner {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: space-between;
+  }
+
+  .admin-brand-group {
+    gap: 0.6rem;
+  }
+
+  .admin-dashboard-container {
+    padding: 0.75rem 0.5rem;
+  }
+
+  .admin-card-form {
+    padding: 1rem 0.75rem;
+    border-radius: 8px;
+  }
+
+  .form-row-grid, .form-triple-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .dropzone-area {
+    min-height: 120px;
+    padding: 1rem;
+  }
+
+  .btn-submit-drop {
+    width: 100%;
+    min-height: 48px;
+    font-size: 0.95rem;
+    border-radius: 8px;
+  }
+
+  .admin-auth-overlay {
+    padding: 1rem;
+  }
+
+  .terminal-lock-box {
+    max-width: 100%;
+    width: 100%;
+  }
+}

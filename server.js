@@ -9,6 +9,7 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const zlib = require('zlib');
 
 const PORT = process.env.PORT || 3333;
 const ROOT_DIR = __dirname;
@@ -106,14 +107,20 @@ const MIME_TYPES = {
   '.ico': 'image/x-icon',
   '.woff2': 'font/woff2',
   '.woff': 'font/woff',
-  '.ttf': 'font/ttf'
+  '.ttf': 'font/ttf',
+  '.mp4': 'video/mp4',
+  '.webm': 'video/webm'
 };
 
 const server = http.createServer(async (req, res) => {
-  // CORS Headers
+  // CORS & Security Headers (PageSpeed Best Practices 100)
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, x-admin-token, Authorization');
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
 
   if (req.method === 'OPTIONS') {
     res.writeHead(204);
@@ -142,6 +149,21 @@ const server = http.createServer(async (req, res) => {
           }
         }
       }
+
+      function getTs(item) {
+        if (!item) return 0;
+        if (item.createdAt) { const t = new Date(item.createdAt).getTime(); if (t > 0) return t; }
+        if (item.timestamp) { const t = Number(item.timestamp); if (t > 0) return t; }
+        if (typeof item.id === 'string') {
+          const m = item.id.match(/(\d{10,13})/);
+          if (m) { const t = parseInt(m[1], 10); if (t > 0) return t; }
+        }
+        if (item.closingDate) { const t = new Date(item.closingDate).getTime(); if (t > 0) return t; }
+        return 0;
+      }
+      products = (Array.isArray(products) ? products : [])
+        .filter(p => p && p.id && !p.deletedAt)
+        .sort((a, b) => getTs(b) - getTs(a));
 
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({
@@ -190,42 +212,70 @@ const server = http.createServer(async (req, res) => {
           }
         }
 
-        // 1. Immediately save to local hard drive
-        fs.writeFileSync(PRODUCTS_FILE, JSON.stringify(list, null, 2), 'utf8');
-        console.log(`[Local DB] Saved ${list.length} cards directly to data/products.json`);
+        // 1. Read existing products on disk first to prevent accidental card loss
+        let existingList = [];
+        if (fs.existsSync(PRODUCTS_FILE)) {
+          try {
+            existingList = JSON.parse(fs.readFileSync(PRODUCTS_FILE, 'utf8'));
+            if (!Array.isArray(existingList)) existingList = [];
+          } catch (e) {}
+        }
 
-        // 1b. Rolling snapshot backup to local hard drive (Zero-data-loss guarantee)
+        const deletedIds = new Set(payload.deletedIds || []);
+
+        // Union merge by ID: preserve every existing card, update with incoming, never drop!
+        const mergedMap = new Map();
+        existingList.forEach(item => {
+          if (item && item.id && !deletedIds.has(item.id)) {
+            mergedMap.set(item.id, item);
+          }
+        });
+
+        list.forEach(item => {
+          if (item && item.id && !deletedIds.has(item.id)) {
+            const existing = mergedMap.get(item.id) || {};
+            mergedMap.set(item.id, { ...existing, ...item });
+          }
+        });
+
+        const finalList = Array.from(mergedMap.values());
+
+        // 2. Immediately save to local hard drive
+        fs.writeFileSync(PRODUCTS_FILE, JSON.stringify(finalList, null, 2), 'utf8');
+        console.log(`[Local DB] Saved ${finalList.length} cards directly to data/products.json (Merged: disk ${existingList.length} + incoming ${list.length})`);
+
+        // 2b. Rolling snapshot backup to local hard drive (Zero-data-loss guarantee)
         try {
           const timestamp = Date.now();
-          const backupFile = path.join(BACKUPS_DIR, `products_backup_${timestamp}.json`);
+          const backupFile = path.join(BACKUPS_DIR, `products_backup_${timestamp}_count_${finalList.length}.json`);
           const latestBackupFile = path.join(BACKUPS_DIR, 'products_backup_latest.json');
-          const serialized = JSON.stringify(list, null, 2);
+          const serialized = JSON.stringify(finalList, null, 2);
           fs.writeFileSync(backupFile, serialized, 'utf8');
           fs.writeFileSync(latestBackupFile, serialized, 'utf8');
 
-          // Keep last 50 backup files
+          // Keep last 100 backup files
           const files = fs.readdirSync(BACKUPS_DIR)
             .filter(f => f.startsWith('products_backup_') && f.endsWith('.json') && f !== 'products_backup_latest.json')
             .sort();
-          if (files.length > 50) {
-            files.slice(0, files.length - 50).forEach(f => {
+          if (files.length > 100) {
+            files.slice(0, files.length - 100).forEach(f => {
               try { fs.unlinkSync(path.join(BACKUPS_DIR, f)); } catch (e) {}
             });
           }
-          console.log(`[Local DB Backup] Created timestamped backup: products_backup_${timestamp}.json (${list.length} cards)`);
+          console.log(`[Local DB Backup] Created timestamped backup: products_backup_${timestamp}_count_${finalList.length}.json`);
         } catch (backupErr) {
           console.warn('[Backup Warning]:', backupErr.message);
         }
 
-        // 2. Sync to Cloud Redis in the background
-        syncToCloudRedis(list);
+        // 3. Sync to Cloud Redis in the background
+        syncToCloudRedis(finalList);
 
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({
           success: true,
-          count: list.length,
+          count: finalList.length,
           source: 'local_disk_and_redis',
-          data: list
+          data: finalList
         }));
       } catch (err) {
         console.error('[Save Products Error]:', err);
@@ -279,13 +329,66 @@ const server = http.createServer(async (req, res) => {
   if (fs.existsSync(safePath) && fs.statSync(safePath).isFile()) {
     const ext = path.extname(safePath).toLowerCase();
     const contentType = MIME_TYPES[ext] || 'application/octet-stream';
+    const stat = fs.statSync(safePath);
+    const fileSize = stat.size;
 
-    // Caching headers for static images in uploads/
-    if (safePath.includes(UPLOADS_DIR)) {
-      res.setHeader('Cache-Control', 'public, max-age=86400');
+    // Support HTTP Range requests for smooth video streaming and looping
+    if (ext === '.mp4' || ext === '.webm') {
+      const range = req.headers.range;
+      if (range) {
+        const parts = range.replace(/bytes=/, '').split('-');
+        const start = parseInt(parts[0], 10);
+        const end = parts[1] ? parseInt(parts[1], 10) : fileSize - 1;
+        const chunkSize = (end - start) + 1;
+        const fileStream = fs.createReadStream(safePath, { start, end });
+
+        res.writeHead(206, {
+          'Content-Range': `bytes ${start}-${end}/${fileSize}`,
+          'Accept-Ranges': 'bytes',
+          'Content-Length': chunkSize,
+          'Content-Type': contentType,
+          'Cache-Control': 'public, max-age=86400'
+        });
+        fileStream.pipe(res);
+        return;
+      } else {
+        res.writeHead(200, {
+          'Content-Length': fileSize,
+          'Content-Type': contentType,
+          'Accept-Ranges': 'bytes',
+          'Cache-Control': 'public, max-age=86400'
+        });
+        fs.createReadStream(safePath).pipe(res);
+        return;
+      }
     }
 
-    res.writeHead(200, { 'Content-Type': contentType });
+    // High-performance caching headers (Google PageSpeed 100/100)
+    if (ext === '.jpg' || ext === '.jpeg' || ext === '.png' || ext === '.webp' || ext === '.svg' || ext === '.ico' || ext === '.woff2' || ext === '.woff') {
+      res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+    } else if (ext === '.css' || ext === '.js') {
+      res.setHeader('Cache-Control', 'public, max-age=86400, stale-while-revalidate=604800');
+    } else if (ext === '.html') {
+      res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
+    }
+
+    // Gzip Compression for text files (HTML, CSS, JS, JSON, SVG, XML)
+    const acceptEncoding = req.headers['accept-encoding'] || '';
+    const isCompressible = ['.html', '.css', '.js', '.json', '.svg', '.xml'].includes(ext);
+
+    if (isCompressible && acceptEncoding.includes('gzip')) {
+      res.writeHead(200, {
+        'Content-Type': contentType,
+        'Content-Encoding': 'gzip',
+        'Vary': 'Accept-Encoding'
+      });
+      const rawStream = fs.createReadStream(safePath);
+      const gzipStream = zlib.createGzip({ level: 6 });
+      rawStream.pipe(gzipStream).pipe(res);
+      return;
+    }
+
+    res.writeHead(200, { 'Content-Type': contentType, 'Content-Length': fileSize });
     fs.createReadStream(safePath).pipe(res);
   } else {
     res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
