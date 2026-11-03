@@ -64,5 +64,20 @@
     "name": "Stone Island & C.P. // Goggle Lab",
     "video": "/uploads/bg_stone_cp_grail.mp4",
     "poster": "/uploads/poster_stone_cp_grail.jpg"
+  },
+  {
+    "id": "garagesale_spb",
+    "name": "Balkonsky Store // SPB Garage Sale",
+    "poster": "/uploads/garagesale/photo_2026-11-04_05-11-35.jpg"
+  },
+  {
+    "id": "star_hiway",
+    "name": "Hiway // Balkonsky Selection",
+    "poster": "/uploads/starhiway/photo_2026-11-04_05-12-04.jpg"
+  },
+  {
+    "id": "star_yungway",
+    "name": "Yungway // Melon Music Style",
+    "poster": "/uploads/staryungway/photo_2026-11-04_05-12-00.jpg"
   }
 ]
