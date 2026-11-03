@@ -322,6 +322,11 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
+  // Support clean URLs like /product or /catalog without .html extension
+  if (!fs.existsSync(safePath) && !path.extname(safePath) && fs.existsSync(safePath + '.html')) {
+    safePath = safePath + '.html';
+  }
+
   if (fs.existsSync(safePath) && fs.statSync(safePath).isDirectory()) {
     safePath = path.join(safePath, 'index.html');
   }

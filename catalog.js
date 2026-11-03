@@ -238,8 +238,8 @@
         : '';
 
       const mainActionBtn = isInstock
-        ? `<button type="button" class="btn btn-instock-buy btn-block open-preorder-btn" data-id="${product.id}">КУПИТЬ В СПБ (BALKONSKY)</button>`
-        : `<button type="button" class="btn btn-primary btn-block open-preorder-btn" data-id="${product.id}">ПРЕДЗАКАЗАТЬ</button>`;
+        ? `<a href="product.html?id=${product.id}" class="btn btn-instock-buy btn-block" style="text-decoration:none; justify-content:center;">КУПИТЬ В СПБ (BALKONSKY) →</a>`
+        : `<a href="product.html?id=${product.id}" class="btn btn-primary btn-block" style="text-decoration:none; justify-content:center;">ПРЕДЗАКАЗАТЬ →</a>`;
 
       let imageContent = '';
       if (images.length === 0) {
@@ -323,7 +323,7 @@
               <span class="product-brand">${product.brand}</span>
               ${conditionBadge}
             </div>
-            <h3 class="product-name">${product.name}</h3>
+            <h3 class="product-name"><a href="product.html?id=${product.id}" style="color: inherit; text-decoration: none;">${product.name}</a></h3>
             ${partnerTag}
             ${descriptionHtml}
 
@@ -359,6 +359,18 @@
 
     el.grid.querySelectorAll('.quick-add-tray-btn').forEach(btn => {
       btn.addEventListener('click', () => addToTray(btn.dataset.id));
+    });
+
+    // Clicking card image frame opens dedicated product page
+    el.grid.querySelectorAll('.product-slot-frame').forEach(frame => {
+      frame.style.cursor = 'pointer';
+      frame.addEventListener('click', (e) => {
+        if (e.target.closest('.card-arrow-btn')) return;
+        const card = frame.closest('.product-card');
+        if (card && card.dataset.productId) {
+          window.location.href = `product.html?id=${card.dataset.productId}`;
+        }
+      });
     });
 
     // Carousel side arrows click handler (browse photos without opening preorder modal)

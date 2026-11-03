@@ -353,7 +353,7 @@
               <span class="product-brand">${product.brand}</span>
               <span class="product-condition-pill">● ${product.condition || 'NEW // DEADSTOCK'}</span>
             </div>
-            <h3 class="product-name">${product.name}</h3>
+            <h3 class="product-name"><a href="product.html?id=${product.id}" style="color: inherit; text-decoration: none;">${product.name}</a></h3>
             ${(product.stockType === 'instock' || product.region === 'spb') ? `<a href="https://yandex.ru/maps/org/balkonskiy_stor/109683827425/?indoorLevel=1&ll=30.358538%2C59.932829&z=17" target="_blank" rel="noopener noreferrer" class="partner-store-pill" title="Открыть Balkonsky Store на Яндекс Картах">СПБ // BALKONSKY STORE (Невский просп., 110В ↗)</a>` : ''}
             ${product.description ? `<p class="product-mini-desc">${product.description}</p>` : ''}
 
@@ -373,9 +373,9 @@
             </div>
 
             <div class="card-actions">
-              <button type="button" class="btn btn-primary btn-block open-preorder-btn" data-id="${product.id}">
-                ${product.stockType === 'instock' ? 'ЗАБРОНИРОВАТЬ' : 'ПРЕДЗАКАЗАТЬ'}
-              </button>
+              <a href="product.html?id=${product.id}" class="btn btn-primary btn-block" style="text-decoration:none; justify-content:center;">
+                ${product.stockType === 'instock' ? 'КУПИТЬ В СПБ →' : 'ПРЕДЗАКАЗАТЬ →'}
+              </a>
               <button type="button" class="btn btn-outline quick-add-tray-btn" data-id="${product.id}" title="Добавить в поднос предзаказов">
                 +
               </button>
@@ -392,6 +392,18 @@
 
     el.grid.querySelectorAll('.quick-add-tray-btn').forEach(btn => {
       btn.addEventListener('click', () => addToTray(btn.dataset.id));
+    });
+
+    // Clicking card image frame opens dedicated product page
+    el.grid.querySelectorAll('.product-slot-frame').forEach(frame => {
+      frame.style.cursor = 'pointer';
+      frame.addEventListener('click', (e) => {
+        if (e.target.closest('.card-arrow-btn')) return;
+        const card = frame.closest('.product-card');
+        if (card && card.dataset.productId) {
+          window.location.href = `product.html?id=${card.dataset.productId}`;
+        }
+      });
     });
 
     // Carousel side arrows click handler (browse photos without opening preorder modal)

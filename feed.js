@@ -226,6 +226,11 @@
 
             <!-- Floating Right Sidebar Actions -->
             <div class="reel-actions-sidebar">
+              <!-- Item Dedicated Page -->
+              <a href="product.html?id=${product.id}" class="reel-action-btn item-page-btn" title="Страница айтема" style="text-decoration: none;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                <span class="action-count" style="font-size: 8px; font-weight: 700;">ИНФО</span>
+              </a>
               <!-- Like -->
               <button type="button" class="reel-action-btn like-btn ${isLiked ? 'liked' : ''}" data-id="${product.id}" title="Сохранить">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="${isLiked ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
@@ -254,7 +259,8 @@
                 <span class="reel-brand">${product.brand}</span>
                 <span class="product-condition-pill" style="font-size: 9px; padding: 1px 6px;">● ${product.condition || 'NEW // DEADSTOCK'}</span>
               </div>
-              <h2 class="reel-title">${product.name}</h2>
+              <a href="product.html?id=${product.id}" style="text-decoration: none; color: inherit;"><h2 class="reel-title">${product.name}</h2></a>
+              <a href="product.html?id=${product.id}" class="reel-view-product-chip">СТРАНИЦА АЙТЕМА // ПОДРОБНЕЕ ↗</a>
               ${product.description ? `<p style="font-size: 0.78rem; color: #a1a1aa; line-height: 1.3; margin: 0.25rem 0 0.5rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">${product.description}</p>` : ''}
 
               <div class="reel-sizes-row">
@@ -311,12 +317,25 @@
 
     // Share Button
     container.querySelectorAll('.share-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
+      btn.addEventListener('click', async (e) => {
+        e.stopPropagation();
         const id = btn.dataset.id;
         const item = filtered.find(p => p.id === id);
+        const url = window.location.origin + '/product.html?id=' + id;
+        const shareData = {
+          title: `${item?.brand || 'SASBOV'} — ${item?.name || 'Айтем'}`,
+          text: `Смотри эксклюзивный релиз на SASBOV MARKET: ${item?.brand} ${item?.name}`,
+          url: url
+        };
+        if (navigator.share) {
+          try {
+            await navigator.share(shareData);
+            return;
+          } catch (err) {}
+        }
         if (navigator.clipboard) {
-          navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#' + id);
-          alert(`Ссылка на «${item?.name || 'вещь'}» скопирована!`);
+          navigator.clipboard.writeText(url);
+          showFeedToast(`Ссылка на «${item?.name || 'вещь'}» скопирована!`);
         }
       });
     });
@@ -344,6 +363,7 @@
 — Размер: ${activeSize}
 — Площадка / Локация: ${item.regionLabel}
 ${isInstock ? '— Адрес шоурума: Санкт-Петербург, Невский просп., 110В (Balkonsky Store)\n' : ''}— Стоимость: ${formatRub(item.basePriceRub)}
+— Ссылка на айтем: ${window.location.origin}/product.html?id=${item.id}
 
 ${isInstock ? 'Подтвердите наличие на точке и забронируйте вещь за мной!' : 'Подтвердите наличие на зарубежной площадке и пришлите реквизиты для выкупа!'}`;
 
@@ -452,16 +472,33 @@ ${isInstock ? 'Подтвердите наличие на точке и забр
   // Async sync with database
   async function fetchFeedProducts() {
     try {
-      const res = await fetch('/api/products?t=' + Date.now(), { cache: 'no-store' });
-      if (res.ok) {
-        const json = await res.json();
-        if (json && json.success && Array.isArray(json.data) && json.data.length > 0) {
-          products = json.data;
-          products.sort((a, b) => getProductTimestamp(b) - getProductTimestamp(a));
-          try { localStorage.setItem(STORAGE_KEY, JSON.stringify(products)); } catch (e) {}
-          renderFeed(true);
-          observeSlides();
+      let list = null;
+      try {
+        const res = await fetch('/api/products?t=' + Date.now(), { cache: 'no-store' });
+        if (res.ok) {
+          const json = await res.json();
+          if (json && json.success && Array.isArray(json.data) && json.data.length > 0) {
+            list = json.data;
+          }
         }
+      } catch (e) {}
+
+      if (!list) {
+        try {
+          const res = await fetch('data/products.json?t=' + Date.now(), { cache: 'no-store' });
+          if (res.ok) {
+            const raw = await res.json();
+            if (Array.isArray(raw) && raw.length > 0) list = raw;
+          }
+        } catch (e) {}
+      }
+
+      if (list && list.length > 0) {
+        products = list;
+        products.sort((a, b) => getProductTimestamp(b) - getProductTimestamp(a));
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(products)); } catch (e) {}
+        renderFeed(true);
+        observeSlides();
       }
     } catch (e) {}
   }
