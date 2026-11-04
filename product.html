@@ -32,14 +32,22 @@
   <link rel="dns-prefetch" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="catalog.css">
-  <link rel="stylesheet" href="product.css">
+  <link rel="stylesheet" href="styles.css?v=20261104_02">
+  <link rel="stylesheet" href="catalog.css?v=20261104_02">
+  <link rel="stylesheet" href="product.css?v=20261104_02">
   <script>
     (function() {
       const saved = localStorage.getItem('sasbov_theme') || 'dark';
       document.documentElement.setAttribute('data-theme', saved);
     })();
+  </script>
+  <!-- Instant Clean URL in Address Bar (no .html) -->
+  <script>
+    if (window.location.pathname.endsWith('.html')) {
+      var _clean = window.location.pathname.slice(0, -5);
+      if (_clean === '/index') _clean = '/';
+      window.history.replaceState(null, '', _clean + window.location.search + window.location.hash);
+    }
   </script>
 </head>
 <body class="product-page">
@@ -75,7 +83,7 @@
       </div>
 
       <div class="telemetry-group links">
-        <a href="feed.html" class="pulse-feed-btn">[FEED] // ЛУКБУК</a>
+        <a href="/feed" class="pulse-feed-btn">[FEED] // ЛУКБУК</a>
       </div>
     </div>
   </aside>
@@ -83,7 +91,7 @@
   <!-- Site Header -->
   <header class="site-header" id="site-header">
     <div class="container header-inner">
-      <a href="index.html" class="brand-logo-link" aria-label="SASBOV MARKET — На главную">
+      <a href="/" class="brand-logo-link" aria-label="SASBOV MARKET — На главную">
         <span class="header-brand-mark">
           <span class="brand-text-sasbov">SASBOV</span>
           <span class="brand-text-market">MARKET</span>
@@ -92,12 +100,12 @@
 
       <nav class="main-nav" aria-label="Основное меню">
         <ul class="nav-list">
-          <li><a href="index.html" class="nav-link">ГЛАВНАЯ</a></li>
-          <li><a href="catalog.html" class="nav-link active">КАТАЛОГ</a></li>
-          <li><a href="blog.html" class="nav-link">БЛОГ</a></li>
-          <li><a href="index.html#calculator" class="nav-link">КАЛЬКУЛЯТОР</a></li>
-          <li><a href="index.html#guarantee" class="nav-link">ГАРАНТИИ</a></li>
-          <li><a href="faq.html" class="nav-link">FAQ</a></li>
+          <li><a href="/" class="nav-link">ГЛАВНАЯ</a></li>
+          <li><a href="/catalog" class="nav-link active">КАТАЛОГ</a></li>
+          <li><a href="/blog" class="nav-link">БЛОГ</a></li>
+          <li><a href="/#calculator" class="nav-link">КАЛЬКУЛЯТОР</a></li>
+          <li><a href="/#guarantee" class="nav-link">ГАРАНТИИ</a></li>
+          <li><a href="/faq" class="nav-link">FAQ</a></li>
         </ul>
       </nav>
 
@@ -120,12 +128,12 @@
 
       <!-- Breadcrumbs -->
       <nav class="product-breadcrumbs" aria-label="Навигационная цепочка">
-        <a href="index.html">ГЛАВНАЯ</a>
+        <a href="/">ГЛАВНАЯ</a>
         <span class="sep">/</span>
-        <a href="catalog.html">КАТАЛОГ</a>
+        <a href="/catalog">КАТАЛОГ</a>
         <span class="sep">/</span>
         <span class="sep" id="crumb-brand-sep" style="display:none;">/</span>
-        <a href="catalog.html" id="crumb-brand" style="display:none;">БРЕНД</a>
+        <a href="/catalog" id="crumb-brand" style="display:none;">БРЕНД</a>
         <span class="sep">/</span>
         <span class="current" id="crumb-product">ЗАГРУЗКА...</span>
       </nav>
@@ -199,7 +207,7 @@
 
           <!-- Action Buttons Group -->
           <div class="product-actions-group">
-            <a href="https://t.me/Sasbov" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-product-tg" id="btn-tg-order">
+            <a href="https://t.me/Sasbov" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-product-tg" id="btn-tg-order" style="color: #000000 !important; -webkit-text-fill-color: #000000 !important; background: #ffffff !important; font-weight: 900 !important;">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-1.92 9.07c-.14.65-.53.81-1.07.51l-2.97-2.19-1.43 1.38c-.16.16-.29.29-.6.29l.21-3.04 5.53-5c.24-.22-.05-.34-.38-.13l-6.84 4.3-2.95-.92c-.64-.2-.65-.64.13-.95l11.53-4.44c.53-.2 1 .12.89.82z"/></svg>
               <span>ОФОРМИТЬ ПРЕДЗАКАЗ В TELEGRAM</span>
             </a>
@@ -251,7 +259,7 @@
             <h2 class="related-title">ПОХОЖИЕ АЙТЕМЫ В КАТАЛОГЕ</h2>
             <p class="text-secondary" style="font-size: 0.9rem; margin-top: 0.25rem;">Другие эксклюзивные дропы и релизы из этой категории</p>
           </div>
-          <a href="catalog.html" class="btn btn-outline" style="font-size: 0.8rem;">ВЕСЬ КАТАЛОГ →</a>
+          <a href="/catalog" class="btn btn-outline" style="font-size: 0.8rem;">ВЕСЬ КАТАЛОГ →</a>
         </div>
 
         <div class="related-grid" id="related-grid">
@@ -334,26 +342,45 @@
       <div class="footer-col">
         <h4 class="footer-heading">МЕНЮ САЙТА</h4>
         <ul class="footer-links">
-          <li><a href="index.html">Главная</a></li>
-          <li><a href="catalog.html">Каталог позиций</a></li>
-          <li><a href="blog.html">Блог и экспертные статьи</a></li>
-          <li><a href="feed.html">Интерактивный лукбук (Feed)</a></li>
-          <li><a href="index.html#calculator">Калькулятор доставки</a></li>
-          <li><a href="index.html#guarantee">Гарантия подлинности</a></li>
-          <li><a href="faq.html">Часто задаваемые вопросы (FAQ)</a></li>
+          <li><a href="/">Главная</a></li>
+          <li><a href="/catalog">Каталог позиций</a></li>
+          <li><a href="/blog">Блог и экспертные статьи</a></li>
+          <li><a href="/feed">Интерактивный лукбук (Feed)</a></li>
+          <li><a href="/#calculator">Калькулятор доставки</a></li>
+          <li><a href="/#guarantee">Гарантия подлинности</a></li>
+          <li><a href="/faq">Часто задаваемые вопросы (FAQ)</a></li>
         </ul>
       </div>
 
       <div class="footer-col">
         <h4 class="footer-heading">НАПРАВЛЕНИЯ ВЫКУПА</h4>
         <ul class="footer-links">
-          <li><a href="catalog.html?region=china">Китай (Poizon / Dewu, Goofish)</a></li>
-          <li><a href="catalog.html?region=japan">Япония (Mercari JP, Harajuku)</a></li>
-          <li><a href="catalog.html?stock=instock">В наличии в СПб (Balkonsky Store)</a></li>
-          <li><a href="catalog.html?category=clothing">Одежда и пуховики</a></li>
-          <li><a href="catalog.html?category=shoes">Обувь и редкие кроссовки</a></li>
-          <li><a href="catalog.html?category=accessories">Аксессуары и сумки</a></li>
+          <li><a href="/catalog?region=china">Китай (Poizon / Dewu, Goofish)</a></li>
+          <li><a href="/catalog?region=japan">Япония (Mercari JP, Harajuku)</a></li>
+          <li><a href="/catalog?stock=instock">В наличии в СПб (Balkonsky Store)</a></li>
+          <li><a href="/catalog?category=clothing">Одежда и пуховики</a></li>
+          <li><a href="/catalog?category=shoes">Обувь и редкие кроссовки</a></li>
+          <li><a href="/catalog?category=accessories">Аксессуары и сумки</a></li>
         </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading">ПАБЛИКИ ПРОДАЖ VK (С 2019 ГОДА)</h4>
+        <ul class="footer-links">
+          <li>
+            <a href="https://vk.ru/mplogistics" target="_blank" rel="noopener noreferrer">
+              MP Logistics // Паблик (работает с 2019 года)
+            </a>
+          </li>
+          <li>
+            <a href="https://vk.ru/sasbov.store" target="_blank" rel="noopener noreferrer">
+              SASBOV Store // Паблик (работает с 2019 года)
+            </a>
+          </li>
+        </ul>
+        <span class="footer-badge" style="display: block; margin-top: 6px; font-family: var(--font-mono, monospace); font-size: 0.72rem; color: #00f0ff; letter-spacing: 0.03em;">
+          ● Паблик работает с 2019 года // 7+ лет на рынке
+        </span>
       </div>
 
       <div class="footer-col">
@@ -417,13 +444,13 @@
       <button type="button" class="mobile-drawer-close" id="mobile-drawer-close" aria-label="Закрыть меню">&times;</button>
     </div>
     <nav class="mobile-drawer-nav">
-      <a href="index.html" class="mobile-drawer-link">ГЛАВНАЯ <span>// 01</span></a>
-      <a href="catalog.html" class="mobile-drawer-link">КАТАЛОГ <span>// 02</span></a>
-      <a href="blog.html" class="mobile-drawer-link">БЛОГ <span>// 03</span></a>
-      <a href="feed.html" class="mobile-drawer-link">ЛУКБУК (FEED) <span>// 04</span></a>
-      <a href="index.html#calculator" class="mobile-drawer-link">КАЛЬКУЛЯТОР <span>// 05</span></a>
-      <a href="index.html#guarantee" class="mobile-drawer-link">ГАРАНТИИ <span>// 06</span></a>
-      <a href="faq.html" class="mobile-drawer-link">FAQ <span>// 07</span></a>
+      <a href="/" class="mobile-drawer-link">ГЛАВНАЯ <span>// 01</span></a>
+      <a href="/catalog" class="mobile-drawer-link">КАТАЛОГ <span>// 02</span></a>
+      <a href="/blog" class="mobile-drawer-link">БЛОГ <span>// 03</span></a>
+      <a href="/feed" class="mobile-drawer-link">ЛУКБУК (FEED) <span>// 04</span></a>
+      <a href="/#calculator" class="mobile-drawer-link">КАЛЬКУЛЯТОР <span>// 05</span></a>
+      <a href="/#guarantee" class="mobile-drawer-link">ГАРАНТИИ <span>// 06</span></a>
+      <a href="/faq" class="mobile-drawer-link">FAQ <span>// 07</span></a>
     </nav>
     <div class="mobile-drawer-footer">
       <a href="https://t.me/Sasbov" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="justify-content: center; font-size: 0.82rem;">

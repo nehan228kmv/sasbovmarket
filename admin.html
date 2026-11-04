@@ -15,8 +15,16 @@
   <!-- Telegram Web App SDK for Mini App Support -->
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=20261104_02">
   <link rel="stylesheet" href="admin.css">
+  <!-- Instant Clean URL in Address Bar (no .html) -->
+  <script>
+    if (window.location.pathname.endsWith('.html')) {
+      var _clean = window.location.pathname.slice(0, -5);
+      if (_clean === '/index') _clean = '/';
+      window.history.replaceState(null, '', _clean + window.location.search + window.location.hash);
+    }
+  </script>
 </head>
 <body class="admin-body">
 
@@ -90,7 +98,7 @@
     <header class="admin-top-header">
       <div class="container admin-header-inner">
         <div class="admin-brand-group">
-          <a href="index.html" class="admin-logo-link" title="Перейти на главную" target="_blank" style="text-decoration: none;">
+          <a href="/" class="admin-logo-link" title="Перейти на главную" target="_blank" style="text-decoration: none;">
             <span class="header-brand-mark" style="transform: scale(0.9); transform-origin: left center;">
               <span class="brand-text-sasbov" style="font-size: 1.25rem;">SASBOV</span>
               <span class="brand-text-market" style="font-size: 1.25rem;">MARKET</span>
@@ -103,9 +111,9 @@
           <button type="button" class="btn btn-outline btn-sm" id="change-master-token-btn" title="Сменить секретный мастер-токен">
             [KEY] СМЕНИТЬ ТОКЕН
           </button>
-          <a href="index.html" class="btn btn-outline btn-sm" target="_blank">[SITE] ГЛАВНАЯ</a>
-          <a href="catalog.html" class="btn btn-outline btn-sm" target="_blank">[CATALOG] КАТАЛОГ</a>
-          <a href="feed.html" class="btn btn-outline btn-sm" target="_blank">[REELS] TIKTOK</a>
+          <a href="/" class="btn btn-outline btn-sm" target="_blank">[SITE] ГЛАВНАЯ</a>
+          <a href="/catalog" class="btn btn-outline btn-sm" target="_blank">[CATALOG] КАТАЛОГ</a>
+          <a href="/feed" class="btn btn-outline btn-sm" target="_blank">[REELS] TIKTOK</a>
           <button type="button" class="btn btn-outline btn-sm btn-danger" id="logout-admin-btn" title="Заблокировать консоль">
             [LOCK] ВЫЙТИ
           </button>

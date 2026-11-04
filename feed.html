@@ -8,7 +8,7 @@
   <!-- SEO Meta Tags -->
   <meta name="description" content="Интерактивная фото-лента редких вещей и лукбуков из Китая и Японии в полноэкранном формате. Мгновенный предзаказ с доставкой в РФ.">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://sasbov.online/feed.html">
+  <link rel="canonical" href="https://sasbov.online/feed">
 
   <!-- Open Graph -->
   <meta property="og:title" content="SASBOV MARKET — Интерактивный Свайп-Лукбук">
@@ -23,14 +23,22 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="feed.css">
+  <link rel="stylesheet" href="styles.css?v=20261104_02">
+  <link rel="stylesheet" href="feed.css?v=20261104_02">
+  <!-- Instant Clean URL in Address Bar (no .html) -->
+  <script>
+    if (window.location.pathname.endsWith('.html')) {
+      var _clean = window.location.pathname.slice(0, -5);
+      if (_clean === '/index') _clean = '/';
+      window.history.replaceState(null, '', _clean + window.location.search + window.location.hash);
+    }
+  </script>
 </head>
 <body class="feed-body">
 
   <!-- Feed Top HUD Navigation Overlay -->
   <header class="feed-top-nav">
-    <a href="index.html" class="feed-logo-link" aria-label="Вернуться на главную">
+    <a href="/" class="feed-logo-link" aria-label="Вернуться на главную">
       <span class="header-brand-mark" style="transform: scale(0.85); transform-origin: left center;">
         <span class="brand-text-sasbov" style="font-size: 1.15rem;">SASBOV</span>
         <span class="brand-text-market" style="font-size: 1.15rem;">MARKET</span>
@@ -48,7 +56,7 @@
     </div>
 
     <div style="display: flex; gap: 0.5rem; align-items: center;">
-      <a href="catalog.html" class="feed-exit-btn" aria-label="Закрыть ленту и перейти в обычный каталог">
+      <a href="/catalog" class="feed-exit-btn" aria-label="Закрыть ленту и перейти в обычный каталог">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
         <span class="exit-label">КАТАЛОГ</span>
       </a>

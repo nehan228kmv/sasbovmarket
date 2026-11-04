@@ -312,7 +312,17 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
-  // 4. Static File Server
+  // 4. Static File Server & Clean URLs
+  // Redirect explicit .html requests to clean URLs without .html
+  if (pathname.endsWith('.html')) {
+    let clean = pathname.slice(0, -5);
+    if (clean === '/index') clean = '/';
+    const qs = req.url.includes('?') ? req.url.slice(req.url.indexOf('?')) : '';
+    res.writeHead(301, { 'Location': (clean || '/') + qs });
+    res.end();
+    return;
+  }
+
   let reqPath = pathname === '/' ? '/index.html' : pathname;
   let safePath = path.normalize(path.join(ROOT_DIR, reqPath));
 

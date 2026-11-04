@@ -355,7 +355,7 @@
               <span class="product-brand">${product.brand}</span>
               <span class="product-condition-pill">● ${product.condition || 'NEW // DEADSTOCK'}</span>
             </div>
-            <h3 class="product-name"><a href="product.html?id=${product.id}" style="color: inherit; text-decoration: none;">${product.name}</a></h3>
+            <h3 class="product-name"><a href="/product?id=${product.id}" style="color: inherit; text-decoration: none;">${product.name}</a></h3>
             ${(product.stockType === 'instock' || product.region === 'spb') ? `<a href="https://yandex.ru/maps/org/balkonskiy_stor/109683827425/?indoorLevel=1&ll=30.358538%2C59.932829&z=17" target="_blank" rel="noopener noreferrer" class="partner-store-pill" title="Открыть Balkonsky Store на Яндекс Картах">СПБ // BALKONSKY STORE (Невский просп., 110В ↗)</a>` : ''}
             ${product.description ? `<p class="product-mini-desc">${product.description}</p>` : ''}
 
@@ -375,7 +375,7 @@
             </div>
 
             <div class="card-actions">
-              <a href="product.html?id=${product.id}" class="btn btn-primary btn-block" style="text-decoration:none; justify-content:center;">
+              <a href="/product?id=${product.id}" class="btn btn-primary btn-block" style="color: #000000 !important; -webkit-text-fill-color: #000000 !important; background: #ffffff !important; text-decoration: none; justify-content: center; font-weight: 900 !important;">
                 ${product.stockType === 'instock' ? 'КУПИТЬ В СПБ →' : 'ПРЕДЗАКАЗАТЬ →'}
               </a>
               <button type="button" class="btn btn-outline quick-add-tray-btn" data-id="${product.id}" title="Добавить в поднос предзаказов">

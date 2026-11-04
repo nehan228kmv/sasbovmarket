@@ -240,8 +240,8 @@
         : '';
 
       const mainActionBtn = isInstock
-        ? `<a href="product.html?id=${product.id}" class="btn btn-instock-buy btn-block" style="text-decoration:none; justify-content:center;">КУПИТЬ В СПБ (BALKONSKY) →</a>`
-        : `<a href="product.html?id=${product.id}" class="btn btn-primary btn-block" style="text-decoration:none; justify-content:center;">ПРЕДЗАКАЗАТЬ →</a>`;
+        ? `<a href="/product?id=${product.id}" class="btn btn-instock-buy btn-block" style="text-decoration:none; justify-content:center;">КУПИТЬ В СПБ (BALKONSKY) →</a>`
+        : `<a href="/product?id=${product.id}" class="btn btn-primary btn-block" style="color: #000000 !important; -webkit-text-fill-color: #000000 !important; background: #ffffff !important; text-decoration: none; justify-content: center; font-weight: 900 !important;">ПРЕДЗАКАЗАТЬ →</a>`;
 
       let imageContent = '';
       if (images.length === 0) {
@@ -325,7 +325,7 @@
               <span class="product-brand">${product.brand}</span>
               ${conditionBadge}
             </div>
-            <h3 class="product-name"><a href="product.html?id=${product.id}" style="color: inherit; text-decoration: none;">${product.name}</a></h3>
+            <h3 class="product-name"><a href="/product?id=${product.id}" style="color: inherit; text-decoration: none;">${product.name}</a></h3>
             ${partnerTag}
             ${descriptionHtml}
 

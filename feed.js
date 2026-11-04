@@ -227,7 +227,7 @@
             <!-- Floating Right Sidebar Actions -->
             <div class="reel-actions-sidebar">
               <!-- Item Dedicated Page -->
-              <a href="product.html?id=${product.id}" class="reel-action-btn item-page-btn" title="Страница айтема" style="text-decoration: none;">
+              <a href="/product?id=${product.id}" class="reel-action-btn item-page-btn" title="Страница айтема" style="text-decoration: none;">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
                 <span class="action-count" style="font-size: 8px; font-weight: 700;">ИНФО</span>
               </a>
@@ -259,8 +259,8 @@
                 <span class="reel-brand">${product.brand}</span>
                 <span class="product-condition-pill" style="font-size: 9px; padding: 1px 6px;">● ${product.condition || 'NEW // DEADSTOCK'}</span>
               </div>
-              <a href="product.html?id=${product.id}" style="text-decoration: none; color: inherit;"><h2 class="reel-title">${product.name}</h2></a>
-              <a href="product.html?id=${product.id}" class="reel-view-product-chip">СТРАНИЦА АЙТЕМА // ПОДРОБНЕЕ ↗</a>
+              <a href="/product?id=${product.id}" style="text-decoration: none; color: inherit;"><h2 class="reel-title">${product.name}</h2></a>
+              <a href="/product?id=${product.id}" class="reel-view-product-chip">СТРАНИЦА АЙТЕМА // ПОДРОБНЕЕ ↗</a>
               ${product.description ? `<p style="font-size: 0.78rem; color: #a1a1aa; line-height: 1.3; margin: 0.25rem 0 0.5rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">${product.description}</p>` : ''}
 
               <div class="reel-sizes-row">

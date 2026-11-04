@@ -38,7 +38,7 @@
   <link rel="dns-prefetch" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=20261104_02">
 
   <!-- Schema.org Rich Snippets (JSON-LD) -->
   <script type="application/ld+json">
@@ -112,6 +112,14 @@
       document.documentElement.setAttribute('data-theme', saved);
     })();
   </script>
+  <!-- Instant Clean URL in Address Bar (no .html) -->
+  <script>
+    if (window.location.pathname.endsWith('.html')) {
+      var _clean = window.location.pathname.slice(0, -5);
+      if (_clean === '/index') _clean = '/';
+      window.history.replaceState(null, '', _clean + window.location.search + window.location.hash);
+    }
+  </script>
 </head>
 <body>
 
@@ -163,7 +171,7 @@
   <!-- Main Navigation Header -->
   <header class="site-header" id="site-header">
     <div class="container header-inner">
-      <a href="index.html" class="brand-logo-link" aria-label="SASBOV MARKET — На главную">
+      <a href="/" class="brand-logo-link" aria-label="SASBOV MARKET — На главную">
         <span class="header-brand-mark">
           <span class="brand-text-sasbov">SASBOV</span>
           <span class="brand-text-market">MARKET</span>
@@ -172,12 +180,12 @@
 
       <nav class="main-nav" aria-label="Основное меню">
         <ul class="nav-list">
-          <li><a href="index.html" class="nav-link active">ГЛАВНАЯ</a></li>
-          <li><a href="catalog.html" class="nav-link">КАТАЛОГ</a></li>
-          <li><a href="blog.html" class="nav-link">БЛОГ</a></li>
+          <li><a href="/" class="nav-link active">ГЛАВНАЯ</a></li>
+          <li><a href="/catalog" class="nav-link">КАТАЛОГ</a></li>
+          <li><a href="/blog" class="nav-link">БЛОГ</a></li>
           <li><a href="#calculator" class="nav-link">КАЛЬКУЛЯТОР</a></li>
           <li><a href="#guarantee" class="nav-link">ГАРАНТИИ</a></li>
-          <li><a href="faq.html" class="nav-link">FAQ</a></li>
+          <li><a href="/faq" class="nav-link">FAQ</a></li>
         </ul>
       </nav>
 
@@ -247,17 +255,17 @@
           </div>
 
           <div class="hero-cta-group hero-cta-centered">
-            <a href="catalog.html" class="btn btn-primary" id="hero-view-drops-btn">
+            <a href="/catalog" class="btn btn-primary" id="hero-view-drops-btn">
               ОТКРЫТЬ КАТАЛОГ
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
-            <a href="catalog.html?stock=instock" class="btn btn-outline" id="hero-spb-btn">
+            <a href="/catalog?stock=instock" class="btn btn-outline" id="hero-spb-btn">
               В НАЛИЧИИ: СПБ
             </a>
-            <a href="catalog.html?stock=preorder" class="btn btn-outline" id="hero-preorder-btn">
+            <a href="/catalog?stock=preorder" class="btn btn-outline" id="hero-preorder-btn">
               ПРЕДЗАКАЗ: ВСЯ РФ
             </a>
-            <a href="blog.html" class="btn btn-outline" id="hero-blog-btn">
+            <a href="/blog" class="btn btn-outline" id="hero-blog-btn">
               МАТЕРИАЛЫ
             </a>
           </div>
@@ -291,7 +299,7 @@
       <div class="container">
         <div class="portals-grid">
           
-          <a href="catalog.html" class="portal-card">
+          <a href="/catalog" class="portal-card">
             <div>
               <div class="portal-tag">DATABASE // FULL CATALOGUE</div>
               <h2 class="portal-title">КАТАЛОГ ПОЗИЦИЙ</h2>
@@ -304,7 +312,7 @@
             </div>
           </a>
 
-          <a href="feed.html" class="portal-card portal-card-tiktok">
+          <a href="/feed" class="portal-card portal-card-tiktok">
             <div>
               <div class="portal-tag">INTERACTIVE STREAM // LOOKBOOK</div>
             <h2 class="portal-title">[FEED] // СВАЙП-ЛУКБУК</h2>
@@ -342,7 +350,7 @@
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
               </button>
             </div>
-            <a href="catalog.html" class="fresh-all-btn" id="fresh-all-link">
+            <a href="/catalog" class="fresh-all-btn" id="fresh-all-link">
               СМОТРЕТЬ ВСЕ В КАТАЛОГЕ (12+) →
             </a>
           </div>
@@ -461,7 +469,7 @@
               </div>
             </div>
 
-            <button type="button" class="btn btn-primary btn-block" id="calc-apply-order-btn">
+            <button type="button" class="btn btn-primary btn-block" id="calc-apply-order-btn" style="color: #000000 !important; -webkit-text-fill-color: #000000 !important; background: #00f0ff !important; font-weight: 900 !important;">
               ОФОРМИТЬ ПРЕДЗАКАЗ С ЭТИМ РАСЧЕТОМ В TG
             </button>
           </div>
@@ -705,7 +713,7 @@
 
     <div class="container footer-container">
       <div class="footer-brand-col">
-        <a href="index.html" class="brand-logo-link" aria-label="SASBOV MARKET — На главную">
+        <a href="/" class="brand-logo-link" aria-label="SASBOV MARKET — На главную">
           <span class="header-brand-mark" style="align-items: flex-start; margin-bottom: 0.85rem;">
             <span class="brand-text-sasbov" style="font-size: 1.55rem;">SASBOV</span>
             <span class="brand-text-market" style="font-size: 1.55rem;">MARKET</span>
@@ -723,13 +731,13 @@
       <div class="footer-links-col">
         <h4 class="footer-heading">НАВИГАЦИЯ САЙТА</h4>
         <ul class="footer-nav">
-          <li><a href="index.html">Главная страница</a></li>
-          <li><a href="catalog.html">Каталог товаров</a></li>
-          <li><a href="blog.html">Блог & Гиды</a></li>
-          <li><a href="index.html#calculator">Калькулятор выкупа</a></li>
-          <li><a href="index.html#guarantee">Гарантии подлинности</a></li>
-          <li><a href="faq.html">Частые вопросы (FAQ)</a></li>
-          <li><a href="feed.html">Свайп-Лукбук (Feed)</a></li>
+          <li><a href="/">Главная страница</a></li>
+          <li><a href="/catalog">Каталог товаров</a></li>
+          <li><a href="/blog">Блог & Гиды</a></li>
+          <li><a href="/#calculator">Калькулятор выкупа</a></li>
+          <li><a href="/#guarantee">Гарантии подлинности</a></li>
+          <li><a href="/faq">Частые вопросы (FAQ)</a></li>
+          <li><a href="/feed">Свайп-Лукбук (Feed)</a></li>
         </ul>
       </div>
 
@@ -745,19 +753,22 @@
       </div>
 
       <div class="footer-links-col">
-        <h4 class="footer-heading">ПАБЛИКИ ПРОДАЖ VK</h4>
+        <h4 class="footer-heading">ПАБЛИКИ ПРОДАЖ VK (С 2019 ГОДА)</h4>
         <ul class="footer-nav">
           <li>
             <a href="https://vk.ru/mplogistics" target="_blank" rel="noopener noreferrer">
-              MP Logistics // Паблик
+              MP Logistics // Паблик (работает с 2019 года)
             </a>
           </li>
           <li>
             <a href="https://vk.ru/sasbov.store" target="_blank" rel="noopener noreferrer">
-              SASBOV Store // Паблик
+              SASBOV Store // Паблик (работает с 2019 года)
             </a>
           </li>
         </ul>
+        <span class="footer-badge" style="display: block; margin-top: 6px; font-family: var(--font-mono, monospace); font-size: 0.72rem; color: #00f0ff; letter-spacing: 0.03em;">
+          ● Паблик работает с 2019 года // 7+ лет на рынке
+        </span>
       </div>
 
       <div class="footer-links-col">
@@ -838,12 +849,12 @@
       <button type="button" class="mobile-drawer-close" id="mobile-drawer-close" aria-label="Закрыть меню">&times;</button>
     </div>
     <nav class="mobile-drawer-nav">
-      <a href="index.html" class="mobile-drawer-link">ГЛАВНАЯ <span>// 01</span></a>
-      <a href="catalog.html" class="mobile-drawer-link">КАТАЛОГ <span>// 02</span></a>
-      <a href="blog.html" class="mobile-drawer-link">БЛОГ <span>// 03</span></a>
-      <a href="index.html#calculator" class="mobile-drawer-link">КАЛЬКУЛЯТОР <span>// 04</span></a>
-      <a href="index.html#guarantee" class="mobile-drawer-link">ГАРАНТИИ <span>// 05</span></a>
-      <a href="faq.html" class="mobile-drawer-link">FAQ <span>// 06</span></a>
+      <a href="/" class="mobile-drawer-link">ГЛАВНАЯ <span>// 01</span></a>
+      <a href="/catalog" class="mobile-drawer-link">КАТАЛОГ <span>// 02</span></a>
+      <a href="/blog" class="mobile-drawer-link">БЛОГ <span>// 03</span></a>
+      <a href="/#calculator" class="mobile-drawer-link">КАЛЬКУЛЯТОР <span>// 04</span></a>
+      <a href="/#guarantee" class="mobile-drawer-link">ГАРАНТИИ <span>// 05</span></a>
+      <a href="/faq" class="mobile-drawer-link">FAQ <span>// 06</span></a>
     </nav>
     <div class="mobile-drawer-footer">
       <a href="https://t.me/Sasbov" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="justify-content: center; font-size: 0.82rem;">
