@@ -205,33 +205,35 @@ async function downloadTelegramPhoto(fileId, prefix = 'item') {
 function getItemTypeTags(itemType) {
   const norm = (itemType || '').toLowerCase().trim();
   const map = {
-    'зип-худи': ['зип-худи', 'зипхуди', 'zip hoodie', 'zip-hoodie', 'zip', 'худи', 'hoodie', 'одежда'],
-    'худи': ['худи', 'hoodie', 'толстовка', 'одежда'],
-    'свитшот': ['свитшот', 'sweatshirt', 'кофта', 'одежда'],
+    'зип-худи': ['зип-худи', 'зипхуди', 'zip hoodie', 'zip-hoodie', 'zip', 'худи', 'hoodie', 'толстовка', 'одежда'],
+    'худи': ['худи', 'hoodie', 'толстовка', 'sweatshirt', 'одежда'],
+    'свитшот': ['свитшот', 'sweatshirt', 'crewneck', 'кофта', 'толстовка', 'одежда'],
     'футболка': ['футболка', 'футболки', 'tee', 't-shirt', 't shirt', 'тишка', 'одежда'],
-    'лонгслив': ['лонгслив', 'longsleeve', 'одежда'],
+    'лонгслив': ['лонгслив', 'longsleeve', 'лонг', 'одежда'],
+    'поло': ['поло', 'polo', 'майка', 'топ', 'одежда'],
     'джинсы': ['джинсы', 'джинс', 'jeans', 'denim', 'штаны', 'одежда'],
-    'штаны': ['штаны', 'брюки', 'pants', 'trousers', 'одежда'],
-    'свитпэнтс': ['свитпэнтс', 'sweatpants', 'джоггеры', 'штаны', 'одежда'],
+    'штаны': ['штаны', 'брюки', 'pants', 'trousers', 'карго', 'cargo', 'одежда'],
+    'свитпэнтс': ['свитпэнтс', 'sweatpants', 'джоггеры', 'штаны', 'спортивные штаны', 'одежда'],
     'шорты': ['шорты', 'shorts', 'одежда'],
-    'ветровка': ['ветровка', 'ветровки', 'windbreaker', 'куртка', 'одежда'],
-    'куртка': ['куртка', 'куртки', 'jacket', 'одежда'],
+    'спортивный костюм': ['спортивный костюм', 'костюм', 'tracksuit', 'одежда'],
+    'ветровка': ['ветровка', 'ветровки', 'анорак', 'windbreaker', 'куртка', 'одежда'],
+    'куртка': ['куртка', 'куртки', 'jacket', 'бомбер', 'пальто', 'одежда'],
     'пуховик': ['пуховик', 'пуховики', 'puffer', 'down jacket', 'куртка', 'одежда'],
-    'жилетка': ['жилетка', 'жилетки', 'vest', 'одежда'],
+    'жилетка': ['жилетка', 'жилетки', 'vest', 'пуховый жилет', 'одежда'],
     'очки': ['очки', 'sunglasses', 'glasses', 'аксессуары'],
-    'часы': ['часы', 'watch', 'watches', 'аксессуары'],
+    'часы': ['часы', 'watch', 'watches', 'браслет', 'аксессуары'],
     'карты': ['карты', 'колода карт', 'playing cards', 'cards', 'deck', 'аксессуары'],
     'пепельница': ['пепельница', 'пепельницы', 'ashtray', 'аксессуары'],
-    'ковёр': ['ковёр', 'ковер', 'ковры', 'rug', 'carpet', 'аксессуары'],
+    'ковёр': ['ковёр', 'ковер', 'ковры', 'коврик', 'rug', 'carpet', 'deskmat', 'аксессуары'],
     'бритва': ['бритва', 'бритвы', 'razor', 'аксессуары'],
-    'игрушки': ['игрушки', 'игрушка', 'toy', 'figure', 'bearbrick', 'аксессуары'],
-    'кроссовки': ['кроссовки', 'кроссы', 'sneakers', 'shoes', 'обувь'],
+    'игрушки': ['игрушки', 'игрушка', 'toy', 'figure', 'bearbrick', 'medicom', 'коллекционное', 'аксессуары'],
+    'кроссовки': ['кроссовки', 'кроссы', 'sneakers', 'shoes', 'сникеры', 'обувь'],
     'кеды': ['кеды', 'skate shoes', 'обувь'],
-    'ботинки': ['ботинки', 'boots', 'обувь'],
-    'тапки': ['тапки', 'мюли', 'slippers', 'mules', 'slides', 'обувь'],
-    'сумка': ['сумка', 'сумки', 'bag', 'рюкзак', 'backpack', 'аксессуары'],
+    'ботинки': ['ботинки', 'boots', 'лоферы', 'loafer', 'мюли', 'mules', 'тапки', 'обувь'],
+    'сумка': ['сумка', 'сумки', 'bag', 'рюкзак', 'backpack', 'кроссбоди', 'аксессуары'],
+    'сумка-шоппер': ['сумка-шоппер', 'шоппер', 'сумка', 'tote', 'tote bag', 'аксессуары'],
     'ремень': ['ремень', 'ремни', 'belt', 'аксессуары'],
-    'кепка': ['кепка', 'кепки', 'шапка', 'cap', 'beanie', 'hat', 'аксессуары']
+    'кепка': ['кепка', 'кепки', 'шапка', 'beanie', 'бини', 'cap', 'hat', 'головной убор', 'аксессуары']
   };
 
   for (const [key, tags] of Object.entries(map)) {
@@ -244,8 +246,8 @@ function getItemTypeTags(itemType) {
 
 function deduceCategoryFromItemType(itemType) {
   const norm = (itemType || '').toLowerCase().trim();
-  const footwear = ['кроссовки', 'кеды', 'ботинки', 'тапки', 'мюли', 'shoes', 'sneakers', 'boots'];
-  const accessories = ['очки', 'часы', 'карты', 'пепельниц', 'ков', 'бритв', 'игрушк', 'сумк', 'ремен', 'кепк', 'шапк', 'glasses', 'watch', 'ashtray', 'rug', 'toy', 'bag', 'belt', 'cap'];
+  const footwear = ['кроссовки', 'кеды', 'ботинки', 'тапки', 'мюли', 'лоферы', 'shoes', 'sneakers', 'boots'];
+  const accessories = ['очки', 'часы', 'карты', 'пепельниц', 'ков', 'бритв', 'игрушк', 'сумк', 'шоппер', 'рюкзак', 'ремен', 'кепк', 'шапк', 'glasses', 'watch', 'ashtray', 'rug', 'toy', 'bag', 'belt', 'cap'];
 
   if (footwear.some(w => norm.includes(w))) return 'footwear';
   if (accessories.some(w => norm.includes(w))) return 'accessories';
@@ -328,40 +330,56 @@ const POPULAR_BRANDS_KEYBOARD = [
 
 // Streetwear Item Types Taxonomy Keyboard
 const ITEM_TYPES_KEYBOARD = [
+  // 1. Верх (Худи, свитшоты, футболки)
   [
-    { text: '🧥 Зип-худи', callback_data: 'quick_type:Зип-худи' },
     { text: '🧥 Худи', callback_data: 'quick_type:Худи' },
-    { text: '👕 Футболка', callback_data: 'quick_type:Футболка' }
+    { text: '🧥 Зип-худи', callback_data: 'quick_type:Зип-худи' },
+    { text: '🧥 Свитшот', callback_data: 'quick_type:Свитшот' }
   ],
   [
+    { text: '👕 Футболка', callback_data: 'quick_type:Футболка' },
+    { text: '👕 Лонгслив', callback_data: 'quick_type:Лонгслив' },
+    { text: '👕 Поло / Майка', callback_data: 'quick_type:Поло' }
+  ],
+  // 2. Верхняя одежда
+  [
+    { text: '🧥 Куртка', callback_data: 'quick_type:Куртка' },
+    { text: '🧥 Пуховик', callback_data: 'quick_type:Пуховик' },
+    { text: '🧥 Ветровка / Анорак', callback_data: 'quick_type:Ветровка' }
+  ],
+  // 3. Низ (Штаны, джинсы, шорты)
+  [
     { text: '👖 Джинсы', callback_data: 'quick_type:Джинсы' },
-    { text: '👖 Штаны', callback_data: 'quick_type:Штаны' },
+    { text: '👖 Штаны / Карго', callback_data: 'quick_type:Штаны' },
     { text: '👖 Свитпэнтс', callback_data: 'quick_type:Свитпэнтс' }
   ],
   [
-    { text: '🧥 Пуховик', callback_data: 'quick_type:Пуховик' },
-    { text: '🧥 Куртка', callback_data: 'quick_type:Куртка' },
-    { text: '🧥 Ветровка', callback_data: 'quick_type:Ветровка' }
-  ],
-  [
+    { text: '🩳 Шорты', callback_data: 'quick_type:Шорты' },
     { text: '🦺 Жилетка', callback_data: 'quick_type:Жилетка' },
-    { text: '👟 Кроссовки', callback_data: 'quick_type:Кроссовки' },
-    { text: '👟 Кеды', callback_data: 'quick_type:Кеды' }
+    { text: '🥋 Спортивный костюм', callback_data: 'quick_type:Спортивный костюм' }
   ],
+  // 4. Обувь
+  [
+    { text: '👟 Кроссовки', callback_data: 'quick_type:Кроссовки' },
+    { text: '👟 Кеды', callback_data: 'quick_type:Кеды' },
+    { text: '🥾 Ботинки / Мюли', callback_data: 'quick_type:Ботинки' }
+  ],
+  // 5. Сумки и головные уборы
+  [
+    { text: '👜 Сумка / Рюкзак', callback_data: 'quick_type:Сумка' },
+    { text: '🛍 Сумка-шоппер', callback_data: 'quick_type:Сумка-шоппер' },
+    { text: '🧢 Кепка / Шапка', callback_data: 'quick_type:Кепка' }
+  ],
+  // 6. Аксессуары и лайфстайл
   [
     { text: '🕶 Очки', callback_data: 'quick_type:Очки' },
-    { text: '⌚ Часы', callback_data: 'quick_type:Часы' },
-    { text: '🃏 Карты', callback_data: 'quick_type:Карты' }
-  ],
-  [
-    { text: '🚬 Пепельница', callback_data: 'quick_type:Пепельница' },
-    { text: '🧶 Ковёр', callback_data: 'quick_type:Ковёр' },
-    { text: '🪒 Бритва', callback_data: 'quick_type:Бритва' }
-  ],
-  [
-    { text: '🧸 Игрушки', callback_data: 'quick_type:Игрушки' },
-    { text: '👜 Сумка/Рюкзак', callback_data: 'quick_type:Сумка' },
+    { text: '⌚ Часы / Браслет', callback_data: 'quick_type:Часы' },
     { text: '🥋 Ремень', callback_data: 'quick_type:Ремень' }
+  ],
+  [
+    { text: '🧸 Игрушки / Bearbrick', callback_data: 'quick_type:Игрушки' },
+    { text: '🧶 Ковёр / Коврик', callback_data: 'quick_type:Ковёр' },
+    { text: '🃏 Карты / Пепельница', callback_data: 'quick_type:Карты' }
   ],
   [
     { text: '⬅️ Назад к модели', callback_data: 'wiz_back_to_model' },

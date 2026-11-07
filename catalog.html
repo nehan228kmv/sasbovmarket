@@ -192,7 +192,7 @@
           <button type="button" class="filter-chip" data-filter-type="region" data-filter-val="global" id="filter-glb">GLOBAL [GLB]</button>
         </div>
 
-        <!-- Category Filters (Subcategories like Glo Gang) -->
+        <!-- Category Filters -->
         <div class="filter-group categories">
           <span class="filter-label">КАТЕГОРИЯ:</span>
           <button type="button" class="filter-chip active" data-filter-type="category" data-filter-val="all" id="cat-all">ВСЕ</button>
@@ -200,13 +200,56 @@
           <button type="button" class="filter-chip" data-filter-type="category" data-filter-val="tshirt" id="cat-tshirt">ФУТБОЛКИ</button>
           <button type="button" class="filter-chip" data-filter-type="category" data-filter-val="footwear" id="cat-footwear">ОБУВЬ</button>
           <button type="button" class="filter-chip" data-filter-type="category" data-filter-val="jacket" id="cat-jacket">КУРТКИ</button>
+          <button type="button" class="filter-chip" data-filter-type="category" data-filter-val="pants" id="cat-pants">ШТАНЫ</button>
           <button type="button" class="filter-chip" data-filter-type="category" data-filter-val="accessories" id="cat-accessories">АКСЕССУАРЫ</button>
         </div>
 
+        <!-- Size Filters -->
+        <div class="filter-group sizes" id="catalog-size-filters">
+          <span class="filter-label">РАЗМЕР:</span>
+          <button type="button" class="filter-chip active" data-filter-type="size" data-filter-val="all">ВСЕ</button>
+          <button type="button" class="filter-chip" data-filter-type="size" data-filter-val="XS">XS</button>
+          <button type="button" class="filter-chip" data-filter-type="size" data-filter-val="S">S</button>
+          <button type="button" class="filter-chip" data-filter-type="size" data-filter-val="M">M</button>
+          <button type="button" class="filter-chip" data-filter-type="size" data-filter-val="L">L</button>
+          <button type="button" class="filter-chip" data-filter-type="size" data-filter-val="XL">XL</button>
+          <button type="button" class="filter-chip" data-filter-type="size" data-filter-val="XXL">XXL</button>
+          <button type="button" class="filter-chip" data-filter-type="size" data-filter-val="shoes_38_40">38–40 EU</button>
+          <button type="button" class="filter-chip" data-filter-type="size" data-filter-val="shoes_41_42">41–42 EU</button>
+          <button type="button" class="filter-chip" data-filter-type="size" data-filter-val="shoes_43_45">43–45 EU</button>
+          <button type="button" class="filter-chip" data-filter-type="size" data-filter-val="onesize">ONE SIZE</button>
+        </div>
+
+        <!-- Price Range & Sorting Filters -->
+        <div class="filter-group price-sort-group" style="width: 100%; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.85rem; padding-top: 0.75rem; border-top: 1px solid var(--border-subtle);">
+          <div class="filter-subgroup" style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+            <span class="filter-label">ЦЕНА:</span>
+            <button type="button" class="filter-chip active" data-filter-type="price" data-filter-val="all">ВСЕ</button>
+            <button type="button" class="filter-chip" data-filter-type="price" data-filter-val="under_15k">ДО 15 000 ₽</button>
+            <button type="button" class="filter-chip" data-filter-type="price" data-filter-val="15k_30k">15–30 000 ₽</button>
+            <button type="button" class="filter-chip" data-filter-type="price" data-filter-val="30k_50k">30–50 000 ₽</button>
+            <button type="button" class="filter-chip" data-filter-type="price" data-filter-val="over_50k">50 000+ ₽</button>
+
+            <!-- Custom price range inputs -->
+            <div class="custom-price-inputs" style="display: inline-flex; align-items: center; gap: 4px; margin-left: 4px;">
+              <input type="number" id="price-min-input" placeholder="от ₽" min="0" step="500" class="price-input" aria-label="Цена от">
+              <span style="color: var(--text-muted); font-size: 0.8rem;">—</span>
+              <input type="number" id="price-max-input" placeholder="до ₽" min="0" step="500" class="price-input" aria-label="Цена до">
+            </div>
+          </div>
+
+          <div class="filter-subgroup" style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+            <span class="filter-label">СОРТИРОВКА:</span>
+            <button type="button" class="filter-chip active" data-filter-type="sort" data-filter-val="newest">НОВЫЕ ДРОПЫ</button>
+            <button type="button" class="filter-chip" data-filter-type="sort" data-filter-val="price_asc">ЦЕНА ↑</button>
+            <button type="button" class="filter-chip" data-filter-type="sort" data-filter-val="price_desc">ЦЕНА ↓</button>
+          </div>
+        </div>
+
         <!-- Search Input -->
-        <div class="filter-search-box">
+        <div class="filter-search-box" style="width: 100%; margin-top: 0.25rem;">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="search-icon"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-          <input type="search" id="catalog-search-input" placeholder="Поиск по бренду или названию..." aria-label="Поиск по бренду или названию">
+          <input type="search" id="catalog-search-input" placeholder="Поиск по бренду, модели, цвету или артикулу..." aria-label="Поиск по бренду или названию">
         </div>
       </div>
 

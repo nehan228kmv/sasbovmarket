@@ -25,6 +25,66 @@
     return 0;
   }
 
+  
+  function getProductSubcategory(p) {
+    if (!p) return 'other';
+    const text = [
+      p.category,
+      p.itemType,
+      p.name,
+      p.fullName,
+      p.brand,
+      p.description,
+      p.sku,
+      ...(Array.isArray(p.subcategories) ? p.subcategories : [p.subcategories]),
+      ...(Array.isArray(p.tags) ? p.tags : [])
+    ].filter(Boolean).join(' ').toLowerCase();
+
+    if (p.category === 'footwear' || p.category === 'shoes' ||
+        text.includes('кроссовк') || text.includes('sneaker') || text.includes('shoe') ||
+        text.includes('ботинк') || text.includes('boots') || text.includes('кед') ||
+        text.includes('тапочк') || text.includes('loafer') || text.includes('mule') ||
+        text.includes('сникер')) {
+      return 'footwear';
+    }
+    if (text.includes('худи') || text.includes('hoodie') || text.includes('толстовк') ||
+        text.includes('свитшот') || text.includes('sweatshirt') || text.includes('зипк') ||
+        text.includes('zip') || text.includes('crewneck') || text.includes('худи-зип')) {
+      return 'hoodie';
+    }
+    if (text.includes('куртк') || text.includes('jacket') || text.includes('пуховик') ||
+        text.includes('down') || text.includes('бомбер') || text.includes('ветровк') ||
+        text.includes('parka') || text.includes('coat') || text.includes('пальто') ||
+        text.includes('анорак') || text.includes('жилет') || text.includes('vest')) {
+      return 'jacket';
+    }
+    if (text.includes('штан') || text.includes('брюк') || text.includes('джинс') ||
+        text.includes('jeans') || text.includes('pants') || text.includes('trousers') ||
+        text.includes('шорт') || text.includes('shorts') || text.includes('cargo') ||
+        text.includes('карго') || text.includes('sweatpants') || text.includes('джоггер')) {
+      return 'pants';
+    }
+    if (text.includes('футболк') || text.includes('t-shirt') || text.includes('tee') ||
+        text.includes('лонгслив') || text.includes('майк') || text.includes('longsleeve') ||
+        text.includes('поло') || text.includes('polo')) {
+      return 'tshirt';
+    }
+    if (p.category === 'accessories' ||
+        text.includes('сумк') || text.includes('bag') || text.includes('рюкзак') ||
+        text.includes('backpack') || text.includes('ремень') || text.includes('belt') ||
+        text.includes('очки') || text.includes('glasses') || text.includes('кепк') ||
+        text.includes('cap') || text.includes('шапк') || text.includes('beanie') ||
+        text.includes('шарф') || text.includes('scarf') || text.includes('часы') ||
+        text.includes('watch') || text.includes('кошелек') || text.includes('wallet') ||
+        text.includes('украшен') || text.includes('браслет') || text.includes('кольцо') ||
+        text.includes('подвеск') || text.includes('цепь') || text.includes('игрушк') ||
+        text.includes('коврик') || text.includes('toy') || text.includes('аксессуар')) {
+      return 'accessories';
+    }
+    if (p.category === 'clothing') return 'tshirt';
+    return 'accessories';
+  }
+
   function getProducts() {
     try {
       localStorage.removeItem('sasbov_products_v2');
@@ -94,10 +154,23 @@
 
   let products = getProducts();
   let likesState = getLikes();
-  let currentFilter = 'all';
+  let currentCategory = 'all';
+  let currentStock = 'all';
   let activeSlideIndex = 0;
   let isRandomMode = true;
   let currentShuffledDeck = [];
+
+  function updateFeedCategoryCounts(list) {
+    const counts = { all: list.length, hoodie: 0, tshirt: 0, footwear: 0, jacket: 0, pants: 0, accessories: 0 };
+    list.forEach(p => {
+      const cat = getProductSubcategory(p);
+      if (counts[cat] !== undefined) counts[cat]++;
+    });
+    for (const [k, v] of Object.entries(counts)) {
+      const el = document.getElementById('feed-count-' + k);
+      if (el) el.textContent = v;
+    }
+  }
 
   // Fisher-Yates shuffle algorithm: 100% random permutation, ZERO duplicates
   function shuffleCards(arr) {
@@ -135,12 +208,17 @@
     if (!container) return;
 
     const baseFiltered = products.filter(p => {
-      if (currentFilter === 'all') return true;
-      if (currentFilter === 'instock') return p.stockType === 'instock';
-      if (currentFilter === 'preorder') return p.stockType === 'preorder';
-      if (currentFilter === 'japan') return p.region === 'japan';
-      if (currentFilter === 'china') return p.region === 'china';
-      return p.region === currentFilter;
+      const cat = getProductSubcategory(p);
+      const matchCategory = currentCategory === 'all'
+        || cat === currentCategory
+        || (currentCategory === 'footwear' && (p.category === 'footwear' || p.category === 'shoes'))
+        || (currentCategory === 'accessories' && p.category === 'accessories');
+
+      const matchStock = currentStock === 'all'
+        || (currentStock === 'instock' && (p.stockType === 'instock' || p.region === 'spb'))
+        || (currentStock === 'preorder' && (p.stockType === 'preorder' || p.region === 'china'));
+
+      return matchCategory && matchStock;
     });
 
     // Apply random mix without duplicates
@@ -156,7 +234,7 @@
       container.innerHTML = `
         <div class="reel-slide">
           <div class="reel-stage" style="justify-content: center; text-align: center;">
-            <h2 style="font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 1rem;">НЕТ ПОЗИЦИЙ В ЭТОМ РЕГИОНЕ</h2>
+            <h2 style="font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 1rem;">НЕТ ПОЗИЦИЙ В ЭТОЙ КАТЕГОРИИ</h2>
             <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Переключите фильтр или вернитесь в полный каталог.</p>
             <a href="feed.html" class="btn btn-outline" style="align-self: center;">СБРОСИТЬ ФИЛЬТР</a>
           </div>
@@ -281,6 +359,7 @@
     }).join('');
 
     updateCounter(filtered.length);
+    updateFeedCategoryCounts(products);
     attachSlideEvents(filtered);
   }
 
@@ -416,18 +495,37 @@ ${isInstock ? 'Подтвердите наличие на точке и забр
     });
   }
 
-  // Filter Chips setup
-  filterChips.forEach(chip => {
+  // Category & Stock Chips setup
+  const catChips = document.querySelectorAll('[data-feed-cat]');
+  const stockChip = document.getElementById('feed-stock-instock');
+
+  catChips.forEach(chip => {
     chip.addEventListener('click', () => {
-      filterChips.forEach(c => c.classList.remove('active'));
+      catChips.forEach(c => c.classList.remove('active'));
       chip.classList.add('active');
-      currentFilter = chip.dataset.feedFilter;
+      currentCategory = chip.dataset.feedCat || 'all';
       activeSlideIndex = 0;
       renderFeed(true);
       observeSlides();
       container.scrollTo({ top: 0, behavior: 'smooth' });
     });
   });
+
+  if (stockChip) {
+    stockChip.addEventListener('click', () => {
+      if (currentStock === 'instock') {
+        currentStock = 'all';
+        stockChip.classList.remove('active');
+      } else {
+        currentStock = 'instock';
+        stockChip.classList.add('active');
+      }
+      activeSlideIndex = 0;
+      renderFeed(true);
+      observeSlides();
+      container.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
 
   // Navigation: Keyboard Up/Down
   window.addEventListener('keydown', (e) => {

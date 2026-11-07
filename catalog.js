@@ -25,27 +25,108 @@
 
   function getProductSubcategory(p) {
     if (!p) return 'other';
-    const text = `${p.category || ''} ${p.name || ''} ${p.brand || ''} ${p.description || ''} ${p.sku || ''}`.toLowerCase();
-    
-    if (text.includes('худи') || text.includes('hoodie') || text.includes('толстовк') || text.includes('свитшот') || text.includes('зипк') || text.includes('zip') || text.includes('crewneck')) {
-      return 'hoodie';
-    }
-    if (text.includes('футболк') || text.includes('t-shirt') || text.includes('tee') || text.includes('лонгслив') || text.includes('майк') || text.includes('longsleeve')) {
-      return 'tshirt';
-    }
-    if (text.includes('кроссовк') || text.includes('sneaker') || text.includes('shoe') || text.includes('ботинк') || text.includes('boots') || text.includes('кед') || text.includes('тапочк') || text.includes('loafer') || text.includes('mule') || p.category === 'shoes') {
+    const text = [
+      p.category,
+      p.itemType,
+      p.name,
+      p.fullName,
+      p.brand,
+      p.description,
+      p.sku,
+      ...(Array.isArray(p.subcategories) ? p.subcategories : [p.subcategories]),
+      ...(Array.isArray(p.tags) ? p.tags : [])
+    ].filter(Boolean).join(' ').toLowerCase();
+
+    // 1. Footwear
+    if (p.category === 'footwear' || p.category === 'shoes' ||
+        text.includes('кроссовк') || text.includes('sneaker') || text.includes('shoe') ||
+        text.includes('ботинк') || text.includes('boots') || text.includes('кед') ||
+        text.includes('тапочк') || text.includes('loafer') || text.includes('mule') ||
+        text.includes('сникер')) {
       return 'footwear';
     }
-    if (text.includes('куртк') || text.includes('jacket') || text.includes('пуховик') || text.includes('down') || text.includes('бомбер') || text.includes('ветровк') || text.includes('parka') || text.includes('coat') || text.includes('пальто') || p.category === 'jacket') {
+
+    // 2. Hoodies & Sweats
+    if (text.includes('худи') || text.includes('hoodie') || text.includes('толстовк') ||
+        text.includes('свитшот') || text.includes('sweatshirt') || text.includes('зипк') ||
+        text.includes('zip') || text.includes('crewneck') || text.includes('худи-зип')) {
+      return 'hoodie';
+    }
+
+    // 3. Jackets & Outerwear
+    if (text.includes('куртк') || text.includes('jacket') || text.includes('пуховик') ||
+        text.includes('down') || text.includes('бомбер') || text.includes('ветровк') ||
+        text.includes('parka') || text.includes('coat') || text.includes('пальто') ||
+        text.includes('анорак') || text.includes('жилет') || text.includes('vest')) {
       return 'jacket';
     }
-    if (text.includes('штан') || text.includes('брюк') || text.includes('джинс') || text.includes('jeans') || text.includes('pants') || text.includes('trousers') || text.includes('шорт') || text.includes('cargo') || text.includes('карго')) {
+
+    // 4. Pants & Jeans & Shorts
+    if (text.includes('штан') || text.includes('брюк') || text.includes('джинс') ||
+        text.includes('jeans') || text.includes('pants') || text.includes('trousers') ||
+        text.includes('шорт') || text.includes('shorts') || text.includes('cargo') ||
+        text.includes('карго') || text.includes('sweatpants') || text.includes('джоггер')) {
       return 'pants';
     }
-    if (text.includes('сумк') || text.includes('bag') || text.includes('ремень') || text.includes('belt') || text.includes('очки') || text.includes('glasses') || text.includes('кепк') || text.includes('cap') || text.includes('шапк') || text.includes('beanie') || text.includes('шарф') || text.includes('scarf') || text.includes('часы') || text.includes('watch') || text.includes('кошелек') || text.includes('wallet') || text.includes('украшен') || text.includes('браслет') || text.includes('кольцо') || text.includes('подвеск') || text.includes('цепь') || p.category === 'accessories') {
+
+    // 5. T-Shirts & Tops
+    if (text.includes('футболк') || text.includes('t-shirt') || text.includes('tee') ||
+        text.includes('лонгслив') || text.includes('майк') || text.includes('longsleeve') ||
+        text.includes('поло') || text.includes('polo')) {
+      return 'tshirt';
+    }
+
+    // 6. Accessories & Bags
+    if (p.category === 'accessories' ||
+        text.includes('сумк') || text.includes('bag') || text.includes('рюкзак') ||
+        text.includes('backpack') || text.includes('ремень') || text.includes('belt') ||
+        text.includes('очки') || text.includes('glasses') || text.includes('кепк') ||
+        text.includes('cap') || text.includes('шапк') || text.includes('beanie') ||
+        text.includes('шарф') || text.includes('scarf') || text.includes('часы') ||
+        text.includes('watch') || text.includes('кошелек') || text.includes('wallet') ||
+        text.includes('украшен') || text.includes('браслет') || text.includes('кольцо') ||
+        text.includes('подвеск') || text.includes('цепь') || text.includes('игрушк') ||
+        text.includes('коврик') || text.includes('toy') || text.includes('аксессуар')) {
       return 'accessories';
     }
-    return p.category === 'shoes' ? 'footwear' : (p.category === 'hoodie' ? 'hoodie' : 'accessories');
+
+    if (p.category === 'clothing') return 'tshirt';
+    return 'accessories';
+  }
+
+  function matchProductSize(p, targetSize) {
+    if (!targetSize || targetSize === 'all') return true;
+    const sizes = (Array.isArray(p.sizes) ? p.sizes : [p.sizes]).filter(Boolean).map(s => String(s).toUpperCase().trim());
+    if (targetSize === 'onesize') {
+      return sizes.some(s => s.includes('ONE') || s.includes('УНИВЕРС') || s.includes('38Х36') || s.includes('90X40'));
+    }
+    if (targetSize === 'shoes_38_40') {
+      return sizes.some(s => s.includes('38') || s.includes('39') || s.includes('40'));
+    }
+    if (targetSize === 'shoes_41_42') {
+      return sizes.some(s => s.includes('41') || s.includes('42'));
+    }
+    if (targetSize === 'shoes_43_45') {
+      return sizes.some(s => s.includes('43') || s.includes('44') || s.includes('45'));
+    }
+    return sizes.some(s => {
+      if (s === targetSize) return true;
+      const words = s.split(/[\s(/]+/).map(w => w.trim());
+      return words.includes(targetSize);
+    });
+  }
+
+  function matchProductPrice(p, pricePreset, minVal, maxVal) {
+    const price = Number(p.price || p.basePriceRub) || 0;
+    if (minVal !== null && !isNaN(minVal) && minVal > 0 && price < minVal) return false;
+    if (maxVal !== null && !isNaN(maxVal) && maxVal > 0 && price > maxVal) return false;
+
+    if (!pricePreset || pricePreset === 'all') return true;
+    if (pricePreset === 'under_15k') return price < 15000;
+    if (pricePreset === '15k_30k') return price >= 15000 && price <= 30000;
+    if (pricePreset === '30k_50k') return price >= 30000 && price <= 50000;
+    if (pricePreset === 'over_50k') return price > 50000;
+    return true;
   }
 
   function getStoredProducts() {
@@ -117,6 +198,11 @@
     activeRegion: 'all',
     activeCategory: 'all',
     activeSubcat: 'all',
+    activeSize: 'all',
+    activePricePreset: 'all',
+    priceMin: null,
+    priceMax: null,
+    sortOrder: 'newest',
     searchQuery: '',
     selectedProduct: null,
     selectedSize: '',
@@ -131,9 +217,16 @@
     stockBtns: document.querySelectorAll('.stock-tab-btn'),
     countStockAll: document.getElementById('count-stock-all'),
     countStockInstock: document.getElementById('count-stock-instock'),
+    countStockTransitSpb: document.getElementById('count-stock-transit-spb'),
+    countStockTransitIrk: document.getElementById('count-stock-transit-irk'),
     countStockPreorder: document.getElementById('count-stock-preorder'),
     regionBtns: document.querySelectorAll('[data-filter-type="region"]'),
     categoryBtns: document.querySelectorAll('[data-filter-type="category"]'),
+    sizeBtns: document.querySelectorAll('[data-filter-type="size"]'),
+    priceBtns: document.querySelectorAll('[data-filter-type="price"]'),
+    sortBtns: document.querySelectorAll('[data-filter-type="sort"]'),
+    priceMinInput: document.getElementById('price-min-input'),
+    priceMaxInput: document.getElementById('price-max-input'),
 
     openAddProductBtn: document.getElementById('open-add-product-btn'),
     resetCatalogBtn: document.getElementById('reset-catalog-btn'),
@@ -170,8 +263,10 @@
 
   function updateStockTabCounts() {
     if (el.countStockAll) el.countStockAll.textContent = PRODUCTS.length;
-    if (el.countStockInstock) el.countStockInstock.textContent = PRODUCTS.filter(p => p.stockType === 'instock').length;
-    if (el.countStockPreorder) el.countStockPreorder.textContent = PRODUCTS.filter(p => p.stockType === 'preorder').length;
+    if (el.countStockInstock) el.countStockInstock.textContent = PRODUCTS.filter(p => p.stockType === 'instock' || p.region === 'spb').length;
+    if (el.countStockTransitSpb) el.countStockTransitSpb.textContent = PRODUCTS.filter(p => p.stockType === 'transit_spb' || p.region === 'transit_spb').length;
+    if (el.countStockTransitIrk) el.countStockTransitIrk.textContent = PRODUCTS.filter(p => p.stockType === 'transit_irkutsk' || p.region === 'transit_irkutsk').length;
+    if (el.countStockPreorder) el.countStockPreorder.textContent = PRODUCTS.filter(p => p.stockType === 'preorder' || p.region === 'china' || (!p.stockType && p.region !== 'spb')).length;
   }
 
   function renderProducts() {
@@ -179,10 +274,29 @@
     updateStockTabCounts();
 
     const filtered = PRODUCTS.filter(p => {
-      const matchStock = state.activeStock === 'all' || p.stockType === state.activeStock;
-      const matchRegion = state.activeRegion === 'all' || p.region === state.activeRegion || (state.activeRegion === 'spb' && p.stockType === 'instock');
-      const matchCategory = state.activeCategory === 'all' || p.category === state.activeCategory;
-      const matchSubcat = state.activeSubcat === 'all' || getProductSubcategory(p) === state.activeSubcat;
+      const matchStock = state.activeStock === 'all'
+        || (state.activeStock === 'instock' && (p.stockType === 'instock' || p.region === 'spb'))
+        || (state.activeStock === 'transit_spb' && (p.stockType === 'transit_spb' || p.region === 'transit_spb'))
+        || (state.activeStock === 'transit_irkutsk' && (p.stockType === 'transit_irkutsk' || p.region === 'transit_irkutsk'))
+        || (state.activeStock === 'preorder' && (p.stockType === 'preorder' || (!p.stockType && p.region !== 'spb')));
+
+      const matchRegion = state.activeRegion === 'all'
+        || p.region === state.activeRegion
+        || (state.activeRegion === 'spb' && (p.stockType === 'instock' || p.region === 'spb'))
+        || (state.activeRegion === 'japan' && (p.region === 'japan' || (p.regionLabel && p.regionLabel.includes('JP'))))
+        || (state.activeRegion === 'china' && (p.region === 'china' || p.region === 'transit_spb' || (p.regionLabel && p.regionLabel.includes('CN'))))
+        || (state.activeRegion === 'global' && (p.region === 'global' || p.region === 'europe'));
+
+      const itemSubcat = getProductSubcategory(p);
+      const matchCategory = state.activeCategory === 'all'
+        || itemSubcat === state.activeCategory
+        || (state.activeCategory === 'footwear' && (p.category === 'footwear' || p.category === 'shoes'))
+        || (state.activeCategory === 'accessories' && p.category === 'accessories');
+
+      const matchSubcat = state.activeSubcat === 'all' || itemSubcat === state.activeSubcat;
+      const matchSize = matchProductSize(p, state.activeSize);
+      const matchPrice = matchProductPrice(p, state.activePricePreset, state.priceMin, state.priceMax);
+
       const q = (state.searchQuery || '').toLowerCase().trim();
       let matchSearch = true;
       if (q) {
@@ -191,6 +305,7 @@
           p.brand,
           p.sku,
           p.itemType,
+          itemSubcat,
           ...(Array.isArray(p.subcategories) ? p.subcategories : [p.subcategories]),
           ...(Array.isArray(p.tags) ? p.tags : []),
           p.partner,
@@ -205,8 +320,18 @@
         });
       }
       
-      return matchStock && matchRegion && matchCategory && matchSubcat && matchSearch;
+      return matchStock && matchRegion && matchCategory && matchSubcat && matchSize && matchPrice && matchSearch;
     });
+
+    // Apply Sorting
+    if (state.sortOrder === 'price_asc') {
+      filtered.sort((a, b) => (Number(a.price || a.basePriceRub) || 0) - (Number(b.price || b.basePriceRub) || 0));
+    } else if (state.sortOrder === 'price_desc') {
+      filtered.sort((a, b) => (Number(b.price || b.basePriceRub) || 0) - (Number(a.price || a.basePriceRub) || 0));
+    } else {
+      // Default: Newest by timestamp
+      filtered.sort((a, b) => getProductTimestamp(b) - getProductTimestamp(a));
+    }
 
     if (el.resultsCount) {
       el.resultsCount.textContent = `Показано ${filtered.length} из ${PRODUCTS.length} позиций`;
@@ -435,6 +560,66 @@
       });
     });
 
+    // Size filter chips
+    if (el.sizeBtns) {
+      el.sizeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          el.sizeBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          state.activeSize = btn.dataset.filterVal || 'all';
+          renderProducts();
+        });
+      });
+    }
+
+    // Price range preset chips
+    if (el.priceBtns) {
+      el.priceBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          el.priceBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          state.activePricePreset = btn.dataset.filterVal || 'all';
+          // Clear custom inputs when preset is clicked
+          if (el.priceMinInput) el.priceMinInput.value = '';
+          if (el.priceMaxInput) el.priceMaxInput.value = '';
+          state.priceMin = null;
+          state.priceMax = null;
+          renderProducts();
+        });
+      });
+    }
+
+    // Custom Min / Max Price Inputs
+    if (el.priceMinInput) {
+      el.priceMinInput.addEventListener('input', (e) => {
+        const val = parseFloat(e.target.value);
+        state.priceMin = !isNaN(val) && val >= 0 ? val : null;
+        if (el.priceBtns) el.priceBtns.forEach(b => b.classList.remove('active'));
+        renderProducts();
+      });
+    }
+
+    if (el.priceMaxInput) {
+      el.priceMaxInput.addEventListener('input', (e) => {
+        const val = parseFloat(e.target.value);
+        state.priceMax = !isNaN(val) && val >= 0 ? val : null;
+        if (el.priceBtns) el.priceBtns.forEach(b => b.classList.remove('active'));
+        renderProducts();
+      });
+    }
+
+    // Sorting buttons
+    if (el.sortBtns) {
+      el.sortBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          el.sortBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          state.sortOrder = btn.dataset.filterVal || 'newest';
+          renderProducts();
+        });
+      });
+    }
+
     if (el.searchInput) {
       el.searchInput.addEventListener('input', (e) => {
         state.searchQuery = e.target.value.trim();
@@ -468,13 +653,33 @@
       }
     } catch (e) {}
 
+    // Reset Catalog Filters Button
     if (el.resetCatalogBtn) {
       el.resetCatalogBtn.addEventListener('click', () => {
-        if (confirm('Сбросить каталог к оригинальным позициям?')) {
-          localStorage.removeItem('sasbov_products_v2');
-          PRODUCTS = getStoredProducts();
-          renderProducts();
-        }
+        state.activeStock = 'all';
+        state.activeRegion = 'all';
+        state.activeCategory = 'all';
+        state.activeSubcat = 'all';
+        state.activeSize = 'all';
+        state.activePricePreset = 'all';
+        state.priceMin = null;
+        state.priceMax = null;
+        state.sortOrder = 'newest';
+        state.searchQuery = '';
+
+        if (el.searchInput) el.searchInput.value = '';
+        if (el.priceMinInput) el.priceMinInput.value = '';
+        if (el.priceMaxInput) el.priceMaxInput.value = '';
+
+        el.stockBtns.forEach(b => b.classList.toggle('active', b.dataset.stockFilter === 'all'));
+        el.regionBtns.forEach(b => b.classList.toggle('active', b.dataset.filterVal === 'all'));
+        el.categoryBtns.forEach(b => b.classList.toggle('active', b.dataset.filterVal === 'all'));
+        if (el.sizeBtns) el.sizeBtns.forEach(b => b.classList.toggle('active', b.dataset.filterVal === 'all'));
+        if (el.priceBtns) el.priceBtns.forEach(b => b.classList.toggle('active', b.dataset.filterVal === 'all'));
+        if (el.sortBtns) el.sortBtns.forEach(b => b.classList.toggle('active', b.dataset.filterVal === 'newest'));
+        subcatChips.forEach(b => b.classList.remove('active'));
+
+        renderProducts();
       });
     }
   }

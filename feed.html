@@ -46,13 +46,16 @@
     </a>
 
     <!-- Quick Feed Filter Chips -->
-    <div class="feed-filter-bar">
-      <button type="button" class="feed-chip random-chip active" id="feed-random-toggle" title="Перемешать карточки в случайный порядок без повторов"> МИКС: ВКЛ</button>
-      <button type="button" class="feed-chip active" data-feed-filter="all">ВСЕ</button>
-      <button type="button" class="feed-chip instock" data-feed-filter="instock"> В НАЛИЧИИ (СПБ)</button>
-      <button type="button" class="feed-chip" data-feed-filter="preorder">ПРЕДЗАКАЗ</button>
-      <button type="button" class="feed-chip" data-feed-filter="japan">ЯПОНИЯ [JP]</button>
-      <button type="button" class="feed-chip" data-feed-filter="china">КИТАЙ [CN]</button>
+    <div class="feed-filter-bar" id="feed-filter-bar" aria-label="Фильтры категорий лукбука">
+      <button type="button" class="feed-chip random-chip active" id="feed-random-toggle" title="Перемешать карточки в случайный порядок без повторов">🎲 МИКС: ВКЛ</button>
+      <button type="button" class="feed-chip active" data-feed-cat="all">ВСЕ (<span id="feed-count-all">100</span>)</button>
+      <button type="button" class="feed-chip" data-feed-cat="hoodie">ХУДИ (<span id="feed-count-hoodie">14</span>)</button>
+      <button type="button" class="feed-chip" data-feed-cat="tshirt">ФУТБОЛКИ (<span id="feed-count-tshirt">31</span>)</button>
+      <button type="button" class="feed-chip" data-feed-cat="footwear">ОБУВЬ (<span id="feed-count-footwear">17</span>)</button>
+      <button type="button" class="feed-chip" data-feed-cat="jacket">КУРТКИ (<span id="feed-count-jacket">13</span>)</button>
+      <button type="button" class="feed-chip" data-feed-cat="pants">ШТАНЫ (<span id="feed-count-pants">8</span>)</button>
+      <button type="button" class="feed-chip" data-feed-cat="accessories">АКСЕССУАРЫ (<span id="feed-count-accessories">17</span>)</button>
+      <button type="button" class="feed-chip instock" data-feed-stock="instock" id="feed-stock-instock">● В НАЛИЧИИ В СПБ</button>
     </div>
 
     <div style="display: flex; gap: 0.5rem; align-items: center;">
