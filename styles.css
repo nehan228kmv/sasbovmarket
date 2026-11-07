@@ -5630,14 +5630,7 @@ footer,
 }
 
 .showcase-badge {
-  font-family: var(--font-mono, monospace);
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  color: #00f0ff;
-  font-weight: 700;
-  text-transform: uppercase;
-  display: inline-block;
-  margin-bottom: 6px;
+  display: none !important;
 }
 
 .showcase-title {
@@ -5657,7 +5650,7 @@ footer,
 
 .showcase-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1.25rem;
   margin-bottom: 1.5rem;
 }
