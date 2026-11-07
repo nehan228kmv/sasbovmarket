@@ -556,12 +556,7 @@ button.btn-primary:hover *,
 }
 
 .hero-meta {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  margin: 0 auto 1.5rem auto;
-  flex-wrap: wrap;
+  display: none !important;
 }
 
 .badge-hud {
@@ -4869,18 +4864,22 @@ button.btn-primary:hover *,
 }
 
 .article-author-avatar {
-  width: 48px;
-  height: 48px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
   background: var(--accent-cyan);
-  color: #000;
-  font-family: var(--font-display);
-  font-weight: 800;
+  color: #000000;
+  font-family: var(--font-body, -apple-system, sans-serif);
+  font-weight: 900;
+  font-size: 1.25rem;
+  line-height: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
   flex-shrink: 0;
+  text-align: center;
+  overflow: hidden;
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.25);
 }
 
 .article-author-name {
