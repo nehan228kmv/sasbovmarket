@@ -349,7 +349,6 @@
               <div class="slot-bottom-row">
                 <div class="slot-telemetry-left">
                   <span class="slot-sku">${product.sku}</span>
-                  <span class="slot-timer">[TIME: ${product.closingIn}]</span>
                 </div>
               </div>
             </div>
@@ -671,7 +670,7 @@
 
       el.modalRegionTag.className = `origin-badge ${product.badgeClass}`;
       el.modalRegionTag.textContent = product.regionLabel;
-      el.modalItemSku.textContent = `АРТИКУЛ: ${product.sku} // ДЕДЛАЙН: ${product.closingIn}`;
+      el.modalItemSku.textContent = `АРТИКУЛ: ${product.sku} // ГАРАНТИЯ ОРИГИНАЛА`;
       if (el.modalSubmitTgBtn) {
         el.modalSubmitTgBtn.className = 'btn btn-primary btn-block';
         el.modalSubmitTgBtn.innerHTML = `<span>ОФОРМИТЬ В TELEGRAM</span>`;

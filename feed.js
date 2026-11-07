@@ -374,7 +374,6 @@
             <div class="reel-info-overlay">
               <div class="reel-origin-row">
                 ${product.stockType === 'instock' ? '<span class="reel-origin-badge badge-instock">🟢 В НАЛИЧИИ // СПБ</span>' : (product.region === 'transit_spb' || product.stockType === 'transit_spb') ? '<span class="reel-origin-badge badge-transit-spb">✈ В ПУТИ // СПБ</span>' : (product.region === 'transit_irkutsk' || product.stockType === 'transit_irkutsk') ? '<span class="reel-origin-badge badge-transit-irk">✈ В ПУТИ // ИРКУТСК</span>' : ('<span class="reel-origin-badge ' + product.badgeClass + '">' + (product.region === 'japan' ? 'JAPAN [JP]' : product.region === 'global' ? 'GLOBAL [GLB]' : 'CHINA [CN]') + '</span>')}
-                <span class="reel-deadline">[TIME: ${product.closingIn}]</span>
               </div>
 
               <div style="display: flex; align-items: center; gap: 8px; margin-top: 4px;">
