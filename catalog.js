@@ -430,10 +430,26 @@
         ? product.images.filter(Boolean)
         : (product.image ? [product.image] : []);
 
-      const isInstock = product.stockType === 'instock';
-      const originBadge = isInstock 
-        ? `<span class="origin-badge badge-instock">В НАЛИЧИИ // СПБ</span>`
-        : `<span class="origin-badge ${product.badgeClass}">${product.regionLabel}</span>`;
+      const isInstock = product.stockType === 'instock' || product.region === 'spb';
+      const isTransitSpb = product.stockType === 'transit_spb' || product.region === 'transit_spb';
+      const isTransitIrk = product.stockType === 'transit_irkutsk' || product.region === 'transit_irkutsk';
+
+      let badgesHtml = '';
+      if (isInstock) {
+        badgesHtml = '<span class="origin-badge badge-instock">🟢 В НАЛИЧИИ // СПБ</span>';
+      } else if (isTransitSpb) {
+        badgesHtml = '<span class="origin-badge badge-transit-spb">✈ В ПУТИ // СПБ</span>';
+      } else if (isTransitIrk) {
+        badgesHtml = '<span class="origin-badge badge-transit-irk">✈ В ПУТИ // ИРКУТСК</span>';
+      } else {
+        const originLabel = product.region === 'japan' 
+          ? 'JAPAN [JP]' 
+          : (product.region === 'global' || product.region === 'europe' ? 'GLOBAL [GLB]' : 'CHINA [CN]');
+        badgesHtml = `
+          <span class="origin-badge ${product.badgeClass}">${originLabel}</span>
+          <span class="drop-status-pill">ПРЕДЗАКАЗ</span>
+        `;
+      }
 
       const partnerTag = isInstock
         ? `<a href="https://yandex.ru/maps/org/balkonskiy_stor/109683827425/?indoorLevel=1&ll=30.358538%2C59.932829&z=17" target="_blank" rel="noopener noreferrer" class="partner-store-pill" title="Открыть Balkonsky Store на Яндекс Картах">СПБ // BALKONSKY STORE (Невский просп., 110В ↗)</a>`
@@ -507,8 +523,7 @@
 
             <div class="slot-inner-content">
               <div class="slot-top-row">
-                ${originBadge}
-                <span class="drop-status-pill">${product.dropStatus}</span>
+                ${badgesHtml}
               </div>
 
               <div class="slot-bottom-row">
