@@ -132,7 +132,7 @@ const server = http.createServer(async (req, res) => {
   const pathname = parsedUrl.pathname;
 
   // 1. GET /api/products
-  if (req.method === 'GET' && pathname === '/api/products') {
+  if ((req.method === 'GET' || req.method === 'HEAD') && pathname === '/api/products') {
     try {
       let products = [];
       if (fs.existsSync(PRODUCTS_FILE)) {
@@ -165,13 +165,19 @@ const server = http.createServer(async (req, res) => {
         .filter(p => p && p.id && !p.deletedAt && !p.archived)
         .sort((a, b) => getTs(b) - getTs(a));
 
-      res.writeHead(200, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({
+      const payload = JSON.stringify({
         success: true,
         source: 'local_database_disk',
         count: products.length,
         data: products
-      }));
+      });
+
+      res.writeHead(200, {
+        'Content-Type': 'application/json',
+        'Content-Length': Buffer.byteLength(payload)
+      });
+      if (req.method === 'HEAD') return res.end();
+      res.end(payload);
     } catch (e) {
       res.writeHead(500, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ success: false, error: e.message }));
