@@ -1,129 +1,1996 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <!-- Core Static Pages -->
   <url>
     <loc>https://sasbov.online/</loc>
-    <lastmod>2026-11-04</lastmod>
+    <lastmod>2026-11-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://sasbov.online/catalog.html</loc>
-    <lastmod>2026-11-04</lastmod>
+    <loc>https://sasbov.online/catalog</loc>
+    <lastmod>2026-11-08</lastmod>
     <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://sasbov.online/blog</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://sasbov.online/product.html</loc>
-    <lastmod>2026-11-04</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.88</priority>
+    <loc>https://sasbov.online/faq</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sasbov.online/blog.html</loc>
-    <lastmod>2026-11-04</lastmod>
+    <loc>https://sasbov.online/feed</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sasbov.online/blog-arcteryx-gorpcore</loc>
+    <lastmod>2026-11-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://sasbov.online/blog-poizon-guide.html</loc>
-    <lastmod>2026-11-04</lastmod>
+    <loc>https://sasbov.online/blog-celebrity-balkonsky</loc>
+    <lastmod>2026-11-08</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.75</priority>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://sasbov.online/blog-stone-island-legit-check.html</loc>
-    <lastmod>2026-11-04</lastmod>
+    <loc>https://sasbov.online/blog-corteiz</loc>
+    <lastmod>2026-11-08</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.75</priority>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://sasbov.online/blog-custom-preorder.html</loc>
-    <lastmod>2026-11-04</lastmod>
+    <loc>https://sasbov.online/blog-custom-preorder</loc>
+    <lastmod>2026-11-08</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.75</priority>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://sasbov.online/faq.html</loc>
-    <lastmod>2026-11-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://sasbov.online/feed.html</loc>
-    <lastmod>2026-11-04</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.65</priority>
-  </url>
-  <url>
-    <loc>https://sasbov.online/blog-rick-owens.html</loc>
-    <lastmod>2026-11-04</lastmod>
+    <loc>https://sasbov.online/blog-denim-tears</loc>
+    <lastmod>2026-11-08</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://sasbov.online/blog-corteiz.html</loc>
-    <lastmod>2026-11-04</lastmod>
+    <loc>https://sasbov.online/blog-gallery-dept</loc>
+    <lastmod>2026-11-08</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://sasbov.online/blog-sp5der.html</loc>
-    <lastmod>2026-11-04</lastmod>
+    <loc>https://sasbov.online/blog-garagesale-spb</loc>
+    <lastmod>2026-11-08</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://sasbov.online/blog-hellstar.html</loc>
-    <lastmod>2026-11-04</lastmod>
+    <loc>https://sasbov.online/blog-hellstar</loc>
+    <lastmod>2026-11-08</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://sasbov.online/blog-stussy.html</loc>
-    <lastmod>2026-11-04</lastmod>
+    <loc>https://sasbov.online/blog-kith-ny</loc>
+    <lastmod>2026-11-08</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://sasbov.online/blog-gallery-dept.html</loc>
-    <lastmod>2026-11-04</lastmod>
+    <loc>https://sasbov.online/blog-poizon-guide</loc>
+    <lastmod>2026-11-08</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://sasbov.online/blog-arcteryx-gorpcore.html</loc>
-    <lastmod>2026-11-04</lastmod>
+    <loc>https://sasbov.online/blog-rick-owens</loc>
+    <lastmod>2026-11-08</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://sasbov.online/blog-denim-tears.html</loc>
-    <lastmod>2026-11-04</lastmod>
+    <loc>https://sasbov.online/blog-sp5der</loc>
+    <lastmod>2026-11-08</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://sasbov.online/blog-vetements.html</loc>
-    <lastmod>2026-11-04</lastmod>
+    <loc>https://sasbov.online/blog-stone-island-legit-check</loc>
+    <lastmod>2026-11-08</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://sasbov.online/blog-kith-ny.html</loc>
-    <lastmod>2026-11-04</lastmod>
+    <loc>https://sasbov.online/blog-stussy</loc>
+    <lastmod>2026-11-08</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://sasbov.online/blog-garagesale-spb.html</loc>
-    <lastmod>2026-11-04</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <loc>https://sasbov.online/blog-vetements</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://sasbov.online/blog-celebrity-balkonsky.html</loc>
-    <lastmod>2026-11-04</lastmod>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1793898110723</loc>
+    <lastmod>2026-11-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793898284741_974.jpg</image:loc>
+      <image:title>Stone Island Naslan Light Watro Reflective Down Jacket (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Stone Island Naslan Light Watro Reflective Down Jacket. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793898284864_50.jpg</image:loc>
+      <image:title>Stone Island Naslan Light Watro Reflective Down Jacket (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Stone Island Naslan Light Watro Reflective Down Jacket. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1793875858949</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793875903776_43.jpg</image:loc>
+      <image:title>Uniqlo UNIQLO x KAWS (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Uniqlo UNIQLO x KAWS. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793875903942_416.jpg</image:loc>
+      <image:title>Uniqlo UNIQLO x KAWS (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Uniqlo UNIQLO x KAWS. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1793870980042</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793871026348_812.jpg</image:loc>
+      <image:title>Uniqlo UNIQLO x  SpongeBob SquarePants × Cactus Plant Flea Market (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Uniqlo UNIQLO x  SpongeBob SquarePants × Cactus Plant Flea Market. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793871026541_720.jpg</image:loc>
+      <image:title>Uniqlo UNIQLO x  SpongeBob SquarePants × Cactus Plant Flea Market (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Uniqlo UNIQLO x  SpongeBob SquarePants × Cactus Plant Flea Market. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1793870744092</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793870786173_553.jpg</image:loc>
+      <image:title>Uniqlo UNIQLO x KAWS x Sesame Street (Elmo) (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Uniqlo UNIQLO x KAWS x Sesame Street (Elmo). Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793870786352_114.jpg</image:loc>
+      <image:title>Uniqlo UNIQLO x KAWS x Sesame Street (Elmo) (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Uniqlo UNIQLO x KAWS x Sesame Street (Elmo). Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1793869984109</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793870023890_123.jpg</image:loc>
+      <image:title>Uniqlo UNIQLO x KAWS x Andy Warhol (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Uniqlo UNIQLO x KAWS x Andy Warhol. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793870024070_972.jpg</image:loc>
+      <image:title>Uniqlo UNIQLO x KAWS x Andy Warhol (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Uniqlo UNIQLO x KAWS x Andy Warhol. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1793856679512</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793856699128_8.jpg</image:loc>
+      <image:title>Uniqlo KAWS x Uniqlo x Sesame Street (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Uniqlo KAWS x Uniqlo x Sesame Street. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793856699274_268.jpg</image:loc>
+      <image:title>Uniqlo KAWS x Uniqlo x Sesame Street (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Uniqlo KAWS x Uniqlo x Sesame Street. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1793854867530</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793854903256_383.jpg</image:loc>
+      <image:title>Stussy Basic Stussy Pigment Dyed Tee (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Stussy Basic Stussy Pigment Dyed Tee. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793854903404_344.jpg</image:loc>
+      <image:title>Stussy Basic Stussy Pigment Dyed Tee (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Stussy Basic Stussy Pigment Dyed Tee. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1793853596298</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793853646313_461.jpg</image:loc>
+      <image:title>Uniqlo Uniqlo x KAWS (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Uniqlo Uniqlo x KAWS. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793853646549_539.jpg</image:loc>
+      <image:title>Uniqlo Uniqlo x KAWS (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Uniqlo Uniqlo x KAWS. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1793852870177</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793853078212_614.jpg</image:loc>
+      <image:title>Uniqlo Uniqlo x KAWS (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Uniqlo Uniqlo x KAWS. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793853078367_730.jpg</image:loc>
+      <image:title>Uniqlo Uniqlo x KAWS (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Uniqlo Uniqlo x KAWS. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793853078524_46.jpg</image:loc>
+      <image:title>Uniqlo Uniqlo x KAWS (фото 3) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Uniqlo Uniqlo x KAWS. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1793805035257</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793805081402_56.jpg</image:loc>
+      <image:title>BE@RBRICK Medicom Toy BE@RBRICK (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>BE@RBRICK Medicom Toy BE@RBRICK. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1793804722928</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793804837523_442.jpg</image:loc>
+      <image:title>Sprayground Mochila Sprayground shark (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Sprayground Mochila Sprayground shark. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793804837674_591.jpg</image:loc>
+      <image:title>Sprayground Mochila Sprayground shark (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Sprayground Mochila Sprayground shark. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1793804642884</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793804674365_86.jpg</image:loc>
+      <image:title>Uniqlo Uniqlo x kaws (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Uniqlo Uniqlo x kaws. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793804674643_673.jpg</image:loc>
+      <image:title>Uniqlo Uniqlo x kaws (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Uniqlo Uniqlo x kaws. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1793804546567</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793804576000_774.jpg</image:loc>
+      <image:title>Cav Empt Cav Empt MD Ascender T (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Cav Empt Cav Empt MD Ascender T. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793804576182_931.jpg</image:loc>
+      <image:title>Cav Empt Cav Empt MD Ascender T (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Cav Empt Cav Empt MD Ascender T. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793804576312_890.jpg</image:loc>
+      <image:title>Cav Empt Cav Empt MD Ascender T (фото 3) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Cav Empt Cav Empt MD Ascender T. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1793804473575</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793804494300_395.jpg</image:loc>
+      <image:title>Uniqlo Uniqlo x Cactus Plant Flea Market x SpongeBob SquarePants (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Uniqlo Uniqlo x Cactus Plant Flea Market x SpongeBob SquarePants. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793804494549_609.jpg</image:loc>
+      <image:title>Uniqlo Uniqlo x Cactus Plant Flea Market x SpongeBob SquarePants (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Uniqlo Uniqlo x Cactus Plant Flea Market x SpongeBob SquarePants. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1793804257130</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793804421392_262.jpg</image:loc>
+      <image:title>Cactus Plant Flea Market Ye must be born again (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Cactus Plant Flea Market Ye must be born again. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793804421567_269.jpg</image:loc>
+      <image:title>Cactus Plant Flea Market Ye must be born again (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Cactus Plant Flea Market Ye must be born again. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1793804153708</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793804205232_640.jpg</image:loc>
+      <image:title>Uniqlo UNIQLO x KAWS (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Uniqlo UNIQLO x KAWS. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793804205477_49.jpg</image:loc>
+      <image:title>Uniqlo UNIQLO x KAWS (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Uniqlo UNIQLO x KAWS. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1793804036464</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793804111434_570.jpg</image:loc>
+      <image:title>A Bathing Ape A Bathing Ape (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>A Bathing Ape A Bathing Ape. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1793803943355</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793803992409_911.jpg</image:loc>
+      <image:title>Uniqlo Uniqlo UT x Cactus Plant Flea Market (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Uniqlo Uniqlo UT x Cactus Plant Flea Market. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793803992673_462.jpg</image:loc>
+      <image:title>Uniqlo Uniqlo UT x Cactus Plant Flea Market (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Uniqlo Uniqlo UT x Cactus Plant Flea Market. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793803992900_345.jpg</image:loc>
+      <image:title>Uniqlo Uniqlo UT x Cactus Plant Flea Market (фото 3) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Uniqlo Uniqlo UT x Cactus Plant Flea Market. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793803993114_949.jpg</image:loc>
+      <image:title>Uniqlo Uniqlo UT x Cactus Plant Flea Market (фото 4) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Uniqlo Uniqlo UT x Cactus Plant Flea Market. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1793803752580</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793803878697_991.jpg</image:loc>
+      <image:title>Nike Supreme x NBA x Nike Air Force 1 Mid ‘07 (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Nike Supreme x NBA x Nike Air Force 1 Mid ‘07. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793803878898_342.jpg</image:loc>
+      <image:title>Nike Supreme x NBA x Nike Air Force 1 Mid ‘07 (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Nike Supreme x NBA x Nike Air Force 1 Mid ‘07. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793803879241_204.jpg</image:loc>
+      <image:title>Nike Supreme x NBA x Nike Air Force 1 Mid ‘07 (фото 3) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Nike Supreme x NBA x Nike Air Force 1 Mid ‘07. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793803879634_471.jpg</image:loc>
+      <image:title>Nike Supreme x NBA x Nike Air Force 1 Mid ‘07 (фото 4) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Nike Supreme x NBA x Nike Air Force 1 Mid ‘07. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1793803688841</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793803725921_666.jpg</image:loc>
+      <image:title>Uniqlo Uniqlo x KAWS (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Uniqlo Uniqlo x KAWS. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793803726219_408.jpg</image:loc>
+      <image:title>Uniqlo Uniqlo x KAWS (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Uniqlo Uniqlo x KAWS. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1793803583143</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793803630821_944.jpg</image:loc>
+      <image:title>Uniqlo UNIQLO x Cactus Plant Flea Market × SpongeBob SquarePants (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Uniqlo UNIQLO x Cactus Plant Flea Market × SpongeBob SquarePants. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793803631031_151.jpg</image:loc>
+      <image:title>Uniqlo UNIQLO x Cactus Plant Flea Market × SpongeBob SquarePants (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Uniqlo UNIQLO x Cactus Plant Flea Market × SpongeBob SquarePants. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793803631146_828.jpg</image:loc>
+      <image:title>Uniqlo UNIQLO x Cactus Plant Flea Market × SpongeBob SquarePants (фото 3) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Uniqlo UNIQLO x Cactus Plant Flea Market × SpongeBob SquarePants. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793803631522_723.jpg</image:loc>
+      <image:title>Uniqlo UNIQLO x Cactus Plant Flea Market × SpongeBob SquarePants (фото 4) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Uniqlo UNIQLO x Cactus Plant Flea Market × SpongeBob SquarePants. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1793803338548</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793803365601_195.jpg</image:loc>
+      <image:title>Uniqlo UNIQLO x Cactus Plant Flea Market × SpongeBob SquarePants (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Uniqlo UNIQLO x Cactus Plant Flea Market × SpongeBob SquarePants. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793803365768_161.jpg</image:loc>
+      <image:title>Uniqlo UNIQLO x Cactus Plant Flea Market × SpongeBob SquarePants (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Uniqlo UNIQLO x Cactus Plant Flea Market × SpongeBob SquarePants. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1793802970355</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793803232558_51.jpg</image:loc>
+      <image:title>Uniqlo Uniqlo x KAWS x Sesame Street (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Uniqlo Uniqlo x KAWS x Sesame Street. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793803232808_713.jpg</image:loc>
+      <image:title>Uniqlo Uniqlo x KAWS x Sesame Street (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Uniqlo Uniqlo x KAWS x Sesame Street. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1793802893213</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793802932928_770.jpg</image:loc>
+      <image:title>UNIQLO UNIQLO x KAWS (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>UNIQLO UNIQLO x KAWS. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793802933611_379.jpg</image:loc>
+      <image:title>UNIQLO UNIQLO x KAWS (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>UNIQLO UNIQLO x KAWS. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1793796028681</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793796057532_857.jpg</image:loc>
+      <image:title>UNIQLO Uniqlo x KAWS (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>UNIQLO Uniqlo x KAWS. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793796057691_4.jpg</image:loc>
+      <image:title>UNIQLO Uniqlo x KAWS (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>UNIQLO Uniqlo x KAWS. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1793795707588</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793795801171_260.jpg</image:loc>
+      <image:title>UNIQLO Uniqlo UT x KAWS x Andy Warhol (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>UNIQLO Uniqlo UT x KAWS x Andy Warhol. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793795801362_675.jpg</image:loc>
+      <image:title>UNIQLO Uniqlo UT x KAWS x Andy Warhol (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>UNIQLO Uniqlo UT x KAWS x Andy Warhol. Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1793795437454</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793795493758_801.jpg</image:loc>
+      <image:title>UNIQLO PUFFTECH Parka (Warm Padded) (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>UNIQLO PUFFTECH Parka (Warm Padded). Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/item_1793795493874_356.jpg</image:loc>
+      <image:title>UNIQLO PUFFTECH Parka (Warm Padded) (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>UNIQLO PUFFTECH Parka (Warm Padded). Аутентичный релиз, полный комплект, оригинальные бирки. Доступен к заказу на SASBOV MARKET.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792945929449</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792945929449_gal_0_1792945931247_876.jpg</image:loc>
+      <image:title>UNIQLO X KAWS KAWS x Uniqlo UT x Sesame Street (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>KAWS x Uniqlo UT x Sesame Streetс изображением Графа фон Зона (Count von Count) из «Улицы Сезам». Оригинал 100%, любые независимые проверки. Оформляйте предзаказ на ваш размер — привезем в идеале в шоурум или до двери.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792945668335</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792945668335_gal_0_1792945670136_246.jpg</image:loc>
+      <image:title>BAPE BAPE STA Low Triple Black (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>BAPE STA Low Triple Black выполненные из натуральной кожи. Оригинал, гарантия подлинности от SASBOV MARKET. Доступен предзаказ, также отправляем в шоурум Balkonsky Store в СПб.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792945573391</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792945573391_gal_0_1792945575886_267.jpg</image:loc>
+      <image:title>GUCCI GG Supreme Canvas (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальная модель GUCCI GG Supreme Canvas. Высококачественные материалы, аутентичные бирки и внимание к деталям. 100% Authentic. Заводская аутентификация, открыт предзаказ из Китая и Японии под ключ без скрытых доплат.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792945484226</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792945484226_gal_0_1792945487141_4.jpg</image:loc>
+      <image:title>GUCCI GG Supreme (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальная модель GUCCI GG Supreme. Высококачественные материалы, аутентичные бирки и внимание к деталям. Оригинал, любые проверки в Legit App / CheckCheck приветствуются. Доступен предзаказ под ключ со страховкой доставки.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792945382526</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792945382526_gal_0_1792945384414_62.jpg</image:loc>
+      <image:title>STONE ISLAND Maze Camo (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинал STONE ISLAND Maze Camo, легитчек лабораторией Poizon, доставка по РФ</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792396922319</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792396922319_gal_0_1792396923214_30.jpg</image:loc>
+      <image:title>STONE ISLAND Reflective Grid Lamy-TC (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Stone Island Reflective Grid Lamy-TC. Оригинал, любые проверки в Legit App / CheckCheck приветствуются.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792396697852</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792396697852_gal_0_1792396699360_244.jpg</image:loc>
+      <image:title>STONE ISLAND Desert Camo Shorts (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Stone Island Desert Camo Shorts</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792396697852_gal_1_1792396699363_37.jpg</image:loc>
+      <image:title>STONE ISLAND Desert Camo Shorts (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Stone Island Desert Camo Shorts</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792396697852_gal_2_1792396699365_950.jpg</image:loc>
+      <image:title>STONE ISLAND Desert Camo Shorts (фото 3) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Stone Island Desert Camo Shorts</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792396697852_gal_3_1792396699367_663.jpg</image:loc>
+      <image:title>STONE ISLAND Desert Camo Shorts (фото 4) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Stone Island Desert Camo Shorts</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792396647697</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792396647697_gal_0_1792396649652_184.jpg</image:loc>
+      <image:title>GUCCI Ace High Jungle (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальная модель GUCCI Ace High Jungle.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792396647697_gal_1_1792396649654_777.jpg</image:loc>
+      <image:title>GUCCI Ace High Jungle (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальная модель GUCCI Ace High Jungle.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792396647697_gal_2_1792396649657_393.jpg</image:loc>
+      <image:title>GUCCI Ace High Jungle (фото 3) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальная модель GUCCI Ace High Jungle.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792396647697_gal_3_1792396649660_494.jpg</image:loc>
+      <image:title>GUCCI Ace High Jungle (фото 4) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальная модель GUCCI Ace High Jungle.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792396501495</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792396501495_gal_0_1792396503579_576.jpg</image:loc>
+      <image:title>NIKE X OFF-WHITE Air Max &quot;The Ten&quot; (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальные кроссовки OFF-WHITE Air Max &quot;The Ten. Премиальные амортизирующие материалы, анатомическая посадка и узнаваемый силуэт. Оригинал, гарантия подлинности от SASBOV MARKET</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792396501495_gal_1_1792396503581_416.jpg</image:loc>
+      <image:title>NIKE X OFF-WHITE Air Max &quot;The Ten&quot; (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальные кроссовки OFF-WHITE Air Max &quot;The Ten. Премиальные амортизирующие материалы, анатомическая посадка и узнаваемый силуэт. Оригинал, гарантия подлинности от SASBOV MARKET</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792396501495_gal_2_1792396503582_749.jpg</image:loc>
+      <image:title>NIKE X OFF-WHITE Air Max &quot;The Ten&quot; (фото 3) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальные кроссовки OFF-WHITE Air Max &quot;The Ten. Премиальные амортизирующие материалы, анатомическая посадка и узнаваемый силуэт. Оригинал, гарантия подлинности от SASBOV MARKET</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792396501495_gal_3_1792396503584_448.jpg</image:loc>
+      <image:title>NIKE X OFF-WHITE Air Max &quot;The Ten&quot; (фото 4) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальные кроссовки OFF-WHITE Air Max &quot;The Ten. Премиальные амортизирующие материалы, анатомическая посадка и узнаваемый силуэт. Оригинал, гарантия подлинности от SASBOV MARKET</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792396501495_gal_4_1792396503585_397.jpg</image:loc>
+      <image:title>NIKE X OFF-WHITE Air Max &quot;The Ten&quot; (фото 5) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальные кроссовки OFF-WHITE Air Max &quot;The Ten. Премиальные амортизирующие материалы, анатомическая посадка и узнаваемый силуэт. Оригинал, гарантия подлинности от SASBOV MARKET</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792396372147</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792396372147_gal_0_1792396373655_311.jpg</image:loc>
+      <image:title>PRADA X ADIDAS Forum Low Total Black (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Prada x Adidas Forum Low Total Black.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792396372147_gal_1_1792396373656_617.jpg</image:loc>
+      <image:title>PRADA X ADIDAS Forum Low Total Black (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Prada x Adidas Forum Low Total Black.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792396372147_gal_2_1792396373658_232.jpg</image:loc>
+      <image:title>PRADA X ADIDAS Forum Low Total Black (фото 3) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Prada x Adidas Forum Low Total Black.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792396372147_gal_3_1792396373660_827.jpg</image:loc>
+      <image:title>PRADA X ADIDAS Forum Low Total Black (фото 4) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Prada x Adidas Forum Low Total Black.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792396204742</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792396204742_gal_0_1792396206236_474.jpg</image:loc>
+      <image:title>NIKE X OFF-WHITE Air Force 1 Low «Black» (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Nike x Off-White Air Force 1 Low «Black». Оригинальный релиз, верифицирован нашими байерами. Доступен предзаказ, доставка до Санкт-Петербурга и регионов.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792396204742_gal_1_1792396206237_426.jpg</image:loc>
+      <image:title>NIKE X OFF-WHITE Air Force 1 Low «Black» (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Nike x Off-White Air Force 1 Low «Black». Оригинальный релиз, верифицирован нашими байерами. Доступен предзаказ, доставка до Санкт-Петербурга и регионов.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792396204742_gal_2_1792396206238_277.jpg</image:loc>
+      <image:title>NIKE X OFF-WHITE Air Force 1 Low «Black» (фото 3) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Nike x Off-White Air Force 1 Low «Black». Оригинальный релиз, верифицирован нашими байерами. Доступен предзаказ, доставка до Санкт-Петербурга и регионов.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792396204742_gal_3_1792396206239_986.jpg</image:loc>
+      <image:title>NIKE X OFF-WHITE Air Force 1 Low «Black» (фото 4) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Nike x Off-White Air Force 1 Low «Black». Оригинальный релиз, верифицирован нашими байерами. Доступен предзаказ, доставка до Санкт-Петербурга и регионов.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792396204742_gal_4_1792396206241_734.jpg</image:loc>
+      <image:title>NIKE X OFF-WHITE Air Force 1 Low «Black» (фото 5) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Nike x Off-White Air Force 1 Low «Black». Оригинальный релиз, верифицирован нашими байерами. Доступен предзаказ, доставка до Санкт-Петербурга и регионов.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792396204742_gal_5_1792396206242_253.jpg</image:loc>
+      <image:title>NIKE X OFF-WHITE Air Force 1 Low «Black» (фото 6) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Nike x Off-White Air Force 1 Low «Black». Оригинальный релиз, верифицирован нашими байерами. Доступен предзаказ, доставка до Санкт-Петербурга и регионов.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792396204742_gal_6_1792396206243_711.jpg</image:loc>
+      <image:title>NIKE X OFF-WHITE Air Force 1 Low «Black» (фото 7) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Nike x Off-White Air Force 1 Low «Black». Оригинальный релиз, верифицирован нашими байерами. Доступен предзаказ, доставка до Санкт-Петербурга и регионов.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792396128444</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792396128444_gal_0_1792396129292_717.jpg</image:loc>
+      <image:title>CHROME HEARTS Made In Hollywood T-Shirt (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Chrome Hearts Made In Hollywood T-Shirt. Строго оригинал.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792396128444_gal_1_1792396129293_385.jpg</image:loc>
+      <image:title>CHROME HEARTS Made In Hollywood T-Shirt (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Chrome Hearts Made In Hollywood T-Shirt. Строго оригинал.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792396128444_gal_2_1792396129294_925.jpg</image:loc>
+      <image:title>CHROME HEARTS Made In Hollywood T-Shirt (фото 3) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Chrome Hearts Made In Hollywood T-Shirt. Строго оригинал.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792396074853</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792396074853_gal_0_1792396076135_477.jpg</image:loc>
+      <image:title>CAV EMPT Overdye Devide Stand Collar Sweat (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Cav Empt (C.E)  Overdye Devide Stand Collar Sweat. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792396074853_gal_1_1792396076136_734.jpg</image:loc>
+      <image:title>CAV EMPT Overdye Devide Stand Collar Sweat (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Cav Empt (C.E)  Overdye Devide Stand Collar Sweat. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792396074853_gal_2_1792396076136_136.jpg</image:loc>
+      <image:title>CAV EMPT Overdye Devide Stand Collar Sweat (фото 3) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Cav Empt (C.E)  Overdye Devide Stand Collar Sweat. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792396074853_gal_3_1792396076137_514.jpg</image:loc>
+      <image:title>CAV EMPT Overdye Devide Stand Collar Sweat (фото 4) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Cav Empt (C.E)  Overdye Devide Stand Collar Sweat. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792396074853_gal_4_1792396076137_454.jpg</image:loc>
+      <image:title>CAV EMPT Overdye Devide Stand Collar Sweat (фото 5) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Cav Empt (C.E)  Overdye Devide Stand Collar Sweat. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792396011822</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792396011822_gal_0_1792396012819_72.jpg</image:loc>
+      <image:title>MAISON MARGIELA (Sunrise Dyeing) (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>(Sunrise Dyeing) от бренда Maison Margiela. Оригинал 100%. Оформляем предзаказ с гарантией подлинности.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792396011822_gal_1_1792396012820_685.jpg</image:loc>
+      <image:title>MAISON MARGIELA (Sunrise Dyeing) (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>(Sunrise Dyeing) от бренда Maison Margiela. Оригинал 100%. Оформляем предзаказ с гарантией подлинности.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792396011822_gal_2_1792396012821_445.jpg</image:loc>
+      <image:title>MAISON MARGIELA (Sunrise Dyeing) (фото 3) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>(Sunrise Dyeing) от бренда Maison Margiela. Оригинал 100%. Оформляем предзаказ с гарантией подлинности.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792396011822_gal_3_1792396012822_852.jpg</image:loc>
+      <image:title>MAISON MARGIELA (Sunrise Dyeing) (фото 4) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>(Sunrise Dyeing) от бренда Maison Margiela. Оригинал 100%. Оформляем предзаказ с гарантией подлинности.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792395955575</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792395955575_gal_0_1792395956428_339.jpg</image:loc>
+      <image:title>BALENCIAGA Top League T-shirt Oversized (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Balenciaga Top League T-shirt Oversized. Строго оригинал. Выкуп под заказ за 10-14 дней, самовывоз в Санкт-Петербурге или СДЭК.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792395911320</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792395911320_gal_0_1792395912451_425.jpg</image:loc>
+      <image:title>GUCCI «1921 Gucci» (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальная модель GUCCI «1921 Gucci».  Доступен предзаказ, также отправляем в шоурум Balkonsky Store в СПб.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792395911320_gal_1_1792395912452_252.jpg</image:loc>
+      <image:title>GUCCI «1921 Gucci» (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальная модель GUCCI «1921 Gucci».  Доступен предзаказ, также отправляем в шоурум Balkonsky Store в СПб.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792395911320_gal_2_1792395912452_39.jpg</image:loc>
+      <image:title>GUCCI «1921 Gucci» (фото 3) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальная модель GUCCI «1921 Gucci».  Доступен предзаказ, также отправляем в шоурум Balkonsky Store в СПб.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792395911320_gal_3_1792395912453_657.jpg</image:loc>
+      <image:title>GUCCI «1921 Gucci» (фото 4) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальная модель GUCCI «1921 Gucci».  Доступен предзаказ, также отправляем в шоурум Balkonsky Store в СПб.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792395847178</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792395847178_gal_0_1792395848468_562.jpg</image:loc>
+      <image:title>BALENCIAGA Sacré Cœur / Notre-Dame (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальная модель BALENCIAGA Sacré Cœur / Notre-Dame.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792395847178_gal_1_1792395848468_575.jpg</image:loc>
+      <image:title>BALENCIAGA Sacré Cœur / Notre-Dame (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальная модель BALENCIAGA Sacré Cœur / Notre-Dame.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792395847178_gal_2_1792395848469_384.jpg</image:loc>
+      <image:title>BALENCIAGA Sacré Cœur / Notre-Dame (фото 3) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальная модель BALENCIAGA Sacré Cœur / Notre-Dame.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792395732420</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792395732420_gal_0_1792395733299_786.jpg</image:loc>
+      <image:title>BALENCIAGA Top League T-Shirt Oversized (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Balenciaga Top League T-Shirt Oversized.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792395732420_gal_1_1792395733300_827.jpg</image:loc>
+      <image:title>BALENCIAGA Top League T-Shirt Oversized (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Balenciaga Top League T-Shirt Oversized.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792395661998</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792395661998_gal_0_1792395662973_508.jpg</image:loc>
+      <image:title>NIKELAB X FEAR OF GOD Stretch Shorts (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>NikeLab x Fear of God Stretch Shorts. 100% Authentic. Доступен быстрый предзаказ из Японии (Tokyo Select), экспресс СДЭК до двери или примерка в СПб.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792395661998_gal_1_1792395662973_977.jpg</image:loc>
+      <image:title>NIKELAB X FEAR OF GOD Stretch Shorts (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>NikeLab x Fear of God Stretch Shorts. 100% Authentic. Доступен быстрый предзаказ из Японии (Tokyo Select), экспресс СДЭК до двери или примерка в СПб.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792395661998_gal_2_1792395662974_944.jpg</image:loc>
+      <image:title>NIKELAB X FEAR OF GOD Stretch Shorts (фото 3) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>NikeLab x Fear of God Stretch Shorts. 100% Authentic. Доступен быстрый предзаказ из Японии (Tokyo Select), экспресс СДЭК до двери или примерка в СПб.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792395600920</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792395600920_gal_0_1792395601779_322.jpg</image:loc>
+      <image:title>STONE ISLAND Crew Neck Heavy Cotton Jersey Sweatshirt (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Stone Island Crew Neck Heavy Cotton Jersey Sweatshirt. 100% Authentic. Заводская аутентификация, открыт предзаказ из Китая и Японии под ключ без скрытых доплат.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792395600920_gal_1_1792395601780_405.jpg</image:loc>
+      <image:title>STONE ISLAND Crew Neck Heavy Cotton Jersey Sweatshirt (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Stone Island Crew Neck Heavy Cotton Jersey Sweatshirt. 100% Authentic. Заводская аутентификация, открыт предзаказ из Китая и Японии под ключ без скрытых доплат.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792395600920_gal_2_1792395601781_622.jpg</image:loc>
+      <image:title>STONE ISLAND Crew Neck Heavy Cotton Jersey Sweatshirt (фото 3) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Stone Island Crew Neck Heavy Cotton Jersey Sweatshirt. 100% Authentic. Заводская аутентификация, открыт предзаказ из Китая и Японии под ключ без скрытых доплат.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792395600920_gal_3_1792395601782_46.jpg</image:loc>
+      <image:title>STONE ISLAND Crew Neck Heavy Cotton Jersey Sweatshirt (фото 4) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Stone Island Crew Neck Heavy Cotton Jersey Sweatshirt. 100% Authentic. Заводская аутентификация, открыт предзаказ из Китая и Японии под ключ без скрытых доплат.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792395528771</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792395528771_gal_0_1792395529512_178.jpg</image:loc>
+      <image:title>BALENCIAGA X THE SIMPSONS FW 21/22 (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальная модель BALENCIAGA X The Simpsons FW 21/22.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792395528771_gal_1_1792395529513_139.jpg</image:loc>
+      <image:title>BALENCIAGA X THE SIMPSONS FW 21/22 (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальная модель BALENCIAGA X The Simpsons FW 21/22.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792395455686</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792395455686_gal_0_1792395456697_901.jpg</image:loc>
+      <image:title>BALENCIAGA Printed Cotton-Jersey Hooded Sweatshirt из коллекции Весна 2017 (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Balenciaga Printed Cotton-Jersey Hooded Sweatshirt из коллекции Весна 2017. Оригинальный архивный релиз. Выкуп на заказ из Японии и Китая, полный комплект документов и фирменная упаковка.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792395455686_gal_1_1792395456698_234.jpg</image:loc>
+      <image:title>BALENCIAGA Printed Cotton-Jersey Hooded Sweatshirt из коллекции Весна 2017 (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Balenciaga Printed Cotton-Jersey Hooded Sweatshirt из коллекции Весна 2017. Оригинальный архивный релиз. Выкуп на заказ из Японии и Китая, полный комплект документов и фирменная упаковка.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792395455686_gal_2_1792395456698_691.jpg</image:loc>
+      <image:title>BALENCIAGA Printed Cotton-Jersey Hooded Sweatshirt из коллекции Весна 2017 (фото 3) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Balenciaga Printed Cotton-Jersey Hooded Sweatshirt из коллекции Весна 2017. Оригинальный архивный релиз. Выкуп на заказ из Японии и Китая, полный комплект документов и фирменная упаковка.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792395398649</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792395398649_gal_0_1792395399661_646.jpg</image:loc>
+      <image:title>BALENCIAGA Wardrobe (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальная модель BALENCIAGA Wardrobe.  Оформляем предзаказ с гарантией подлинности.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792395398649_gal_1_1792395399662_42.jpg</image:loc>
+      <image:title>BALENCIAGA Wardrobe (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальная модель BALENCIAGA Wardrobe.  Оформляем предзаказ с гарантией подлинности.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792395398649_gal_2_1792395399662_804.jpg</image:loc>
+      <image:title>BALENCIAGA Wardrobe (фото 3) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальная модель BALENCIAGA Wardrobe.  Оформляем предзаказ с гарантией подлинности.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792395328649</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792395328649_gal_0_1792395331934_152.jpg</image:loc>
+      <image:title>BALENCIAGA Paris Logo Long Sleeve T-Shirt (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Balenciaga Paris Logo Long Sleeve T-Shirt. Верифицированный оригинальный айтем из Шанхая. Предзаказ 10-16 дней, доступна примерка в шоуруме Balkonsky в Петербурге.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792395328649_gal_1_1792395331935_45.jpg</image:loc>
+      <image:title>BALENCIAGA Paris Logo Long Sleeve T-Shirt (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Balenciaga Paris Logo Long Sleeve T-Shirt. Верифицированный оригинальный айтем из Шанхая. Предзаказ 10-16 дней, доступна примерка в шоуруме Balkonsky в Петербурге.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792395328649_gal_2_1792395331936_309.jpg</image:loc>
+      <image:title>BALENCIAGA Paris Logo Long Sleeve T-Shirt (фото 3) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Balenciaga Paris Logo Long Sleeve T-Shirt. Верифицированный оригинальный айтем из Шанхая. Предзаказ 10-16 дней, доступна примерка в шоуруме Balkonsky в Петербурге.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792395246120</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792395246120_gal_0_1792395252560_835.jpg</image:loc>
+      <image:title>BAPE X NEIGHBORHOOD Split Camo Shark Full Zip Hoodie Black/White (коллекция Осень-Зима 2018 года) (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>BAPE x Neighborhood Split Camo Shark Full Zip Hoodie Black/White (коллекция Осень-Зима 2018 года). 100% Authentic. Доступен быстрый предзаказ из Японии (Tokyo Select), экспресс СДЭК до двери или примерка в СПб.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792395246120_gal_1_1792395252561_772.jpg</image:loc>
+      <image:title>BAPE X NEIGHBORHOOD Split Camo Shark Full Zip Hoodie Black/White (коллекция Осень-Зима 2018 года) (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>BAPE x Neighborhood Split Camo Shark Full Zip Hoodie Black/White (коллекция Осень-Зима 2018 года). 100% Authentic. Доступен быстрый предзаказ из Японии (Tokyo Select), экспресс СДЭК до двери или примерка в СПб.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792395246120_gal_2_1792395252562_536.jpg</image:loc>
+      <image:title>BAPE X NEIGHBORHOOD Split Camo Shark Full Zip Hoodie Black/White (коллекция Осень-Зима 2018 года) (фото 3) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>BAPE x Neighborhood Split Camo Shark Full Zip Hoodie Black/White (коллекция Осень-Зима 2018 года). 100% Authentic. Доступен быстрый предзаказ из Японии (Tokyo Select), экспресс СДЭК до двери или примерка в СПб.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792395246120_gal_3_1792395252563_66.jpg</image:loc>
+      <image:title>BAPE X NEIGHBORHOOD Split Camo Shark Full Zip Hoodie Black/White (коллекция Осень-Зима 2018 года) (фото 4) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>BAPE x Neighborhood Split Camo Shark Full Zip Hoodie Black/White (коллекция Осень-Зима 2018 года). 100% Authentic. Доступен быстрый предзаказ из Японии (Tokyo Select), экспресс СДЭК до двери или примерка в СПб.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792395246120_gal_4_1792395252563_79.jpg</image:loc>
+      <image:title>BAPE X NEIGHBORHOOD Split Camo Shark Full Zip Hoodie Black/White (коллекция Осень-Зима 2018 года) (фото 5) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>BAPE x Neighborhood Split Camo Shark Full Zip Hoodie Black/White (коллекция Осень-Зима 2018 года). 100% Authentic. Доступен быстрый предзаказ из Японии (Tokyo Select), экспресс СДЭК до двери или примерка в СПб.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792395116972</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792395116972_gal_0_1792395119982_856.jpg</image:loc>
+      <image:title>BALENCIAGA Skater Oversized T-Shirt (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальная модель BALENCIAGA Skater Oversized T-Shirt.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792395116972_gal_1_1792395119982_754.jpg</image:loc>
+      <image:title>BALENCIAGA Skater Oversized T-Shirt (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальная модель BALENCIAGA Skater Oversized T-Shirt.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792395053374</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792395053374_gal_0_1792395056773_118.jpg</image:loc>
+      <image:title>BALENCIAGA FBI Crew Sweat Spring/Summer 2022 (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Balenciaga FBI Crew Sweat Spring/Summer 2022. Строго оригинал. Выкуп под заказ за 10-14 дней, самовывоз в Санкт-Петербурге или СДЭК.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792395053374_gal_1_1792395056774_262.jpg</image:loc>
+      <image:title>BALENCIAGA FBI Crew Sweat Spring/Summer 2022 (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Balenciaga FBI Crew Sweat Spring/Summer 2022. Строго оригинал. Выкуп под заказ за 10-14 дней, самовывоз в Санкт-Петербурге или СДЭК.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792395053374_gal_2_1792395056775_86.jpg</image:loc>
+      <image:title>BALENCIAGA FBI Crew Sweat Spring/Summer 2022 (фото 3) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Balenciaga FBI Crew Sweat Spring/Summer 2022. Строго оригинал. Выкуп под заказ за 10-14 дней, самовывоз в Санкт-Петербурге или СДЭК.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792394952065</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792394952065_gal_0_1792394955160_951.jpg</image:loc>
+      <image:title>BAPE Snowboard Jacket / Gore-Tex Jacket (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>A Bathing Ape (BAPE)  Snowboard Jacket / Gore-Tex Jacket. 100% оригинальная позиция из лимитированной серии. Быстрый авиа-выкуп под заказ, экспресс СДЭК по всей РФ.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792394952065_gal_1_1792394955161_779.jpg</image:loc>
+      <image:title>BAPE Snowboard Jacket / Gore-Tex Jacket (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>A Bathing Ape (BAPE)  Snowboard Jacket / Gore-Tex Jacket. 100% оригинальная позиция из лимитированной серии. Быстрый авиа-выкуп под заказ, экспресс СДЭК по всей РФ.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792394952065_gal_2_1792394955161_333.jpg</image:loc>
+      <image:title>BAPE Snowboard Jacket / Gore-Tex Jacket (фото 3) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>A Bathing Ape (BAPE)  Snowboard Jacket / Gore-Tex Jacket. 100% оригинальная позиция из лимитированной серии. Быстрый авиа-выкуп под заказ, экспресс СДЭК по всей РФ.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792394875476</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792394875476_gal_0_1792394879153_969.jpg</image:loc>
+      <image:title>BAPE 1st Camo Tiger Snowboard Jacket (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>A Bathing Ape (BAPE) 1st Camo Tiger Snowboard Jacket. Выкуп под заказ за 10-14 дней, самовывоз в Санкт-Петербурге или СДЭК.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792394875476_gal_1_1792394879154_125.jpg</image:loc>
+      <image:title>BAPE 1st Camo Tiger Snowboard Jacket (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>A Bathing Ape (BAPE) 1st Camo Tiger Snowboard Jacket. Выкуп под заказ за 10-14 дней, самовывоз в Санкт-Петербурге или СДЭК.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792394875476_gal_2_1792394879155_407.jpg</image:loc>
+      <image:title>BAPE 1st Camo Tiger Snowboard Jacket (фото 3) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>A Bathing Ape (BAPE) 1st Camo Tiger Snowboard Jacket. Выкуп под заказ за 10-14 дней, самовывоз в Санкт-Петербурге или СДЭК.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792394875476_gal_3_1792394879155_117.jpg</image:loc>
+      <image:title>BAPE 1st Camo Tiger Snowboard Jacket (фото 4) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>A Bathing Ape (BAPE) 1st Camo Tiger Snowboard Jacket. Выкуп под заказ за 10-14 дней, самовывоз в Санкт-Петербурге или СДЭК.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792394875476_gal_4_1792394879156_638.jpg</image:loc>
+      <image:title>BAPE 1st Camo Tiger Snowboard Jacket (фото 5) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>A Bathing Ape (BAPE) 1st Camo Tiger Snowboard Jacket. Выкуп под заказ за 10-14 дней, самовывоз в Санкт-Петербурге или СДЭК.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792394875476_gal_5_1792394879157_275.jpg</image:loc>
+      <image:title>BAPE 1st Camo Tiger Snowboard Jacket (фото 6) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>A Bathing Ape (BAPE) 1st Camo Tiger Snowboard Jacket. Выкуп под заказ за 10-14 дней, самовывоз в Санкт-Петербурге или СДЭК.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792394753468</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792394753468_gal_0_1792394756997_242.jpg</image:loc>
+      <image:title>C.P. COMPANY DD Shell Padded Goggle Utility Jacket (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>C.P. Company DD Shell Padded Goggle Utility Jacket.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792394753468_gal_1_1792394756998_848.jpg</image:loc>
+      <image:title>C.P. COMPANY DD Shell Padded Goggle Utility Jacket (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>C.P. Company DD Shell Padded Goggle Utility Jacket.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792394753468_gal_2_1792394757000_970.jpg</image:loc>
+      <image:title>C.P. COMPANY DD Shell Padded Goggle Utility Jacket (фото 3) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>C.P. Company DD Shell Padded Goggle Utility Jacket.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792394753468_gal_3_1792394757001_778.jpg</image:loc>
+      <image:title>C.P. COMPANY DD Shell Padded Goggle Utility Jacket (фото 4) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>C.P. Company DD Shell Padded Goggle Utility Jacket.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792394753468_gal_4_1792394757002_884.jpg</image:loc>
+      <image:title>C.P. COMPANY DD Shell Padded Goggle Utility Jacket (фото 5) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>C.P. Company DD Shell Padded Goggle Utility Jacket.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792394623517</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792394623517_gal_0_1792394626352_700.jpg</image:loc>
+      <image:title>POLO Ralph Lauren Chief Keef New York (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Polo Ralph Lauren Chief Keef New York. Оригинал, гарантия подлинности от SASBOV MARKET. Доступен предзаказ, также отправляем в шоурум Balkonsky Store в СПб.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792394623517_gal_1_1792394626352_424.jpg</image:loc>
+      <image:title>POLO Ralph Lauren Chief Keef New York (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Polo Ralph Lauren Chief Keef New York. Оригинал, гарантия подлинности от SASBOV MARKET. Доступен предзаказ, также отправляем в шоурум Balkonsky Store в СПб.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792394623517_gal_2_1792394626353_193.jpg</image:loc>
+      <image:title>POLO Ralph Lauren Chief Keef New York (фото 3) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Polo Ralph Lauren Chief Keef New York. Оригинал, гарантия подлинности от SASBOV MARKET. Доступен предзаказ, также отправляем в шоурум Balkonsky Store в СПб.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792394558246</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792394558246_gal_0_1792394561660_38.jpg</image:loc>
+      <image:title>BAPE 1st Camo Green (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>A Bathing Ape (BAPE)  1st Camo Green. Оригинал 100%. Оформляем предзаказ с гарантией подлинности.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792394558246_gal_1_1792394561661_651.jpg</image:loc>
+      <image:title>BAPE 1st Camo Green (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>A Bathing Ape (BAPE)  1st Camo Green. Оригинал 100%. Оформляем предзаказ с гарантией подлинности.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792394558246_gal_2_1792394561662_409.jpg</image:loc>
+      <image:title>BAPE 1st Camo Green (фото 3) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>A Bathing Ape (BAPE)  1st Camo Green. Оригинал 100%. Оформляем предзаказ с гарантией подлинности.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792394558246_gal_3_1792394561662_73.jpg</image:loc>
+      <image:title>BAPE 1st Camo Green (фото 4) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>A Bathing Ape (BAPE)  1st Camo Green. Оригинал 100%. Оформляем предзаказ с гарантией подлинности.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792394471632</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792394471632_gal_0_1792394475163_192.jpg</image:loc>
+      <image:title>BAPE 1st Camo Shark Full Zip Jacket (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>A Bathing Ape (BAPE) 1st Camo Shark Full Zip Jacket. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792394471632_gal_1_1792394475165_560.jpg</image:loc>
+      <image:title>BAPE 1st Camo Shark Full Zip Jacket (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>A Bathing Ape (BAPE) 1st Camo Shark Full Zip Jacket. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792394471632_gal_2_1792394475166_892.jpg</image:loc>
+      <image:title>BAPE 1st Camo Shark Full Zip Jacket (фото 3) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>A Bathing Ape (BAPE) 1st Camo Shark Full Zip Jacket. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792394471632_gal_3_1792394475167_131.jpg</image:loc>
+      <image:title>BAPE 1st Camo Shark Full Zip Jacket (фото 4) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>A Bathing Ape (BAPE) 1st Camo Shark Full Zip Jacket. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792394313001</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792394313001_gal_0_1792394315973_139.jpg</image:loc>
+      <image:title>TIMBERLAND 6-Inch Premium / Safari Cheetah (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Timberland 6-Inch Premium / Safari Cheetah. Оригинал 100%, любые независимые проверки. Оформляйте предзаказ на ваш размер — привезем в идеале в шоурум или до двери.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792394313001_gal_1_1792394315974_553.jpg</image:loc>
+      <image:title>TIMBERLAND 6-Inch Premium / Safari Cheetah (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Timberland 6-Inch Premium / Safari Cheetah. Оригинал 100%, любые независимые проверки. Оформляйте предзаказ на ваш размер — привезем в идеале в шоурум или до двери.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792394267491</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792394267491_gal_0_1792394271024_339.jpg</image:loc>
+      <image:title>NIKE X OFF-WHITE Air Force 1 Low «The Ten» (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Off-White x Nike Air Force 1 Low «The Ten». 100% Authentic. Доступен быстрый предзаказ, экспресс СДЭК до двери или примерка в СПб.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792394267491_gal_1_1792394271025_756.jpg</image:loc>
+      <image:title>NIKE X OFF-WHITE Air Force 1 Low «The Ten» (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Off-White x Nike Air Force 1 Low «The Ten». 100% Authentic. Доступен быстрый предзаказ, экспресс СДЭК до двери или примерка в СПб.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792394267491_gal_2_1792394271026_512.jpg</image:loc>
+      <image:title>NIKE X OFF-WHITE Air Force 1 Low «The Ten» (фото 3) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Off-White x Nike Air Force 1 Low «The Ten». 100% Authentic. Доступен быстрый предзаказ, экспресс СДЭК до двери или примерка в СПб.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792394267491_gal_3_1792394271027_985.jpg</image:loc>
+      <image:title>NIKE X OFF-WHITE Air Force 1 Low «The Ten» (фото 4) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Off-White x Nike Air Force 1 Low «The Ten». 100% Authentic. Доступен быстрый предзаказ, экспресс СДЭК до двери или примерка в СПб.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792394267491_gal_4_1792394271028_271.jpg</image:loc>
+      <image:title>NIKE X OFF-WHITE Air Force 1 Low «The Ten» (фото 5) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Off-White x Nike Air Force 1 Low «The Ten». 100% Authentic. Доступен быстрый предзаказ, экспресс СДЭК до двери или примерка в СПб.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792393986802</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792393986802_gal_0_1792393990021_171.jpg</image:loc>
+      <image:title>SPRAYGROUND Raceway Henny Wing Backpack (DLXV) (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальный технологичный рюкзак RACEWAY Henny Wing Backpack (DLXV). Эргономичный дизайн, износостойкий влагозащитный материал и удобная организация отделений. Строго оригинал.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792393986802_gal_1_1792393990022_495.jpg</image:loc>
+      <image:title>SPRAYGROUND Raceway Henny Wing Backpack (DLXV) (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальный технологичный рюкзак RACEWAY Henny Wing Backpack (DLXV). Эргономичный дизайн, износостойкий влагозащитный материал и удобная организация отделений. Строго оригинал.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792393746875</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792393746875_gal_0_1792393749937_804.jpg</image:loc>
+      <image:title>NIKE AIR JORDAN 11 Retro «Bred» (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальная модель AIR JORDAN 11 Retro «Bred». Высококачественные материалы, аутентичные бирки и внимание к деталям. Строго оригинал.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792393746875_gal_1_1792393749938_114.jpg</image:loc>
+      <image:title>NIKE AIR JORDAN 11 Retro «Bred» (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальная модель AIR JORDAN 11 Retro «Bred». Высококачественные материалы, аутентичные бирки и внимание к деталям. Строго оригинал.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792393746875_gal_2_1792393749939_92.jpg</image:loc>
+      <image:title>NIKE AIR JORDAN 11 Retro «Bred» (фото 3) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальная модель AIR JORDAN 11 Retro «Bred». Высококачественные материалы, аутентичные бирки и внимание к деталям. Строго оригинал.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792393681211</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792393681211_gal_0_1792393684339_735.jpg</image:loc>
+      <image:title>ARC&apos;TERYX Heliad 12 Tote (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальная легкая сумка ARC&apos;TERYX Heliad 12 Tote. Компактный силуэт, влагостойкий нейлон Cordura/Ripstop, фирменная надежная фурнитура и вышитый логотип. Оригинальный релиз, верифицирован нашими байерами в Токио. Доступен предзаказ, доставка до Санкт-Петербурга и регионов.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792393681211_gal_1_1792393684340_396.jpg</image:loc>
+      <image:title>ARC&apos;TERYX Heliad 12 Tote (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальная легкая сумка ARC&apos;TERYX Heliad 12 Tote. Компактный силуэт, влагостойкий нейлон Cordura/Ripstop, фирменная надежная фурнитура и вышитый логотип. Оригинальный релиз, верифицирован нашими байерами в Токио. Доступен предзаказ, доставка до Санкт-Петербурга и регионов.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792393681211_gal_2_1792393684340_280.jpg</image:loc>
+      <image:title>ARC&apos;TERYX Heliad 12 Tote (фото 3) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальная легкая сумка ARC&apos;TERYX Heliad 12 Tote. Компактный силуэт, влагостойкий нейлон Cordura/Ripstop, фирменная надежная фурнитура и вышитый логотип. Оригинальный релиз, верифицирован нашими байерами в Токио. Доступен предзаказ, доставка до Санкт-Петербурга и регионов.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792393616380</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792393616380_gal_0_1792393619156_903.jpg</image:loc>
+      <image:title>SPRAYGROUND Sharks in Paris (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальная модель SPRAYGROUND Sharks in Paris. Высококачественные материалы, аутентичные бирки и внимание к деталям. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792393616380_gal_1_1792393619158_664.jpg</image:loc>
+      <image:title>SPRAYGROUND Sharks in Paris (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальная модель SPRAYGROUND Sharks in Paris. Высококачественные материалы, аутентичные бирки и внимание к деталям. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792393568191</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792393568191_gal_0_1792393571293_950.jpg</image:loc>
+      <image:title>C.P. COMPANY The Metropolis Series (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>C.P. Company  The Metropolis Series. 100% оригинал, проверено на отсутствие дефектов и нюансов. Открыт предзаказ, фиксированная цена под ключ в рублях.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792393568191_gal_1_1792393571294_58.jpg</image:loc>
+      <image:title>C.P. COMPANY The Metropolis Series (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>C.P. Company  The Metropolis Series. 100% оригинал, проверено на отсутствие дефектов и нюансов. Открыт предзаказ, фиксированная цена под ключ в рублях.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792393568191_gal_2_1792393571295_425.jpg</image:loc>
+      <image:title>C.P. COMPANY The Metropolis Series (фото 3) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>C.P. Company  The Metropolis Series. 100% оригинал, проверено на отсутствие дефектов и нюансов. Открыт предзаказ, фиксированная цена под ключ в рублях.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792393568191_gal_3_1792393571295_402.jpg</image:loc>
+      <image:title>C.P. COMPANY The Metropolis Series (фото 4) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>C.P. Company  The Metropolis Series. 100% оригинал, проверено на отсутствие дефектов и нюансов. Открыт предзаказ, фиксированная цена под ключ в рублях.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792393485462</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792393485462_gal_0_1792393488928_670.jpg</image:loc>
+      <image:title>VALENTINO Garavani Rockrunner (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальные кроссовки VALENTINO Garavani Rockrunner. Премиальные амортизирующие материалы, анатомическая посадка и узнаваемый силуэт. Оригинал, гарантия подлинности от SASBOV MARKET. Доступен предзаказ, также отправляем в шоурум Balkonsky Store в СПб.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792393485462_gal_1_1792393488929_743.jpg</image:loc>
+      <image:title>VALENTINO Garavani Rockrunner (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальные кроссовки VALENTINO Garavani Rockrunner. Премиальные амортизирующие материалы, анатомическая посадка и узнаваемый силуэт. Оригинал, гарантия подлинности от SASBOV MARKET. Доступен предзаказ, также отправляем в шоурум Balkonsky Store в СПб.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792393485462_gal_2_1792393488930_8.jpg</image:loc>
+      <image:title>VALENTINO Garavani Rockrunner (фото 3) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальные кроссовки VALENTINO Garavani Rockrunner. Премиальные амортизирующие материалы, анатомическая посадка и узнаваемый силуэт. Оригинал, гарантия подлинности от SASBOV MARKET. Доступен предзаказ, также отправляем в шоурум Balkonsky Store в СПб.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792393485462_gal_3_1792393488931_663.jpg</image:loc>
+      <image:title>VALENTINO Garavani Rockrunner (фото 4) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальные кроссовки VALENTINO Garavani Rockrunner. Премиальные амортизирующие материалы, анатомическая посадка и узнаваемый силуэт. Оригинал, гарантия подлинности от SASBOV MARKET. Доступен предзаказ, также отправляем в шоурум Balkonsky Store в СПб.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792393485462_gal_4_1792393488932_860.jpg</image:loc>
+      <image:title>VALENTINO Garavani Rockrunner (фото 5) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальные кроссовки VALENTINO Garavani Rockrunner. Премиальные амортизирующие материалы, анатомическая посадка и узнаваемый силуэт. Оригинал, гарантия подлинности от SASBOV MARKET. Доступен предзаказ, также отправляем в шоурум Balkonsky Store в СПб.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792392230019</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792392230019_gal_0_1792392233398_890.jpg</image:loc>
+      <image:title>NIKE X OFF-WHITE Air Force 1 Low  «The Ten» (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Nike Air Force 1 Low x Off-White «The Ten». Строго оригинал (Legit Check пройден). Выкуп напрямую с официальных площадок.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792392230019_gal_1_1792392233399_521.jpg</image:loc>
+      <image:title>NIKE X OFF-WHITE Air Force 1 Low  «The Ten» (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Nike Air Force 1 Low x Off-White «The Ten». Строго оригинал (Legit Check пройден). Выкуп напрямую с официальных площадок.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792392230019_gal_2_1792392233400_96.jpg</image:loc>
+      <image:title>NIKE X OFF-WHITE Air Force 1 Low  «The Ten» (фото 3) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Nike Air Force 1 Low x Off-White «The Ten». Строго оригинал (Legit Check пройден). Выкуп напрямую с официальных площадок.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792392230019_gal_3_1792392233400_288.jpg</image:loc>
+      <image:title>NIKE X OFF-WHITE Air Force 1 Low  «The Ten» (фото 4) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Nike Air Force 1 Low x Off-White «The Ten». Строго оригинал (Legit Check пройден). Выкуп напрямую с официальных площадок.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792392230019_gal_4_1792392233401_962.jpg</image:loc>
+      <image:title>NIKE X OFF-WHITE Air Force 1 Low  «The Ten» (фото 5) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Nike Air Force 1 Low x Off-White «The Ten». Строго оригинал (Legit Check пройден). Выкуп напрямую с официальных площадок.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792392149354</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792392149354_gal_0_1792392152441_537.jpg</image:loc>
+      <image:title>DIOR X KENNY SCHARF B27 (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальная модель DIOR X Kenny Scharf B27. Высококачественные материалы, аутентичные бирки и внимание к деталям. Оригинал 100%, любые независимые проверки. Оформляйте предзаказ на ваш размер — привезем в идеале в шоурум или до двери.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792392149354_gal_1_1792392152442_734.jpg</image:loc>
+      <image:title>DIOR X KENNY SCHARF B27 (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальная модель DIOR X Kenny Scharf B27. Высококачественные материалы, аутентичные бирки и внимание к деталям. Оригинал 100%, любые независимые проверки. Оформляйте предзаказ на ваш размер — привезем в идеале в шоурум или до двери.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792392149354_gal_2_1792392152444_50.jpg</image:loc>
+      <image:title>DIOR X KENNY SCHARF B27 (фото 3) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальная модель DIOR X Kenny Scharf B27. Высококачественные материалы, аутентичные бирки и внимание к деталям. Оригинал 100%, любые независимые проверки. Оформляйте предзаказ на ваш размер — привезем в идеале в шоурум или до двери.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792392149354_gal_3_1792392152445_831.jpg</image:loc>
+      <image:title>DIOR X KENNY SCHARF B27 (фото 4) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальная модель DIOR X Kenny Scharf B27. Высококачественные материалы, аутентичные бирки и внимание к деталям. Оригинал 100%, любые независимые проверки. Оформляйте предзаказ на ваш размер — привезем в идеале в шоурум или до двери.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792392149354_gal_4_1792392152446_764.jpg</image:loc>
+      <image:title>DIOR X KENNY SCHARF B27 (фото 5) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальная модель DIOR X Kenny Scharf B27. Высококачественные материалы, аутентичные бирки и внимание к деталям. Оригинал 100%, любые независимые проверки. Оформляйте предзаказ на ваш размер — привезем в идеале в шоурум или до двери.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792392065449</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792392065449_gal_0_1792392068628_654.jpg</image:loc>
+      <image:title>STONE ISLAND Nylon Reps Chest Rig Bag (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Stone Island Nylon Reps Chest Rig Bag. Оригинал 100%, полный комплект с коробкой и навесными бирками. Оформляем предзаказ с гарантией подлинности.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792392065449_gal_1_1792392068629_637.jpg</image:loc>
+      <image:title>STONE ISLAND Nylon Reps Chest Rig Bag (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Stone Island Nylon Reps Chest Rig Bag. Оригинал 100%, полный комплект с коробкой и навесными бирками. Оформляем предзаказ с гарантией подлинности.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792392065449_gal_2_1792392068630_375.jpg</image:loc>
+      <image:title>STONE ISLAND Nylon Reps Chest Rig Bag (фото 3) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Stone Island Nylon Reps Chest Rig Bag. Оригинал 100%, полный комплект с коробкой и навесными бирками. Оформляем предзаказ с гарантией подлинности.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792392065449_gal_3_1792392068631_244.jpg</image:loc>
+      <image:title>STONE ISLAND Nylon Reps Chest Rig Bag (фото 4) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Stone Island Nylon Reps Chest Rig Bag. Оригинал 100%, полный комплект с коробкой и навесными бирками. Оформляем предзаказ с гарантией подлинности.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792391973865</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792391973865_gal_0_1792391976669_119.jpg</image:loc>
+      <image:title>BAPE Shark Sweat Pants (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальные брюки BAPE Shark Sweat Pants. Износостойкая ткань, эргономичная посадка и фирменная фурнитура. Верифицированный оригинальный айтем из Шанхая. Предзаказ 10-16 дней, доступна примерка в шоуруме Balkonsky в Петербурге.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792391973865_gal_1_1792391976671_538.jpg</image:loc>
+      <image:title>BAPE Shark Sweat Pants (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальные брюки BAPE Shark Sweat Pants. Износостойкая ткань, эргономичная посадка и фирменная фурнитура. Верифицированный оригинальный айтем из Шанхая. Предзаказ 10-16 дней, доступна примерка в шоуруме Balkonsky в Петербурге.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792391973865_gal_2_1792391976672_987.jpg</image:loc>
+      <image:title>BAPE Shark Sweat Pants (фото 3) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальные брюки BAPE Shark Sweat Pants. Износостойкая ткань, эргономичная посадка и фирменная фурнитура. Верифицированный оригинальный айтем из Шанхая. Предзаказ 10-16 дней, доступна примерка в шоуруме Balkonsky в Петербурге.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792391973865_gal_3_1792391976672_17.jpg</image:loc>
+      <image:title>BAPE Shark Sweat Pants (фото 4) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинальные брюки BAPE Shark Sweat Pants. Износостойкая ткань, эргономичная посадка и фирменная фурнитура. Верифицированный оригинальный айтем из Шанхая. Предзаказ 10-16 дней, доступна примерка в шоуруме Balkonsky в Петербурге.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792391879402</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792391879402_gal_0_1792391882553_161.jpg</image:loc>
+      <image:title>SPRAYGROUND Vacay All Day Leopard Burner Embossed DLXSV (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Sprayground Vacay All Day Leopard Burner Embossed DLXSV. Строго оригинал. Выкуп под заказ за 10-14 дней, самовывоз в Санкт-Петербурге или СДЭК.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792377614662</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792377614662_gallery_0.jpg</image:loc>
+      <image:title>GUCCI Guccio (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Gucci из коллекции Guccio (серия 111, модель YA111401 / 111J) в прямоугольном стальном корпусе с фирменной красно-зеленой полоской Sherry Line и окошком даты на циферблате. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792377614662_gallery_1.jpg</image:loc>
+      <image:title>GUCCI Guccio (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Gucci из коллекции Guccio (серия 111, модель YA111401 / 111J) в прямоугольном стальном корпусе с фирменной красно-зеленой полоской Sherry Line и окошком даты на циферблате. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792377555768</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792377555768_gallery_0.jpg</image:loc>
+      <image:title>C.P. COMPANY Diagonal Raised Fleece Lens Regular Fit Hoodie (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>C.P. Company Diagonal Raised Fleece Lens Regular Fit Hoodie. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792377555768_gallery_1.jpg</image:loc>
+      <image:title>C.P. COMPANY Diagonal Raised Fleece Lens Regular Fit Hoodie (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>C.P. Company Diagonal Raised Fleece Lens Regular Fit Hoodie. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792377498448</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792377498448_gallery_0.jpg</image:loc>
+      <image:title>STONE ISLAND Lino Resinato-TC Down Filled Fur Hooded Jacket (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Stone Island Lino Resinato-TC Down Filled Fur Hooded Jacket. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792377498448_gallery_1.jpg</image:loc>
+      <image:title>STONE ISLAND Lino Resinato-TC Down Filled Fur Hooded Jacket (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Stone Island Lino Resinato-TC Down Filled Fur Hooded Jacket. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792377426397</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792377426397_gallery_0.jpg</image:loc>
+      <image:title>C.P. COMPANY X FILA Goggle Beanie FIne Merino Wool (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Шапка-бини из лимитированной коллаборации C.P. Company x FILA. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792377426397_gallery_1.jpg</image:loc>
+      <image:title>C.P. COMPANY X FILA Goggle Beanie FIne Merino Wool (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Шапка-бини из лимитированной коллаборации C.P. Company x FILA. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792377364282</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792377364282_gallery_0.jpg</image:loc>
+      <image:title>C.P. COMPANY Diagonal Raised Fleece Half-Zip Lens Sweatshirt (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>C.P. Company Diagonal Raised Fleece Half-Zip Lens Sweatshirt. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792377364282_gallery_1.jpg</image:loc>
+      <image:title>C.P. COMPANY Diagonal Raised Fleece Half-Zip Lens Sweatshirt (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>C.P. Company Diagonal Raised Fleece Half-Zip Lens Sweatshirt. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792377322346</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792377322346_gallery_0.jpg</image:loc>
+      <image:title>GUCCI GG Supreme (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Мужская сумка-мессенджер Gucci GG Supreme. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792377322346_gallery_1.jpg</image:loc>
+      <image:title>GUCCI GG Supreme (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Мужская сумка-мессенджер Gucci GG Supreme. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792377251653</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792377251653_gallery_0.jpg</image:loc>
+      <image:title>STONE ISLAND Garment Dyed Down (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Stone Island Garment Dyed Down. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792377187464</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792377187464_gallery_0.jpg</image:loc>
+      <image:title>C.P. COMPANY D.D. Shell Hooded Lens Down Jacket (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>C.P. Company D.D. Shell Hooded Lens Down Jacket. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792377187464_gallery_1.jpg</image:loc>
+      <image:title>C.P. COMPANY D.D. Shell Hooded Lens Down Jacket (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>C.P. Company D.D. Shell Hooded Lens Down Jacket. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792377187464_gallery_2.jpg</image:loc>
+      <image:title>C.P. COMPANY D.D. Shell Hooded Lens Down Jacket (фото 3) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>C.P. Company D.D. Shell Hooded Lens Down Jacket. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792377110189</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792377110189_gallery_0.jpg</image:loc>
+      <image:title>LOUIS VUITTON Monogram Vernis Thompson Street Bronze (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Louis Vuitton Monogram Vernis Thompson Street в бронзовом (Bronze). 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792377110189_gallery_1.jpg</image:loc>
+      <image:title>LOUIS VUITTON Monogram Vernis Thompson Street Bronze (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Louis Vuitton Monogram Vernis Thompson Street в бронзовом (Bronze). 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792376798355</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792376798355_gallery_0.jpg</image:loc>
+      <image:title>C.P. COMPANY Chrome-R Goggle Down Jacket Flint Stone (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>C.P. Company Chrome-R Goggle Down Jacket в цвете Flint Stone (серо-голубой). 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792376700044</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792376700044_gallery_0.jpg</image:loc>
+      <image:title>NIKE X TRAVIS SCOTT Air Jordan 6 Retro «Medium Olive» (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Travis Scott x Air Jordan 6 Retro «Medium Olive». 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792376628420</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792376628420_gallery_0.jpg</image:loc>
+      <image:title>NIKE Air Jordan 5 Retro «Island Green» (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинал NIKE Air Jordan 5 Retro «Island Green», легитчек лабораторией Poizon, доставка по РФ</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792374224244</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792374224244_gallery_0.jpg</image:loc>
+      <image:title>NIKE Air Jordan 4 Retro &apos;11Lab4 - Red&apos; (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Air Jordan 4 Retro &apos;11Lab4 - Red&apos; (артикул 719864-600) из коллекции 2015 года, особенностью которых является полностью красный верх из лакированной кожи, вдохновленный моделью Air Jordan 11. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792374077196</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792374077196_gallery_0.jpg</image:loc>
+      <image:title>PRADA Tessuto Nylon Messenger Bag (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Prada Tessuto Nylon Messenger Bag. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792373892517</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792373892517_gallery_0.jpg</image:loc>
+      <image:title>C.P. COMPANY C.P. COMPANY Diagonal Raised Fleece Goggle Full Zip Hoodie (Gauze White) (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>C.P. Company Diagonal Raised Fleece Goggle Full Zip Hoodie в белом цвете (Gauze White). 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792373839649</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792373839649_gallery_0.jpg</image:loc>
+      <image:title>BOTTEGA VENETA Intrecciato (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Жилет Bottega Veneta с фирменным объемным плетением в технике Intrecciato. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792373749248</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792373749248_gallery_0.jpg</image:loc>
+      <image:title>C.P. COMPANY Diagonal Raised Fleece Goggle Zipped Hoodie (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>C.P. Company (модель с фирменными линзами-очками в капюшоне, скорее всего, из серии Diagonal Raised Fleece Goggle Zipped Hoodie. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792373749248_gallery_1.jpg</image:loc>
+      <image:title>C.P. COMPANY Diagonal Raised Fleece Goggle Zipped Hoodie (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>C.P. Company (модель с фирменными линзами-очками в капюшоне, скорее всего, из серии Diagonal Raised Fleece Goggle Zipped Hoodie. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792373696451</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792373696451_gallery_0.jpg</image:loc>
+      <image:title>C.P. COMPANY Diagonal Raised Fleece Goggle Jacket (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Мужская толстовка на молнии с капюшоном-маской и фирменными линзами (очками) от итальянского бренда C.P. Company (модель с артикулом вроде Diagonal Raised Fleece Goggle Jacket. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792373633395</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792373633395_gallery_0.jpg</image:loc>
+      <image:title>NIKE Air Jordan 4 Retro SE &quot;Craft Photon Dust (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Nike Air Jordan 4 Retro SE &quot;Craft Photon Dust&quot; (артикул DV3742-021). 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792373571555</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792373571555_gallery_0.jpg</image:loc>
+      <image:title>C.P. COMPANY Goggle Beanie Fine Merino Wool (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Вязаные шапки-бини бренда C.P. Company, ставшие визитной карточкой уличной моды благодаря встроенным защитным линзам на отвороте (дизайн Goggle Beanie).
+Оригинальные модели обычно изготавливаются из премиальной ультратонкой мериносовой шерсти (Extra Fine Merino Wool). 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792371743702</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792371743702_gallery_0.jpg</image:loc>
+      <image:title>C.P. COMPANY D.D. Shell Hooded Down Green Sheen (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Мужская стеганая куртка-пуховик C.P. Company D.D. Shell Hooded Down в желтом цвете (оттенок Green Sheen), артикул 19CMOW002A110416A 210. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792371619571</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792371619571_gallery_0.jpg</image:loc>
+      <image:title>C.P. COMPANY D.D. Shell Down Gilet Cedar Wood (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Мужской пуховой жилет C.P. Company D.D. Shell Down Gilet в цвете Cedar Wood (медный / коричневый оттенок, код цвета 476, артикул 15CMOW170A). 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792371619571_gallery_1.jpg</image:loc>
+      <image:title>C.P. COMPANY D.D. Shell Down Gilet Cedar Wood (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Мужской пуховой жилет C.P. Company D.D. Shell Down Gilet в цвете Cedar Wood (медный / коричневый оттенок, код цвета 476, артикул 15CMOW170A). 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792371542116</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792371542116_gallery_0.jpg</image:loc>
+      <image:title>LOUIS VUITTON Monogram Bosphore (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинал LOUIS VUITTON Monogram Bosphore, легитчек лабораторией Poizon, доставка по РФ</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792371542116_gallery_1.jpg</image:loc>
+      <image:title>LOUIS VUITTON Monogram Bosphore (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинал LOUIS VUITTON Monogram Bosphore, легитчек лабораторией Poizon, доставка по РФ</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792371453767</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792371453767_gallery_0.jpg</image:loc>
+      <image:title>C.P. COMPANY X FILA KAN-D Explorer / Goggle Jacket (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Красная куртка-ветровка из коллаборации C.P. Company x Fila (модель KAN-D Explorer / Goggle Jacket). 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792371369116</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792371369116_gallery_0.jpg</image:loc>
+      <image:title>NIKE Air Jordan 1 Low SE &quot;Chocolate Bliss&quot; (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Оригинал NIKE Air Jordan 1 Low SE &quot;Chocolate Bliss&quot;, легитчек лабораторией Poizon, доставка по РФ</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792371233586</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792371233586_gallery_0.jpg</image:loc>
+      <image:title>MIU MIU Black Miu Miu Forever T-Shirt (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Черная хлопковая футболка бренда Miu Miu (модель Black Miu Miu Forever T-Shirt) с белым и красным логотипом на груди и эффектом легкой потертости в стиле гранж. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792371233586_gallery_1.jpg</image:loc>
+      <image:title>MIU MIU Black Miu Miu Forever T-Shirt (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Черная хлопковая футболка бренда Miu Miu (модель Black Miu Miu Forever T-Shirt) с белым и красным логотипом на груди и эффектом легкой потертости в стиле гранж. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792371233586_gallery_2.jpg</image:loc>
+      <image:title>MIU MIU Black Miu Miu Forever T-Shirt (фото 3) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Черная хлопковая футболка бренда Miu Miu (модель Black Miu Miu Forever T-Shirt) с белым и красным логотипом на груди и эффектом легкой потертости в стиле гранж. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sasbov.online/product.html?id=sasbov-card-1792371110180</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792371110180_gallery_0.jpg</image:loc>
+      <image:title>GIVENCHY Trompe-L&apos;Oeil Effect (фото 1) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Хлопковая футболка черного цвета от модного дома Givenchy с характерным трехмерным эффектом оптической иллюзии (Trompe-L&apos;Oeil Effect) и белым логотипом, создающим «рваный» или расколотый визуальный стиль. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792371110180_gallery_1.jpg</image:loc>
+      <image:title>GIVENCHY Trompe-L&apos;Oeil Effect (фото 2) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Хлопковая футболка черного цвета от модного дома Givenchy с характерным трехмерным эффектом оптической иллюзии (Trompe-L&apos;Oeil Effect) и белым логотипом, создающим «рваный» или расколотый визуальный стиль. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792371110180_gallery_2.jpg</image:loc>
+      <image:title>GIVENCHY Trompe-L&apos;Oeil Effect (фото 3) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Хлопковая футболка черного цвета от модного дома Givenchy с характерным трехмерным эффектом оптической иллюзии (Trompe-L&apos;Oeil Effect) и белым логотипом, создающим «рваный» или расколотый визуальный стиль. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sasbov.online/uploads/sasbov-card-1792371110180_gallery_3.jpg</image:loc>
+      <image:title>GIVENCHY Trompe-L&apos;Oeil Effect (фото 4) — оригинальный товар SASBOV MARKET</image:title>
+      <image:caption>Хлопковая футболка черного цвета от модного дома Givenchy с характерным трехмерным эффектом оптической иллюзии (Trompe-L&apos;Oeil Effect) и белым логотипом, создающим «рваный» или расколотый визуальный стиль. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).</image:caption>
+    </image:image>
   </url>
 </urlset>

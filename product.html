@@ -214,7 +214,7 @@
 
             <div class="product-secondary-actions">
               <button type="button" class="btn btn-outline" id="btn-add-tray">
-                + В ПОДНОС
+                + В ПРЕДЗАКАЗ
               </button>
               <button type="button" class="btn btn-outline" id="btn-share-item">
                 🔗 ПОДЕЛИТЬСЯ
@@ -249,6 +249,28 @@
             </div>
           </div>
 
+          <!-- Structured Specifications & Legit Check Table -->
+          <div class="product-specs-box" id="product-specs-box">
+            <h4 class="specs-heading">ХАРАКТЕРИСТИКИ И АУТЕНТИФИКАЦИЯ</h4>
+            <div class="specs-grid" id="specs-grid">
+              <!-- Rendered dynamically by product.js -->
+            </div>
+          </div>
+
+          <!-- Brand Editorial Callout Box (Internal Linking to Blog) -->
+          <div class="product-editorial-box" id="product-editorial-box" style="display: none;">
+            <div class="editorial-header">
+              <span class="editorial-badge">ЭКСПЕРТИЗА // РАЗБОР БРЕНДА</span>
+              <span class="editorial-date">SASBOV JOURNAL</span>
+            </div>
+            <h4 class="editorial-title" id="editorial-title">Гид по бренду и проверка на оригинальность</h4>
+            <p class="editorial-excerpt" id="editorial-excerpt">Читайте подробное расследование наших байеров об истории, легитчеке и ключевых деталях коллекции.</p>
+            <a href="#" class="editorial-link" id="editorial-link">
+              <span>ЧИТАТЬ СТАТЬЮ В БЛОГЕ</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+
         </div>
       </div>
 
@@ -278,160 +300,135 @@
     </div>
   </div>
 
-  <!-- Preorder Tray Slide-Over Drawer -->
-  <aside class="tray-drawer" id="tray-drawer" aria-hidden="true">
+  <!-- Preorder Drawer / Cart -->
+  <aside class="tray-drawer" id="tray-drawer" aria-label="Корзина предзаказов" aria-hidden="true">
     <div class="tray-header">
       <div class="tray-title-group">
-        <h2 class="tray-title">ПОДНОС ПРЕДЗАКАЗОВ</h2>
+        <h3 class="tray-title">ВАШИ ПРЕДЗАКАЗЫ</h3>
         <span class="tray-count-label">ВЫБРАННЫЕ ПОЗИЦИИ</span>
       </div>
-      <button type="button" class="tray-close-btn" id="tray-close-btn" aria-label="Закрыть поднос">&times;</button>
+      <button type="button" class="tray-close-btn" id="tray-close-btn" aria-label="Закрыть корзину">&times;</button>
     </div>
 
     <div class="tray-items-container" id="tray-items-container">
-      <!-- Items dynamically populated -->
+      <!-- Items dynamically populated by product.js -->
     </div>
 
     <div class="tray-footer" id="tray-footer">
       <div class="tray-total-row">
         <span class="tray-total-label">ИТОГО К ВЫКУПУ:</span>
-        <span class="tray-total-val" id="tray-total-val">0 ₽</span>
+        <strong class="tray-total-val" id="tray-total-val">0 ₽</strong>
       </div>
-      <button type="button" class="btn btn-primary btn-block" id="tray-submit-tg-btn">
-        ОФОРМИТЬ ПРЕДЗАКАЗ ВСЕХ ПОЗИЦИЙ В TG
+      <button type="button" class="tray-checkout-btn" id="tray-submit-tg-btn">
+        ОФОРМИТЬ В TELEGRAM
       </button>
-      <p class="tray-footnote">Менеджер мгновенно получит ваш список, подтвердит наличие и рассчитает точную экспресс-доставку.</p>
+      <p class="tray-footnote">Менеджер подтвердит наличие, забронирует размер и рассчитает точную доставку.</p>
     </div>
   </aside>
 
-  <!-- Synchronized Footer -->
-  <footer class="site-footer">
-    <div class="container footer-top-hud">
-      <div class="footer-clocks-hud">
-        <span class="footer-clock-label">СИНХРОНИЗАЦИЯ ЧАСОВЫХ ПОЯСОВ:</span>
-        <span class="footer-clock" id="footer-clock-tokyo">TYO: --:-- JST</span>
-        <span class="footer-sep">/</span>
-        <span class="footer-clock" id="footer-clock-shanghai">SHA: --:-- CST</span>
-        <span class="footer-sep">/</span>
-        <span class="footer-clock" id="footer-clock-moscow">MSK: --:-- MSK</span>
-      </div>
-      <div class="footer-theme-hud">
-        <span class="footer-theme-label">ТЕМА:</span>
-        <button type="button" class="theme-pill-btn active" data-theme-val="dark"><span class="theme-dot theme-dot-dark"></span> ТЁМНАЯ</button>
-        <button type="button" class="theme-pill-btn" data-theme-val="chrome"><span class="theme-dot theme-dot-chrome"></span> ХРОМ</button>
-        <button type="button" class="theme-pill-btn poster-switch-btn" id="footer-btn-random-poster">СМЕНИТЬ ФОН</button>
-      </div>
-    </div>
-
-    <div class="container footer-grid">
-      <div class="footer-col brand-col">
-        <span class="header-brand-mark" style="transform: scale(0.95); transform-origin: left center; margin-bottom: 0.75rem;">
-          <span class="brand-text-sasbov">SASBOV</span>
-          <span class="brand-text-market">MARKET</span>
-        </span>
-        <p class="footer-desc">
-          Премиальный консьерж-сервис выкупа оригинальной одежды, редких пар кроссовок и архивных дропов с авторизованных маркетов Китая, Японии и Европы.
+  <!-- Minimalist Luxury Footer -->
+  <footer class="site-footer" id="site-footer">
+    <div class="container footer-container">
+      
+      <!-- Brand & Mission Column -->
+      <div class="footer-brand-col">
+        <a href="/" class="brand-logo-link" aria-label="SASBOV MARKET — На главную">
+          <span class="header-brand-mark">
+            <span class="brand-text-sasbov">SASBOV</span>
+            <span class="brand-text-market">MARKET</span>
+          </span>
+        </a>
+        <p class="footer-tagline">
+          Консьерж-сервис выкупа и доставки оригинальной одежды, редких кроссовок и архивных коллекций из Китая (Poizon / Dewu), Японии и США. Официальный выкуп и 100% Legit Check с 2019 года.
         </p>
-        <div class="footer-tg-pill">
-          <span class="tg-indicator-dot"></span>
-          <span>ОФИЦИАЛЬНЫЙ TELEGRAM:</span>
-          <a href="https://t.me/Sasbov" target="_blank" rel="noopener noreferrer" class="tg-handle">@SASBOV</a>
+        <div class="footer-trust-badge">
+          <span class="trust-dot"></span>
+          <span>ОФИЦИАЛЬНЫЙ ВЫКУП // 100% ОРИГИНАЛ</span>
         </div>
       </div>
 
-      <div class="footer-col">
-        <h4 class="footer-heading">МЕНЮ САЙТА</h4>
-        <ul class="footer-links">
+      <!-- Navigation Column -->
+      <div class="footer-links-col">
+        <h4 class="footer-heading">НАВИГАЦИЯ</h4>
+        <ul class="footer-nav">
           <li><a href="/">Главная</a></li>
-          <li><a href="/catalog">Каталог позиций</a></li>
-          <li><a href="/blog">Блог и экспертные статьи</a></li>
-          <li><a href="/feed">Интерактивный лукбук (Feed)</a></li>
-          <li><a href="/#calculator">Калькулятор доставки</a></li>
-          <li><a href="/#guarantee">Гарантия подлинности</a></li>
-          <li><a href="/faq">Часто задаваемые вопросы (FAQ)</a></li>
+          <li><a href="/catalog">Каталог товаров</a></li>
+          <li><a href="/blog">Блог & Гиды</a></li>
+          <li><a href="/#calculator">Калькулятор выкупа</a></li>
+          <li><a href="/#guarantee">Гарантии подлинности</a></li>
+          <li><a href="/faq">Вопросы и ответы (FAQ)</a></li>
         </ul>
       </div>
 
-      <div class="footer-col">
-        <h4 class="footer-heading">НАПРАВЛЕНИЯ ВЫКУПА</h4>
-        <ul class="footer-links">
-          <li><a href="/catalog?region=china">Китай (Poizon / Dewu, Goofish)</a></li>
-          <li><a href="/catalog?region=japan">Япония (Mercari JP, Harajuku)</a></li>
-          <li><a href="/catalog?stock=instock">В наличии в СПб (Balkonsky Store)</a></li>
-          <li><a href="/catalog?category=clothing">Одежда и пуховики</a></li>
-          <li><a href="/catalog?category=shoes">Обувь и редкие кроссовки</a></li>
-          <li><a href="/catalog?category=accessories">Аксессуары и сумки</a></li>
+      <!-- Platforms & Sourcing Column -->
+      <div class="footer-links-col">
+        <h4 class="footer-heading">ПЛОЩАДКИ ВЫКУПА</h4>
+        <ul class="footer-nav">
+          <li><a href="/catalog?region=china">Poizon & Dewu (Китай)</a></li>
+          <li><a href="/catalog?region=china">Goofish / Xianyu (Китай)</a></li>
+          <li><a href="/catalog?region=japan">Mercari JP (Япония)</a></li>
+          <li><a href="/catalog?region=japan">eBay & Yahoo JP Archive</a></li>
+          <li><a href="/catalog?stock=instock">В наличии в СПб (Шоурум)</a></li>
         </ul>
       </div>
 
-      <div class="footer-col">
-        <h4 class="footer-heading">ПАБЛИКИ ПРОДАЖ VK (С 2019 ГОДА)</h4>
-        <ul class="footer-links">
-          <li>
-            <a href="https://vk.ru/mplogistics" target="_blank" rel="noopener noreferrer">
-              MP Logistics // Паблик (работает с 2019 года)
-            </a>
-          </li>
-          <li>
-            <a href="https://vk.ru/sasbov.store" target="_blank" rel="noopener noreferrer">
-              SASBOV Store // Паблик (работает с 2019 года)
-            </a>
-          </li>
+      <!-- Communities & Socials Column -->
+      <div class="footer-links-col">
+        <h4 class="footer-heading">СООБЩЕСТВО</h4>
+        <ul class="footer-nav">
+          <li><a href="https://t.me/sasbovmarket" target="_blank" rel="noopener noreferrer">Канал с дропами в TG</a></li>
+          <li><a href="https://t.me/sasbovfeedback" target="_blank" rel="noopener noreferrer">Отзывы покупателей в TG</a></li>
+          <li><a href="https://vk.ru/mplogistics" target="_blank" rel="noopener noreferrer">MP Logistics // VK (с 2019)</a></li>
+          <li><a href="https://vk.ru/sasbov.store" target="_blank" rel="noopener noreferrer">SASBOV Store // VK (с 2019)</a></li>
         </ul>
-        <span class="footer-badge" style="display: block; margin-top: 6px; font-family: var(--font-mono, monospace); font-size: 0.72rem; color: #00f0ff; letter-spacing: 0.03em;">
-          ● Паблик работает с 2019 года // 7+ лет на рынке
-        </span>
       </div>
 
-      <div class="footer-col">
-        <h4 class="footer-heading">СВЯЗЬ И ЗАКАЗ</h4>
-        <ul class="footer-links">
-          <li><a href="https://t.me/Sasbov" target="_blank" rel="noopener noreferrer">Написать менеджеру в Telegram</a></li>
-          <li><a href="https://t.me/sasbovmarket" target="_blank" rel="noopener noreferrer">Telegram-канал со скидками</a></li>
+      <!-- Direct Contact Column -->
+      <div class="footer-links-col footer-contact-col">
+        <h4 class="footer-heading">КОНСЬЕРЖ-СЕРВИС</h4>
+        <ul class="footer-nav">
+          <li><a href="https://t.me/Sasbov" target="_blank" rel="noopener noreferrer" class="footer-tg-link">Менеджер: <strong>@SASBOV</strong></a></li>
+          <li><span class="footer-hours">Ежедневно: 10:00 — 23:00</span></li>
+          <li><span class="footer-location">СПб, Невский просп., 110В</span></li>
           <li style="margin-top: 8px;">
-            <button type="button" class="btn btn-outline" id="footer-tray-btn" style="width: 100%; justify-content: center; font-size: 0.76rem; padding: 7px 12px;">
-              <span>ПОДНОС ПРЕДЗАКАЗОВ:</span>
-              <span class="cart-badge footer-tray-count">0</span>
-            </button>
-          </li>
-          <li style="margin-top: 4px;">
-            <a href="https://t.me/Sasbov" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%; justify-content: center; font-size: 0.76rem; padding: 7px 12px; background: #00f0ff; color: #000; font-weight: 700;">
-              МЕНЕДЖЕР В TG
+            <a href="https://t.me/Sasbov" target="_blank" rel="noopener noreferrer" class="footer-action-btn">
+              НАПИСАТЬ МЕНЕДЖЕРУ
             </a>
           </li>
         </ul>
       </div>
+
     </div>
 
-    <!-- Offline Showroom Office Card in St. Petersburg -->
+    <!-- Verified Showroom Partner Card -->
     <div class="container">
       <div class="footer-showroom-card">
         <div class="showroom-card-header">
-          <div class="showroom-tag">ПАРТНЁР // ОФФЛАЙН-ШОУРУМ В САНКТ-ПЕТЕРБУРГЕ</div>
-          <h3 class="showroom-title">Оффлайн Офис Балконский стор (Balkonsky Store)</h3>
+          <div class="showroom-tag">ОФФЛАЙН-ШОУРУМ В САНКТ-ПЕТЕРБУРГЕ</div>
+          <h3 class="showroom-title">Балконский стор (Balkonsky Store)</h3>
           <p class="showroom-address">
-            Оффлайн-шоурум расположен по адресу: <a href="https://yandex.ru/maps/org/balkonskiy_stor/109683827425/?indoorLevel=1&ll=30.358538%2C59.932829&z=17" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-decoration-color: var(--accent-cyan);" title="Открыть Балконский стор на Яндекс Картах"><strong>Невский просп., 110В (Яндекс Карты ↗)</strong></a><br>
-            <span class="text-muted" style="font-size: 0.82rem;">(Рейтинг ★ 4.8 • 24 оценки • Ежедневно до 22:00 • Тел: +7 (981) 800-07-46 • Примерка и самовывоз)</span>
+            г. Санкт-Петербург, Невский просп., 110В &bull; Рейтинг ★ 4.8 (24 оценки) &bull; Ежедневно 11:00–22:00 &bull; Тел: <a href="tel:+79818000746">+7 (981) 800-07-46</a>
           </p>
         </div>
         <div class="showroom-maps-grid">
-          <a href="https://yandex.ru/maps/org/balkonskiy_stor/109683827425/?indoorLevel=1&ll=30.358538%2C59.932829&z=17" target="_blank" rel="noopener noreferrer" class="map-badge-link map-badge-primary" title="Открыть организацию Балконский стор на Яндекс Картах">
-            Яндекс Карты (Балконский стор) ↗
+          <a href="https://yandex.ru/maps/org/balkonskiy_stor/109683827425/?indoorLevel=1&ll=30.358538%2C59.932829&z=17" target="_blank" rel="noopener noreferrer" class="map-badge-link map-badge-primary">
+            Открыть на Яндекс Картах ↗
           </a>
-          <a href="tel:+79818000746" class="map-badge-link" title="Позвонить в шоурум">
-            Тел: +7 (981) 800-07-46
+          <a href="tel:+79818000746" class="map-badge-link">
+            +7 (981) 800-07-46
           </a>
           <a href="https://t.me/Sasbov" target="_blank" rel="noopener noreferrer" class="map-badge-link map-badge-cta">
-            Связь с менеджером (@Sasbov)
+            Забронировать вещь в TG
           </a>
         </div>
       </div>
     </div>
 
+    <!-- Minimal Bottom Bar -->
     <div class="container footer-bottom">
-      <p>&copy; 2026 SASBOV MARKET. Все права защищены. Эксклюзивный предзаказ одежды и обуви из Китая и Японии.</p>
+      <p>&copy; 2019–2026 SASBOV MARKET. Все права защищены. Только 100% оригинальные товары.</p>
       <div class="footer-bottom-meta">
-        <span>SECURITY: ENCRYPTED // SSL VERIFIED</span>
+        <span>LEGIT CHECK GUARANTEED // ЭКСПРЕСС-ДОСТАВКА ПО ВСЕЙ РОССИИ</span>
       </div>
     </div>
   </footer>

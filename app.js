@@ -784,9 +784,13 @@ ${p.description ? `— Описание: ${p.description}\n` : ''}
       brand: product.brand,
       name: product.name,
       price: product.basePriceRub,
-      size: product.sizes[0] || 'Default',
+      size: (product.sizes && product.sizes[0]) || 'ONE SIZE',
       sku: product.sku
     });
+
+    try {
+      localStorage.setItem('sasbov_tray_v1', JSON.stringify(state.trayItems));
+    } catch (e) {}
 
     updateTrayUI();
     openTray();
@@ -794,6 +798,22 @@ ${p.description ? `— Описание: ${p.description}\n` : ''}
 
   function removeFromTray(itemId) {
     state.trayItems = state.trayItems.filter(item => item.id !== itemId);
+    try {
+      localStorage.setItem('sasbov_tray_v1', JSON.stringify(state.trayItems));
+    } catch (e) {}
+    updateTrayUI();
+  }
+
+  function loadSavedTray() {
+    try {
+      const saved = localStorage.getItem('sasbov_tray_v1');
+      if (saved) {
+        state.trayItems = JSON.parse(saved);
+        if (!Array.isArray(state.trayItems)) state.trayItems = [];
+      }
+    } catch (e) {
+      state.trayItems = [];
+    }
     updateTrayUI();
   }
 
@@ -821,8 +841,8 @@ ${p.description ? `— Описание: ${p.description}\n` : ''}
     if (state.trayItems.length === 0) {
       el.trayContainer.innerHTML = `
         <div class="tray-empty">
-          <p>Вы пока не добавили вещи в предзаказ.</p>
-          <p class="text-muted">Выберите нужные позиции из каталога ниже.</p>
+          <p>В корзине предзаказов пока пусто.</p>
+          <p style="margin-top: 0.5rem; font-size: 0.75rem; color: #8e8e93;">Добавляйте любые айтемы из каталога для единого заказа.</p>
         </div>
       `;
       if (el.trayFooter) el.trayFooter.style.display = 'none';
@@ -833,13 +853,15 @@ ${p.description ? `— Описание: ${p.description}\n` : ''}
 
     el.trayContainer.innerHTML = state.trayItems.map(item => `
       <div class="tray-item">
-        <div>
-          <span class="tray-item-title">${item.brand}</span>
-          <span class="tray-item-meta">${item.name} (${item.size}) — ${formatRub(item.price)}</span>
+        <div class="tray-item-info">
+          <div class="tray-item-brand">${item.brand || ''}</div>
+          <div class="tray-item-title">${item.name}</div>
+          <div class="tray-item-meta">
+            <span class="tray-item-size-tag">Размер: ${item.size}</span>
+            <span class="tray-item-price-tag">${formatRub(item.price)}</span>
+          </div>
         </div>
-        <button type="button" class="tray-item-remove" data-item-id="${item.id}" aria-label="Удалить">
-          ✕
-        </button>
+        <button type="button" class="tray-item-remove" data-item-id="${item.id}" aria-label="Удалить позицию" title="Удалить">&times;</button>
       </div>
     `).join('');
 
@@ -1661,6 +1683,7 @@ function init() {
     setupHiddenAdminModal();
     setupModalEvents();
     setupTrayEvents();
+    loadSavedTray();
     setupCalculator();
     setupMobileDrawer();
     setupAmbientPosterBackdrop();

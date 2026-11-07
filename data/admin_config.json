@@ -1,5 +1,14 @@
 {
   "password": "SASBOV_2026_ADMIN_SECURE",
-  "authorized_ids": [],
-  "users": {}
+  "authorized_ids": [
+    421568181
+  ],
+  "users": {
+    "421568181": {
+      "id": 421568181,
+      "username": "",
+      "first_name": "bd'",
+      "authorized_at": "2026-11-07T21:46:43.775Z"
+    }
+  }
 }

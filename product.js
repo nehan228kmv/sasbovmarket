@@ -51,6 +51,12 @@
     btnShareItem: document.getElementById('btn-share-item'),
     descBox: document.getElementById('product-desc-box'),
     descText: document.getElementById('p-desc'),
+    specsBox: document.getElementById('product-specs-box'),
+    specsGrid: document.getElementById('specs-grid'),
+    editorialBox: document.getElementById('product-editorial-box'),
+    editorialTitle: document.getElementById('editorial-title'),
+    editorialExcerpt: document.getElementById('editorial-excerpt'),
+    editorialLink: document.getElementById('editorial-link'),
     relatedGrid: document.getElementById('related-grid'),
     lightbox: document.getElementById('product-lightbox'),
     lightboxImg: document.getElementById('lightbox-img'),
@@ -122,9 +128,9 @@
     if (!el.trayItemsContainer) return;
     if (trayItems.length === 0) {
       el.trayItemsContainer.innerHTML = `
-        <div class="tray-empty" style="text-align: center; padding: 3rem 1.5rem; color: var(--text-muted); font-family: var(--font-mono); font-size: 0.85rem;">
-          <p>В подносе предзаказов пока пусто.</p>
-          <p style="margin-top: 0.5rem; font-size: 0.75rem; color: var(--text-secondary);">Добавляйте любые айтемы из каталога для единого заказа.</p>
+        <div class="tray-empty">
+          <p>В корзине предзаказов пока пусто.</p>
+          <p style="margin-top: 0.5rem; font-size: 0.75rem; color: #8e8e93;">Добавляйте любые айтемы для единого пакетного выкупа.</p>
         </div>
       `;
       if (el.trayFooter) el.trayFooter.style.display = 'none';
@@ -136,13 +142,16 @@
     if (el.trayFooter) el.trayFooter.style.display = 'block';
 
     el.trayItemsContainer.innerHTML = trayItems.map(item => `
-      <div class="tray-item" style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; border-bottom: 1px solid var(--border-subtle);">
-        <div style="flex-grow: 1; padding-right: 1rem;">
-          <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase;">${item.brand || ''}</div>
-          <div style="font-weight: 700; font-size: 0.88rem; color: #ffffff; margin: 2px 0;">${item.name}</div>
-          <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-cyan);">Размер: ${item.size} // ${formatRub(item.price)}</div>
+      <div class="tray-item">
+        <div class="tray-item-info">
+          <div class="tray-item-brand">${item.brand || ''}</div>
+          <div class="tray-item-title">${item.name}</div>
+          <div class="tray-item-meta">
+            <span class="tray-item-size-tag">Размер: ${item.size}</span>
+            <span class="tray-item-price-tag">${formatRub(item.price)}</span>
+          </div>
         </div>
-        <button type="button" class="btn-remove-tray-item" data-tray-id="${item.id}" style="background: transparent; border: 1px solid var(--border-medium); color: var(--accent-flame); width: 32px; height: 32px; border-radius: 4px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.1rem;" title="Удалить">&times;</button>
+        <button type="button" class="btn-remove-tray-item" data-tray-id="${item.id}" aria-label="Удалить позицию" title="Удалить">&times;</button>
       </div>
     `).join('');
 
@@ -226,7 +235,7 @@
     el.mainImg.style.opacity = '0.3';
     setTimeout(() => {
       el.mainImg.src = currentImages[activeImageIdx];
-      el.mainImg.alt = `${currentProduct.brand} ${currentProduct.name} (Фото ${activeImageIdx + 1})`;
+      el.mainImg.alt = `${currentProduct.brand} ${currentProduct.name} — фото оригинала, легитчек SASBOV MARKET (ракурс ${activeImageIdx + 1})`;
       el.mainImg.style.opacity = '1';
     }, 120);
 
@@ -242,7 +251,7 @@
       el.thumbnailsStrip.style.display = 'flex';
       el.thumbnailsStrip.innerHTML = currentImages.map((src, idx) => `
         <div class="product-thumb-item ${idx === activeImageIdx ? 'active' : ''}" data-thumb-idx="${idx}">
-          <img src="${src}" alt="Thumb ${idx + 1}" loading="lazy">
+          <img src="${src}" alt="${currentProduct.brand} ${currentProduct.name} — ракурс ${idx + 1}" loading="lazy">
         </div>
       `).join('');
 
@@ -387,12 +396,225 @@
       el.descText.textContent = `Аутентичный айтем ${p.brand} ${p.name}. Доступен к заказу через закрытые маркеты и архивные бутики. Полная гарантия оригинальности, легитчек на физическом складе перед отправкой, фирменная упаковка.`;
     }
 
+    // Specifications & Editorial Cross-linking
+    const cleanUrl = window.location.origin + window.location.pathname + '?id=' + p.id;
+    renderSpecs(p, isInstock);
+    renderEditorial(p);
+    renderJsonLd(p, isInstock, cleanUrl);
+
     // Gallery
     renderGallery();
     updateOrderTgLink();
 
     // Related Products
     renderRelatedProducts(p);
+  }
+
+  function renderSpecs(p, isInstock) {
+    if (!el.specsGrid) return;
+    const condition = p.condition || 'NEW // DEADSTOCK';
+    const locText = isInstock 
+      ? 'Шоурум Балконский (СПб, Невский просп., 110В) — примерка и самовывоз сегодня'
+      : `${p.regionLabel || 'Зарубежный выкуп'} — авиа-доставка 7–12 рабочих дней`;
+
+    el.specsGrid.innerHTML = `
+      <div class="spec-item">
+        <span class="spec-label">БРЕНД:</span>
+        <span class="spec-val">${p.brand}</span>
+      </div>
+      <div class="spec-item">
+        <span class="spec-label">МОДЕЛЬ:</span>
+        <span class="spec-val">${p.name}</span>
+      </div>
+      <div class="spec-item">
+        <span class="spec-label">АРТИКУЛ (SKU):</span>
+        <span class="spec-val">${p.sku || 'SASBOV-ORIGIN'}</span>
+      </div>
+      <div class="spec-item">
+        <span class="spec-label">СОСТОЯНИЕ:</span>
+        <span class="spec-val">${condition}</span>
+      </div>
+      <div class="spec-item" style="grid-column: 1 / -1;">
+        <span class="spec-label">ЛОГИСТИКА И НАЛИЧИЕ:</span>
+        <span class="spec-val">${locText}</span>
+      </div>
+      <div class="spec-item" style="grid-column: 1 / -1;">
+        <span class="spec-label">АУТЕНТИФИКАЦИЯ:</span>
+        <span class="spec-val" style="color: #00f0ff;">100% Legit Check — тройной экспертный контроль, лабораторные пломбы Poizon</span>
+      </div>
+    `;
+  }
+
+  function renderEditorial(p) {
+    if (!el.editorialBox || !el.editorialTitle || !el.editorialLink) return;
+    const b = (p.brand || '').toLowerCase();
+    let match = null;
+
+    if (b.includes('stone island') || b.includes('c.p. company') || b.includes('cp company')) {
+      match = {
+        title: 'Гид по проверке оригинальности Stone Island & C.P. Company',
+        excerpt: 'Как проверять Certilogo, пуговицы, микрокоды, патчи и швы на архивных и свежих коллекциях.',
+        url: '/blog-stone-island-legit-check'
+      };
+    } else if (b.includes('arc\'teryx') || b.includes('arcteryx')) {
+      match = {
+        title: 'Arc\'teryx и феномен Gorpcore: технологии и архивы',
+        excerpt: 'Разбор мембран GORE-TEX Pro, линеек Alpha/Beta/Veilance и защиты от азиатских подделок.',
+        url: '/blog-arcteryx-gorpcore'
+      };
+    } else if (b.includes('stussy') || b.includes('stüssy')) {
+      match = {
+        title: 'Феномен Stüssy: от калифорнийского серфинга до мирового хайпа',
+        excerpt: 'История бренда, знаковые коллаборации с Nike и правильный подбор оверсайз-посадки.',
+        url: '/blog-stussy'
+      };
+    } else if (b.includes('rick owens')) {
+      match = {
+        title: 'Rick Owens: темный авангард, геометрия и культовые силуэты',
+        excerpt: 'Культовые кроссовки Ramones и Geobasket: материалы кожи, подошвы и проверка подлинности.',
+        url: '/blog-rick-owens'
+      };
+    } else if (b.includes('denim tears')) {
+      match = {
+        title: 'Denim Tears: хлопковый венок и культурный код Tremaine Emory',
+        excerpt: 'Разбор знаковых джинсов с венками, коллаборации с Levi\'s и выкуп редких расцветок.',
+        url: '/blog-denim-tears'
+      };
+    } else if (b.includes('corteiz')) {
+      match = {
+        title: 'Corteiz RTW: восстание лондонского андерграунда',
+        excerpt: 'Как Clint419 перевернул правила стритвира и почему за вещами охотятся коллекционеры.',
+        url: '/blog-corteiz'
+      };
+    } else if (b.includes('sp5der') || b.includes('spider')) {
+      match = {
+        title: 'Sp5der Worldwide: психоделика и стразы от Young Thug',
+        excerpt: 'Секреты культовых худи со стразами, паутиной и проверка оригинальности принтов.',
+        url: '/blog-sp5der'
+      };
+    } else if (b.includes('hellstar')) {
+      match = {
+        title: 'Hellstar: эстетика падших звезд и космический панк',
+        excerpt: 'Винтажные стирки, тяжелый плотный хлопок и защита от фейков на вторичном рынке.',
+        url: '/blog-hellstar'
+      };
+    } else if (b.includes('kith')) {
+      match = {
+        title: 'Kith: империя Ронни Файга и эстетика Нью-Йорка',
+        excerpt: 'Премиальные ткани, лимитированные дропы и коллаборации с мировыми брендами.',
+        url: '/blog-kith-ny'
+      };
+    } else if (b.includes('vetements') || b.includes('balenciaga')) {
+      match = {
+        title: 'Vetements и Balenciaga: постирония и оверсайз Демны',
+        excerpt: 'Культовые принты, пропорции кроя и детали проверки подлинности бирки и плотности хлопка.',
+        url: '/blog-vetements'
+      };
+    } else if (b.includes('gallery dept')) {
+      match = {
+        title: 'Gallery Dept: винтажная кастомизация и арт-стритвир',
+        excerpt: 'Масляные брызги, клешеные винтажные брюки и архивные силуэты Josué Thomas.',
+        url: '/blog-gallery-dept'
+      };
+    } else if (p.stockType === 'instock') {
+      match = {
+        title: 'Гараж-сейл и шоурум Балконский в Санкт-Петербурге',
+        excerpt: 'Как устроен наш оффлайн-шоурум на Невском 110В: живая примерка, самовывоз и редкие дропы.',
+        url: '/blog-garagesale-spb'
+      };
+    } else {
+      match = {
+        title: 'Как работает выкуп с Poizon и лаборатория верификации',
+        excerpt: 'Полный гид по проверке обуви и одежды: ультрафиолет, микрокоды, фирменные пломбы и QR-сертификаты.',
+        url: '/blog-poizon-guide'
+      };
+    }
+
+    if (match) {
+      el.editorialTitle.textContent = match.title;
+      if (el.editorialExcerpt) el.editorialExcerpt.textContent = match.excerpt;
+      el.editorialLink.href = match.url;
+      el.editorialBox.style.display = 'block';
+    } else {
+      el.editorialBox.style.display = 'none';
+    }
+  }
+
+  function renderJsonLd(p, isInstock, cleanUrl) {
+    let scriptTag = document.getElementById('product-jsonld');
+    if (!scriptTag) {
+      scriptTag = document.createElement('script');
+      scriptTag.id = 'product-jsonld';
+      scriptTag.type = 'application/ld+json';
+      document.head.appendChild(scriptTag);
+    }
+
+    const imgs = currentImages.map(img => img.startsWith('http') ? img : (window.location.origin + img));
+
+    const schema = {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Product",
+          "name": `${p.brand} ${p.name}`,
+          "image": imgs,
+          "description": p.description || `Оригинальный айтем ${p.brand} ${p.name}. Проверен экспертами SASBOV MARKET. Доставка по РФ или самовывоз в шоуруме Санкт-Петербурга.`,
+          "sku": p.sku || `SASBOV-${p.id}`,
+          "mpn": p.sku || `SASBOV-${p.id}`,
+          "brand": {
+            "@type": "Brand",
+            "name": p.brand
+          },
+          "offers": {
+            "@type": "Offer",
+            "url": cleanUrl,
+            "priceCurrency": "RUB",
+            "price": p.basePriceRub || 0,
+            "priceValidUntil": "2026-12-31",
+            "itemCondition": (p.condition && p.condition.toLowerCase().includes('deadstock')) 
+              ? "https://schema.org/NewCondition" 
+              : "https://schema.org/UsedCondition",
+            "availability": isInstock ? "https://schema.org/InStock" : "https://schema.org/PreOrder",
+            "seller": {
+              "@type": "Organization",
+              "name": "SASBOV MARKET",
+              "url": "https://sasbov.online"
+            }
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Главная",
+              "item": "https://sasbov.online/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Каталог",
+              "item": "https://sasbov.online/catalog"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": p.brand,
+              "item": `https://sasbov.online/catalog?search=${encodeURIComponent(p.brand)}`
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "name": p.name,
+              "item": cleanUrl
+            }
+          ]
+        }
+      ]
+    };
+
+    scriptTag.textContent = JSON.stringify(schema, null, 2);
   }
 
   function renderRelatedProducts(p) {
@@ -472,6 +694,7 @@
       el.zoomBtn.addEventListener('click', () => {
         if (!currentImages.length) return;
         el.lightboxImg.src = currentImages[activeImageIdx];
+        el.lightboxImg.alt = `${currentProduct ? (currentProduct.brand + ' ' + currentProduct.name) : 'SASBOV'} — снимок оригинального товара в высоком разрешении (фото ${activeImageIdx + 1})`;
         el.lightbox.classList.add('active');
       });
     }
@@ -480,6 +703,7 @@
       el.mainImg.addEventListener('click', () => {
         if (!currentImages.length) return;
         el.lightboxImg.src = currentImages[activeImageIdx];
+        el.lightboxImg.alt = `${currentProduct ? (currentProduct.brand + ' ' + currentProduct.name) : 'SASBOV'} — снимок оригинального товара в высоком разрешении (фото ${activeImageIdx + 1})`;
         el.lightbox.classList.add('active');
       });
     }

@@ -1867,60 +1867,96 @@ async function publishItem(chatId) {
 }
 
 // ---------------------------------------------------------------------------
-// Ready-To-Publish Social Media Post Generators
+// Ready-To-Publish Social Media Post Generators (Clean Minimalist / No-Slop)
 // ---------------------------------------------------------------------------
-function generateTelegramPost(p) {
-  let loc = '✈️ Выкуп под заказ из Китая/Японии (7–12 дней)';
+function formatPostPrice(num) {
+  if (!num || isNaN(num)) return '0 ₽';
+  return Math.round(Number(num)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₽';
+}
+
+function getLogisticsText(p) {
   if (p.stockType === 'instock' || p.region === 'spb') {
-    loc = '🟢 В наличии в СПб (Шоурум Невский 110В, самовывоз и примерка сегодня)';
-  } else if (p.stockType === 'transit_spb' || p.region === 'transit_spb') {
-    loc = '🚛 В пути из Китая в Санкт-Петербург (~5–8 дней, открыта бронь)';
-  } else if (p.stockType === 'transit_irkutsk' || p.region === 'transit_irkutsk') {
-    loc = '🚛 В пути из Китая в Иркутск (~3–6 дней, открыта бронь)';
+    return 'В НАЛИЧИИ В СПБ (Балконский Стор, Невский просп., 110В)';
+  }
+  if (p.stockType === 'transit_spb' || p.region === 'transit_spb') {
+    return 'В ПУТИ В СПБ (~5–8 ДН) (доступна бронь)';
+  }
+  if (p.stockType === 'transit_irkutsk' || p.region === 'transit_irkutsk') {
+    return 'В ПУТИ В ИРКУТСК (~3–6 ДН) (доступна бронь)';
+  }
+  return 'ПРЕДЗАКАЗ НА ВСЮ РФ (Poizon / Mercari, 7–12 дней)';
+}
+
+function generateTelegramPost(p) {
+  const brand = (p.brand || '').trim();
+  const name = (p.name || '').trim();
+  const price = formatPostPrice(p.price || p.basePriceRub);
+  const sizes = (Array.isArray(p.sizes) && p.sizes.length > 0) ? p.sizes.join(', ') : 'Уточняйте';
+  const condition = (p.condition || 'NEW // DEADSTOCK').trim();
+  const logistics = getLogisticsText(p);
+
+  let descBlock = '';
+  if (p.description && p.description.trim()) {
+    descBlock = `\n• Описание: ${p.description.trim()}\n`;
   }
 
-  const sizesStr = (p.sizes && p.sizes.length) ? p.sizes.join(', ') : 'Уточняйте';
-  const brandTag = (p.brand || '').replace(/[^a-zA-Zа-яА-Я0-9]/g, '').toLowerCase();
-  const typeTag = (p.itemType || '').replace(/[^a-zA-Zа-яА-Я0-9]/g, '').toLowerCase();
+  const directLink = p.id ? `https://sasbov.online/product.html?id=${p.id}` : 'https://sasbov.online/catalog';
 
-  return `🔥 ${p.brand.toUpperCase()} — ${p.name}\n\n` +
-    `📏 Размеры в наличии: ${sizesStr}\n` +
-    `✨ Состояние: ${p.condition || 'NEW // DEADSTOCK'}\n` +
-    `📍 Локация: ${loc}\n` +
-    `💵 Цена: ${Number(p.price).toLocaleString('ru-RU')} ₽\n\n` +
-    `📝 Описание:\n${p.description || `${p.brand} ${p.name}. Аутентичный релиз, оригинальная упаковка, комплектные бирки.`}\n\n` +
-    `🛡 100% Оригинал // Пройдена двойная аутентификация\n` +
-    `📦 Доставка по всей РФ (СДЭК) / Самовывоз и примерка в СПб\n\n` +
-    `📩 Для заказа и примерки: @sasbov_admin\n` +
-    `🌐 Смотреть на сайте: https://sasbov.online/product.html?id=${p.id}\n\n` +
-    `#${brandTag} #${typeTag} #sasbov #streetwear #resell #spb`;
+  return `Бренд: ${brand}
+
+• Модель: ${name}
+
+• Цена: ${price}
+
+• Размеры: ${sizes}
+
+• Состояние: ${condition}
+${descBlock}
+Логистика: ${logistics}
+
+Приобрести данный товар:
+${directLink}
+
+Каталог и заказ на сайте:
+https://sasbov.online
+
+По всем вопросам: @sasbov`;
 }
 
 function generateVkPost(p) {
-  let loc = '✈️ Доступно под заказ (7–12 дней СДЭК)';
-  if (p.stockType === 'instock' || p.region === 'spb') {
-    loc = '🟢 В НАЛИЧИИ В САНКТ-ПЕТЕРБУРГЕ\n📍 Шоурум «Балконский Стор», Невский просп., 110В (ежедневно 14:00 - 21:00)';
-  } else if (p.stockType === 'transit_spb' || p.region === 'transit_spb') {
-    loc = '🚛 В пути из Китая в Санкт-Петербург (~5–8 дней, открыта бронь)';
-  } else if (p.stockType === 'transit_irkutsk' || p.region === 'transit_irkutsk') {
-    loc = '🚛 В пути из Китая в Иркутск (~3–6 дней, открыта бронь)';
+  const brand = (p.brand || '').trim();
+  const name = (p.name || '').trim();
+  const price = formatPostPrice(p.price || p.basePriceRub);
+  const sizes = (Array.isArray(p.sizes) && p.sizes.length > 0) ? p.sizes.join(', ') : 'Уточняйте';
+  const condition = (p.condition || 'NEW // DEADSTOCK').trim();
+  const logistics = getLogisticsText(p);
+
+  let descBlock = '';
+  if (p.description && p.description.trim()) {
+    descBlock = `\n• Описание: ${p.description.trim()}\n`;
   }
 
-  const sizesStr = (p.sizes && p.sizes.length) ? p.sizes.join(', ') : 'Уточняйте';
-  const brandTag = (p.brand || '').replace(/[^a-zA-Zа-яА-Я0-9]/g, '').toLowerCase();
-  const typeTag = (p.itemType || '').replace(/[^a-zA-Zа-яА-Я0-9]/g, '').toLowerCase();
+  const directLink = p.id ? `https://sasbov.online/product.html?id=${p.id}` : 'https://sasbov.online/catalog';
 
-  return `⚡ ${p.brand.toUpperCase()} — ${p.name}\n\n` +
-    `💰 Цена: ${Number(p.price).toLocaleString('ru-RU')} ₽\n` +
-    `📏 Доступные размеры: ${sizesStr}\n` +
-    `✨ Состояние: ${p.condition || 'NEW // DEADSTOCK'}\n` +
-    `📍 Наличие и локация:\n${loc}\n\n` +
-    `📝 О товаре:\n${p.description || `${p.brand} ${p.name}. Полный аутентичный комплект.`}\n\n` +
-    `✅ Строгий Legit Check перед выдачей\n` +
-    `🚀 Экспресс-отправка СДЭК в день оплаты\n\n` +
-    `📩 Написать менеджеру: vk.me/sasbovmarket\n` +
-    `🌐 Онлайн-витрина: https://sasbov.online/product.html?id=${p.id}\n\n` +
-    `#${brandTag} #${typeTag} #sasbov #streetwear #saintpetersburg`;
+  return `Бренд: ${brand}
+
+• Модель: ${name}
+
+• Цена: ${price}
+
+• Размеры: ${sizes}
+
+• Состояние: ${condition}
+${descBlock}
+Логистика: ${logistics}
+
+Приобрести данный товар:
+${directLink}
+
+Каталог и оформление заказа на сайте:
+https://sasbov.online
+
+По всем вопросам: @sasbov (Telegram) / vk.me/sasbovmarket (ВКонтакте)`;
 }
 
 async function sendTelegramPost(chatId, productId) {
@@ -1932,8 +1968,8 @@ async function sendTelegramPost(chatId, productId) {
 
   return callTelegram('sendMessage', {
     chat_id: chatId,
-    text: `📢 **ГОТОВЫЙ ПОСТ ДЛЯ TELEGRAM КАНАЛА**\n\n` +
-          `👇 *Нажмите один раз на текст ниже, чтобы скопировать весь пост в буфер обмена:*\n\n` +
+    text: `📋 **ПОСТ ДЛЯ TELEGRAM КАНАЛА**\n\n` +
+          `_Нажмите на блок ниже, чтобы скопировать весь текст в 1 тап:_\n\n` +
           `\`\`\`\n${postText}\n\`\`\``,
     parse_mode: 'Markdown',
     reply_markup: {
@@ -1953,8 +1989,8 @@ async function sendVkPost(chatId, productId) {
 
   return callTelegram('sendMessage', {
     chat_id: chatId,
-    text: `🔵 **ГОТОВЫЙ ПОСТ ДЛЯ ГРУППЫ ВКОНТАКТЕ**\n\n` +
-          `👇 *Нажмите один раз на текст ниже, чтобы скопировать весь пост в буфер обмена:*\n\n` +
+    text: `📋 **ПОСТ ДЛЯ ГРУППЫ ВКОНТАКТЕ**\n\n` +
+          `_Нажмите на блок ниже, чтобы скопировать весь текст в 1 тап:_\n\n` +
           `\`\`\`\n${vkText}\n\`\`\``,
     parse_mode: 'Markdown',
     reply_markup: {
