@@ -210,11 +210,20 @@
     "category": "clothing",
     "subcategories": [
       "Спортивный костюм",
+      "Костюм",
+      "Худи",
+      "Штаны",
       "clothing"
     ],
     "tags": [
       "спортивный костюм",
-      "uniqlo"
+      "костюм",
+      "tracksuit",
+      "свитшот",
+      "штаны",
+      "uniqlo",
+      "kaws",
+      "warhol"
     ],
     "stockType": "transit_spb",
     "region": "transit_spb",
@@ -1357,13 +1366,17 @@
     "images": [
       "/uploads/sasbov-card-1792945929449_gal_0_1792945931247_876.jpg"
     ],
-    "itemType": "Одежда",
+    "itemType": "Футболка",
     "tags": [
-      "одежда",
-      "uniqlo x kaws"
+      "футболка",
+      "tee",
+      "t-shirt",
+      "uniqlo",
+      "kaws",
+      "sesame street"
     ],
     "subcategories": [
-      "Одежда",
+      "Футболка",
       "clothing"
     ]
   },
@@ -1480,7 +1493,7 @@
   {
     "id": "sasbov-card-1792945382526",
     "brand": "STONE ISLAND",
-    "name": "Maze Camo",
+    "name": "Maze Camo Cargo Pants",
     "condition": "NEW // DEADSTOCK",
     "description": "",
     "stockType": "instock",
@@ -1503,13 +1516,19 @@
     "images": [
       "/uploads/sasbov-card-1792945382526_gal_0_1792945384414_62.jpg"
     ],
-    "itemType": "Одежда",
+    "itemType": "Штаны",
     "tags": [
-      "одежда",
-      "stone island"
+      "штаны",
+      "брюки",
+      "карго",
+      "cargo",
+      "pants",
+      "stone island",
+      "camo"
     ],
     "subcategories": [
-      "Одежда",
+      "Штаны",
+      "Карго",
       "clothing"
     ]
   },
@@ -1539,13 +1558,16 @@
     "images": [
       "/uploads/sasbov-card-1792396922319_gal_0_1792396923214_30.jpg"
     ],
-    "itemType": "Одежда",
+    "itemType": "Куртка",
     "tags": [
-      "одежда",
-      "stone island"
+      "куртка",
+      "jacket",
+      "анорак",
+      "stone island",
+      "lamy-tc"
     ],
     "subcategories": [
-      "Одежда",
+      "Куртка",
       "clothing"
     ]
   },
@@ -1828,20 +1850,22 @@
       "/uploads/sasbov-card-1792396074853_gal_3_1792396076137_514.jpg",
       "/uploads/sasbov-card-1792396074853_gal_4_1792396076137_454.jpg"
     ],
-    "itemType": "Одежда",
+    "itemType": "Свитшот",
     "tags": [
-      "одежда",
+      "свитшот",
+      "sweatshirt",
+      "sweat",
       "cav empt"
     ],
     "subcategories": [
-      "Одежда",
+      "Свитшот",
       "clothing"
     ]
   },
   {
     "id": "sasbov-card-1792396011822",
     "brand": "MAISON MARGIELA",
-    "name": "(Sunrise Dyeing)",
+    "name": "Sunrise Dyeing T-Shirt",
     "condition": "9/10 VINTAGE",
     "description": "(Sunrise Dyeing) от бренда Maison Margiela. Оригинал 100%. Оформляем предзаказ с гарантией подлинности.",
     "stockType": "preorder",
@@ -1867,13 +1891,15 @@
       "/uploads/sasbov-card-1792396011822_gal_2_1792396012821_445.jpg",
       "/uploads/sasbov-card-1792396011822_gal_3_1792396012822_852.jpg"
     ],
-    "itemType": "Одежда",
+    "itemType": "Футболка",
     "tags": [
-      "одежда",
+      "футболка",
+      "tee",
+      "t-shirt",
       "maison margiela"
     ],
     "subcategories": [
-      "Одежда",
+      "Футболка",
       "clothing"
     ]
   },
@@ -1919,7 +1945,7 @@
   {
     "id": "sasbov-card-1792395911320",
     "brand": "GUCCI",
-    "name": "«1921 Gucci»",
+    "name": "«1921 Gucci» T-Shirt",
     "condition": "9/10 VINTAGE",
     "description": "Оригинальная модель GUCCI «1921 Gucci».  Доступен предзаказ, также отправляем в шоурум Balkonsky Store в СПб.",
     "stockType": "preorder",
@@ -1945,20 +1971,22 @@
       "/uploads/sasbov-card-1792395911320_gal_2_1792395912452_39.jpg",
       "/uploads/sasbov-card-1792395911320_gal_3_1792395912453_657.jpg"
     ],
-    "itemType": "Одежда",
+    "itemType": "Футболка",
     "tags": [
-      "одежда",
+      "футболка",
+      "tee",
+      "t-shirt",
       "gucci"
     ],
     "subcategories": [
-      "Одежда",
+      "Футболка",
       "clothing"
     ]
   },
   {
     "id": "sasbov-card-1792395847178",
     "brand": "BALENCIAGA",
-    "name": "Sacré Cœur / Notre-Dame",
+    "name": "Sacré Cœur / Notre-Dame T-Shirt",
     "condition": "8.5/10 GOOD",
     "description": "Оригинальная модель BALENCIAGA Sacré Cœur / Notre-Dame.",
     "stockType": "preorder",
@@ -1983,13 +2011,15 @@
       "/uploads/sasbov-card-1792395847178_gal_1_1792395848468_575.jpg",
       "/uploads/sasbov-card-1792395847178_gal_2_1792395848469_384.jpg"
     ],
-    "itemType": "Одежда",
+    "itemType": "Футболка",
     "tags": [
-      "одежда",
+      "футболка",
+      "tee",
+      "t-shirt",
       "balenciaga"
     ],
     "subcategories": [
-      "Одежда",
+      "Футболка",
       "clothing"
     ]
   },
@@ -2105,20 +2135,22 @@
       "/uploads/sasbov-card-1792395600920_gal_2_1792395601781_622.jpg",
       "/uploads/sasbov-card-1792395600920_gal_3_1792395601782_46.jpg"
     ],
-    "itemType": "Одежда",
+    "itemType": "Свитшот",
     "tags": [
-      "одежда",
+      "свитшот",
+      "sweatshirt",
+      "sweat",
       "stone island"
     ],
     "subcategories": [
-      "Одежда",
+      "Свитшот",
       "clothing"
     ]
   },
   {
     "id": "sasbov-card-1792395528771",
     "brand": "BALENCIAGA X THE SIMPSONS",
-    "name": "FW 21/22",
+    "name": "The Simpsons FW 21/22 T-Shirt",
     "condition": "8.5/10 GOOD",
     "description": "Оригинальная модель BALENCIAGA X The Simpsons FW 21/22.",
     "stockType": "preorder",
@@ -2142,13 +2174,16 @@
       "/uploads/sasbov-card-1792395528771_gal_0_1792395529512_178.jpg",
       "/uploads/sasbov-card-1792395528771_gal_1_1792395529513_139.jpg"
     ],
-    "itemType": "Одежда",
+    "itemType": "Футболка",
     "tags": [
-      "одежда",
-      "balenciaga x the simpsons"
+      "футболка",
+      "tee",
+      "t-shirt",
+      "balenciaga",
+      "simpsons"
     ],
     "subcategories": [
-      "Одежда",
+      "Футболка",
       "clothing"
     ]
   },
@@ -2180,20 +2215,22 @@
       "/uploads/sasbov-card-1792395455686_gal_1_1792395456698_234.jpg",
       "/uploads/sasbov-card-1792395455686_gal_2_1792395456698_691.jpg"
     ],
-    "itemType": "Одежда",
+    "itemType": "Худи",
     "tags": [
-      "одежда",
+      "худи",
+      "hoodie",
+      "толстовка",
       "balenciaga"
     ],
     "subcategories": [
-      "Одежда",
+      "Худи",
       "clothing"
     ]
   },
   {
     "id": "sasbov-card-1792395398649",
     "brand": "BALENCIAGA",
-    "name": "Wardrobe",
+    "name": "Wardrobe T-Shirt",
     "condition": "7/10 USED",
     "description": "Оригинальная модель BALENCIAGA Wardrobe.  Оформляем предзаказ с гарантией подлинности.",
     "stockType": "preorder",
@@ -2218,13 +2255,15 @@
       "/uploads/sasbov-card-1792395398649_gal_1_1792395399662_42.jpg",
       "/uploads/sasbov-card-1792395398649_gal_2_1792395399662_804.jpg"
     ],
-    "itemType": "Одежда",
+    "itemType": "Футболка",
     "tags": [
-      "одежда",
+      "футболка",
+      "tee",
+      "t-shirt",
       "balenciaga"
     ],
     "subcategories": [
-      "Одежда",
+      "Футболка",
       "clothing"
     ]
   },
@@ -2382,13 +2421,16 @@
       "/uploads/sasbov-card-1792395053374_gal_1_1792395056774_262.jpg",
       "/uploads/sasbov-card-1792395053374_gal_2_1792395056775_86.jpg"
     ],
-    "itemType": "Одежда",
+    "itemType": "Свитшот",
     "tags": [
-      "одежда",
-      "balenciaga"
+      "свитшот",
+      "sweatshirt",
+      "sweat",
+      "balenciaga",
+      "fbi"
     ],
     "subcategories": [
-      "Одежда",
+      "Свитшот",
       "clothing"
     ]
   },
@@ -2548,20 +2590,24 @@
       "/uploads/sasbov-card-1792394623517_gal_1_1792394626352_424.jpg",
       "/uploads/sasbov-card-1792394623517_gal_2_1792394626353_193.jpg"
     ],
-    "itemType": "Одежда",
+    "itemType": "Поло",
     "tags": [
-      "одежда",
-      "polo"
+      "поло",
+      "polo",
+      "футболка",
+      "ralph lauren",
+      "chief keef"
     ],
     "subcategories": [
-      "Одежда",
+      "Поло",
+      "Футболка",
       "clothing"
     ]
   },
   {
     "id": "sasbov-card-1792394558246",
     "brand": "BAPE",
-    "name": "1st Camo Green",
+    "name": "1st Camo Green Down Puffer Jacket",
     "condition": "9.5/10 EXCELLENT",
     "description": "A Bathing Ape (BAPE)  1st Camo Green. Оригинал 100%. Оформляем предзаказ с гарантией подлинности.",
     "stockType": "preorder",
@@ -2587,13 +2633,18 @@
       "/uploads/sasbov-card-1792394558246_gal_2_1792394561662_409.jpg",
       "/uploads/sasbov-card-1792394558246_gal_3_1792394561662_73.jpg"
     ],
-    "itemType": "Одежда",
+    "itemType": "Пуховик",
     "tags": [
-      "одежда",
+      "куртка",
+      "пуховик",
+      "jacket",
+      "down",
+      "puffer",
       "bape"
     ],
     "subcategories": [
-      "Одежда",
+      "Куртка",
+      "Пуховик",
       "clothing"
     ]
   },
@@ -2762,7 +2813,7 @@
   {
     "id": "sasbov-card-1792393746875",
     "brand": "NIKE",
-    "name": "AIR JORDAN 11 Retro «Bred»",
+    "name": "Air Jordan 11 Retro «Bred» Backpack",
     "condition": "8.5/10 GOOD",
     "description": "Оригинальная модель AIR JORDAN 11 Retro «Bred». Высококачественные материалы, аутентичные бирки и внимание к деталям. Строго оригинал.",
     "stockType": "preorder",
@@ -2787,15 +2838,19 @@
       "/uploads/sasbov-card-1792393746875_gal_1_1792393749938_114.jpg",
       "/uploads/sasbov-card-1792393746875_gal_2_1792393749939_92.jpg"
     ],
-    "itemType": "Кроссовки",
+    "itemType": "Рюкзак",
     "tags": [
-      "кроссовки",
-      "обувь",
-      "sneakers",
-      "nike"
+      "рюкзак",
+      "сумка",
+      "backpack",
+      "bag",
+      "jordan",
+      "nike",
+      "bred"
     ],
     "subcategories": [
-      "Кроссовки",
+      "Рюкзак",
+      "Аксессуары",
       "accessories"
     ]
   },
@@ -2877,7 +2932,7 @@
   {
     "id": "sasbov-card-1792393568191",
     "brand": "C.P. COMPANY",
-    "name": "The Metropolis Series",
+    "name": "The Metropolis Series Tee",
     "condition": "8.5/10 GOOD",
     "description": "C.P. Company  The Metropolis Series. 100% оригинал, проверено на отсутствие дефектов и нюансов. Открыт предзаказ, фиксированная цена под ключ в рублях.",
     "stockType": "preorder",
@@ -2903,13 +2958,16 @@
       "/uploads/sasbov-card-1792393568191_gal_2_1792393571295_425.jpg",
       "/uploads/sasbov-card-1792393568191_gal_3_1792393571295_402.jpg"
     ],
-    "itemType": "Одежда",
+    "itemType": "Футболка",
     "tags": [
-      "одежда",
-      "c.p. company"
+      "футболка",
+      "tee",
+      "t-shirt",
+      "cp company",
+      "metropolis"
     ],
     "subcategories": [
-      "Одежда",
+      "Футболка",
       "clothing"
     ]
   },
@@ -3753,7 +3811,7 @@
   {
     "id": "sasbov-card-1792373839649",
     "brand": "BOTTEGA VENETA",
-    "name": "Intrecciato",
+    "name": "Intrecciato Leather Vest",
     "condition": "NEW // DEADSTOCK",
     "description": "Жилет Bottega Veneta с фирменным объемным плетением в технике Intrecciato. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).",
     "stockType": "preorder",
@@ -3776,13 +3834,16 @@
     "images": [
       "/uploads/sasbov-card-1792373839649_gallery_0.jpg"
     ],
-    "itemType": "Одежда",
+    "itemType": "Жилет",
     "tags": [
-      "одежда",
+      "жилет",
+      "vest",
+      "куртка",
       "bottega veneta"
     ],
     "subcategories": [
-      "Одежда",
+      "Жилет",
+      "Куртка",
       "clothing"
     ]
   },
@@ -4184,7 +4245,7 @@
   {
     "id": "sasbov-card-1792371110180",
     "brand": "GIVENCHY",
-    "name": "Trompe-L'Oeil Effect",
+    "name": "Trompe-L'Oeil Effect T-Shirt",
     "condition": "9/10 VINTAGE",
     "description": "Хлопковая футболка черного цвета от модного дома Givenchy с характерным трехмерным эффектом оптической иллюзии (Trompe-L'Oeil Effect) и белым логотипом, создающим «рваный» или расколотый визуальный стиль. 100% оригинал, любые проверки. Доступен предзаказ и доставка в шоурум Balkonsky (СПб, ул. Тверская 3/1).",
     "stockType": "preorder",
@@ -4210,13 +4271,15 @@
       "/uploads/sasbov-card-1792371110180_gallery_2.jpg",
       "/uploads/sasbov-card-1792371110180_gallery_3.jpg"
     ],
-    "itemType": "Одежда",
+    "itemType": "Футболка",
     "tags": [
-      "одежда",
+      "футболка",
+      "tee",
+      "t-shirt",
       "givenchy"
     ],
     "subcategories": [
-      "Одежда",
+      "Футболка",
       "clothing"
     ]
   }

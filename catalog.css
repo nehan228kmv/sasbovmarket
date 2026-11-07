@@ -117,14 +117,25 @@
 
 @media (max-width: 768px) {
   .stock-type-bar {
-    flex-direction: column;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
     gap: 0.5rem;
+    padding-bottom: 4px;
+    margin-bottom: 1rem;
     width: 100%;
   }
+  .stock-type-bar::-webkit-scrollbar {
+    display: none;
+  }
   .stock-tab-btn {
-    width: 100%;
-    justify-content: flex-start;
-    padding: 8px 12px;
+    flex-shrink: 0;
+    white-space: nowrap;
+    width: auto;
+    padding: 8px 14px;
     font-size: 0.74rem;
     box-sizing: border-box;
   }

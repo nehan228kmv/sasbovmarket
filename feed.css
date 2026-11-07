@@ -481,7 +481,9 @@
 }
 
 .reel-price {
-  font-family: var(--font-display);
+  font-family: var(--font-body, 'Space Grotesk', -apple-system, sans-serif);
+  font-feature-settings: 'tnum' on, 'lnum' on;
+  letter-spacing: -0.02em;
   font-size: 1.8rem;
   font-weight: 800;
   color: #ffffff;
@@ -642,4 +644,97 @@
 .reel-size-chip {
   flex-shrink: 0;
   touch-action: manipulation;
+}
+
+/* ==========================================================================
+   Feed Secondary Size Filter Bar (Floating HUD)
+   ========================================================================== */
+.feed-size-bar-wrap {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  padding: 0 1rem;
+  z-index: 95;
+  pointer-events: none;
+}
+
+.feed-size-bar {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(10, 10, 14, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 4px 10px;
+  border-radius: 20px;
+  backdrop-filter: blur(16px);
+  pointer-events: auto;
+  max-width: min(96vw, 760px);
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.feed-size-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.feed-size-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text-muted, #71717a);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding-right: 4px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.feed-size-chip {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #a1a1aa;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 12px;
+  cursor: pointer;
+  flex-shrink: 0;
+  white-space: nowrap;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.feed-size-chip:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+}
+
+.feed-size-chip.active {
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+  font-weight: 800;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.35);
+}
+
+@media (max-width: 768px) {
+  .feed-size-bar-wrap {
+    top: 52px;
+    padding: 0 0.5rem;
+    justify-content: flex-start;
+  }
+  .feed-size-bar {
+    max-width: 100%;
+    padding: 3px 8px;
+    gap: 4px;
+    background: rgba(8, 8, 12, 0.94);
+  }
+  .feed-size-chip {
+    font-size: 0.65rem;
+    padding: 2px 8px;
+  }
 }

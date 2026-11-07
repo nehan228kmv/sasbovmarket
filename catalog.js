@@ -24,10 +24,19 @@
   }
 
   function getProductSubcategory(p) {
-    if (!p) return 'other';
+    if (!p) return 'accessories';
+    if (p.category === 'footwear' || p.category === 'shoes') return 'footwear';
+    if (p.category === 'accessories') return 'accessories';
+
+    const it = (p.itemType || '').toLowerCase().trim();
+    if (it.includes('кроссов') || it.includes('ботинк') || it.includes('кед') || it.includes('тапоч') || it.includes('мюли')) return 'footwear';
+    if (it.includes('сумк') || it.includes('рюкзак') || it.includes('шоппер') || it.includes('час') || it.includes('очк') || it.includes('ремен') || it.includes('кепк') || it.includes('шапк') || it.includes('игрушк') || it.includes('коврик') || it.includes('аксессуар')) return 'accessories';
+    if (it.includes('худи') || it.includes('свитшот') || it.includes('толстовк') || it.includes('зип') || it.includes('костюм') || it.includes('флис')) return 'hoodie';
+    if (it.includes('куртк') || it.includes('пуховик') || it.includes('бомбер') || it.includes('ветровк') || it.includes('пальто') || it.includes('жилет') || it.includes('анорак')) return 'jacket';
+    if (it.includes('штан') || it.includes('брюк') || it.includes('джинс') || it.includes('шорт') || it.includes('карго') || it.includes('джоггер')) return 'pants';
+    if (it.includes('футболк') || it.includes('лонгслив') || it.includes('поло') || it.includes('майк')) return 'tshirt';
+
     const text = [
-      p.category,
-      p.itemType,
       p.name,
       p.fullName,
       p.brand,
@@ -37,48 +46,12 @@
       ...(Array.isArray(p.tags) ? p.tags : [])
     ].filter(Boolean).join(' ').toLowerCase();
 
-    // 1. Footwear
-    if (p.category === 'footwear' || p.category === 'shoes' ||
-        text.includes('кроссовк') || text.includes('sneaker') || text.includes('shoe') ||
-        text.includes('ботинк') || text.includes('boots') || text.includes('кед') ||
-        text.includes('тапочк') || text.includes('loafer') || text.includes('mule') ||
-        text.includes('сникер')) {
+    if (text.includes('кроссовк') || text.includes('sneaker') || text.includes('ботинк') ||
+        text.includes('boots') || text.includes('кед') || text.includes('bape sta')) {
       return 'footwear';
     }
 
-    // 2. Hoodies & Sweats
-    if (text.includes('худи') || text.includes('hoodie') || text.includes('толстовк') ||
-        text.includes('свитшот') || text.includes('sweatshirt') || text.includes('зипк') ||
-        text.includes('zip') || text.includes('crewneck') || text.includes('худи-зип')) {
-      return 'hoodie';
-    }
-
-    // 3. Jackets & Outerwear
-    if (text.includes('куртк') || text.includes('jacket') || text.includes('пуховик') ||
-        text.includes('down') || text.includes('бомбер') || text.includes('ветровк') ||
-        text.includes('parka') || text.includes('coat') || text.includes('пальто') ||
-        text.includes('анорак') || text.includes('жилет') || text.includes('vest')) {
-      return 'jacket';
-    }
-
-    // 4. Pants & Jeans & Shorts
-    if (text.includes('штан') || text.includes('брюк') || text.includes('джинс') ||
-        text.includes('jeans') || text.includes('pants') || text.includes('trousers') ||
-        text.includes('шорт') || text.includes('shorts') || text.includes('cargo') ||
-        text.includes('карго') || text.includes('sweatpants') || text.includes('джоггер')) {
-      return 'pants';
-    }
-
-    // 5. T-Shirts & Tops
-    if (text.includes('футболк') || text.includes('t-shirt') || text.includes('tee') ||
-        text.includes('лонгслив') || text.includes('майк') || text.includes('longsleeve') ||
-        text.includes('поло') || text.includes('polo')) {
-      return 'tshirt';
-    }
-
-    // 6. Accessories & Bags
-    if (p.category === 'accessories' ||
-        text.includes('сумк') || text.includes('bag') || text.includes('рюкзак') ||
+    if (text.includes('сумк') || text.includes('bag') || text.includes('рюкзак') ||
         text.includes('backpack') || text.includes('ремень') || text.includes('belt') ||
         text.includes('очки') || text.includes('glasses') || text.includes('кепк') ||
         text.includes('cap') || text.includes('шапк') || text.includes('beanie') ||
@@ -86,8 +59,37 @@
         text.includes('watch') || text.includes('кошелек') || text.includes('wallet') ||
         text.includes('украшен') || text.includes('браслет') || text.includes('кольцо') ||
         text.includes('подвеск') || text.includes('цепь') || text.includes('игрушк') ||
-        text.includes('коврик') || text.includes('toy') || text.includes('аксессуар')) {
+        text.includes('коврик') || text.includes('toy') || text.includes('шоппер') || text.includes('tote')) {
       return 'accessories';
+    }
+
+    if (text.includes('худи') || text.includes('hoodie') || text.includes('толстовк') ||
+        text.includes('свитшот') || text.includes('sweatshirt') || text.includes('зипк') ||
+        text.includes('crewneck') || text.includes('костюм') || text.includes('tracksuit') ||
+        text.includes('sweat') || text.includes('флис') || text.includes('fleece')) {
+      return 'hoodie';
+    }
+
+    if (text.includes('куртк') || text.includes('jacket') || text.includes('пуховик') ||
+        text.includes('down') || text.includes('бомбер') || text.includes('ветровк') ||
+        text.includes('parka') || text.includes('coat') || text.includes('пальто') ||
+        text.includes('анорак') || text.includes('жилет') || text.includes('vest') ||
+        text.includes('lamy-tc')) {
+      return 'jacket';
+    }
+
+    if ((text.includes('штан') || text.includes('брюк') || text.includes('джинс') ||
+        text.includes('jeans') || text.includes('pants') || text.includes('trousers') ||
+        text.includes('шорт') || text.includes('shorts') || text.includes('cargo') ||
+        text.includes('карго') || text.includes('sweatpants') || text.includes('джоггер')) &&
+        !text.includes('spongebob')) {
+      return 'pants';
+    }
+
+    if (text.includes('футболк') || text.includes('t-shirt') || text.includes('лонгслив') ||
+        text.includes('майк') || text.includes('longsleeve') || /\btee\b/.test(text) ||
+        /\bpolo\b/.test(text) || text.includes('поло ')) {
+      return 'tshirt';
     }
 
     if (p.category === 'clothing') return 'tshirt';

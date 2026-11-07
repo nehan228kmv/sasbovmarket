@@ -641,10 +641,14 @@
             <img src="${img}" alt="${item.brand} - ${item.name}" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;">
             <div class="slot-inner-content">
               <div class="slot-top-row">
-                <span class="origin-badge ${isInstock ? 'badge-instock' : (item.badgeClass || 'glb')}">
-                  ${isInstock ? 'В НАЛИЧИИ: СПБ' : (item.regionLabel || 'GLOBAL')}
-                </span>
-                <span class="drop-status-pill">${item.dropStatus || 'ДОСТУПНО'}</span>
+                ${isInstock
+                  ? '<span class="origin-badge badge-instock">🟢 В НАЛИЧИИ // СПБ</span>'
+                  : (item.region === 'transit_spb' || item.stockType === 'transit_spb')
+                    ? '<span class="origin-badge badge-transit-spb">✈ В ПУТИ // СПБ</span>'
+                    : (item.region === 'transit_irkutsk' || item.stockType === 'transit_irkutsk')
+                      ? '<span class="origin-badge badge-transit-irk">✈ В ПУТИ // ИРКУТСК</span>'
+                      : '<span class="origin-badge ' + (item.badgeClass || 'glb') + '">' + (item.region === 'japan' ? 'JAPAN [JP]' : item.region === 'global' ? 'GLOBAL [GLB]' : 'CHINA [CN]') + '</span><span class="drop-status-pill">ПРЕДЗАКАЗ</span>'
+                }
               </div>
             </div>
           </a>

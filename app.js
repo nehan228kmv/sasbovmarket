@@ -336,8 +336,14 @@
 
             <div class="slot-inner-content">
               <div class="slot-top-row">
-                <span class="origin-badge ${product.badgeClass}">${product.regionLabel}</span>
-                <span class="drop-status-pill">${product.dropStatus}</span>
+                ${product.stockType === 'instock' || product.region === 'spb'
+                  ? '<span class="origin-badge badge-instock">🟢 В НАЛИЧИИ // СПБ</span>'
+                  : (product.region === 'transit_spb' || product.stockType === 'transit_spb')
+                    ? '<span class="origin-badge badge-transit-spb">✈ В ПУТИ // СПБ</span>'
+                    : (product.region === 'transit_irkutsk' || product.stockType === 'transit_irkutsk')
+                      ? '<span class="origin-badge badge-transit-irk">✈ В ПУТИ // ИРКУТСК</span>'
+                      : '<span class="origin-badge ' + product.badgeClass + '">' + (product.region === 'japan' ? 'JAPAN [JP]' : product.region === 'global' ? 'GLOBAL [GLB]' : 'CHINA [CN]') + '</span><span class="drop-status-pill">ПРЕДЗАКАЗ</span>'
+                }
               </div>
 
               <div class="slot-bottom-row">
