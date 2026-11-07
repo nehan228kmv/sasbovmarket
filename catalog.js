@@ -212,6 +212,79 @@
     trayItems: []
   };
 
+  
+  const CLOTHING_SIZES = [
+    { val: 'all', label: 'ВСЕ' },
+    { val: 'XS', label: 'XS' },
+    { val: 'S', label: 'S' },
+    { val: 'M', label: 'M' },
+    { val: 'L', label: 'L' },
+    { val: 'XL', label: 'XL' },
+    { val: 'XXL', label: 'XXL' }
+  ];
+
+  const SHOE_SIZES = [
+    { val: 'all', label: 'ВСЕ' },
+    { val: 'shoes_38_40', label: '38–40 EU' },
+    { val: 'shoes_41_42', label: '41–42.5 EU' },
+    { val: 'shoes_43_45', label: '43–45 EU' }
+  ];
+
+  const ACCESSORY_SIZES = [
+    { val: 'all', label: 'ВСЕ' },
+    { val: 'onesize', label: 'ONE SIZE' }
+  ];
+
+  const ALL_SIZES = [
+    { val: 'all', label: 'ВСЕ' },
+    { val: 'XS', label: 'XS' },
+    { val: 'S', label: 'S' },
+    { val: 'M', label: 'M' },
+    { val: 'L', label: 'L' },
+    { val: 'XL', label: 'XL' },
+    { val: 'XXL', label: 'XXL' },
+    { val: 'shoes_38_40', label: '38–40 EU' },
+    { val: 'shoes_41_42', label: '41–42.5 EU' },
+    { val: 'shoes_43_45', label: '43–45 EU' },
+    { val: 'onesize', label: 'ONE SIZE' }
+  ];
+
+  function getSizesForCategory(cat) {
+    if (cat === 'footwear') return { label: 'РАЗМЕР ОБУВИ:', list: SHOE_SIZES };
+    if (['hoodie', 'tshirt', 'jacket', 'pants'].includes(cat)) return { label: 'РАЗМЕР ОДЕЖДЫ:', list: CLOTHING_SIZES };
+    if (cat === 'accessories') return { label: 'РАЗМЕР:', list: ACCESSORY_SIZES };
+    return { label: 'РАЗМЕР:', list: ALL_SIZES };
+  }
+
+  function renderCatalogSizeBar() {
+    const wrap = document.getElementById('catalog-size-chips-wrap');
+    const labelEl = document.getElementById('catalog-size-label');
+    if (!wrap) return;
+
+    const { label, list } = getSizesForCategory(state.activeCategory);
+    if (labelEl) labelEl.textContent = label;
+
+    if (!list.some(s => s.val === state.activeSize)) {
+      state.activeSize = 'all';
+    }
+
+    wrap.innerHTML = list.map(s => `
+      <button type="button" class="filter-chip ${state.activeSize === s.val ? 'active' : ''}" data-filter-type="size" data-filter-val="${s.val}">
+        ${s.label}
+      </button>
+    `).join('');
+
+    wrap.querySelectorAll('[data-filter-type="size"]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        wrap.querySelectorAll('[data-filter-type="size"]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        state.activeSize = btn.dataset.filterVal || 'all';
+        renderCatalogSizeBar();
+    renderProducts();
+      });
+    });
+  }
+
   const el = {
     grid: document.getElementById('products-grid'),
     searchInput: document.getElementById('catalog-search-input'),
@@ -558,6 +631,7 @@
         el.categoryBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         state.activeCategory = btn.dataset.filterVal;
+        renderCatalogSizeBar();
         renderProducts();
       });
     });
@@ -676,7 +750,7 @@
         el.stockBtns.forEach(b => b.classList.toggle('active', b.dataset.stockFilter === 'all'));
         el.regionBtns.forEach(b => b.classList.toggle('active', b.dataset.filterVal === 'all'));
         el.categoryBtns.forEach(b => b.classList.toggle('active', b.dataset.filterVal === 'all'));
-        if (el.sizeBtns) el.sizeBtns.forEach(b => b.classList.toggle('active', b.dataset.filterVal === 'all'));
+        renderCatalogSizeBar();
         if (el.priceBtns) el.priceBtns.forEach(b => b.classList.toggle('active', b.dataset.filterVal === 'all'));
         if (el.sortBtns) el.sortBtns.forEach(b => b.classList.toggle('active', b.dataset.filterVal === 'newest'));
         subcatChips.forEach(b => b.classList.remove('active'));

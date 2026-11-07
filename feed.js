@@ -541,26 +541,89 @@ ${isInstock ? 'Подтвердите наличие на точке и забр
 
   // Category & Stock Chips setup
   
-  // Size Chips setup
-  const sizeChips = document.querySelectorAll('[data-feed-size]');
-  sizeChips.forEach(chip => {
-    chip.addEventListener('click', () => {
-      sizeChips.forEach(c => c.classList.remove('active'));
-      chip.classList.add('active');
-      currentSize = chip.dataset.feedSize || 'all';
-      activeSlideIndex = 0;
-      renderFeed(true);
-      observeSlides();
-      container.scrollTo({ top: 0, behavior: 'smooth' });
+    // Dynamic Size Sets
+  const CLOTHING_SIZES = [
+    { val: 'all', label: 'ВСЕ' },
+    { val: 'XS', label: 'XS' },
+    { val: 'S', label: 'S' },
+    { val: 'M', label: 'M' },
+    { val: 'L', label: 'L' },
+    { val: 'XL', label: 'XL' },
+    { val: 'XXL', label: 'XXL' }
+  ];
+
+  const SHOE_SIZES = [
+    { val: 'all', label: 'ВСЕ' },
+    { val: 'shoes_38_40', label: '38–40 EU' },
+    { val: 'shoes_41_42', label: '41–42.5 EU' },
+    { val: 'shoes_43_45', label: '43–45 EU' }
+  ];
+
+  const ACCESSORY_SIZES = [
+    { val: 'all', label: 'ВСЕ' },
+    { val: 'onesize', label: 'ONE SIZE' }
+  ];
+
+  const ALL_SIZES = [
+    { val: 'all', label: 'ВСЕ' },
+    { val: 'XS', label: 'XS' },
+    { val: 'S', label: 'S' },
+    { val: 'M', label: 'M' },
+    { val: 'L', label: 'L' },
+    { val: 'XL', label: 'XL' },
+    { val: 'XXL', label: 'XXL' },
+    { val: 'shoes_38_40', label: '38–40 EU' },
+    { val: 'shoes_41_42', label: '41–42.5 EU' },
+    { val: 'shoes_43_45', label: '43–45 EU' },
+    { val: 'onesize', label: 'ONE SIZE' }
+  ];
+
+  function getSizesForCategory(cat) {
+    if (cat === 'footwear') return { label: 'ОБУВЬ:', list: SHOE_SIZES };
+    if (['hoodie', 'tshirt', 'jacket', 'pants'].includes(cat)) return { label: 'РАЗМЕР:', list: CLOTHING_SIZES };
+    if (cat === 'accessories') return { label: 'АКСЕССУАРЫ:', list: ACCESSORY_SIZES };
+    return { label: 'РАЗМЕР:', list: ALL_SIZES };
+  }
+
+  function renderFeedSizeBar() {
+    const sizeBarEl = document.getElementById('feed-size-bar');
+    if (!sizeBarEl) return;
+
+    const { label, list } = getSizesForCategory(currentCategory);
+
+    // If currentSize is not in the new category size list, reset to 'all'
+    if (!list.some(s => s.val === currentSize)) {
+      currentSize = 'all';
+    }
+
+    sizeBarEl.innerHTML = `
+      <span class="feed-size-label">${label}</span>
+      ${list.map(s => `
+        <button type="button" class="feed-size-chip ${currentSize === s.val ? 'active' : ''}" data-feed-size="${s.val}">
+          ${s.label}
+        </button>
+      `).join('')}
+    `;
+
+    sizeBarEl.querySelectorAll('[data-feed-size]').forEach(chip => {
+      chip.addEventListener('click', () => {
+        sizeBarEl.querySelectorAll('[data-feed-size]').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        currentSize = chip.dataset.feedSize || 'all';
+        activeSlideIndex = 0;
+        renderFeed(true);
+        observeSlides();
+        container.scrollTo({ top: 0, behavior: 'smooth' });
+      });
     });
-  });
+  }
 
   function resetAllFeedFilters() {
     currentCategory = 'all';
     currentStock = 'all';
     currentSize = 'all';
     catChips.forEach(c => c.classList.toggle('active', c.dataset.feedCat === 'all'));
-    sizeChips.forEach(c => c.classList.toggle('active', c.dataset.feedSize === 'all'));
+    renderFeedSizeBar();
     if (stockChip) stockChip.classList.remove('active');
     activeSlideIndex = 0;
     renderFeed(true);
@@ -576,6 +639,7 @@ ${isInstock ? 'Подтвердите наличие на точке и забр
       catChips.forEach(c => c.classList.remove('active'));
       chip.classList.add('active');
       currentCategory = chip.dataset.feedCat || 'all';
+      renderFeedSizeBar();
       activeSlideIndex = 0;
       renderFeed(true);
       observeSlides();
@@ -636,6 +700,7 @@ ${isInstock ? 'Подтвердите наличие на точке и забр
   }
 
   // Initialize
+  renderFeedSizeBar();
   renderFeed();
   observeSlides();
 

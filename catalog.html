@@ -204,20 +204,12 @@
           <button type="button" class="filter-chip" data-filter-type="category" data-filter-val="accessories" id="cat-accessories">АКСЕССУАРЫ</button>
         </div>
 
-        <!-- Size Filters -->
+        <!-- Dynamic Size Filters -->
         <div class="filter-group sizes" id="catalog-size-filters">
-          <span class="filter-label">РАЗМЕР:</span>
-          <button type="button" class="filter-chip active" data-filter-type="size" data-filter-val="all">ВСЕ</button>
-          <button type="button" class="filter-chip" data-filter-type="size" data-filter-val="XS">XS</button>
-          <button type="button" class="filter-chip" data-filter-type="size" data-filter-val="S">S</button>
-          <button type="button" class="filter-chip" data-filter-type="size" data-filter-val="M">M</button>
-          <button type="button" class="filter-chip" data-filter-type="size" data-filter-val="L">L</button>
-          <button type="button" class="filter-chip" data-filter-type="size" data-filter-val="XL">XL</button>
-          <button type="button" class="filter-chip" data-filter-type="size" data-filter-val="XXL">XXL</button>
-          <button type="button" class="filter-chip" data-filter-type="size" data-filter-val="shoes_38_40">38–40 EU</button>
-          <button type="button" class="filter-chip" data-filter-type="size" data-filter-val="shoes_41_42">41–42 EU</button>
-          <button type="button" class="filter-chip" data-filter-type="size" data-filter-val="shoes_43_45">43–45 EU</button>
-          <button type="button" class="filter-chip" data-filter-type="size" data-filter-val="onesize">ONE SIZE</button>
+          <span class="filter-label" id="catalog-size-label">РАЗМЕР:</span>
+          <div id="catalog-size-chips-wrap" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <!-- Rendered dynamically by renderCatalogSizeBar() based on active category -->
+          </div>
         </div>
 
         <!-- Price Range & Sorting Filters -->
