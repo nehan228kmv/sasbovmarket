@@ -50,37 +50,88 @@ async function syncToRedis(list) {
 }
 
 // ---------------------------------------------------------------------------
-// Admin Authorization Store
+// Admin Authorization & Unbreakable Anti-Brute-Force Password Store
 // ---------------------------------------------------------------------------
-function loadAdmins() {
+const ADMIN_CONFIG_FILE = path.join(DATA_DIR, 'admin_config.json');
+const failedAttempts = new Map(); // userId -> { count: number, lockedUntil: number }
+
+function loadAdminConfig() {
   try {
-    if (fs.existsSync(ADMINS_FILE)) {
-      return JSON.parse(fs.readFileSync(ADMINS_FILE, 'utf-8'));
+    if (fs.existsSync(ADMIN_CONFIG_FILE)) {
+      return JSON.parse(fs.readFileSync(ADMIN_CONFIG_FILE, 'utf-8'));
     }
   } catch (e) {}
-  return { authorized_ids: [], users: {} };
+  return {
+    password: process.env.ADMIN_BOT_PASSWORD || 'SASBOV_2026_ADMIN_SECURE',
+    authorized_ids: [],
+    users: {}
+  };
 }
 
-function saveAdmins(data) {
+function saveAdminConfig(data) {
   try {
-    fs.writeFileSync(ADMINS_FILE, JSON.stringify(data, null, 2), 'utf-8');
+    fs.writeFileSync(ADMIN_CONFIG_FILE, JSON.stringify(data, null, 2), 'utf-8');
   } catch (e) {}
 }
 
-let adminStore = loadAdmins();
+let adminConfig = loadAdminConfig();
+
+function isAuthorized(userId) {
+  const uid = Number(userId);
+  return Array.isArray(adminConfig.authorized_ids) && adminConfig.authorized_ids.includes(uid);
+}
 
 function authorizeUser(user) {
   const uid = Number(user.id);
-  if (!adminStore.authorized_ids.includes(uid)) {
-    adminStore.authorized_ids.push(uid);
+  if (!Array.isArray(adminConfig.authorized_ids)) adminConfig.authorized_ids = [];
+  if (!adminConfig.authorized_ids.includes(uid)) {
+    adminConfig.authorized_ids.push(uid);
   }
-  adminStore.users[uid] = {
+  if (!adminConfig.users) adminConfig.users = {};
+  adminConfig.users[uid] = {
     id: uid,
     username: user.username || '',
     first_name: user.first_name || '',
     authorized_at: new Date().toISOString()
   };
-  saveAdmins(adminStore);
+  saveAdminConfig(adminConfig);
+  failedAttempts.delete(uid);
+}
+
+function deauthorizeUser(userId) {
+  const uid = Number(userId);
+  if (Array.isArray(adminConfig.authorized_ids)) {
+    adminConfig.authorized_ids = adminConfig.authorized_ids.filter(id => id !== uid);
+  }
+  if (adminConfig.users && adminConfig.users[uid]) {
+    delete adminConfig.users[uid];
+  }
+  saveAdminConfig(adminConfig);
+}
+
+function isLockedOut(userId) {
+  const entry = failedAttempts.get(Number(userId));
+  if (!entry || !entry.lockedUntil) return false;
+  if (Date.now() < entry.lockedUntil) return true;
+  failedAttempts.delete(Number(userId));
+  return false;
+}
+
+function getLockoutMinutes(userId) {
+  const entry = failedAttempts.get(Number(userId));
+  if (!entry || !entry.lockedUntil) return 0;
+  return Math.max(1, Math.ceil((entry.lockedUntil - Date.now()) / 60000));
+}
+
+function registerFailedAttempt(userId) {
+  const uid = Number(userId);
+  const entry = failedAttempts.get(uid) || { count: 0, lockedUntil: 0 };
+  entry.count += 1;
+  if (entry.count >= 3) {
+    entry.lockedUntil = Date.now() + 30 * 60 * 1000; // 30 min lockout
+  }
+  failedAttempts.set(uid, entry);
+  return entry;
 }
 
 // ---------------------------------------------------------------------------
@@ -242,7 +293,8 @@ function clearSession(chatId) {
 const MAIN_KEYBOARD = {
   keyboard: [
     [{ text: '➕ Добавить товар' }, { text: '📦 Каталог товаров' }],
-    [{ text: '📊 Статистика' }, { text: '🌐 Открыть сайт' }]
+    [{ text: '🔍 Поиск товара' }, { text: '📊 Статистика' }],
+    [{ text: '🌐 Открыть сайт' }, { text: '🔒 Выйти (Logout)' }]
   ],
   resize_keyboard: true
 };
@@ -321,7 +373,7 @@ const ITEM_TYPES_KEYBOARD = [
 function askBrand(chatId, draft, prefix = '') {
   return callTelegram('sendMessage', {
     chat_id: chatId,
-    text: `${prefix}🏷 **ШАГ 1 ИЗ 8: БРЕНД ТОВАРА**\n\n` +
+    text: `${prefix}🏷 **ШАГ 1 ИЗ 9: БРЕНД ТОВАРА**\n\n` +
           `Введите **только название бренда** текстом\n` +
           `*(например: \`Chrome Hearts\`, \`Denim Tears\`, \`Arc'teryx\`, \`Stone Island\`, \`Rick Owens\`)*\n` +
           `либо выберите быстрый вариант ниже:\n\n` +
@@ -338,7 +390,7 @@ function askModel(chatId, draft) {
   return callTelegram('sendMessage', {
     chat_id: chatId,
     text: `✅ Бренд зафиксирован: **${draft.brand}**\n\n` +
-          `📝 **ШАГ 2 ИЗ 8: НАЗВАНИЕ МОДЕЛИ**\n\n` +
+          `📝 **ШАГ 2 ИЗ 9: НАЗВАНИЕ МОДЕЛИ**\n\n` +
           `Введите название конкретной модели:\n` +
           `*(например: \`Beta LT\`, \`Cotton Wreath 501\`, \`Cross Patch\`, \`Track 3 White\`)*:`,
     parse_mode: 'Markdown',
@@ -357,7 +409,7 @@ function askItemType(chatId, draft) {
     chat_id: chatId,
     text: `✅ Бренд: **${draft.brand}**\n` +
           `✅ Модель: **${draft.name}**\n\n` +
-          `🔖 **ШАГ 3 ИЗ 8: ТИП ВЕЩИ (ТЕГ ДЛЯ ПОИСКА)**\n\n` +
+          `🔖 **ШАГ 3 ИЗ 9: ТИП ВЕЩИ (ТЕГ ДЛЯ ПОИСКА)**\n\n` +
           `Выберите тип айтема кнопкой ниже либо напишите свой вариант текстом:\n` +
           `*(штаны, джинсы, свитпэнтс, футболки, худи, зипхуди, ветровки, куртки, пуховики, жилетки, очки, часы, карты, пепельницы, ковры, бритвы, игрушки)*\n\n` +
           `🔍 *По этому тегу покупатели будут находить вещь в поиске на сайте!*`,
@@ -374,15 +426,16 @@ function askPhotos(chatId, draft) {
   let text = `✅ Бренд: **${draft.brand}**\n` +
              `✅ Модель: **${draft.name}**\n` +
              `✅ Тип вещи: **${draft.itemType}**\n\n` +
-             `📸 **ШАГ 4 ИЗ 8: ФОТОГРАФИИ ТОВАРА**\n\n` +
+             `📸 **ШАГ 4 ИЗ 9: ФОТОГРАФИИ ТОВАРА**\n\n` +
              `Прикрепите и отправьте фотографии вещи.\n` +
+             `*(Можно отправить сразу несколько фото альбомом или по одной)*.\n`;
              `*(Можно отправить сразу несколько фото альбомом или по одной)*.\n`;
 
   const inlineKeyboard = [];
 
   if (count > 0) {
     text += `\n📦 Уже загружено фото: **${count} шт.**`;
-    inlineKeyboard.push([{ text: `✅ Фото готовы (${count} шт.) ➡️ К цене`, callback_data: 'wiz_photos_done' }]);
+    inlineKeyboard.push([{ text: `✅ Фото готовы (${count} шт.) ➡️ К описанию`, callback_data: 'wiz_photos_done' }]);
     inlineKeyboard.push([
       { text: '🔄 Очистить фото', callback_data: 'photos_clear' },
       { text: '⬅️ Назад к типу вещи', callback_data: 'wiz_back_to_itemtype' }
@@ -402,16 +455,19 @@ function askPhotos(chatId, draft) {
   });
 }
 
-// Helper: Ask Step 5 (Price)
-function askPrice(chatId, draft) {
+// Helper: Ask Step 5 (Description - NEW)
+function askDescription(chatId, draft) {
   return callTelegram('sendMessage', {
     chat_id: chatId,
     text: `📸 Фотографий в карточке: **${(draft.images || []).length} шт.**\n\n` +
-          `💰 **ШАГ 5 ИЗ 8: ЦЕНА В РУБЛЯХ**\n\n` +
-          `Введите цену в рублях (только цифры, например: \`45000\` или \`128000\`):`,
+          `📝 **ШАГ 5 ИЗ 9: ОПИСАНИЕ ТОВАРА**\n\n` +
+          `Введите текстовое описание для карточки товара:\n` +
+          `*(материал, особенности кроя, посадка, комплектность, состояние деталей)*\n\n` +
+          `Либо нажмите **«⏩ Пропустить (авто-описание)»**, чтобы использовать фирменное описание SASBOV MARKET:`,
     parse_mode: 'Markdown',
     reply_markup: {
       inline_keyboard: [
+        [{ text: '⏩ Пропустить (авто-описание)', callback_data: 'wiz_skip_description' }],
         [{ text: '⬅️ Назад к фото', callback_data: 'wiz_back_to_photos' }],
         [{ text: '❌ Отменить', callback_data: 'cancel_draft' }]
       ]
@@ -419,12 +475,29 @@ function askPrice(chatId, draft) {
   });
 }
 
-// Helper: Ask Step 6 (Sizes)
+// Helper: Ask Step 6 (Price)
+function askPrice(chatId, draft) {
+  return callTelegram('sendMessage', {
+    chat_id: chatId,
+    text: `📝 Описание: **${(draft.description ? draft.description.slice(0, 80) + '...' : 'Авто-генерация')}**\n\n` +
+          `💰 **ШАГ 6 ИЗ 9: ЦЕНА В РУБЛЯХ**\n\n` +
+          `Введите цену в рублях (только цифры, например: \`45000\` или \`128000\`):`,
+    parse_mode: 'Markdown',
+    reply_markup: {
+      inline_keyboard: [
+        [{ text: '⬅️ Назад к описанию', callback_data: 'wiz_back_to_desc' }],
+        [{ text: '❌ Отменить', callback_data: 'cancel_draft' }]
+      ]
+    }
+  });
+}
+
+// Helper: Ask Step 7 (Sizes)
 function askSizes(chatId, draft) {
   return callTelegram('sendMessage', {
     chat_id: chatId,
     text: `✅ Цена: **${Number(draft.price).toLocaleString('ru-RU')} ₽**\n\n` +
-          `📏 **ШАГ 6 ИЗ 8: ДОСТУПНЫЕ РАЗМЕРЫ**\n\n` +
+          `📏 **ШАГ 7 ИЗ 9: ДОСТУПНЫЕ РАЗМЕРЫ**\n\n` +
           `Введите размеры через запятую *(например: \`41, 42, 43 EU\` или \`S, M, L, XL\`)*\n` +
           `или нажмите быструю кнопку:`,
     parse_mode: 'Markdown',
@@ -442,12 +515,12 @@ function askSizes(chatId, draft) {
   });
 }
 
-// Helper: Ask Step 7 (Condition)
+// Helper: Ask Step 8 (Condition)
 function askCondition(chatId, draft) {
   return callTelegram('sendMessage', {
     chat_id: chatId,
     text: `✅ Размеры: **${(draft.sizes || []).join(', ')}**\n\n` +
-          `✨ **ШАГ 7 ИЗ 8: СОСТОЯНИЕ ВЕЩИ:**`,
+          `✨ **ШАГ 8 ИЗ 9: СОСТОЯНИЕ ВЕЩИ:**`,
     parse_mode: 'Markdown',
     reply_markup: {
       inline_keyboard: [
@@ -462,11 +535,11 @@ function askCondition(chatId, draft) {
   });
 }
 
-// Helper: Ask Step 8 (Location & Stock)
+// Helper: Ask Step 9 (Location & Stock)
 function askLocation(chatId, draft) {
   return callTelegram('sendMessage', {
     chat_id: chatId,
-    text: `📍 **ШАГ 8 ИЗ 8: ЛОКАЦИЯ, НАЛИЧИЕ ИЛИ ТРАНЗИТ:**\n\n` +
+    text: `📍 **ШАГ 9 ИЗ 9: ЛОКАЦИЯ, НАЛИЧИЕ ИЛИ ТРАНЗИТ:**\n\n` +
           `Выберите фактический статус товара:`,
     parse_mode: 'Markdown',
     reply_markup: {
@@ -500,6 +573,7 @@ async function sendFinalConfirmation(chatId, draft) {
     `📦 **Модель:** ${draft.name}\n` +
     `🔖 **Тип вещи:** ${draft.itemType || 'Одежда'}\n` +
     `📸 **Фото:** ${photosCount} шт.\n` +
+    `📝 **Описание:** ${draft.description || '(будет сгенерировано автоматически)'}\n` +
     `💰 **Цена:** ${Number(draft.price).toLocaleString('ru-RU')} ₽\n` +
     `📏 **Размеры:** ${(draft.sizes || []).join(', ')}\n` +
     `📁 **Категория:** ${catLabel}\n` +
@@ -524,14 +598,17 @@ async function sendFinalConfirmation(chatId, draft) {
           { text: `📸 Фото (${photosCount})`, callback_data: 'edit_field_photos' }
         ],
         [
-          { text: '💰 Цена', callback_data: 'edit_field_price' },
-          { text: '📏 Размеры', callback_data: 'edit_field_sizes' }
+          { text: '📝 Описание', callback_data: 'edit_field_desc' },
+          { text: '💰 Цена', callback_data: 'edit_field_price' }
         ],
         [
-          { text: '✨ Состояние', callback_data: 'edit_field_condition' },
-          { text: '📍 Локация', callback_data: 'edit_field_location' }
+          { text: '📏 Размеры', callback_data: 'edit_field_sizes' },
+          { text: '✨ Состояние', callback_data: 'edit_field_condition' }
         ],
-        [{ text: '❌ Отменить черновик', callback_data: 'cancel_draft' }]
+        [
+          { text: '📍 Локация', callback_data: 'edit_field_location' },
+          { text: '❌ Отменить черновик', callback_data: 'cancel_draft' }
+        ]
       ]
     }
   });
@@ -543,19 +620,95 @@ async function sendFinalConfirmation(chatId, draft) {
 async function handleMessage(msg) {
   const chatId = msg.chat.id;
   const user = msg.from || msg.chat;
+  const userId = Number(user.id);
   const text = (msg.text || '').trim();
   const session = getSession(chatId);
 
   console.log(`[TG INCOMING] User ${user.first_name || user.id} (@${user.username || 'unknown'}) [step: ${session.step}]: ${text || (msg.photo ? '[Photo]' : '[Media]')}`);
 
-  // Auto-authorize user on first interaction
-  authorizeUser(user);
+  // 1. Anti-Brute-Force Lockout Gate
+  if (isLockedOut(userId)) {
+    const minLeft = getLockoutMinutes(userId);
+    return callTelegram('sendMessage', {
+      chat_id: chatId,
+      text: `⛔ **ДОСТУП ЗАБЛОКИРОВАН**\n\n` +
+            `Превышен лимит попыток ввода пароля (3 из 3).\n` +
+            `Система безопасности заблокировала доступ на **${minLeft} мин.** во избежание подбора.\n` +
+            `Пожалуйста, подождите.`,
+      parse_mode: 'Markdown'
+    });
+  }
+
+  // 2. Strict Password Authentication Check
+  if (!isAuthorized(userId)) {
+    if (text === adminConfig.password) {
+      authorizeUser(user);
+      return callTelegram('sendMessage', {
+        chat_id: chatId,
+        text: `🔓 **ПАРОЛЬ ПРИНЯТ! ДОСТУП РАЗРЕШЁН.**\n\n` +
+              `Добро пожаловать в защищённую админ-панель **SASBOV MARKET**.\n` +
+              `Все функции управления каталогом, архивом и добавлением товаров разблокированы.`,
+        parse_mode: 'Markdown',
+        reply_markup: MAIN_KEYBOARD
+      });
+    }
+
+    const entry = registerFailedAttempt(userId);
+    if (entry.lockedUntil && entry.lockedUntil > Date.now()) {
+      return callTelegram('sendMessage', {
+        chat_id: chatId,
+        text: `⛔ **ПРЕВЫШЕН ЛИМИТ ПОПЫТОК (3 из 3)**\n\n` +
+              `Доступ к админ-боту заблокирован на **30 минут** во избежание подбора пароля.`,
+        parse_mode: 'Markdown'
+      });
+    }
+
+    const attemptsLeft = 3 - entry.count;
+    return callTelegram('sendMessage', {
+      chat_id: chatId,
+      text: `🔒 **АДМИНИСТРАТИВНЫЙ ДОСТУП ЗАЩИЩЕН**\n\n` +
+            `❌ Неверный пароль. Осталось попыток: **${attemptsLeft} из 3**.\n\n` +
+            `Введите мастер-пароль админа для разблокировки доступа:`,
+      parse_mode: 'Markdown'
+    });
+  }
+
+  // 3. Admin Logout
+  if (text === '🔒 Выйти (Logout)' || text === '/logout') {
+    deauthorizeUser(userId);
+    clearSession(chatId);
+    return callTelegram('sendMessage', {
+      chat_id: chatId,
+      text: `🔒 **ВЫ ВЫШЛИ ИЗ АДМИН-ПАНЕЛИ**\n\nСессия успешно завершена. Для повторного входа потребуется мастер-пароль.`,
+      parse_mode: 'Markdown',
+      reply_markup: { remove_keyboard: true }
+    });
+  }
+
+  // 4. Change Master Password
+  if (text.startsWith('/setpassword')) {
+    const parts = text.split(/\s+/);
+    if (parts.length < 2 || parts[1].length < 6) {
+      return callTelegram('sendMessage', {
+        chat_id: chatId,
+        text: `⚠️ **Формат команды:** \`/setpassword НОВЫЙ_ПАРОЛЬ\`\n*(Пароль должен содержать не менее 6 символов)*`,
+        parse_mode: 'Markdown'
+      });
+    }
+    const newPass = parts[1];
+    adminConfig.password = newPass;
+    saveAdminConfig(adminConfig);
+    return callTelegram('sendMessage', {
+      chat_id: chatId,
+      text: `🔑 **МАСТЕР-ПАРОЛЬ УСПЕШНО ИЗМЕНЕН!**\n\nНовый пароль: \`${newPass}\`\nСохраните его в надежном месте.`,
+      parse_mode: 'Markdown'
+    });
+  }
 
   // /start or /menu command
   if (text === '/start' || text === '/menu' || text.toLowerCase() === 'меню' || text.toLowerCase() === 'главная') {
     clearSession(chatId);
 
-    // Reset menu button explicitly for this user to default native commands
     callTelegram('setChatMenuButton', {
       chat_id: chatId,
       menu_button: { type: 'default' }
@@ -565,15 +718,17 @@ async function handleMessage(msg) {
       chat_id: chatId,
       text: `👋 **ПРИВЕТ, ${user.first_name || 'АДМИНИСТРАТОР'}!**\n\n` +
             `Админ-панель **SASBOV MARKET** готова к работе.\n\n` +
-            `• Пошаговое добавление товаров: отдельно Бренд, Модель, Тип вещи, несколько фото;\n` +
-            `• Поиск на сайте по типу вещи: джинсы, худи, зипхуди, свитпэнтс, куртки, пуховики, очки, часы, карты, пепельницы, ковры, бритвы, игрушки;\n` +
-            `• Полное редактирование любого пункта перед публикацией;\n` +
-            `• Поддержка локаций:\n` +
+            `• Пошаговое добавление товаров: Бренд, Модель, Тип вещи, Фото, **Описание**, Цена, Размеры, Состояние, Локация;\n` +
+            `• Синхронизированный каталог: фильтры (СПб, В пути, Предзаказ, Архив);\n` +
+            `• Редактирование цены, размеров, описания и локации в один клик;\n` +
+            `• Архивация и восстановление товаров;\n` +
+            `• **Готовые посты для Telegram и ВКонтакте** (копирование в 1 тап);\n` +
+            `• Локации:\n` +
             `  - 🟢 **В наличии в СПб** (Шоурум Балконский, Невский 110В)\n` +
             `  - 🚛 **В пути из Китая в СПб** (~5–8 дней)\n` +
             `  - 🚛 **В пути из Китая в Иркутск** (~3–6 дней)\n` +
             `  - ✈️ **Предзаказ на всю РФ** (Poizon / Mercari, 7–12 дней)\n\n` +
-            `👇 Нажмите кнопку **«➕ Добавить товар»**, чтобы начать:`,
+            `👇 Выберите действие:`,
       parse_mode: 'Markdown',
       reply_markup: MAIN_KEYBOARD
     });
@@ -597,21 +752,25 @@ async function handleMessage(msg) {
 
   if (text === '📊 Статистика' || text === '/stats') {
     const products = loadProducts();
-    const instock = products.filter(p => p.stockType === 'instock' || p.region === 'spb').length;
-    const transitSpb = products.filter(p => p.stockType === 'transit_spb' || p.region === 'transit_spb').length;
-    const transitIrk = products.filter(p => p.stockType === 'transit_irkutsk' || p.region === 'transit_irkutsk').length;
-    const preorder = products.filter(p => p.stockType === 'preorder' || (!p.stockType && p.region !== 'spb')).length;
+    const active = products.filter(p => !p.archived);
+    const archived = products.filter(p => p.archived);
+    const instock = active.filter(p => p.stockType === 'instock' || p.region === 'spb').length;
+    const transitSpb = active.filter(p => p.stockType === 'transit_spb' || p.region === 'transit_spb').length;
+    const transitIrk = active.filter(p => p.stockType === 'transit_irkutsk' || p.region === 'transit_irkutsk').length;
+    const preorder = active.filter(p => p.stockType === 'preorder' || (!p.stockType && p.region !== 'spb')).length;
 
     const categories = {
-      footwear: products.filter(p => p.category === 'footwear').length,
-      clothing: products.filter(p => p.category === 'clothing').length,
-      accessories: products.filter(p => p.category === 'accessories').length
+      footwear: active.filter(p => p.category === 'footwear').length,
+      clothing: active.filter(p => p.category === 'clothing').length,
+      accessories: active.filter(p => p.category === 'accessories').length
     };
 
     return callTelegram('sendMessage', {
       chat_id: chatId,
       text: `📊 **СТАТИСТИКА SASBOV MARKET**\n\n` +
-            `📦 Всего товаров на сайте: **${products.length}**\n\n` +
+            `📦 Всего товаров в базе: **${products.length}**\n` +
+            `🟢 Активных на витрине: **${active.length}**\n` +
+            `📁 В архиве (скрыты): **${archived.length}**\n\n` +
             `• 🟢 В наличии в СПб (Балконский Стор): **${instock}**\n` +
             `• 🚛 В пути из Китая в СПб: **${transitSpb}**\n` +
             `• 🚛 В пути из Китая в Иркутск: **${transitIrk}**\n` +
@@ -623,7 +782,24 @@ async function handleMessage(msg) {
   }
 
   if (text === '📦 Каталог товаров' || text === '/list' || text === '/catalog') {
-    return sendCatalogPage(chatId, 0);
+    clearSession(chatId);
+    return sendCatalogPage(chatId, 0, 'all');
+  }
+
+  if (text === '🔍 Поиск товара' || text === '/search') {
+    session.step = 'awaiting_catalog_search';
+    return callTelegram('sendMessage', {
+      chat_id: chatId,
+      text: `🔍 **ПОИСК ТОВАРА В КАТАЛОГЕ**\n\n` +
+            `Введите поисковый запрос (название бренда, модели, типа вещи, артикула SKU или слова из описания):`,
+      parse_mode: 'Markdown',
+      reply_markup: {
+        inline_keyboard: [
+          [{ text: '📦 Открыть весь каталог', callback_data: 'back_to_catalog' }],
+          [{ text: '❌ Отмена', callback_data: 'cancel_draft' }]
+        ]
+      }
+    });
   }
 
   // -------------------------------------------------------------------------
@@ -688,7 +864,7 @@ async function handleMessage(msg) {
         parse_mode: 'Markdown',
         reply_markup: {
           inline_keyboard: [
-            [{ text: `✅ Фото готовы (${count} шт.) ➡️ К цене`, callback_data: 'wiz_photos_done' }],
+            [{ text: `✅ Фото готовы (${count} шт.) ➡️ К описанию`, callback_data: 'wiz_photos_done' }],
             [
               { text: '🔄 Очистить фото', callback_data: 'photos_clear' },
               { text: '⬅️ Назад к типу вещи', callback_data: 'wiz_back_to_itemtype' }
@@ -755,8 +931,8 @@ async function handleMessage(msg) {
     session.draft.tags = getItemTypeTags(text);
 
     if (session.draft.images && session.draft.images.length > 0) {
-      session.step = 'awaiting_price';
-      return askPrice(chatId, session.draft);
+      session.step = 'awaiting_description';
+      return askDescription(chatId, session.draft);
     } else {
       session.step = 'awaiting_photos';
       return askPhotos(chatId, session.draft);
@@ -768,8 +944,8 @@ async function handleMessage(msg) {
   // -------------------------------------------------------------------------
   if (session.step === 'awaiting_photos') {
     if (session.draft.images && session.draft.images.length > 0) {
-      session.step = 'awaiting_price';
-      return askPrice(chatId, session.draft);
+      session.step = 'awaiting_description';
+      return askDescription(chatId, session.draft);
     }
     return callTelegram('sendMessage', {
       chat_id: chatId,
@@ -784,7 +960,16 @@ async function handleMessage(msg) {
   }
 
   // -------------------------------------------------------------------------
-  // Wizard: Step 5 -> Price
+  // Wizard: Step 5 -> Description (Dedicated Step)
+  // -------------------------------------------------------------------------
+  if (session.step === 'awaiting_description') {
+    session.draft.description = text;
+    session.step = 'awaiting_price';
+    return askPrice(chatId, session.draft);
+  }
+
+  // -------------------------------------------------------------------------
+  // Wizard: Step 6 -> Price
   // -------------------------------------------------------------------------
   if (session.step === 'awaiting_price') {
     const num = parseInt(text.replace(/\D/g, ''), 10);
@@ -800,7 +985,7 @@ async function handleMessage(msg) {
   }
 
   // -------------------------------------------------------------------------
-  // Wizard: Step 6 -> Sizes
+  // Wizard: Step 7 -> Sizes
   // -------------------------------------------------------------------------
   if (session.step === 'awaiting_sizes') {
     session.draft.sizes = text.split(/[,;\/]+/).map(s => s.trim()).filter(Boolean);
@@ -851,11 +1036,82 @@ async function handleMessage(msg) {
     return sendFinalConfirmation(chatId, session.draft);
   }
 
+  if (session.step === 'editing_desc') {
+    session.draft.description = text;
+    session.step = 'awaiting_confirmation';
+    return sendFinalConfirmation(chatId, session.draft);
+  }
+
+  // -------------------------------------------------------------------------
+  // Live Catalog Search Handler
+  // -------------------------------------------------------------------------
+  if (session.step === 'awaiting_catalog_search') {
+    session.step = 'idle';
+    return handleCatalogSearch(chatId, text);
+  }
+
+  // -------------------------------------------------------------------------
+  // Live Item Editing Handlers (From Synchronized Catalog)
+  // -------------------------------------------------------------------------
+  if (session.step === 'live_edit_price') {
+    const num = parseInt(text.replace(/\D/g, ''), 10);
+    if (!num || isNaN(num) || num < 100) {
+      return callTelegram('sendMessage', {
+        chat_id: chatId,
+        text: '⚠️ Введите корректную цену цифрами (например: `45000`):'
+      });
+    }
+    const products = loadProducts();
+    const target = products.find(p => p.id === session.targetId);
+    if (target) {
+      target.price = num;
+      target.basePriceRub = num;
+      saveProducts(products);
+      await callTelegram('sendMessage', {
+        chat_id: chatId,
+        text: `✅ Цена для **${target.brand} ${target.name}** успешно изменена на **${num.toLocaleString('ru-RU')} ₽**!`
+      });
+    }
+    session.step = 'idle';
+    return sendProductCard(chatId, session.targetId);
+  }
+
+  if (session.step === 'live_edit_sizes') {
+    const newSizes = text.split(/[,;\/]+/).map(s => s.trim()).filter(Boolean);
+    const products = loadProducts();
+    const target = products.find(p => p.id === session.targetId);
+    if (target) {
+      target.sizes = newSizes.length > 0 ? newSizes : [text];
+      saveProducts(products);
+      await callTelegram('sendMessage', {
+        chat_id: chatId,
+        text: `✅ Размеры для **${target.brand} ${target.name}** обновлены: **${target.sizes.join(', ')}**`
+      });
+    }
+    session.step = 'idle';
+    return sendProductCard(chatId, session.targetId);
+  }
+
+  if (session.step === 'live_edit_desc') {
+    const products = loadProducts();
+    const target = products.find(p => p.id === session.targetId);
+    if (target) {
+      target.description = text;
+      saveProducts(products);
+      await callTelegram('sendMessage', {
+        chat_id: chatId,
+        text: `✅ Описание для **${target.brand} ${target.name}** успешно обновлено!`
+      });
+    }
+    session.step = 'idle';
+    return sendProductCard(chatId, session.targetId);
+  }
+
   // Fallback helper
   if (text && session.step === 'idle') {
     return callTelegram('sendMessage', {
       chat_id: chatId,
-      text: `💡 Нажмите **«➕ Добавить товар»**, чтобы опубликовать вещь на сайт, или **«📦 Каталог товаров»** для просмотра и удаления.`,
+      text: `💡 Нажмите **«➕ Добавить товар»**, чтобы опубликовать вещь на сайт, или **«📦 Каталог товаров»** для просмотра и управления.`,
       reply_markup: MAIN_KEYBOARD
     });
   }
@@ -868,9 +1124,30 @@ async function handleCallback(cb) {
   const chatId = cb.message.chat.id;
   const messageId = cb.message.message_id;
   const data = cb.data;
+  const user = cb.from;
+  const userId = Number(user.id);
   const session = getSession(chatId);
 
-  console.log(`[TG CALLBACK] ${cb.from.first_name} (@${cb.from.username}): ${data}`);
+  console.log(`[TG CALLBACK] ${user.first_name} (@${user.username}): ${data}`);
+
+  // Anti-Brute-Force Lockout Check for Callbacks
+  if (isLockedOut(userId)) {
+    return callTelegram('answerCallbackQuery', {
+      callback_query_id: cb.id,
+      text: '⛔ Доступ заблокирован (превышен лимит попыток ввода пароля)',
+      show_alert: true
+    });
+  }
+
+  // Authorization Check for Callbacks
+  if (!isAuthorized(userId)) {
+    return callTelegram('answerCallbackQuery', {
+      callback_query_id: cb.id,
+      text: '🔒 Требуется авторизация! Введите мастер-пароль админа в чате.',
+      show_alert: true
+    });
+  }
+
   callTelegram('answerCallbackQuery', { callback_query_id: cb.id });
 
   // Cancel draft
@@ -906,8 +1183,8 @@ async function handleCallback(cb) {
     }
 
     if (session.draft.images && session.draft.images.length > 0) {
-      session.step = 'awaiting_price';
-      return askPrice(chatId, session.draft);
+      session.step = 'awaiting_description';
+      return askDescription(chatId, session.draft);
     } else {
       session.step = 'awaiting_photos';
       return askPhotos(chatId, session.draft);
@@ -939,11 +1216,22 @@ async function handleCallback(cb) {
     if (!session.draft.images || session.draft.images.length === 0) {
       return callTelegram('sendMessage', {
         chat_id: chatId,
-        text: '⚠️ Пожалуйста, загрузите хотя бы 1 фотографию товара перед переходом к цене!'
+        text: '⚠️ Пожалуйста, загрузите хотя бы 1 фотографию товара перед переходом дальше!'
       });
     }
+    session.step = 'awaiting_description';
+    return askDescription(chatId, session.draft);
+  }
+
+  if (data === 'wiz_skip_description') {
+    session.draft.description = '';
     session.step = 'awaiting_price';
     return askPrice(chatId, session.draft);
+  }
+
+  if (data === 'wiz_back_to_desc') {
+    session.step = 'awaiting_description';
+    return askDescription(chatId, session.draft);
   }
 
   if (data === 'photos_clear') {
@@ -1115,6 +1403,29 @@ async function handleCallback(cb) {
     });
   }
 
+  if (data === 'edit_field_desc') {
+    session.step = 'editing_desc';
+    return callTelegram('sendMessage', {
+      chat_id: chatId,
+      text: `📝 **ИЗМЕНЕНИЕ ОПИСАНИЯ ТОВАРА**\n\n` +
+            `Текущее описание:\n_${session.draft.description || '(автоматическая генерация)'}_\n\n` +
+            `Напишите новое описание текстом в ответном сообщении или выберите действие:`,
+      parse_mode: 'Markdown',
+      reply_markup: {
+        inline_keyboard: [
+          [{ text: '⚡ Использовать авто-описание', callback_data: 'edit_desc_reset_auto' }],
+          [{ text: '🔙 Назад в предпросмотр', callback_data: 'back_to_preview' }]
+        ]
+      }
+    });
+  }
+
+  if (data === 'edit_desc_reset_auto') {
+    session.draft.description = '';
+    session.step = 'awaiting_confirmation';
+    return sendFinalConfirmation(chatId, session.draft);
+  }
+
   if (data === 'edit_field_price') {
     session.step = 'editing_price';
     return callTelegram('sendMessage', {
@@ -1192,7 +1503,266 @@ async function handleCallback(cb) {
     return publishItem(chatId);
   }
 
-  // Delete product
+  // -------------------------------------------------------------------------
+  // Catalog Navigation & Filters
+  // -------------------------------------------------------------------------
+  if (data === 'cat_noop') {
+    return;
+  }
+
+  if (data === 'back_to_catalog') {
+    return sendCatalogPage(chatId, 0, 'all');
+  }
+
+  if (data.startsWith('catflt_')) {
+    const filter = data.replace('catflt_', '');
+    return sendCatalogPage(chatId, 0, filter);
+  }
+
+  if (data.startsWith('catpage_')) {
+    const parts = data.replace('catpage_', '').split('_');
+    const page = parseInt(parts[0], 10) || 0;
+    const filter = parts[1] || 'all';
+    return sendCatalogPage(chatId, page, filter);
+  }
+
+  if (data === 'cat_start_search' || data === 'cat_search_prompt') {
+    session.step = 'awaiting_catalog_search';
+    return callTelegram('sendMessage', {
+      chat_id: chatId,
+      text: `🔍 **ПОИСК ТОВАРА В КАТАЛОГЕ**\n\n` +
+            `Введите ключевое слово (бренд, модель, тип вещи, артикул/SKU или слова из описания):`,
+      parse_mode: 'Markdown',
+      reply_markup: {
+        inline_keyboard: [
+          [{ text: '📦 Весь каталог', callback_data: 'back_to_catalog' }]
+        ]
+      }
+    });
+  }
+
+  // -------------------------------------------------------------------------
+  // Item Card View & Post Generators
+  // -------------------------------------------------------------------------
+  if (data.startsWith('view_prod_')) {
+    const id = data.replace('view_prod_', '');
+    return sendProductCard(chatId, id);
+  }
+
+  if (data.startsWith('post_tg_')) {
+    const id = data.replace('post_tg_', '');
+    return sendTelegramPost(chatId, id);
+  }
+
+  if (data.startsWith('post_vk_')) {
+    const id = data.replace('post_vk_', '');
+    return sendVkPost(chatId, id);
+  }
+
+  // -------------------------------------------------------------------------
+  // Live Item Editing Callbacks
+  // -------------------------------------------------------------------------
+  if (data.startsWith('edit_p_price_')) {
+    const id = data.replace('edit_p_price_', '');
+    session.step = 'live_edit_price';
+    session.targetId = id;
+    const products = loadProducts();
+    const p = products.find(x => x.id === id);
+    return callTelegram('sendMessage', {
+      chat_id: chatId,
+      text: `💰 **ИЗМЕНЕНИЕ ЦЕНЫ**\n` +
+            `Товар: **${p ? p.brand + ' ' + p.name : id}**\n` +
+            `Текущая цена: **${p ? Number(p.price).toLocaleString('ru-RU') : 0} ₽**\n\n` +
+            `Введите новую цену в рублях (только цифры):`,
+      parse_mode: 'Markdown',
+      reply_markup: {
+        inline_keyboard: [
+          [{ text: '🔙 Отмена', callback_data: `view_prod_${id}` }]
+        ]
+      }
+    });
+  }
+
+  if (data.startsWith('edit_p_sizes_')) {
+    const id = data.replace('edit_p_sizes_', '');
+    session.step = 'live_edit_sizes';
+    session.targetId = id;
+    const products = loadProducts();
+    const p = products.find(x => x.id === id);
+    return callTelegram('sendMessage', {
+      chat_id: chatId,
+      text: `📏 **ИЗМЕНЕНИЕ РАЗМЕРОВ**\n` +
+            `Товар: **${p ? p.brand + ' ' + p.name : id}**\n` +
+            `Текущие: **${p && p.sizes ? p.sizes.join(', ') : 'Не указаны'}**\n\n` +
+            `Введите новые размеры через запятую (например: \`41, 42, 43 EU\` или \`S, M, L\`):`,
+      parse_mode: 'Markdown',
+      reply_markup: {
+        inline_keyboard: [
+          [{ text: '🔙 Отмена', callback_data: `view_prod_${id}` }]
+        ]
+      }
+    });
+  }
+
+  if (data.startsWith('edit_p_desc_')) {
+    const id = data.replace('edit_p_desc_', '');
+    session.step = 'live_edit_desc';
+    session.targetId = id;
+    const products = loadProducts();
+    const p = products.find(x => x.id === id);
+    return callTelegram('sendMessage', {
+      chat_id: chatId,
+      text: `📝 **ИЗМЕНЕНИЕ ОПИСАНИЯ**\n` +
+            `Товар: **${p ? p.brand + ' ' + p.name : id}**\n\n` +
+            `Текущее описание:\n_${p ? p.description : ''}_\n\n` +
+            `Напишите новый текст описания в ответном сообщении:`,
+      parse_mode: 'Markdown',
+      reply_markup: {
+        inline_keyboard: [
+          [{ text: '🔙 Отмена', callback_data: `view_prod_${id}` }]
+        ]
+      }
+    });
+  }
+
+  if (data.startsWith('edit_p_loc_')) {
+    const id = data.replace('edit_p_loc_', '');
+    const products = loadProducts();
+    const p = products.find(x => x.id === id);
+    return callTelegram('sendMessage', {
+      chat_id: chatId,
+      text: `📍 **ИЗМЕНЕНИЕ ЛОКАЦИИ И СТАТУСА**\n` +
+            `Товар: **${p ? p.brand + ' ' + p.name : id}**\n\n` +
+            `Выберите новый статус товара:`,
+      parse_mode: 'Markdown',
+      reply_markup: {
+        inline_keyboard: [
+          [{ text: '🟢 В наличии в СПб (Шоурум Невский 110В)', callback_data: `setloc_spb_${id}` }],
+          [{ text: '🚛 В пути в СПб (~5–8 дней)', callback_data: `setloc_tr_spb_${id}` }],
+          [{ text: '🚛 В пути в Иркутск (~3–6 дней)', callback_data: `setloc_tr_irk_${id}` }],
+          [{ text: '🇨🇳 Предзаказ (Китай / Poizon, 7–12 дней)', callback_data: `setloc_cn_${id}` }],
+          [{ text: '🇯🇵 Предзаказ (Япония / Mercari JP, 7–14 дней)', callback_data: `setloc_jp_${id}` }],
+          [{ text: '🌍 Предзаказ (Европа / Grailed, 10–16 дней)', callback_data: `setloc_glb_${id}` }],
+          [{ text: '🔙 Отмена', callback_data: `view_prod_${id}` }]
+        ]
+      }
+    });
+  }
+
+  if (data.startsWith('setloc_')) {
+    const match = data.match(/^setloc_([a-z_]+)_(.+)$/);
+    if (match) {
+      const locKey = match[1];
+      const prodId = match[2];
+      const products = loadProducts();
+      const p = products.find(x => x.id === prodId);
+      if (p) {
+        if (locKey === 'spb') {
+          p.stockType = 'instock';
+          p.region = 'spb';
+          p.regionLabel = 'СПБ // BALKONSKY STORE';
+          p.deliveryTime = 'В наличии в СПб // Примерка и самовывоз сегодня';
+          p.status = 'В НАЛИЧИИ В СПБ';
+        } else if (locKey === 'tr_spb') {
+          p.stockType = 'transit_spb';
+          p.region = 'transit_spb';
+          p.regionLabel = 'В ПУТИ ИЗ КИТАЯ В СПБ';
+          p.deliveryTime = 'В пути в Санкт-Петербург: 5–8 дней (доступна бронь)';
+          p.status = 'В ПУТИ В СПБ';
+        } else if (locKey === 'tr_irk') {
+          p.stockType = 'transit_irkutsk';
+          p.region = 'transit_irkutsk';
+          p.regionLabel = 'В ПУТИ ИЗ КИТАЯ В ИРКУТСК';
+          p.deliveryTime = 'В пути в Иркутск: 3–6 дней (доступна бронь)';
+          p.status = 'В ПУТИ В ИРКУТСК';
+        } else if (locKey === 'cn') {
+          p.stockType = 'preorder';
+          p.region = 'china';
+          p.regionLabel = 'CHINA [CN] // POIZON DEWU';
+          p.deliveryTime = 'Выкуп под заказ: 7–12 дней (СДЭК)';
+          p.status = 'ПРЕДЗАКАЗ ОТКРЫТ';
+        } else if (locKey === 'jp') {
+          p.stockType = 'preorder';
+          p.region = 'japan';
+          p.regionLabel = 'JAPAN [JP] // TOKYO ARCHIVE';
+          p.deliveryTime = 'Выкуп под заказ: 7–14 дней (Авиаэкспресс)';
+          p.status = 'ПРЕДЗАКАЗ ОТКРЫТ';
+        } else if (locKey === 'glb') {
+          p.stockType = 'preorder';
+          p.region = 'global';
+          p.regionLabel = 'ИТАЛИЯ // ЕВРОПА';
+          p.deliveryTime = 'Выкуп под заказ: 10–16 дней';
+          p.status = 'ПРЕДЗАКАЗ ОТКРЫТ';
+        }
+        saveProducts(products);
+      }
+      return sendProductCard(chatId, prodId);
+    }
+  }
+
+  // -------------------------------------------------------------------------
+  // Archive & Unarchive
+  // -------------------------------------------------------------------------
+  if (data.startsWith('toggle_archive_')) {
+    const id = data.replace('toggle_archive_', '');
+    const products = loadProducts();
+    const p = products.find(x => x.id === id);
+    if (p) {
+      p.archived = !p.archived;
+      if (p.archived) {
+        p.archivedAt = new Date().toISOString();
+      } else {
+        delete p.archivedAt;
+      }
+      saveProducts(products);
+      await callTelegram('sendMessage', {
+        chat_id: chatId,
+        text: p.archived
+          ? `📁 Товар **${p.brand} ${p.name}** перенесен в архив (скрыт с витрины сайта).`
+          : `📂 Товар **${p.brand} ${p.name}** восстановлен из архива (виден в каталоге на сайте).`
+      });
+      return sendProductCard(chatId, id);
+    }
+  }
+
+  // -------------------------------------------------------------------------
+  // Delete Product Handlers
+  // -------------------------------------------------------------------------
+  if (data.startsWith('ask_del_')) {
+    const id = data.replace('ask_del_', '');
+    const products = loadProducts();
+    const p = products.find(x => x.id === id);
+    return callTelegram('sendMessage', {
+      chat_id: chatId,
+      text: `⚠️ **ПОДТВЕРЖДЕНИЕ УДАЛЕНИЯ**\n\n` +
+            `Вы действительно хотите навсегда удалить товар:\n` +
+            `**${p ? p.brand + ' — ' + p.name : id}** (${p ? Number(p.price).toLocaleString('ru-RU') + ' ₽' : ''})?\n\n` +
+            `_Действие необратимо. Товар исчезнет с сайта и из базы данных._`,
+      parse_mode: 'Markdown',
+      reply_markup: {
+        inline_keyboard: [
+          [{ text: '🗑 Да, удалить навсегда', callback_data: `do_del_${id}` }],
+          [{ text: '❌ Отмена', callback_data: `view_prod_${id}` }]
+        ]
+      }
+    });
+  }
+
+  if (data.startsWith('do_del_')) {
+    const id = data.replace('do_del_', '');
+    let products = loadProducts();
+    const target = products.find(p => p.id === id);
+    products = products.filter(p => p.id !== id);
+    saveProducts(products);
+
+    await callTelegram('sendMessage', {
+      chat_id: chatId,
+      text: `🗑 Товар **${target ? target.brand + ' — ' + target.name : id}** успешно удален с сайта.`
+    });
+    return sendCatalogPage(chatId, 0, 'all');
+  }
+
+  // Legacy delete fallback
   if (data.startsWith('del_')) {
     const id = data.replace('del_', '');
     let products = loadProducts();
@@ -1204,13 +1774,15 @@ async function handleCallback(cb) {
       chat_id: chatId,
       text: `🗑 Товар **${target ? target.brand + ' - ' + target.name : id}** успешно удален с сайта.`
     });
-    return sendCatalogPage(chatId, 0);
+    return sendCatalogPage(chatId, 0, 'all');
   }
 
   // Catalog pagination
   if (data.startsWith('catpage_')) {
-    const page = parseInt(data.replace('catpage_', ''), 10) || 0;
-    return sendCatalogPage(chatId, page);
+    const parts = data.replace('catpage_', '').split('_');
+    const page = parseInt(parts[0], 10) || 0;
+    const filter = parts[1] || 'all';
+    return sendCatalogPage(chatId, page, filter);
   }
 }
 
@@ -1295,44 +1867,323 @@ async function publishItem(chatId) {
 }
 
 // ---------------------------------------------------------------------------
-// Send Paginated Catalog Page
+// Ready-To-Publish Social Media Post Generators
 // ---------------------------------------------------------------------------
-async function sendCatalogPage(chatId, page = 0) {
+function generateTelegramPost(p) {
+  let loc = '✈️ Выкуп под заказ из Китая/Японии (7–12 дней)';
+  if (p.stockType === 'instock' || p.region === 'spb') {
+    loc = '🟢 В наличии в СПб (Шоурум Невский 110В, самовывоз и примерка сегодня)';
+  } else if (p.stockType === 'transit_spb' || p.region === 'transit_spb') {
+    loc = '🚛 В пути из Китая в Санкт-Петербург (~5–8 дней, открыта бронь)';
+  } else if (p.stockType === 'transit_irkutsk' || p.region === 'transit_irkutsk') {
+    loc = '🚛 В пути из Китая в Иркутск (~3–6 дней, открыта бронь)';
+  }
+
+  const sizesStr = (p.sizes && p.sizes.length) ? p.sizes.join(', ') : 'Уточняйте';
+  const brandTag = (p.brand || '').replace(/[^a-zA-Zа-яА-Я0-9]/g, '').toLowerCase();
+  const typeTag = (p.itemType || '').replace(/[^a-zA-Zа-яА-Я0-9]/g, '').toLowerCase();
+
+  return `🔥 ${p.brand.toUpperCase()} — ${p.name}\n\n` +
+    `📏 Размеры в наличии: ${sizesStr}\n` +
+    `✨ Состояние: ${p.condition || 'NEW // DEADSTOCK'}\n` +
+    `📍 Локация: ${loc}\n` +
+    `💵 Цена: ${Number(p.price).toLocaleString('ru-RU')} ₽\n\n` +
+    `📝 Описание:\n${p.description || `${p.brand} ${p.name}. Аутентичный релиз, оригинальная упаковка, комплектные бирки.`}\n\n` +
+    `🛡 100% Оригинал // Пройдена двойная аутентификация\n` +
+    `📦 Доставка по всей РФ (СДЭК) / Самовывоз и примерка в СПб\n\n` +
+    `📩 Для заказа и примерки: @sasbov_admin\n` +
+    `🌐 Смотреть на сайте: https://sasbov.online/product.html?id=${p.id}\n\n` +
+    `#${brandTag} #${typeTag} #sasbov #streetwear #resell #spb`;
+}
+
+function generateVkPost(p) {
+  let loc = '✈️ Доступно под заказ (7–12 дней СДЭК)';
+  if (p.stockType === 'instock' || p.region === 'spb') {
+    loc = '🟢 В НАЛИЧИИ В САНКТ-ПЕТЕРБУРГЕ\n📍 Шоурум «Балконский Стор», Невский просп., 110В (ежедневно 14:00 - 21:00)';
+  } else if (p.stockType === 'transit_spb' || p.region === 'transit_spb') {
+    loc = '🚛 В пути из Китая в Санкт-Петербург (~5–8 дней, открыта бронь)';
+  } else if (p.stockType === 'transit_irkutsk' || p.region === 'transit_irkutsk') {
+    loc = '🚛 В пути из Китая в Иркутск (~3–6 дней, открыта бронь)';
+  }
+
+  const sizesStr = (p.sizes && p.sizes.length) ? p.sizes.join(', ') : 'Уточняйте';
+  const brandTag = (p.brand || '').replace(/[^a-zA-Zа-яА-Я0-9]/g, '').toLowerCase();
+  const typeTag = (p.itemType || '').replace(/[^a-zA-Zа-яА-Я0-9]/g, '').toLowerCase();
+
+  return `⚡ ${p.brand.toUpperCase()} — ${p.name}\n\n` +
+    `💰 Цена: ${Number(p.price).toLocaleString('ru-RU')} ₽\n` +
+    `📏 Доступные размеры: ${sizesStr}\n` +
+    `✨ Состояние: ${p.condition || 'NEW // DEADSTOCK'}\n` +
+    `📍 Наличие и локация:\n${loc}\n\n` +
+    `📝 О товаре:\n${p.description || `${p.brand} ${p.name}. Полный аутентичный комплект.`}\n\n` +
+    `✅ Строгий Legit Check перед выдачей\n` +
+    `🚀 Экспресс-отправка СДЭК в день оплаты\n\n` +
+    `📩 Написать менеджеру: vk.me/sasbovmarket\n` +
+    `🌐 Онлайн-витрина: https://sasbov.online/product.html?id=${p.id}\n\n` +
+    `#${brandTag} #${typeTag} #sasbov #streetwear #saintpetersburg`;
+}
+
+async function sendTelegramPost(chatId, productId) {
   const products = loadProducts();
-  const PAGE_SIZE = 5;
-  const totalPages = Math.ceil(products.length / PAGE_SIZE) || 1;
-  const curPage = Math.max(0, Math.min(page, totalPages - 1));
+  const p = products.find(x => x.id === productId);
+  if (!p) return;
 
-  const items = products.slice(curPage * PAGE_SIZE, (curPage + 1) * PAGE_SIZE);
+  const postText = generateTelegramPost(p);
 
-  let text = `📦 **КАТАЛОГ ТОВАРОВ (Стр. ${curPage + 1} из ${totalPages})**\nВсего товаров: ${products.length}\n\n`;
+  return callTelegram('sendMessage', {
+    chat_id: chatId,
+    text: `📢 **ГОТОВЫЙ ПОСТ ДЛЯ TELEGRAM КАНАЛА**\n\n` +
+          `👇 *Нажмите один раз на текст ниже, чтобы скопировать весь пост в буфер обмена:*\n\n` +
+          `\`\`\`\n${postText}\n\`\`\``,
+    parse_mode: 'Markdown',
+    reply_markup: {
+      inline_keyboard: [
+        [{ text: '🔙 Назад к карточке товара', callback_data: `view_prod_${p.id}` }]
+      ]
+    }
+  });
+}
 
+async function sendVkPost(chatId, productId) {
+  const products = loadProducts();
+  const p = products.find(x => x.id === productId);
+  if (!p) return;
+
+  const vkText = generateVkPost(p);
+
+  return callTelegram('sendMessage', {
+    chat_id: chatId,
+    text: `🔵 **ГОТОВЫЙ ПОСТ ДЛЯ ГРУППЫ ВКОНТАКТЕ**\n\n` +
+          `👇 *Нажмите один раз на текст ниже, чтобы скопировать весь пост в буфер обмена:*\n\n` +
+          `\`\`\`\n${vkText}\n\`\`\``,
+    parse_mode: 'Markdown',
+    reply_markup: {
+      inline_keyboard: [
+        [{ text: '🔙 Назад к карточке товара', callback_data: `view_prod_${p.id}` }]
+      ]
+    }
+  });
+}
+
+// ---------------------------------------------------------------------------
+// Product Card View (With Photo, Full Details, Post Generation & In-Place Edit)
+// ---------------------------------------------------------------------------
+async function sendProductCard(chatId, productId) {
+  const products = loadProducts();
+  const p = products.find(x => x.id === productId);
+  if (!p) {
+    return callTelegram('sendMessage', {
+      chat_id: chatId,
+      text: '⚠️ Товар не найден или был удален.'
+    });
+  }
+
+  let loc = '✈️ Предзаказ на всю РФ (7–12 дней)';
+  if (p.stockType === 'instock' || p.region === 'spb') {
+    loc = '🟢 В наличии в СПб (Шоурум Балконский, Невский 110В)';
+  } else if (p.stockType === 'transit_spb' || p.region === 'transit_spb') {
+    loc = '🚛 В пути из Китая в СПб (~5–8 дней)';
+  } else if (p.stockType === 'transit_irkutsk' || p.region === 'transit_irkutsk') {
+    loc = '🚛 В пути из Китая в Иркутск (~3–6 дней)';
+  }
+
+  const statusText = p.archived ? '📁 **В АРХИВЕ** (скрыт с витрины сайта)' : '🟢 **АКТИВЕН НА САЙТЕ**';
+  const photosCount = (p.images && p.images.length) ? p.images.length : (p.image ? 1 : 0);
+
+  const cardText = `🏷 **КАРТОЧКА ТОВАРА: ${p.brand.toUpperCase()} — ${p.name.toUpperCase()}**\n\n` +
+    `• Статус: ${statusText}\n` +
+    `• Артикул / SKU: \`${p.sku || p.id}\`\n` +
+    `• Тип вещи: **${p.itemType || 'Одежда'}**\n` +
+    `• Цена: **${Number(p.price).toLocaleString('ru-RU')} ₽**\n` +
+    `• Доступные размеры: **${(p.sizes || []).join(', ')}**\n` +
+    `• Состояние: **${p.condition || 'NEW // DEADSTOCK'}**\n` +
+    `• Локация: **${loc}**\n` +
+    `• Фотографий: **${photosCount} шт.**\n\n` +
+    `📝 **Описание:**\n_${p.description || 'Оригинальный айтем SASBOV MARKET.'}_\n\n` +
+    `👇 **Выберите действие:**`;
+
+  const inlineKeyboard = [
+    [
+      { text: '📢 Пост для Telegram', callback_data: `post_tg_${p.id}` },
+      { text: '🔵 Пост для ВКонтакте', callback_data: `post_vk_${p.id}` }
+    ],
+    [
+      { text: '💰 Изменить цену', callback_data: `edit_p_price_${p.id}` },
+      { text: '📏 Изменить размеры', callback_data: `edit_p_sizes_${p.id}` }
+    ],
+    [
+      { text: '📝 Изменить описание', callback_data: `edit_p_desc_${p.id}` },
+      { text: '📍 Сменить локацию', callback_data: `edit_p_loc_${p.id}` }
+    ],
+    [
+      { text: (p.archived ? '📂 Восстановить из архива' : '📁 В архив (скрыть с сайта)'), callback_data: `toggle_archive_${p.id}` }
+    ],
+    [
+      { text: '🗑 Удалить товар', callback_data: `ask_del_${p.id}` },
+      { text: '🔙 К списку товаров', callback_data: 'back_to_catalog' }
+    ]
+  ];
+
+  return callTelegram('sendMessage', {
+    chat_id: chatId,
+    text: cardText,
+    parse_mode: 'Markdown',
+    reply_markup: { inline_keyboard: inlineKeyboard }
+  });
+}
+
+// ---------------------------------------------------------------------------
+// Synchronized Catalog Live Search
+// ---------------------------------------------------------------------------
+async function handleCatalogSearch(chatId, query) {
+  const q = (query || '').toLowerCase().trim();
+  if (!q) {
+    return callTelegram('sendMessage', {
+      chat_id: chatId,
+      text: '⚠️ Поисковый запрос пуст. Введите название бренда, модели, типа вещи или артикул:'
+    });
+  }
+
+  const products = loadProducts();
+  const matched = products.filter(p => {
+    const brand = (p.brand || '').toLowerCase();
+    const name = (p.name || '').toLowerCase();
+    const full = (p.fullName || '').toLowerCase();
+    const sku = (p.sku || '').toLowerCase();
+    const type = (p.itemType || '').toLowerCase();
+    const desc = (p.description || '').toLowerCase();
+    const tags = Array.isArray(p.tags) ? p.tags.join(' ').toLowerCase() : '';
+
+    return brand.includes(q) || name.includes(q) || full.includes(q) ||
+           sku.includes(q) || type.includes(q) || desc.includes(q) || tags.includes(q);
+  });
+
+  if (matched.length === 0) {
+    return callTelegram('sendMessage', {
+      chat_id: chatId,
+      text: `❌ По запросу **«${query}»** ничего не найдено.\n\nПопробуйте ввести другое ключевое слово:`,
+      reply_markup: {
+        inline_keyboard: [
+          [{ text: '🔍 Искать снова', callback_data: 'cat_start_search' }],
+          [{ text: '📦 Открыть весь каталог', callback_data: 'back_to_catalog' }]
+        ]
+      }
+    });
+  }
+
+  let text = `🔍 **РЕЗУЛЬТАТЫ ПОИСКА ПО ЗАПРОСУ «${query}»**\nНайдено: **${matched.length} шт.**\n\n`;
   const inlineKeyboard = [];
 
-  items.forEach((p, idx) => {
-    let loc = '✈️ РФ';
-    if (p.stockType === 'instock' || p.region === 'spb') loc = '🟢 СПб';
-    else if (p.stockType === 'transit_spb' || p.region === 'transit_spb') loc = '🚛 Транзит СПб';
-    else if (p.stockType === 'transit_irkutsk' || p.region === 'transit_irkutsk') loc = '🚛 Транзит Иркутск';
-
-    const pCount = (p.images && p.images.length) ? p.images.length : 1;
-    const typeLabel = p.itemType ? `[${p.itemType}] ` : '';
-    text += `${curPage * PAGE_SIZE + idx + 1}. **${p.brand}** ${p.name} ${typeLabel}\n   Цена: ${Number(p.price).toLocaleString('ru-RU')} ₽ | [${loc}] | 📸 ${pCount} фото\n\n`;
+  matched.slice(0, 8).forEach((p, idx) => {
+    const archLabel = p.archived ? '📁 [Архив] ' : '';
+    text += `${idx + 1}. **${p.brand}** ${p.name} ${archLabel}\n` +
+            `   Цена: ${Number(p.price).toLocaleString('ru-RU')} ₽ | Арт: \`${p.sku || p.id}\`\n\n`;
 
     inlineKeyboard.push([{
-      text: `🗑 Удалить: ${p.brand} ${p.name.slice(0, 16)}...`,
-      callback_data: `del_${p.id}`
+      text: `👁 Открыть: ${p.brand} ${p.name.slice(0, 16)}`,
+      callback_data: `view_prod_${p.id}`
     }]);
   });
 
+  if (matched.length > 8) {
+    text += `_...и ещё ${matched.length - 8} совпадений._\n`;
+  }
+
+  inlineKeyboard.push([
+    { text: '🔍 Новый поиск', callback_data: 'cat_start_search' },
+    { text: '📦 Весь каталог', callback_data: 'back_to_catalog' }
+  ]);
+
+  return callTelegram('sendMessage', {
+    chat_id: chatId,
+    text: text,
+    parse_mode: 'Markdown',
+    reply_markup: { inline_keyboard: inlineKeyboard }
+  });
+}
+
+// ---------------------------------------------------------------------------
+// Send Synchronized Paginated Catalog Page (With Filter Chips & Item Cards)
+// ---------------------------------------------------------------------------
+async function sendCatalogPage(chatId, page = 0, filter = 'all') {
+  let products = loadProducts();
+
+  // Apply filter
+  if (filter === 'spb') {
+    products = products.filter(p => !p.archived && (p.stockType === 'instock' || p.region === 'spb'));
+  } else if (filter === 'transit') {
+    products = products.filter(p => !p.archived && (p.stockType === 'transit_spb' || p.region === 'transit_spb' || p.stockType === 'transit_irkutsk' || p.region === 'transit_irkutsk'));
+  } else if (filter === 'preorder') {
+    products = products.filter(p => !p.archived && (p.stockType === 'preorder' || (!p.stockType && p.region !== 'spb')));
+  } else if (filter === 'archived') {
+    products = products.filter(p => p.archived === true);
+  } else {
+    products = products.filter(p => !p.archived);
+  }
+
+  const PAGE_SIZE = 5;
+  const totalPages = Math.ceil(products.length / PAGE_SIZE) || 1;
+  const curPage = Math.max(0, Math.min(page, totalPages - 1));
+  const items = products.slice(curPage * PAGE_SIZE, (curPage + 1) * PAGE_SIZE);
+
+  const filterNames = {
+    all: 'Все активные',
+    spb: '🟢 В наличии СПб',
+    transit: '🚛 В пути',
+    preorder: '✈️ Предзаказ РФ',
+    archived: '📁 Архив'
+  };
+
+  let text = `📦 **СИНХРОНИЗИРОВАННЫЙ КАТАЛОГ SASBOV**\n` +
+             `Раздел: **${filterNames[filter] || 'Все'}** | Товаров: **${products.length} шт.** (Стр. ${curPage + 1} из ${totalPages})\n\n`;
+
+  const inlineKeyboard = [];
+
+  // Filter chips row
+  inlineKeyboard.push([
+    { text: (filter === 'all' ? '🔘 Все' : 'Все'), callback_data: 'catflt_all' },
+    { text: (filter === 'spb' ? '🔘 🟢СПб' : '🟢СПб'), callback_data: 'catflt_spb' },
+    { text: (filter === 'transit' ? '🔘 🚛В пути' : '🚛В пути'), callback_data: 'catflt_transit' },
+    { text: (filter === 'preorder' ? '🔘 ✈️Предзаказ' : '✈️Предзаказ'), callback_data: 'catflt_preorder' },
+    { text: (filter === 'archived' ? '🔘 📁Архив' : '📁Архив'), callback_data: 'catflt_archived' }
+  ]);
+
+  if (items.length === 0) {
+    text += `_В этой категории пока нет товаров._\n`;
+  } else {
+    items.forEach((p, idx) => {
+      let loc = '✈️ РФ';
+      if (p.stockType === 'instock' || p.region === 'spb') loc = '🟢 СПб';
+      else if (p.stockType === 'transit_spb' || p.region === 'transit_spb') loc = '🚛 Транзит СПб';
+      else if (p.stockType === 'transit_irkutsk' || p.region === 'transit_irkutsk') loc = '🚛 Транзит Ирк';
+
+      const typeLabel = p.itemType ? `[${p.itemType}] ` : '';
+      const archLabel = p.archived ? '📁 [АРХИВ] ' : '';
+      text += `${curPage * PAGE_SIZE + idx + 1}. **${p.brand}** ${p.name} ${typeLabel}${archLabel}\n` +
+              `   💰 ${Number(p.price).toLocaleString('ru-RU')} ₽ | 📍 ${loc} | 📏 ${(p.sizes || []).join(', ')}\n\n`;
+
+      inlineKeyboard.push([{
+        text: `👁 Карточка: ${p.brand} ${p.name.slice(0, 16)}`,
+        callback_data: `view_prod_${p.id}`
+      }]);
+    });
+  }
+
+  // Pagination navigation row
   const navRow = [];
   if (curPage > 0) {
-    navRow.push({ text: '⬅️ Назад', callback_data: `catpage_${curPage - 1}` });
+    navRow.push({ text: '⬅️ Назад', callback_data: `catpage_${curPage - 1}_${filter}` });
   }
+  navRow.push({ text: `📄 ${curPage + 1}/${totalPages}`, callback_data: 'cat_noop' });
   if (curPage < totalPages - 1) {
-    navRow.push({ text: 'Вперёд ➡️', callback_data: `catpage_${curPage + 1}` });
+    navRow.push({ text: 'Вперёд ➡️', callback_data: `catpage_${curPage + 1}_${filter}` });
   }
-  if (navRow.length > 0) inlineKeyboard.push(navRow);
+  inlineKeyboard.push(navRow);
+
+  // Search row
+  inlineKeyboard.push([
+    { text: '🔍 Найти товар по названию / SKU', callback_data: 'cat_start_search' }
+  ]);
 
   return callTelegram('sendMessage', {
     chat_id: chatId,
@@ -1391,10 +2242,12 @@ async function initBot() {
   await callTelegram('setMyCommands', {
     commands: [
       { command: 'start', description: 'Главное меню админ-панели' },
-      { command: 'new', description: '➕ Добавить товар на сайт (пошагово)' },
-      { command: 'catalog', description: '📦 Каталог товаров и удаление' },
+      { command: 'new', description: '➕ Добавить товар (9 шагов)' },
+      { command: 'catalog', description: '📦 Каталог товаров (поиск/ред/архив)' },
+      { command: 'search', description: '🔍 Поиск товара по названию или SKU' },
       { command: 'stats', description: '📊 Статистика товаров и складов' },
-      { command: 'site', description: '🌐 Ссылки на онлайн-магазин' }
+      { command: 'site', description: '🌐 Ссылки на онлайн-магазин' },
+      { command: 'logout', description: '🔒 Завершить сессию (Выйти)' }
     ]
   }).catch(() => {});
 

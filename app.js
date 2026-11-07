@@ -84,7 +84,7 @@
       if (stored) {
         const parsed = JSON.parse(stored);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          const list = parsed.filter(p => !p.deletedAt).map(p => {
+          const list = parsed.filter(p => !p.deletedAt && !p.archived).map(p => {
             if (!Array.isArray(p.images)) {
               p.images = p.image ? [p.image] : [];
             }

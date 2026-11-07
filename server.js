@@ -162,7 +162,7 @@ const server = http.createServer(async (req, res) => {
         return 0;
       }
       products = (Array.isArray(products) ? products : [])
-        .filter(p => p && p.id && !p.deletedAt)
+        .filter(p => p && p.id && !p.deletedAt && !p.archived)
         .sort((a, b) => getTs(b) - getTs(a));
 
       res.writeHead(200, { 'Content-Type': 'application/json' });
@@ -312,7 +312,7 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
-  // 4. Static File Server & Clean URLs
+  // 5. Static File Server & Clean URLs
   // Redirect explicit .html requests to clean URLs without .html
   if (pathname.endsWith('.html')) {
     let clean = pathname.slice(0, -5);

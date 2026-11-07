@@ -190,7 +190,7 @@ module.exports = async function handler(req, res) {
         const stored = await getStoredProducts(kvUrl, kvToken);
         if (stored && Array.isArray(stored.data) && stored.data.length > 0) {
           const sorted = stored.data
-            .filter(p => p && p.id && !p.deletedAt)
+            .filter(p => p && p.id && !p.deletedAt && !p.archived)
             .sort((a, b) => getTs(b) - getTs(a));
           memoryStorage = sorted;
           return res.status(200).json({

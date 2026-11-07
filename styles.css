@@ -155,7 +155,18 @@ button, input, select {
 a.btn-primary,
 button.btn-primary,
 .card-actions .btn-primary,
-.btn-primary * {
+.card-actions a,
+.btn-product-tg,
+#tray-submit-tg-btn,
+#calc-apply-order-btn,
+.btn-primary *,
+a.btn-primary *,
+button.btn-primary *,
+.card-actions .btn-primary *,
+.card-actions a *,
+.btn-product-tg *,
+#tray-submit-tg-btn *,
+#calc-apply-order-btn * {
   background: #ffffff !important;
   color: #000000 !important;
   -webkit-text-fill-color: #000000 !important;
@@ -167,7 +178,19 @@ button.btn-primary,
 .btn-primary:hover,
 a.btn-primary:hover,
 button.btn-primary:hover,
-.card-actions .btn-primary:hover {
+.card-actions .btn-primary:hover,
+.card-actions a:hover,
+.btn-product-tg:hover,
+#tray-submit-tg-btn:hover,
+#calc-apply-order-btn:hover,
+.btn-primary:hover *,
+a.btn-primary:hover *,
+button.btn-primary:hover *,
+.card-actions .btn-primary:hover *,
+.card-actions a:hover *,
+.btn-product-tg:hover *,
+#tray-submit-tg-btn:hover *,
+#calc-apply-order-btn:hover * {
   background: var(--accent-cyan, #00f0ff) !important;
   color: #000000 !important;
   -webkit-text-fill-color: #000000 !important;
