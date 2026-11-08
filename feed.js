@@ -310,13 +310,13 @@
         `;
       } else if (images.length === 1) {
         mediaContent = `
-          <img src="${images[0]}" alt="${product.brand} - ${product.name}" class="reel-media-img">
+          <img src="${images[0]}" alt="${product.brand} - ${product.name}" class="reel-media-img" width="600" height="800" loading="${idx === 0 ? 'eager' : 'lazy'}" fetchpriority="${idx === 0 ? 'high' : 'auto'}" decoding="async">
         `;
       } else {
         mediaContent = `
           <div class="reel-carousel-container" data-reel-id="${product.id}">
             ${images.map((src, i) => `
-              <img src="${src}" alt="${product.brand} - ${product.name} (Фото ${i + 1})" class="reel-carousel-img ${i === 0 ? 'active' : ''}" data-idx="${i}">
+              <img src="${src}" alt="${product.brand} - ${product.name} (Фото ${i + 1})" class="reel-carousel-img ${i === 0 ? 'active' : ''}" data-idx="${i}" width="600" height="800" loading="${idx === 0 && i === 0 ? 'eager' : 'lazy'}" fetchpriority="${idx === 0 && i === 0 ? 'high' : 'auto'}" decoding="async">
             `).join('')}
 
             <button type="button" class="reel-side-arrow arrow-prev" data-dir="prev" aria-label="Предыдущее фото">‹</button>
@@ -360,12 +360,12 @@
               </button>
 
               <!-- Telegram direct message -->
-              <button type="button" class="reel-action-btn chat-tg-btn" data-id="${product.id}" title="Задать вопрос в Telegram">
+              <button type="button" class="reel-action-btn chat-tg-btn" data-id="${product.id}" title="Задать вопрос в Telegram" aria-label="Задать вопрос о товаре в Telegram">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-1.92 9.07c-.14.65-.53.81-1.07.51l-2.97-2.19-1.43 1.38c-.16.16-.29.29-.6.29l.21-3.04 5.53-5c.24-.22-.05-.34-.38-.13l-6.84 4.3-2.95-.92c-.64-.2-.65-.64.13-.95l11.53-4.44c.53-.2 1 .12.89.82z"/></svg>
               </button>
 
               <!-- Share -->
-              <button type="button" class="reel-action-btn share-btn" data-id="${product.id}" title="Поделиться ссылкой">
+              <button type="button" class="reel-action-btn share-btn" data-id="${product.id}" title="Поделиться ссылкой" aria-label="Поделиться ссылкой на товар">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
               </button>
             </div>
@@ -390,7 +390,7 @@
 
               <div class="reel-cta-bar">
                 <span class="reel-price">${formatRub(product.basePriceRub)}</span>
-                <button type="button" class="reel-preorder-btn reel-tg-order-btn" data-id="${product.id}">
+                <button type="button" class="reel-preorder-btn reel-tg-order-btn" data-id="${product.id}" aria-label="${product.stockType === 'instock' ? 'Забронировать в Telegram' : 'Заказать в Telegram'}">
                   ${product.stockType === 'instock' ? 'ЗАБРОНИРОВАТЬ В TG →' : 'ЗАКАЗАТЬ В TG →'}
                 </button>
               </div>

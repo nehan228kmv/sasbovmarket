@@ -21,7 +21,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@700;800&display=swap"></noscript>
 
   <link rel="stylesheet" href="styles.css?v=20261104_02">
   <link rel="stylesheet" href="feed.css?v=20261104_02">
@@ -35,7 +35,7 @@
   </script>
 </head>
 <body class="feed-body">
-  <h1 class="visually-hidden">SASBOV MARKET — Видео-фид и лукбук стритвира</h1>
+  <h1 class="visually-hidden" style="position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0, 0, 0, 0) !important; white-space: nowrap !important; border: 0 !important;">SASBOV MARKET — Видео-фид и лукбук стритвира</h1>
 
   <!-- Feed Top HUD Navigation Overlay -->
   <header class="feed-top-nav">
@@ -48,7 +48,7 @@
 
     <!-- Quick Feed Filter Chips -->
     <div class="feed-filter-bar" id="feed-filter-bar" aria-label="Фильтры категорий лукбука">
-      <button type="button" class="feed-chip random-chip active" id="feed-random-toggle" title="Перемешать карточки в случайный порядок без повторов">🎲 МИКС: ВКЛ</button>
+      <button type="button" class="feed-chip random-chip active" id="feed-random-toggle" title="Перемешать карточки в случайный порядок без повторов" aria-label="Случайный порядок товаров">🎲 МИКС: ВКЛ</button>
       <button type="button" class="feed-chip active" data-feed-cat="all">ВСЕ (<span id="feed-count-all">100</span>)</button>
       <button type="button" class="feed-chip" data-feed-cat="hoodie">ХУДИ (<span id="feed-count-hoodie">14</span>)</button>
       <button type="button" class="feed-chip" data-feed-cat="tshirt">ФУТБОЛКИ (<span id="feed-count-tshirt">31</span>)</button>
@@ -86,11 +86,11 @@
   </div>
 
   <!-- Feed Navigation Floating Arrows (Desktop) -->
-  <div class="feed-arrows" aria-hidden="true">
-    <button type="button" class="feed-arrow-btn" id="feed-prev-btn" title="Предыдущая вещь (Стрелка вверх)">
+  <div class="feed-arrows">
+    <button type="button" class="feed-arrow-btn" id="feed-prev-btn" title="Предыдущая вещь" aria-label="Предыдущая вещь (Стрелка вверх)">
       ▲
     </button>
-    <button type="button" class="feed-arrow-btn" id="feed-next-btn" title="Следующая вещь (Стрелка вниз)">
+    <button type="button" class="feed-arrow-btn" id="feed-next-btn" title="Следующая вещь" aria-label="Следующая вещь (Стрелка вниз)">
       ▼
     </button>
   </div>

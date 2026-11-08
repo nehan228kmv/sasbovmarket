@@ -187,6 +187,19 @@
     } catch (e) {}
   }
 
+  function openTelegramChat(text) {
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    const encoded = encodeURIComponent(text || '');
+    if (isMobile) {
+      window.location.href = 'tg://resolve?domain=Sasbov' + (encoded ? '&text=' + encoded : '');
+      setTimeout(() => {
+        window.location.href = 'https://t.me/Sasbov' + (encoded ? '?text=' + encoded : '');
+      }, 600);
+    } else {
+      window.open('https://t.me/Sasbov' + (encoded ? '?text=' + encoded : ''), '_blank', 'noopener,noreferrer');
+    }
+  }
+
   function formatRub(num) {
     const val = Number(num);
     if (!val || isNaN(val) || val <= 0) return '0 ₽';
@@ -966,8 +979,7 @@
 ${p.description ? `— Описание: ${p.description}\n` : ''}
 Подтвердите наличие на точке и забронируйте вещь за мной!`;
 
-          const tgUrl = `https://t.me/sasbov?text=${encodeURIComponent(messageText)}`;
-          window.open(tgUrl, '_blank', 'noopener,noreferrer');
+          openTelegramChat(messageText);
           closePreorderModal();
         } else {
           const selectedSpeedVal = Array.from(el.modalSpeedRadios).find(r => r.checked)?.value || 'Авиа-экспресс (7-10 дней)';
@@ -983,8 +995,7 @@ ${p.description ? `— Описание: ${p.description}\n` : ''}
 ${p.description ? `— Описание: ${p.description}\n` : ''}
 Подтвердите возможность выкупа и пришлите реквизиты!`;
 
-          const tgUrl = `https://t.me/Sasbov?text=${encodeURIComponent(messageText)}`;
-          window.open(tgUrl, '_blank', 'noopener,noreferrer');
+          openTelegramChat(messageText);
           closePreorderModal();
         }
       });
@@ -1109,8 +1120,7 @@ ${listText}
 — Итого под ключ: ${formatRub(total)}
 Жду реквизиты!`;
 
-        const tgUrl = `https://t.me/Sasbov?text=${encodeURIComponent(messageText)}`;
-        window.open(tgUrl, '_blank', 'noopener,noreferrer');
+        openTelegramChat(messageText);
         closeTray();
       });
     }

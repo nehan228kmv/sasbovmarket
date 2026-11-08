@@ -1,3 +1,17 @@
+/* Accessibility visually hidden */
+.visually-hidden,
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
 /* ==========================================================================
    SASBOV MARKET — TIKTOK / REELS VERTICAL FEED STYLES
    ========================================================================== */
@@ -190,10 +204,17 @@
   }
   .reel-media-img,
   .reel-carousel-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
   .reel-info-overlay {
     position: absolute;
     bottom: 0;
@@ -282,7 +303,10 @@
 .reel-media-img {
   width: 100%;
   height: 100%;
+  aspect-ratio: 3 / 4;
   object-fit: cover;
+  object-position: center;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .reel-placeholder-slot {
@@ -291,7 +315,7 @@
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
-  color: var(--text-muted);
+  color: #cbd5e1;
   text-align: center;
   padding: 2rem;
 }
@@ -576,7 +600,7 @@
   padding: 0 1.5rem;
   font-family: var(--font-mono);
   font-size: 0.7rem;
-  color: var(--text-muted);
+  color: #cbd5e1;
   pointer-events: none;
   z-index: 90;
 }
@@ -683,7 +707,7 @@
 .feed-size-label {
   font-family: var(--font-mono);
   font-size: 0.68rem;
-  color: var(--text-muted, #71717a);
+  color: #cbd5e1;
   font-weight: 700;
   letter-spacing: 0.05em;
   padding-right: 4px;
@@ -694,7 +718,7 @@
 .feed-size-chip {
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #a1a1aa;
+  color: #cbd5e1;
   font-family: var(--font-mono);
   font-size: 0.7rem;
   font-weight: 600;

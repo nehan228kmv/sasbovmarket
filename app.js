@@ -210,6 +210,20 @@
   /**
    * Format numbers to Russian Ruble format
    */
+  
+  function openTelegramChat(text) {
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    const encoded = encodeURIComponent(text || '');
+    if (isMobile) {
+      window.location.href = 'tg://resolve?domain=Sasbov' + (encoded ? '&text=' + encoded : '');
+      setTimeout(() => {
+        window.location.href = 'https://t.me/Sasbov' + (encoded ? '?text=' + encoded : '');
+      }, 600);
+    } else {
+      window.open('https://t.me/Sasbov' + (encoded ? '?text=' + encoded : ''), '_blank', 'noopener,noreferrer');
+    }
+  }
+
   function formatRub(num) {
     const val = Number(num);
     if (!val || isNaN(val) || val <= 0) return '0 ₽';
@@ -916,7 +930,9 @@ ${listText}
   let calcOrigin = 'cn';
 
   function calculateEstimate() {
-    const priceVal = parseFloat(el.calcItemPrice?.value) || 0;
+    let rawVal = parseFloat(el.calcItemPrice?.value);
+    const defaultPlaceholder = calcOrigin === 'cn' ? 899 : (calcOrigin === 'jp' ? 28000 : 250);
+    const priceVal = (!rawVal || isNaN(rawVal) || rawVal <= 0) ? defaultPlaceholder : rawVal;
     const categoryKey = el.calcCategorySelect?.value || 'shoes';
     const isExpress = Array.from(el.calcSpeedRadios).find(r => r.checked)?.value === 'express';
 
@@ -991,13 +1007,31 @@ ${listText}
 
 Помогите, пожалуйста, найти и оформить эту позицию!`;
 
-        const tgUrl = `https://t.me/Sasbov?text=${encodeURIComponent(message)}`;
-        window.open(tgUrl, '_blank', 'noopener,noreferrer');
+        openTelegramChat(message);
       });
     }
 
     calculateEstimate();
+    fetchLiveRates();
   }
+  function fetchLiveRates() {
+    fetch('/api/rates')
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.success && data.rates) {
+          if (data.rates.CNY) RATES.CNY = data.rates.CNY;
+          if (data.rates.JPY) RATES.JPY = data.rates.JPY;
+          if (data.rates.USD) RATES.USD = data.rates.USD;
+          const notice = document.getElementById('calc-rate-notice');
+          if (notice) {
+            notice.textContent = `АКТУАЛЬНЫЙ КУРС ВЫКУПА: 1 ¥ = ${RATES.CNY.toFixed(2)} ₽ • ОБНОВЛЁН: СЕГОДНЯ // БЕЗ СКРЫТЫХ ПЛАТЕЖЕЙ`;
+          }
+          calculateEstimate();
+        }
+      })
+      .catch(() => {});
+  }
+
 
   /**
    * Live Telemetry Clocks

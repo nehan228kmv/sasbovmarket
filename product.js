@@ -78,6 +78,19 @@
     ambientPosterImg: document.getElementById('ambient-poster-img')
   };
 
+  function openTelegramChat(text) {
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    const encoded = encodeURIComponent(text || '');
+    if (isMobile) {
+      window.location.href = 'tg://resolve?domain=Sasbov' + (encoded ? '&text=' + encoded : '');
+      setTimeout(() => {
+        window.location.href = 'https://t.me/Sasbov' + (encoded ? '?text=' + encoded : '');
+      }, 600);
+    } else {
+      window.open('https://t.me/Sasbov' + (encoded ? '?text=' + encoded : ''), '_blank', 'noopener,noreferrer');
+    }
+  }
+
   function formatRub(num) {
     if (!num || isNaN(num)) return '0 ₽';
     return Math.round(Number(num)).toLocaleString('ru-RU') + ' ₽';
