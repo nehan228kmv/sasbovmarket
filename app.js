@@ -16,14 +16,15 @@
 
   const STORAGE_KEY = 'sasbov_market_products_v1';
 
-  // Config & Exchange Rates
+  // Config & Live Exchange Rates (CBR + 0.50 ₽)
   const RATES = {
-    CNY: 13.85, // 1 CNY to RUB (Poizon / Dewu / Goofish)
-    JPY: 0.66,  // 1 JPY to RUB (Mercari JP / eBay JP / Yahoo)
-    USD: 98.50, // 1 USD to RUB (Grailed / Global Archive)
+    CNY: 12.77, // Live CBR (12.27) + 0.50 ₽
+    JPY: 0.542, // Live CBR (0.521)
+    USD: 85.49, // Live CBR (82.14)
     SERVICE_FEE_PCT: 0.08, // 8% Legit check + sourcing concierge fee
     INSURANCE_FEE_RUB: 500, // Fixed insurance fee
   };
+  let liveCbr = { cny: 12.27, usd: 82.14, jpy: 0.521 };
 
   // Logistics Rates per Category
   const LOGISTICS_RATES = {
@@ -929,6 +930,19 @@ ${listText}
    */
   let calcOrigin = 'cn';
 
+  
+  function updateRateNotice() {
+    const notice = document.getElementById('calc-rate-notice');
+    if (!notice) return;
+    if (calcOrigin === 'cn') {
+      notice.innerHTML = 'КУРС ВЫКУПА: <strong>1 ¥ = ' + RATES.CNY.toFixed(2) + ' ₽</strong> (КУРС ЦБ РФ ' + liveCbr.cny.toFixed(2) + ' ₽ + 0.50 ₽) • В РЕАЛЬНОМ ВРЕМЕНИ';
+    } else if (calcOrigin === 'jp') {
+      notice.innerHTML = 'КУРС ВЫКУПА: <strong>1 ¥ = ' + RATES.JPY.toFixed(3) + ' ₽</strong> (КУРС ЦБ РФ ' + liveCbr.jpy.toFixed(3) + ' ₽) • В РЕАЛЬНОМ ВРЕМЕНИ';
+    } else {
+      notice.innerHTML = 'КУРС ВЫКУПА: <strong>1 $ = ' + RATES.USD.toFixed(2) + ' ₽</strong> (КУРС ЦБ РФ ' + liveCbr.usd.toFixed(2) + ' ₽) • В РЕАЛЬНОМ ВРЕМЕНИ';
+    }
+  }
+
   function calculateEstimate() {
     let rawVal = parseFloat(el.calcItemPrice?.value);
     const defaultPlaceholder = calcOrigin === 'cn' ? 899 : (calcOrigin === 'jp' ? 28000 : 250);
@@ -973,6 +987,7 @@ ${listText}
           if (el.calcItemPrice.value == 899 || el.calcItemPrice.value == 28000) el.calcItemPrice.value = 250;
         }
 
+        updateRateNotice();
         calculateEstimate();
       });
     });
@@ -1022,10 +1037,8 @@ ${listText}
           if (data.rates.CNY) RATES.CNY = data.rates.CNY;
           if (data.rates.JPY) RATES.JPY = data.rates.JPY;
           if (data.rates.USD) RATES.USD = data.rates.USD;
-          const notice = document.getElementById('calc-rate-notice');
-          if (notice) {
-            notice.textContent = `АКТУАЛЬНЫЙ КУРС ВЫКУПА: 1 ¥ = ${RATES.CNY.toFixed(2)} ₽ • ОБНОВЛЁН: СЕГОДНЯ // БЕЗ СКРЫТЫХ ПЛАТЕЖЕЙ`;
-          }
+          if (data.cbr) liveCbr = data.cbr;
+          updateRateNotice();
           calculateEstimate();
         }
       })

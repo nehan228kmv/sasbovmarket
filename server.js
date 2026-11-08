@@ -7,6 +7,7 @@
  */
 
 const http = require('http');
+const https = require('https');
 const fs = require('fs');
 const path = require('path');
 const zlib = require('zlib');
@@ -114,6 +115,89 @@ const MIME_TYPES = {
   '.webm': 'video/webm'
 };
 
+
+// --- LIVE CBR EXCHANGE RATES ENGINE (КУРС ЦБ РФ + 0.50 ₽) ---
+const RATES_FILE = path.join(DATA_DIR, 'rates.json');
+let cachedLiveRates = {
+  success: true,
+  source: 'cbr_live',
+  cbrDate: '2026-11-07',
+  cbr: { cny: 12.27, usd: 82.14, jpy: 0.521 },
+  rates: { CNY: 12.77, USD: 85.49, JPY: 0.542 },
+  margin: 0.5,
+  formula: 'ЦБ РФ + 0.50 ₽',
+  updatedAt: new Date().toISOString()
+};
+
+if (fs.existsSync(RATES_FILE)) {
+  try {
+    const raw = JSON.parse(fs.readFileSync(RATES_FILE, 'utf8'));
+    if (raw && raw.rates && raw.rates.CNY) cachedLiveRates = raw;
+  } catch (e) {}
+}
+
+function fetchCbrDailyRates() {
+  return new Promise((resolve, reject) => {
+    https.get('https://www.cbr-xml-daily.ru/daily_json.js', { timeout: 6000 }, (res) => {
+      if (res.statusCode !== 200) return reject(new Error('CBR status ' + res.statusCode));
+      let data = '';
+      res.on('data', c => data += c);
+      res.on('end', () => {
+        try {
+          resolve(JSON.parse(data));
+        } catch (e) {
+          reject(e);
+        }
+      });
+    }).on('error', reject);
+  });
+}
+
+async function refreshLiveCbrRates() {
+  try {
+    const json = await fetchCbrDailyRates();
+    const cnyVal = json?.Valute?.CNY?.Value;
+    const usdVal = json?.Valute?.USD?.Value;
+    const jpyVal = json?.Valute?.JPY?.Value ? (json.Valute.JPY.Value / 100) : null;
+
+    if (cnyVal && usdVal && jpyVal) {
+      // Exactly CBR + 0.50 ₽ for CNY (Poizon / Dewu / Goofish)
+      const cnyRate = Math.round((cnyVal + 0.50) * 100) / 100;
+      const markupRatio = 0.50 / cnyVal;
+      const usdRate = Math.round((usdVal * (1 + markupRatio)) * 100) / 100;
+      const jpyRate = Math.round((jpyVal * (1 + markupRatio)) * 1000) / 1000;
+
+      cachedLiveRates = {
+        success: true,
+        source: 'cbr_live',
+        cbrDate: json.Date || new Date().toISOString(),
+        cbr: {
+          cny: Math.round(cnyVal * 100) / 100,
+          usd: Math.round(usdVal * 100) / 100,
+          jpy: Math.round(jpyVal * 1000) / 1000
+        },
+        rates: {
+          CNY: cnyRate,
+          USD: usdRate,
+          JPY: jpyRate
+        },
+        margin: 0.5,
+        formula: 'ЦБ РФ + 0.50 ₽',
+        updatedAt: new Date().toISOString()
+      };
+
+      fs.writeFileSync(RATES_FILE, JSON.stringify(cachedLiveRates, null, 2), 'utf8');
+      console.log(`[CBR Live] Refreshed: 1 CNY = ${cnyRate} ₽ (CBR ${cnyVal.toFixed(2)} + 0.50 ₽)`);
+    }
+  } catch (err) {
+    console.warn('[CBR Live] Refresh warning, using active cached rates:', err.message);
+  }
+}
+
+// Initial fetch and automatic refresh every 30 minutes
+refreshLiveCbrRates();
+setInterval(refreshLiveCbrRates, 30 * 60 * 1000);
+
 const server = http.createServer(async (req, res) => {
   // CORS & Security Headers (PageSpeed Best Practices 100)
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -134,33 +218,12 @@ const server = http.createServer(async (req, res) => {
   const pathname = parsedUrl.pathname;
 
   
-  // Currency Exchange Rates API with multi-tier fallback (CBR -> Disk -> Safe Defaults)
+  // 0. GET /api/rates (CBR Live + 0.50 ₽)
   if ((req.method === 'GET' || req.method === 'HEAD') && pathname === '/api/rates') {
-    const RATES_FILE = path.join(DATA_DIR, 'rates.json');
-    let rates = { CNY: 13.85, JPY: 0.66, USD: 98.50, updatedAt: new Date().toISOString() };
-    
-    // Check disk cache
-    if (fs.existsSync(RATES_FILE)) {
-      try {
-        rates = JSON.parse(fs.readFileSync(RATES_FILE, 'utf8'));
-      } catch (e) {}
-    }
-
-    // Return current safe rates
-    const payload = JSON.stringify({
-      success: true,
-      source: 'cbr_buffered_safe',
-      rates: {
-        CNY: Math.max(13.5, rates.CNY || 13.85),
-        JPY: Math.max(0.60, rates.JPY || 0.66),
-        USD: Math.max(95.0, rates.USD || 98.50)
-      },
-      updatedAt: rates.updatedAt || new Date().toISOString()
-    });
-
+    const payload = JSON.stringify(cachedLiveRates);
     res.writeHead(200, {
       'Content-Type': 'application/json',
-      'Cache-Control': 'public, max-age=3600, s-maxage=3600',
+      'Cache-Control': 'public, max-age=900, s-maxage=1800',
       'Content-Length': Buffer.byteLength(payload)
     });
     if (req.method === 'HEAD') return res.end();
