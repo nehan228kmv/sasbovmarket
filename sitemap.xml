@@ -2109,7 +2109,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
     <image:image>
-      <image:loc>https://sasbov.online/uploads/poster_bape_history.jpg</image:loc>
+      <image:loc>https://sasbov.online/uploads/poster_bape_harajuku.jpg</image:loc>
       <image:caption>История BAPE и Nigo</image:caption>
     </image:image>
   </url>
@@ -2139,7 +2139,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
     <image:image>
-      <image:loc>https://sasbov.online/uploads/poster_chrome_hearts_history.jpg</image:loc>
+      <image:loc>https://sasbov.online/uploads/poster_chrome_hearts.jpg</image:loc>
       <image:caption>История Chrome Hearts и Ричард Старк</image:caption>
     </image:image>
   </url>
@@ -2199,109 +2199,8 @@
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
     <image:image>
-      <image:loc>https://sasbov.online/uploads/poster_balenciaga_history.jpg</image:loc>
+      <image:loc>https://sasbov.online/uploads/poster_balenciaga.jpg</image:loc>
       <image:caption>Эра Демны в Balenciaga: Triple S</image:caption>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://sasbov.online/blog-alyx-history</loc>
-    <lastmod>2026-11-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-    <image:image>
-      <image:loc>https://sasbov.online/uploads/poster_alyx_history.jpg</image:loc>
-      <image:caption>1017 ALYX 9SM: Rollercoaster buckle и Chest Rig</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://sasbov.online/blog-mastermind-history</loc>
-    <lastmod>2026-11-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-    <image:image>
-      <image:loc>https://sasbov.online/uploads/poster_mastermind_history.jpg</image:loc>
-      <image:caption>Mastermind Japan: культ кашемира и череп Масааки Хоммы</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://sasbov.online/blog-neighborhood-history</loc>
-    <lastmod>2026-11-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-    <image:image>
-      <image:loc>https://sasbov.online/uploads/poster_neighborhood_history.jpg</image:loc>
-      <image:caption>Neighborhood: байкеры Ура-Харадзюку 1994 и Savage Denim</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://sasbov.online/blog-wtaps-history</loc>
-    <lastmod>2026-11-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-    <image:image>
-      <image:loc>https://sasbov.online/uploads/poster_wtaps_history.jpg</image:loc>
-      <image:caption>WTAPS: Тэцу Нисияма и милитари-архивы</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://sasbov.online/blog-cav-empt-history</loc>
-    <lastmod>2026-11-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-    <image:image>
-      <image:loc>https://sasbov.online/uploads/poster_cav_empt_history.jpg</image:loc>
-      <image:caption>Cav Empt (C.E): Sk8thing и киберпанк-ретрофутуризм</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://sasbov.online/blog-trapstar-history</loc>
-    <lastmod>2026-11-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-    <image:image>
-      <image:loc>https://sasbov.online/uploads/poster_trapstar_history.jpg</image:loc>
-      <image:caption>Trapstar London: Decoded Chenille и UK Drill</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://sasbov.online/blog-amiri-history</loc>
-    <lastmod>2026-11-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-    <image:image>
-      <image:loc>https://sasbov.online/uploads/poster_amiri_history.jpg</image:loc>
-      <image:caption>Amiri: Майк Амири, дробовики и деним MX1</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://sasbov.online/blog-enfants-riches-deprimes-history</loc>
-    <lastmod>2026-11-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-    <image:image>
-      <image:loc>https://sasbov.online/uploads/poster_enfants_riches_deprimes_history.jpg</image:loc>
-      <image:caption>Enfants Riches Déprimés: элитарный панк-нигилизм Анри Леви</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://sasbov.online/blog-comme-des-garcons-history</loc>
-    <lastmod>2026-11-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-    <image:image>
-      <image:loc>https://sasbov.online/uploads/poster_comme_des_garcons_history.jpg</image:loc>
-      <image:caption>Comme des Garçons: Рей Кавакубо и Хиросима-шик 1981</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://sasbov.online/blog-yohji-yamamoto-history</loc>
-    <lastmod>2026-11-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-    <image:image>
-      <image:loc>https://sasbov.online/uploads/poster_yohji_yamamoto_history.jpg</image:loc>
-      <image:caption>Yohji Yamamoto: поэзия черного и революция Y-3</image:caption>
     </image:image>
   </url>
 </urlset>
