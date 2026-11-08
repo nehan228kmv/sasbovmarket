@@ -74,6 +74,40 @@
         }
       },
       {
+        "@type": "ClothingStore",
+        "@id": "https://sasbov.online/#showroom",
+        "name": "SASBOV MARKET / Балконский стор",
+        "url": "https://sasbov.online/",
+        "image": "https://sasbov.online/uploads/garagesale/photo_2026-11-04_05-11-35.jpg",
+        "priceRange": "$$",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Невский проспект, 110В",
+          "addressLocality": "Санкт-Петербург",
+          "postalCode": "191025",
+          "addressCountry": "RU"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 59.932829,
+          "longitude": 30.358538
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+            "opens": "11:00",
+            "closes": "22:00"
+          }
+        ],
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.8",
+          "reviewCount": "24",
+          "bestRating": "5"
+        }
+      },
+      {
         "@type": "FAQPage",
         "@id": "https://sasbov.online/#faq",
         "mainEntity": [
@@ -554,6 +588,57 @@
           </div>
           <div class="card-barcode" aria-hidden="true"></div>
           <span class="card-serial">SN-2026-SASBOV-ORIGIN</span>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Showroom & Offline Fitting Hub (Saint Petersburg) -->
+    <section class="showroom-section" id="showroom" aria-label="Офлайн шоурум Балконский стор в Санкт-Петербурге" style="padding: 60px 0; border-top: 1px solid var(--border-subtle); background: var(--bg-surface);">
+      <div class="container">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 36px; align-items: center;">
+          <div>
+            <div style="display: inline-flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+              <span style="background: var(--accent-cyan); color: #000; font-family: var(--font-mono); font-size: 0.75rem; font-weight: 800; padding: 4px 10px; border-radius: 4px; text-transform: uppercase;">ОФЛАЙН-ПРИМЕРКА В СПБ</span>
+              <a href="https://yandex.ru/maps/org/balkonskiy_stor/109683827425/" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #fbbf24; font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700;">★ 4.8 (24 ОТЗЫВА НА ЯНДЕКС КАРТАХ)</a>
+            </div>
+            <h2 class="section-title" style="font-size: clamp(1.6rem, 3vw, 2.4rem); margin-bottom: 14px; text-transform: uppercase;">
+              ШОУРУМ «БАЛКОНСКИЙ СТОР» // НЕВСКИЙ 110В
+            </h2>
+            <p style="color: var(--text-secondary); font-size: 1rem; line-height: 1.6; margin-bottom: 18px;">
+              Приходите на примерку редких архивных айтемов и актуальных дропов прямо в центре Санкт-Петербурга. Вы можете примерить кеды Maison Mihara Yasuhiro, худи Corteiz и Sp5der, джинсы Denim Tears и винтаж Rick Owens перед покупкой либо забрать доставленный предзаказ без ожидания курьера.
+            </p>
+            <ul style="list-style: none; padding: 0; margin-bottom: 24px; color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">
+              <li style="margin-bottom: 8px; display: flex; gap: 8px;">
+                <span style="color: var(--accent-cyan); font-weight: 700;">—</span>
+                <span><strong>Локация:</strong> Санкт-Петербург, Невский проспект, 110В (вход со двора, код на воротах подскажет менеджер)</span>
+              </li>
+              <li style="margin-bottom: 8px; display: flex; gap: 8px;">
+                <span style="color: var(--accent-cyan); font-weight: 700;">—</span>
+                <span><strong>Часы работы:</strong> Ежедневно с 11:00 до 22:00</span>
+              </li>
+              <li style="margin-bottom: 8px; display: flex; gap: 8px;">
+                <span style="color: var(--accent-cyan); font-weight: 700;">—</span>
+                <span><strong>Сервис:</strong> Тактильный осмотр, легитчек, примерка нужных размеров и оплата после подтверждения качества</span>
+              </li>
+            </ul>
+
+            <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+              <a href="https://yandex.ru/maps/org/balkonskiy_stor/109683827425/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="border-color: var(--border-medium);">
+                ОТКРЫТЬ НА ЯНДЕКС КАРТАХ ↗
+              </a>
+              <a href="https://t.me/Sasbov" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="color: #000000 !important; font-weight: 800 !important;">
+                ЗАПИСАТЬСЯ НА ПРИМЕРКУ В TG
+              </a>
+              <a href="/catalog?stock=instock" class="btn btn-outline">
+                СМОТРЕТЬ ВЕЩИ В НАЛИЧИИ В СПБ →
+              </a>
+            </div>
+          </div>
+
+          <div style="border-radius: 12px; overflow: hidden; border: 1px solid var(--border-medium); height: 380px; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+            <iframe src="https://yandex.ru/map-widget/v1/?ll=30.358538%2C59.932829&z=16&pt=30.358538,59.932829,pm2rdm" width="100%" height="100%" frameborder="0" allowfullscreen="true" style="position:relative; width: 100%; height: 100%; border: 0; filter: invert(90%) hue-rotate(180deg) contrast(1.1) brightness(0.9);" loading="lazy" title="Балконский стор на Невском 110В в Яндекс Картах"></iframe>
+          </div>
         </div>
       </div>
     </section>
