@@ -82,6 +82,8 @@
     "areaServed": "RU"
   }
   </script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 </head>
 <body class="landing-grailed-body">
 
@@ -120,6 +122,42 @@
         <ul class="nav-list">
           <li><a href="/" class="nav-link">ГЛАВНАЯ</a></li>
           <li><a href="/catalog" class="nav-link">КАТАЛОГ</a></li>
+          <li class="nav-dropdown">
+            <button type="button" class="nav-dropdown-toggle">
+              ХАБЫ ВЫКУПА <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="nav-dropdown-menu">
+              <a href="/mercari-japan" class="dropdown-item">
+                <span class="dropdown-badge jp">JP</span>
+                <div class="dropdown-info">
+                  <strong>MERCARI JAPAN (ЯПОНИЯ)</strong>
+                  <span>BAPE, Kapital, Undercover, Yahoo</span>
+                </div>
+              </a>
+              <a href="/goofish-russia" class="dropdown-item">
+                <span class="dropdown-badge cn">CN</span>
+                <div class="dropdown-info">
+                  <strong>GOOFISH / XIANYU (КИТАЙ)</strong>
+                  <span>Архивы 2Taobao, склад в Шанхае</span>
+                </div>
+              </a>
+              <a href="/grailed-archive" class="dropdown-item">
+                <span class="dropdown-badge us">US</span>
+                <div class="dropdown-info">
+                  <strong>GRAILED ARCHIVES (США/ЕС)</strong>
+                  <span>Rick Owens, Chrome Hearts, примерка</span>
+                </div>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="/catalog?stock=instock" class="dropdown-item">
+                <span class="dropdown-badge spb">СПБ</span>
+                <div class="dropdown-info">
+                  <strong>В НАЛИЧИИ В ШОУРУМЕ</strong>
+                  <span>Невский 110В • Примерка сегодня</span>
+                </div>
+              </a>
+            </div>
+          </li>
           <li><a href="/catalog?stock=instock" class="nav-link active">В НАЛИЧИИ В СПБ</a></li>
           <li><a href="/blog" class="nav-link">БЛОГ</a></li>
           <li><a href="/#calculator" class="nav-link">КАЛЬКУЛЯТОР</a></li>
@@ -292,8 +330,11 @@
             </div>
           </div>
 
-          <div style="border-radius: 8px; overflow: hidden; border: 1px solid var(--border-medium); height: 320px; position: relative;">
-            <iframe src="https://yandex.ru/map-widget/v1/?ll=30.358538%2C59.932829&z=16&pt=30.358538,59.932829,pm2rdm" width="100%" height="100%" frameborder="0" allowfullscreen="true" style="position:relative; width: 100%; height: 100%; border: 0; filter: invert(90%) hue-rotate(180deg) contrast(1.1) brightness(0.9);" loading="lazy"></iframe>
+          <div class="custom-map-container" id="spb-showroom-map">
+            <div class="custom-map-hud-overlay">
+              <span class="hud-title">БАЛКОНСКИЙ СТОР // НЕВСКИЙ 110В</span>
+              <span class="hud-coords">59.9328° N, 30.3585° E • 11:00–22:00</span>
+            </div>
           </div>
         </div>
       </section>
@@ -369,5 +410,38 @@
     </div>
   </footer>
 
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const mapEl = document.getElementById('spb-showroom-map');
+      if (mapEl && typeof L !== 'undefined') {
+        try {
+          const map = L.map('spb-showroom-map', { 
+            scrollWheelZoom: false,
+            zoomControl: true,
+            attributionControl: false
+          }).setView([59.932829, 30.358538], 16);
+
+          L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+            maxZoom: 19
+          }).addTo(map);
+
+          const customIcon = L.divIcon({
+            className: 'custom-map-pin',
+            html: '<div class="pin-radar-pulse"></div><div class="pin-core-circle"></div>',
+            iconSize: [24, 24],
+            iconAnchor: [12, 12]
+          });
+
+          L.marker([59.932829, 30.358538], { icon: customIcon }).addTo(map)
+            .bindPopup('<div class="map-popup-card"><strong>БАЛКОНСКИЙ СТОР</strong><p>Невский пр., 110В • Вход со двора<br>Ежедневно 11:00–22:00</p><a href="https://yandex.ru/maps/org/balkonskiy_stor/109683827425/" target="_blank" rel="noopener noreferrer" class="popup-btn">Открыть в Яндекс Картах ↗</a></div>')
+            .openPopup();
+        } catch(e) {
+          console.warn('Map init err:', e);
+        }
+      }
+    });
+  </script>
+  
 </body>
 </html>

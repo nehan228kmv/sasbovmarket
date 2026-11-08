@@ -214,3 +214,4 @@ async function scanAndProcess(targetFolder = IMPORT_DIR) {
 // Check arguments or default to IMPORT_DIR
 const customDir = process.argv[2];
 scanAndProcess(customDir ? path.resolve(customDir) : IMPORT_DIR);
+

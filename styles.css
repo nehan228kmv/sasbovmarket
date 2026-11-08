@@ -5770,3 +5770,248 @@ footer,
     font-size: 1.15rem;
   }
 }
+
+
+/* ==========================================================================
+   NAVIGATION DROPDOWN & HUBS MENU
+   ========================================================================== */
+.nav-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.nav-dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.nav-dropdown-toggle svg {
+  transition: transform var(--transition-fast);
+}
+
+.nav-dropdown:hover .nav-dropdown-toggle,
+.nav-dropdown:focus-within .nav-dropdown-toggle {
+  color: var(--accent-cyan);
+}
+
+.nav-dropdown:hover .nav-dropdown-toggle svg,
+.nav-dropdown:focus-within .nav-dropdown-toggle svg {
+  transform: rotate(180deg);
+}
+
+.nav-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  min-width: 300px;
+  background: rgba(14, 16, 22, 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-medium);
+  border-radius: 10px;
+  padding: 8px;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.85), 0 0 24px rgba(0, 240, 255, 0.08);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: all 0.22s var(--ease-spring);
+  z-index: 1200;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+  border: 1px solid transparent;
+}
+
+.dropdown-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.dropdown-badge {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 3px 7px;
+  border-radius: 4px;
+  background: rgba(0, 240, 255, 0.12);
+  color: var(--accent-cyan);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  flex-shrink: 0;
+}
+
+.dropdown-badge.cn {
+  background: rgba(255, 71, 87, 0.12);
+  color: #ff4757;
+  border-color: rgba(255, 71, 87, 0.3);
+}
+
+.dropdown-badge.us {
+  background: rgba(165, 94, 234, 0.12);
+  color: #a55eea;
+  border-color: rgba(165, 94, 234, 0.3);
+}
+
+.dropdown-badge.spb {
+  background: rgba(0, 255, 136, 0.12);
+  color: var(--accent-neon-green);
+  border-color: rgba(0, 255, 136, 0.3);
+}
+
+.dropdown-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.dropdown-info strong {
+  font-size: 0.88rem;
+  line-height: 1.2;
+  color: #ffffff;
+}
+
+.dropdown-info span {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+}
+
+.dropdown-divider {
+  height: 1px;
+  background: var(--border-subtle);
+  margin: 6px 0;
+}
+
+/* ==========================================================================
+   CUSTOM AD-FREE CYBERPUNK MAP HUD
+   ========================================================================== */
+.custom-map-container {
+  width: 100%;
+  height: 380px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  background: #06080c;
+  border: 1px solid var(--border-medium);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.6);
+}
+
+.custom-map-hud-overlay {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 500;
+  background: rgba(10, 12, 16, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--border-medium);
+  border-radius: 6px;
+  padding: 8px 12px;
+  pointer-events: none;
+}
+
+.custom-map-hud-overlay .hud-title {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--accent-cyan);
+  display: block;
+}
+
+.custom-map-hud-overlay .hud-coords {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  display: block;
+}
+
+.pin-radar-pulse {
+  position: absolute;
+  width: 38px;
+  height: 38px;
+  top: -7px;
+  left: -7px;
+  border-radius: 50%;
+  border: 2px solid #00f0ff;
+  animation: mapPulseAnim 2s infinite ease-out;
+  pointer-events: none;
+}
+
+.pin-core-circle {
+  width: 14px;
+  height: 14px;
+  background: #00f0ff;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 0 14px #00f0ff;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+@keyframes mapPulseAnim {
+  0% { transform: scale(0.4); opacity: 1; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+
+.leaflet-popup-content-wrapper {
+  background: rgba(14, 16, 22, 0.95) !important;
+  color: #fff !important;
+  border: 1px solid var(--border-medium) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.8) !important;
+}
+
+.leaflet-popup-tip {
+  background: rgba(14, 16, 22, 0.95) !important;
+  border: 1px solid var(--border-medium) !important;
+}
+
+.map-popup-card strong {
+  display: block;
+  font-size: 0.95rem;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.map-popup-card p {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.map-popup-card .popup-btn {
+  display: inline-block;
+  background: var(--accent-cyan);
+  color: #000;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 4px 8px;
+  border-radius: 4px;
+  text-decoration: none;
+}

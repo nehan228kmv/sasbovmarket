@@ -106,6 +106,42 @@
         <ul class="nav-list">
           <li><a href="/" class="nav-link">ГЛАВНАЯ</a></li>
           <li><a href="/catalog" class="nav-link active">КАТАЛОГ</a></li>
+          <li class="nav-dropdown">
+            <button type="button" class="nav-dropdown-toggle">
+              ХАБЫ ВЫКУПА <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="nav-dropdown-menu">
+              <a href="/mercari-japan" class="dropdown-item">
+                <span class="dropdown-badge jp">JP</span>
+                <div class="dropdown-info">
+                  <strong>MERCARI JAPAN (ЯПОНИЯ)</strong>
+                  <span>BAPE, Kapital, Undercover, Yahoo</span>
+                </div>
+              </a>
+              <a href="/goofish-russia" class="dropdown-item">
+                <span class="dropdown-badge cn">CN</span>
+                <div class="dropdown-info">
+                  <strong>GOOFISH / XIANYU (КИТАЙ)</strong>
+                  <span>Архивы 2Taobao, склад в Шанхае</span>
+                </div>
+              </a>
+              <a href="/grailed-archive" class="dropdown-item">
+                <span class="dropdown-badge us">US</span>
+                <div class="dropdown-info">
+                  <strong>GRAILED ARCHIVES (США/ЕС)</strong>
+                  <span>Rick Owens, Chrome Hearts, примерка</span>
+                </div>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="/catalog?stock=instock" class="dropdown-item">
+                <span class="dropdown-badge spb">СПБ</span>
+                <div class="dropdown-info">
+                  <strong>В НАЛИЧИИ В ШОУРУМЕ</strong>
+                  <span>Невский 110В • Примерка сегодня</span>
+                </div>
+              </a>
+            </div>
+          </li>
           <li><a href="/blog" class="nav-link">БЛОГ</a></li>
           <li><a href="/#calculator" class="nav-link">КАЛЬКУЛЯТОР</a></li>
           <li><a href="/#guarantee" class="nav-link">ГАРАНТИИ</a></li>
@@ -156,6 +192,26 @@
         </div>
       </div>
 
+      <!-- Direct Hub Banners -->
+      <div class="catalog-hubs-bar" style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; padding: 12px 16px; background: var(--bg-surface); border: 1px solid var(--border-medium); border-radius: 8px;">
+        <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-cyan); display: flex; align-items: center; font-weight: 700; margin-right: 6px;">ХАБЫ ВЫКУПА:</span>
+        <a href="/mercari-japan" class="catalog-hub-pill" style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px; background: rgba(0,240,255,0.08); border: 1px solid rgba(0,240,255,0.25); color: #fff; padding: 6px 12px; border-radius: 6px; font-family: var(--font-mono); font-size: 0.78rem; font-weight: 700; transition: border-color 0.2s;">
+          <span>🇯🇵 Mercari Japan</span>
+          <span style="color: var(--accent-cyan);">→</span>
+        </a>
+        <a href="/goofish-russia" class="catalog-hub-pill" style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px; background: rgba(255,71,87,0.08); border: 1px solid rgba(255,71,87,0.25); color: #fff; padding: 6px 12px; border-radius: 6px; font-family: var(--font-mono); font-size: 0.78rem; font-weight: 700; transition: border-color 0.2s;">
+          <span>🇨🇳 Goofish / Xianyu</span>
+          <span style="color: #ff4757;">→</span>
+        </a>
+        <a href="/grailed-archive" class="catalog-hub-pill" style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px; background: rgba(165,94,234,0.08); border: 1px solid rgba(165,94,234,0.25); color: #fff; padding: 6px 12px; border-radius: 6px; font-family: var(--font-mono); font-size: 0.78rem; font-weight: 700; transition: border-color 0.2s;">
+          <span>🇺🇸 Grailed Archives</span>
+          <span style="color: #a55eea;">→</span>
+        </a>
+        <a href="/catalog?stock=instock" class="catalog-hub-pill" style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px; background: rgba(0,255,136,0.08); border: 1px solid rgba(0,255,136,0.25); color: #fff; padding: 6px 12px; border-radius: 6px; font-family: var(--font-mono); font-size: 0.78rem; font-weight: 700; transition: border-color 0.2s;">
+          <span>📍 Наличие в СПб</span>
+          <span style="color: var(--accent-neon-green);">→</span>
+        </a>
+      </div>
       <!-- Stock Type High-Profile Filter: In Stock (SPB Balkonsky Store) vs Pre-Order -->
       <div class="stock-type-bar" role="tablist" aria-label="Фильтр по наличию и типу поставки">
         <button type="button" class="stock-tab-btn active" data-stock-filter="all" id="stock-filter-all">

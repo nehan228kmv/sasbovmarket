@@ -128,6 +128,42 @@
         <ul class="nav-list">
           <li><a href="/" class="nav-link">ГЛАВНАЯ</a></li>
           <li><a href="/catalog" class="nav-link">КАТАЛОГ</a></li>
+          <li class="nav-dropdown">
+            <button type="button" class="nav-dropdown-toggle">
+              ХАБЫ ВЫКУПА <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="nav-dropdown-menu">
+              <a href="/mercari-japan" class="dropdown-item">
+                <span class="dropdown-badge jp">JP</span>
+                <div class="dropdown-info">
+                  <strong>MERCARI JAPAN (ЯПОНИЯ)</strong>
+                  <span>BAPE, Kapital, Undercover, Yahoo</span>
+                </div>
+              </a>
+              <a href="/goofish-russia" class="dropdown-item">
+                <span class="dropdown-badge cn">CN</span>
+                <div class="dropdown-info">
+                  <strong>GOOFISH / XIANYU (КИТАЙ)</strong>
+                  <span>Архивы 2Taobao, склад в Шанхае</span>
+                </div>
+              </a>
+              <a href="/grailed-archive" class="dropdown-item">
+                <span class="dropdown-badge us">US</span>
+                <div class="dropdown-info">
+                  <strong>GRAILED ARCHIVES (США/ЕС)</strong>
+                  <span>Rick Owens, Chrome Hearts, примерка</span>
+                </div>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="/catalog?stock=instock" class="dropdown-item">
+                <span class="dropdown-badge spb">СПБ</span>
+                <div class="dropdown-info">
+                  <strong>В НАЛИЧИИ В ШОУРУМЕ</strong>
+                  <span>Невский 110В • Примерка сегодня</span>
+                </div>
+              </a>
+            </div>
+          </li>
           <li><a href="/blog" class="nav-link active">БЛОГ</a></li>
           <li><a href="/#calculator" class="nav-link">КАЛЬКУЛЯТОР</a></li>
           <li><a href="/#guarantee" class="nav-link">ГАРАНТИИ</a></li>
@@ -169,16 +205,116 @@
 
         <!-- Category Filters -->
         <div class="blog-filter-pills" style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px;">
-          <button type="button" class="blog-pill-btn active" data-blog-cat="all">ВСЕ СТАТЬИ (17)</button>
+          <button type="button" class="blog-pill-btn active" data-blog-cat="all">ВСЕ СТАТЬИ (21)</button>
           <button type="button" class="blog-pill-btn" data-blog-cat="local">СПБ & ЗВЁЗДЫ (2)</button>
-          <button type="button" class="blog-pill-btn" data-blog-cat="legit">LEGIT CHECK (5)</button>
-          <button type="button" class="blog-pill-btn" data-blog-cat="guide">ГИДЫ ПО ВЫКУПУ (5)</button>
+          <button type="button" class="blog-pill-btn" data-blog-cat="legit">LEGIT CHECK (7)</button>
+          <button type="button" class="blog-pill-btn" data-blog-cat="guide">ГИДЫ ПО ВЫКУПУ (7)</button>
           <button type="button" class="blog-pill-btn" data-blog-cat="culture">ИСТОРИЯ & КУЛЬТУРА (5)</button>
         </div>
       </div>
 
       <!-- Articles Grid -->
       <div class="blog-grid" id="blog-grid">
+        <!-- Article: Rick Owens Legit Check -->
+        <article class="blog-card" data-cat="legit">
+          <a href="/blog-rick-owens-legit-check" class="blog-card-media" style="text-decoration: none; display: block;">
+            <img src="/uploads/poster_rick_owens.jpg" alt="Как отличить оригинал Rick Owens от подделки" class="blog-card-img" width="600" height="338" loading="lazy" decoding="async">
+            <span class="blog-badge legit" style="background: rgba(0, 255, 136, 0.2); border-color: var(--accent-neon-green); color: var(--accent-neon-green);">LEGIT CHECK</span>
+          </a>
+          <div class="blog-card-body">
+            <div class="blog-meta">
+              <span>LEGIT CHECK</span> • <span>7 МИН ЧТЕНИЯ</span>
+            </div>
+            <h2 class="blog-card-title">
+              <a href="/blog-rick-owens-legit-check" style="color: inherit; text-decoration: none;">
+                Как отличить оригинал Rick Owens от подделки: легитчек Geobasket, Ramones и DRKSHDW
+              </a>
+            </h2>
+            <p class="blog-card-excerpt">
+              Разбор акульей подошвы Shark Tooth, итальянских молний Raccagni, фактуры кожи LPO и серийных кодов от экспертов SASBOV MARKET.
+            </p>
+            <div class="blog-card-footer">
+              <a href="/blog-rick-owens-legit-check" class="btn btn-sm btn-primary">ЧИТАТЬ МАТЕРИАЛ →</a>
+              <span class="blog-author">SASBOV</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Article: Chrome Hearts Legit Check -->
+        <article class="blog-card" data-cat="legit">
+          <a href="/blog-chrome-hearts-legit-check" class="blog-card-media" style="text-decoration: none; display: block;">
+            <img src="/uploads/poster_chrome_hearts.jpg" alt="Легитчек Chrome Hearts: как отличить худи, деним и серебро" class="blog-card-img" width="600" height="338" loading="lazy" decoding="async">
+            <span class="blog-badge legit" style="background: rgba(0, 255, 136, 0.2); border-color: var(--accent-neon-green); color: var(--accent-neon-green);">LEGIT CHECK</span>
+          </a>
+          <div class="blog-card-body">
+            <div class="blog-meta">
+              <span>LEGIT CHECK</span> • <span>6 МИН ЧТЕНИЯ</span>
+            </div>
+            <h2 class="blog-card-title">
+              <a href="/blog-chrome-hearts-legit-check" style="color: inherit; text-decoration: none;">
+                Легитчек Chrome Hearts: как отличить оригинальное худи, деним и серебро от фейка
+              </a>
+            </h2>
+            <p class="blog-card-excerpt">
+              Анализ защитной микронити штрихкода (Barcode Tag), готического шрифта подковы Horseshoe и фурнитуры .925 Sterling Silver.
+            </p>
+            <div class="blog-card-footer">
+              <a href="/blog-chrome-hearts-legit-check" class="btn btn-sm btn-primary">ЧИТАТЬ МАТЕРИАЛ →</a>
+              <span class="blog-author">SASBOV</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Article: Poizon 2026 Guide -->
+        <article class="blog-card" data-cat="guide">
+          <a href="/blog-poizon-guide-2026" class="blog-card-media" style="text-decoration: none; display: block;">
+            <img src="/uploads/poster_travis_jordan.jpg" alt="Гид по покупкам на Poizon в 2026 году" class="blog-card-img" width="600" height="338" loading="lazy" decoding="async">
+            <span class="blog-badge guide" style="background: rgba(0, 240, 255, 0.2); border-color: var(--accent-cyan); color: var(--accent-cyan);">ГИД ПО ВЫКУПУ</span>
+          </a>
+          <div class="blog-card-body">
+            <div class="blog-meta">
+              <span>КИТАЙ & ВЫКУП</span> • <span>6 МИН ЧТЕНИЯ</span>
+            </div>
+            <h2 class="blog-card-title">
+              <a href="/blog-poizon-guide-2026" style="color: inherit; text-decoration: none;">
+                Гид по покупкам на Poizon в 2026 году: как заказывать оригиналы без посредников и переплат
+              </a>
+            </h2>
+            <p class="blog-card-excerpt">
+              Синяя vs черная кнопка Dewu, проверка бирюзовых пломб со встроенным NFC, честный курс ЦБ РФ + 0.50 ₽ и авиадоставка в Россию.
+            </p>
+            <div class="blog-card-footer">
+              <a href="/blog-poizon-guide-2026" class="btn btn-sm btn-primary">ЧИТАТЬ МАТЕРИАЛ →</a>
+              <span class="blog-author">SASBOV</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Article: Japan Auctions Guide -->
+        <article class="blog-card" data-cat="guide">
+          <a href="/blog-japan-auctions-guide" class="blog-card-media" style="text-decoration: none; display: block;">
+            <img src="/uploads/poster_bape_harajuku.jpg" alt="Гайд по покупкам на Yahoo Auctions и Mercari Japan" class="blog-card-img" width="600" height="338" loading="lazy" decoding="async">
+            <span class="blog-badge guide" style="background: rgba(0, 240, 255, 0.2); border-color: var(--accent-cyan); color: var(--accent-cyan);">ГИД ПО ВЫКУПУ</span>
+          </a>
+          <div class="blog-card-body">
+            <div class="blog-meta">
+              <span>ЯПОНИЯ & АРХИВЫ</span> • <span>6 МИН ЧТЕНИЯ</span>
+            </div>
+            <h2 class="blog-card-title">
+              <a href="/blog-japan-auctions-guide" style="color: inherit; text-decoration: none;">
+                Гайд по покупкам на Yahoo Auctions и Mercari Japan: как выкупать редкий архивный стритвир
+              </a>
+            </h2>
+            <p class="blog-card-excerpt">
+              Японская шкала оценки состояния S/A/B/C, поиск кандзи-тегов BAPE и Undercover, выкуп с закрытых аукционов и склад в Токио.
+            </p>
+            <div class="blog-card-footer">
+              <a href="/blog-japan-auctions-guide" class="btn btn-sm btn-primary">ЧИТАТЬ МАТЕРИАЛ →</a>
+              <span class="blog-author">SASBOV</span>
+            </div>
+          </div>
+        </article>
+
         <!-- Article: Maison Mihara Yasuhiro Legit Check -->
         <article class="blog-card" data-cat="legit">
           <a href="/blog-mihara-yasuhiro-legit-check" class="blog-card-media" style="text-decoration: none; display: block;">
