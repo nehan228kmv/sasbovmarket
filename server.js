@@ -223,7 +223,9 @@ const server = http.createServer(async (req, res) => {
     const payload = JSON.stringify(cachedLiveRates);
     res.writeHead(200, {
       'Content-Type': 'application/json',
-      'Cache-Control': 'public, max-age=900, s-maxage=1800',
+      'Cache-Control': 'no-cache, no-store, must-revalidate',
+      'Pragma': 'no-cache',
+      'Expires': '0',
       'Content-Length': Buffer.byteLength(payload)
     });
     if (req.method === 'HEAD') return res.end();

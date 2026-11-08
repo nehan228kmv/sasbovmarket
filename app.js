@@ -935,7 +935,9 @@ ${listText}
     const notice = document.getElementById('calc-rate-notice');
     if (!notice) return;
     if (calcOrigin === 'cn') {
-      notice.innerHTML = 'КУРС ВЫКУПА: <strong>1 ¥ = ' + RATES.CNY.toFixed(2) + ' ₽</strong> (КУРС ЦБ РФ ' + liveCbr.cny.toFixed(2) + ' ₽ + 0.50 ₽) • В РЕАЛЬНОМ ВРЕМЕНИ';
+      const cnyRate = Math.round((liveCbr.cny + 0.50) * 100) / 100;
+      RATES.CNY = cnyRate;
+      notice.innerHTML = 'КУРС ВЫКУПА: <strong>1 ¥ = ' + cnyRate.toFixed(2) + ' ₽</strong> (КУРС ЦБ РФ ' + liveCbr.cny.toFixed(2) + ' ₽ + 0.50 ₽) • В РЕАЛЬНОМ ВРЕМЕНИ';
     } else if (calcOrigin === 'jp') {
       notice.innerHTML = 'КУРС ВЫКУПА: <strong>1 ¥ = ' + RATES.JPY.toFixed(3) + ' ₽</strong> (КУРС ЦБ РФ ' + liveCbr.jpy.toFixed(3) + ' ₽) • В РЕАЛЬНОМ ВРЕМЕНИ';
     } else {
@@ -1030,14 +1032,19 @@ ${listText}
     fetchLiveRates();
   }
   function fetchLiveRates() {
-    fetch('/api/rates')
+    fetch('/api/rates?t=' + Date.now())
       .then(res => res.json())
       .then(data => {
-        if (data && data.success && data.rates) {
-          if (data.rates.CNY) RATES.CNY = data.rates.CNY;
-          if (data.rates.JPY) RATES.JPY = data.rates.JPY;
-          if (data.rates.USD) RATES.USD = data.rates.USD;
-          if (data.cbr) liveCbr = data.cbr;
+        if (data && data.success) {
+          if (data.cbr && data.cbr.cny) {
+            liveCbr = data.cbr;
+          }
+          // Exact formula: CBR + 0.50 ₽
+          RATES.CNY = Math.round((liveCbr.cny + 0.50) * 100) / 100;
+          if (data.rates) {
+            if (data.rates.JPY) RATES.JPY = data.rates.JPY;
+            if (data.rates.USD) RATES.USD = data.rates.USD;
+          }
           updateRateNotice();
           calculateEstimate();
         }
